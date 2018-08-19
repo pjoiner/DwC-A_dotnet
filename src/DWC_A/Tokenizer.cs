@@ -1,20 +1,26 @@
-﻿using DWC_A.Extensions;
+﻿using Dwc.Text;
+using DWC_A.Extensions;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DWC_A
 {
     public class Tokenizer : ITokenizer
     {
+        private readonly IFileAttributes fileAttributes;
         private readonly bool HasQuotes;
         private readonly char Delimiter;
         private readonly char Quotes;
 
-        public Tokenizer(bool hasQuotes = false, char delimiter = ',', char quotes = '"')
+        public Tokenizer(IFileAttributes fileAttributes)
         {
-            this.HasQuotes = hasQuotes;
-            this.Delimiter = delimiter;
-            this.Quotes = quotes;
+            //TODO: Initialize fileAttributes if null
+            //      Also need to check FieldsEnclosedBy and FieldsTerminatedBy
+            this.fileAttributes = fileAttributes;
+            this.HasQuotes = fileAttributes.FieldsEnclosedBy?.Length > 0;
+            this.Delimiter = fileAttributes.FieldsTerminatedBy.FirstOrDefault();
+            this.Quotes = fileAttributes.FieldsEnclosedBy.FirstOrDefault();
         }
 
         public IEnumerable<string> Split(string line)
