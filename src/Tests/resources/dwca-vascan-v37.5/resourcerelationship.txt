@@ -1,0 +1,1055 @@
+id	relatedResourceID	relationshipOfResource	scientificName
+2787	2782	hybrid parent of	Agoseris glauca (Pursh) Rafinesque var. glauca
+2787	9807	hybrid parent of	Agoseris parviflora (Nuttall) D. Dietrich
+2796	2792	hybrid parent of	Ambrosia artemisiifolia Linnaeus
+2796	2795	hybrid parent of	Ambrosia trifida Linnaeus
+2841	2802	hybrid parent of	Antennaria corymbosa E.E. Nelson
+2841	2833	hybrid parent of	Antennaria racemosa Hooker
+2850	2848	hybrid parent of	Arctium minus (Hill) Bernhardi
+2850	2849	hybrid parent of	Arctium tomentosum Miller
+2958	2952	hybrid parent of	Carduus acanthoides Linnaeus subsp. acanthoides
+2958	2957	hybrid parent of	Carduus nutans Linnaeus subsp. nutans
+2975	2965	hybrid parent of	Centaurea jacea Linnaeus
+2975	2969	hybrid parent of	Centaurea nigra Linnaeus
+2976	2964	hybrid parent of	Centaurea diffusa Lamarck
+2976	2973	hybrid parent of	Centaurea stoebe subsp. micranthos (S. G. Gmelin ex Gugler) Hayek
+3007	2989	hybrid parent of	Cirsium brevistylum Cronquist
+3007	2992	hybrid parent of	Cirsium edule var. macounii (Greene) D.J. Keil
+3130	3071	hybrid parent of	Erigeron acris var. kamtschaticus (de Candolle) Herder
+3130	3076	hybrid parent of	Erigeron aureus Greene
+3208	3201	hybrid parent of	Helianthus pauciflorus Nuttall subsp. pauciflorus
+3208	3207	hybrid parent of	Helianthus tuberosus Linnaeus
+3243	3222	hybrid parent of	Pilosella caespitosa (Dumortier) P.D. Sell & C. West
+3243	3225	hybrid parent of	Pilosella lactucella (Wallroth) P.D. Sell & C. West
+3244	3224	hybrid parent of	Hieracium gronovii Linnaeus
+3244	3240	hybrid parent of	Hieracium venosum Linnaeus
+3291	3282	hybrid parent of	Liatris aspera Michaux
+3291	3283	hybrid parent of	Liatris cylindracea Michaux
+3315	3313	hybrid parent of	Oclemena acuminata (Michaux) Greene
+3315	3314	hybrid parent of	Oclemena nemoralis (Aiton) Greene
+3322	3321	hybrid parent of	Packera aurea (Linnaeus) Á. Löve & D. Löve
+3322	3339	hybrid parent of	Packera schweinitziana (Nuttall) W.A. Weber & Á. Löve
+3352	3350	hybrid parent of	Petasites frigidus var. palmatus (Aiton) Cronquist
+3352	3351	hybrid parent of	Petasites frigidus var. sagittatus (Pursh) Cherniawsky
+3504	3482	hybrid parent of	Solidago rugosa Miller subsp. rugosa var. rugosa
+3504	3499	hybrid parent of	Solidago uliginosa Nuttall
+3505	3449	hybrid parent of	Solidago hispida Muhlenberg ex Willdenow
+3505	3459	hybrid parent of	Solidago macrophylla Banks ex Pursh
+3507	3468	hybrid parent of	Solidago ohioensis Riddell
+3507	3472	hybrid parent of	Solidago ptarmicoides (Torrey & A. Gray) B. Boivin
+3594	3532	hybrid parent of	Symphyotrichum ericoides (Linnaeus) G.L. Nesom var. ericoides
+3594	3561	hybrid parent of	Symphyotrichum novae-angliae (Linnaeus) G.L. Nesom
+3595	3530	hybrid parent of	Symphyotrichum cordifolium (Linnaeus) G.L. Nesom
+3595	3579	hybrid parent of	Symphyotrichum puniceum (Linnaeus) Á. Löve & D. Löve var. puniceum
+3636	3633	hybrid parent of	Tragopogon dubius Scopoli
+3636	3635	hybrid parent of	Tragopogon pratensis Linnaeus
+3637	3634	hybrid parent of	Tragopogon porrifolius Linnaeus
+3637	3635	hybrid parent of	Tragopogon pratensis Linnaeus
+3668	3666	hybrid parent of	Berberis thunbergii de Candolle
+3668	3667	hybrid parent of	Berberis vulgaris Linnaeus
+3706	3690	hybrid parent of	Betula michauxii Spach
+3706	3705	hybrid parent of	Betula pumila Linnaeus var. pumila
+3707	3686	hybrid parent of	Betula cordifolia Regel
+3707	3699	hybrid parent of	Betula populifolia Marshall
+3709	3687	hybrid parent of	Betula glandulosa Michaux
+3709	3691	hybrid parent of	Betula minor (Tuckerman) Fernald
+3710	3687	hybrid parent of	Betula glandulosa Michaux
+3710	3696	hybrid parent of	Betula occidentalis Hooker
+3715	3697	hybrid parent of	Betula papyrifera Marshall
+3715	3703	hybrid parent of	Betula pumila var. glandulifera Regel
+3716	3687	hybrid parent of	Betula glandulosa Michaux
+3716	3703	hybrid parent of	Betula pumila var. glandulifera Regel
+3718	3695	hybrid parent of	Betula neoalaskana Sargent
+3718	3697	hybrid parent of	Betula papyrifera Marshall
+3732	3729	hybrid parent of	Catalpa bignonioides Walter
+3732	3730	hybrid parent of	Catalpa ovata G. Don
+3867	3851	hybrid parent of	Botrychium hesperium (Maxon & R.T. Clausen) W.H. Wagner & Lellinger
+3867	3862	hybrid parent of	Botrychium paradoxum W.H. Wagner
+4084	4082	hybrid parent of	Nasturtium microphyllum Boenninghausen ex Reichenbach
+4084	4083	hybrid parent of	Nasturtium officinale W.T. Aiton
+4188	4182	hybrid parent of	Lobelia cardinalis Linnaeus
+4188	4186	hybrid parent of	Lobelia siphilitica Linnaeus
+4229	4220	hybrid parent of	Lonicera morrowii A. Gray
+4229	4226	hybrid parent of	Lonicera tatarica Linnaeus
+4230	4226	hybrid parent of	Lonicera tatarica Linnaeus
+4230	4231	hybrid parent of	Lonicera xylosteum Linnaeus
+4411	4376	hybrid parent of	Silene dioica (Linnaeus) Clairville
+4411	4389	hybrid parent of	Silene latifolia Poiret
+4576	4574	hybrid parent of	Hudsonia ericoides Linnaeus
+4576	4575	hybrid parent of	Hudsonia tomentosa Nuttall
+4596	4590	hybrid parent of	Streptopus amplexifolius (Linnaeus) de Candolle
+4596	4593	hybrid parent of	Streptopus lanceolatus (Aiton) Reveal var. lanceolatus
+4725	4724	hybrid parent of	Carex adusta Boott
+4725	4869	hybrid parent of	Carex foenea Willdenow
+4747	4743	hybrid parent of	Carex aquatilis var. dives (Holm) Kükenthal
+4747	4963	hybrid parent of	Carex lyngbyei Hornemann
+4748	4741	hybrid parent of	Carex aquatilis Wahlenberg var. aquatilis
+4748	4744	hybrid parent of	Carex aquatilis var. minor Boott
+4749	4741	hybrid parent of	Carex aquatilis Wahlenberg var. aquatilis
+4749	5100	hybrid parent of	Carex stricta Lamarck
+4764	4763	hybrid parent of	Carex atrosquama Mackenzie
+4764	4976	hybrid parent of	Carex media R. Brown
+4770	4769	hybrid parent of	Carex bebbii (L.H. Bailey) Olney ex Fernald
+4770	4825	hybrid parent of	Carex cristatella Britton
+4777	4776	hybrid parent of	Carex bigelowii subsp. lugens (T. Holm)  T.V. Egorova
+4777	5082	hybrid parent of	Carex scopulorum var. bracteosa (L.H. Bailey) F.J. Hermann
+4779	4774	hybrid parent of	Carex bigelowii Torrey ex Schweinitz subsp. bigelowii
+4779	5062	hybrid parent of	Carex rufina Drejer
+4780	4774	hybrid parent of	Carex bigelowii Torrey ex Schweinitz subsp. bigelowii
+4780	5101	hybrid parent of	Carex stylosa C.A. Meyer
+4787	4786	hybrid parent of	Carex brevior (Dewey) Mackenzie ex Lunell
+4787	4869	hybrid parent of	Carex foenea Willdenow
+4796	4795	hybrid parent of	Carex buxbaumii Wahlenberg
+4796	5100	hybrid parent of	Carex stricta Lamarck
+4800	4797	hybrid parent of	Carex canescens Linnaeus subsp. canescens
+4800	5038	hybrid parent of	Carex praeceptorum Mackenzie
+4801	4797	hybrid parent of	Carex canescens Linnaeus subsp. canescens
+4801	5125	hybrid parent of	Carex trisperma Dewey
+4808	4807	hybrid parent of	Carex castanea Wahlenberg
+4808	4833	hybrid parent of	Carex debilis var. rudgei L.H. Bailey
+4829	4828	hybrid parent of	Carex cumulata (L.H. Bailey) Mackenzie
+4829	4869	hybrid parent of	Carex foenea Willdenow
+4855	4852	hybrid parent of	Carex echinata Murray subsp. echinata
+4855	4860	hybrid parent of	Carex exilis Dewey
+4862	4861	hybrid parent of	Carex exsiccata L.H. Bailey
+4862	5059	hybrid parent of	Carex rostrata Stokes nom. cons.
+4870	4869	hybrid parent of	Carex foenea Willdenow
+4870	5042	hybrid parent of	Carex praticola Rydberg
+4872	4869	hybrid parent of	Carex foenea Willdenow
+4872	5202	hybrid parent of	Carex xerantica L.H. Bailey
+4874	4873	hybrid parent of	Carex folliculata Linnaeus
+4874	4959	hybrid parent of	Carex lurida Wahlenberg
+4883	4881	hybrid parent of	Carex glareosa Wahlenberg subsp. glareosa
+4883	4924	hybrid parent of	Carex lachenalii Schkuhr
+4918	4917	hybrid parent of	Carex interior L.H. Bailey
+4918	5095	hybrid parent of	Carex sterilis Willdenow
+4925	4924	hybrid parent of	Carex lachenalii Schkuhr
+4925	5020	hybrid parent of	Carex parallela (Laestadius) Sommerfelt subsp. parallela
+4927	4926	hybrid parent of	Carex lacustris Willdenow
+4927	5124	hybrid parent of	Carex trichocarpa Muhlenberg ex Willdenow
+4964	4963	hybrid parent of	Carex lyngbyei Hornemann
+4964	4999	hybrid parent of	Carex nigra (Linnaeus) Reichard
+4969	4968	hybrid parent of	Carex macrochaeta C.A. Meyer
+4969	5091	hybrid parent of	Carex spectabilis Dewey
+4974	4973	hybrid parent of	Carex maritima Gunnerus
+4974	5020	hybrid parent of	Carex parallela (Laestadius) Sommerfelt subsp. parallela
+4977	4976	hybrid parent of	Carex media R. Brown
+4977	5004	hybrid parent of	Carex norvegica Retzius
+4985	4983	hybrid parent of	Carex microchaeta Holm subsp. microchaeta
+4985	5037	hybrid parent of	Carex podocarpa R. Brown
+5000	4999	hybrid parent of	Carex nigra (Linnaeus) Reichard
+5000	5101	hybrid parent of	Carex stylosa C.A. Meyer
+5015	5014	hybrid parent of	Carex paleacea Schreber ex Wahlenberg
+5015	5100	hybrid parent of	Carex stricta Lamarck
+5016	5014	hybrid parent of	Carex paleacea Schreber ex Wahlenberg
+5016	5133	hybrid parent of	Carex vacillans Drejer
+5053	5052	hybrid parent of	Carex recta Boott
+5053	5100	hybrid parent of	Carex stricta Lamarck
+5068	5067	hybrid parent of	Carex saxatilis Linnaeus
+5068	5101	hybrid parent of	Carex stylosa C.A. Meyer
+5150	4774	hybrid parent of	Carex bigelowii Torrey ex Schweinitz subsp. bigelowii
+5150	5104	hybrid parent of	Carex subspathacea Wormskjold
+5151	4797	hybrid parent of	Carex canescens Linnaeus subsp. canescens
+5151	4924	hybrid parent of	Carex lachenalii Schkuhr
+5152	4951	hybrid parent of	Carex limosa Linnaeus
+5152	4970	hybrid parent of	Carex magellanica subsp. irrigua (Wahlenberg) Hiitonen
+5154	5014	hybrid parent of	Carex paleacea Schreber ex Wahlenberg
+5154	5104	hybrid parent of	Carex subspathacea Wormskjold
+5155	4999	hybrid parent of	Carex nigra (Linnaeus) Reichard
+5155	5014	hybrid parent of	Carex paleacea Schreber ex Wahlenberg
+5159	4741	hybrid parent of	Carex aquatilis Wahlenberg var. aquatilis
+5159	5052	hybrid parent of	Carex recta Boott
+5160	4774	hybrid parent of	Carex bigelowii Torrey ex Schweinitz subsp. bigelowii
+5160	4999	hybrid parent of	Carex nigra (Linnaeus) Reichard
+5161	4774	hybrid parent of	Carex bigelowii Torrey ex Schweinitz subsp. bigelowii
+5161	4963	hybrid parent of	Carex lyngbyei Hornemann
+5162	4797	hybrid parent of	Carex canescens Linnaeus subsp. canescens
+5162	4924	hybrid parent of	Carex lachenalii Schkuhr
+5163	4751	hybrid parent of	Carex arctata Boott
+5163	4807	hybrid parent of	Carex castanea Wahlenberg
+5164	4797	hybrid parent of	Carex canescens Linnaeus subsp. canescens
+5164	5114	hybrid parent of	Carex tenuiflora Wahlenberg
+5165	4893	hybrid parent of	Carex gynocrates Wormskjold ex Drejer
+5165	4973	hybrid parent of	Carex maritima Gunnerus
+5166	4951	hybrid parent of	Carex limosa Linnaeus
+5166	5014	hybrid parent of	Carex paleacea Schreber ex Wahlenberg
+5167	4741	hybrid parent of	Carex aquatilis Wahlenberg var. aquatilis
+5167	4774	hybrid parent of	Carex bigelowii Torrey ex Schweinitz subsp. bigelowii
+5168	4959	hybrid parent of	Carex lurida Wahlenberg
+5168	5132	hybrid parent of	Carex utriculata Boott
+5169	5052	hybrid parent of	Carex recta Boott
+5169	5065	hybrid parent of	Carex salina Wahlenberg
+5170	4860	hybrid parent of	Carex exilis Dewey
+5170	5095	hybrid parent of	Carex sterilis Willdenow
+5171	4755	hybrid parent of	Carex atherodes Sprengel
+5171	4958	hybrid parent of	Carex lupulina Muhlenberg ex Willdenow
+5172	4744	hybrid parent of	Carex aquatilis var. minor Boott
+5172	4774	hybrid parent of	Carex bigelowii Torrey ex Schweinitz subsp. bigelowii
+5174	4741	hybrid parent of	Carex aquatilis Wahlenberg var. aquatilis
+5174	5014	hybrid parent of	Carex paleacea Schreber ex Wahlenberg
+5175	4741	hybrid parent of	Carex aquatilis Wahlenberg var. aquatilis
+5175	5067	hybrid parent of	Carex saxatilis Linnaeus
+5176	4774	hybrid parent of	Carex bigelowii Torrey ex Schweinitz subsp. bigelowii
+5176	5065	hybrid parent of	Carex salina Wahlenberg
+5178	4761	hybrid parent of	Carex atratiformis Britton
+5178	5067	hybrid parent of	Carex saxatilis Linnaeus
+5179	5065	hybrid parent of	Carex salina Wahlenberg
+5179	5104	hybrid parent of	Carex subspathacea Wormskjold
+5181	4868	hybrid parent of	Carex flava Linnaeus
+5181	5138	hybrid parent of	Carex viridula subsp. brachyrrhyncha var. elatior (Schlechtendal) Crins
+5182	4797	hybrid parent of	Carex canescens Linnaeus subsp. canescens
+5182	4965	hybrid parent of	Carex mackenziei V.I. Kreczetowicz
+5183	4774	hybrid parent of	Carex bigelowii Torrey ex Schweinitz subsp. bigelowii
+5183	5067	hybrid parent of	Carex saxatilis Linnaeus
+5184	4761	hybrid parent of	Carex atratiformis Britton
+5184	5004	hybrid parent of	Carex norvegica Retzius
+5185	4999	hybrid parent of	Carex nigra (Linnaeus) Reichard
+5185	5104	hybrid parent of	Carex subspathacea Wormskjold
+5186	4741	hybrid parent of	Carex aquatilis Wahlenberg var. aquatilis
+5186	4999	hybrid parent of	Carex nigra (Linnaeus) Reichard
+5187	4760	hybrid parent of	Carex atrata Linnaeus
+5187	5101	hybrid parent of	Carex stylosa C.A. Meyer
+5188	5014	hybrid parent of	Carex paleacea Schreber ex Wahlenberg
+5188	5052	hybrid parent of	Carex recta Boott
+5189	5138	hybrid parent of	Carex viridula subsp. brachyrrhyncha var. elatior (Schlechtendal) Crins
+5189	5143	hybrid parent of	Carex viridula Michaux subsp. viridula var. viridula
+5191	4999	hybrid parent of	Carex nigra (Linnaeus) Reichard
+5191	5065	hybrid parent of	Carex salina Wahlenberg
+5193	5067	hybrid parent of	Carex saxatilis Linnaeus
+5193	5136	hybrid parent of	Carex vesicaria Linnaeus
+5195	5014	hybrid parent of	Carex paleacea Schreber ex Wahlenberg
+5195	5065	hybrid parent of	Carex salina Wahlenberg
+5196	5052	hybrid parent of	Carex recta Boott
+5196	5104	hybrid parent of	Carex subspathacea Wormskjold
+5197	4868	hybrid parent of	Carex flava Linnaeus
+5197	5143	hybrid parent of	Carex viridula Michaux subsp. viridula var. viridula
+5198	4887	hybrid parent of	Carex gracillima Schweinitz
+5198	4902	hybrid parent of	Carex hirtifolia Mackenzie
+5199	5114	hybrid parent of	Carex tenuiflora Wahlenberg
+5199	5125	hybrid parent of	Carex trisperma Dewey
+5200	4868	hybrid parent of	Carex flava Linnaeus
+5200	4908	hybrid parent of	Carex hostiana de Candolle
+5222	5217	hybrid parent of	Cyperus lupulinus subsp. macilentus (Fernald) Marcks
+5222	5219	hybrid parent of	Cyperus schweinitzii Torrey
+5264	5243	hybrid parent of	Eleocharis intermedia Schultes
+5264	5249	hybrid parent of	Eleocharis obtusa (Willdenow) Schultes
+5286	5275	hybrid parent of	Eriophorum russeolum Fries subsp. russeolum
+5286	5278	hybrid parent of	Eriophorum scheuchzeri Hoppe subsp. scheuchzeri
+5324	5304	hybrid parent of	Schoenoplectus acutus (Muhlenberg ex Bigelow) Á. Löve & D. Löve var. acutus
+5324	5308	hybrid parent of	Schoenoplectus heterochaetus (Chase) Soják
+5337	5326	hybrid parent of	Scirpus atrocinctus Fernald
+5337	5331	hybrid parent of	Scirpus hattorianus Makino
+5366	5363	hybrid parent of	Drosera intermedia Hayne
+5366	5365	hybrid parent of	Drosera rotundifolia Linnaeus
+5367	5361	hybrid parent of	Drosera anglica Hudson
+5367	5364	hybrid parent of	Drosera linearis Goldie
+5368	5361	hybrid parent of	Drosera anglica Hudson
+5368	5365	hybrid parent of	Drosera rotundifolia Linnaeus
+5369	5364	hybrid parent of	Drosera linearis Goldie
+5369	5365	hybrid parent of	Drosera rotundifolia Linnaeus
+5385	5384	hybrid parent of	Dryopteris campyloptera (Kunze) Clarkson
+5385	5390	hybrid parent of	Dryopteris cristata (Linnaeus) A. Gray
+5386	5384	hybrid parent of	Dryopteris campyloptera (Kunze) Clarkson
+5386	5398	hybrid parent of	Dryopteris intermedia (Muhlenberg ex Willdenow) A. Gray
+5389	5388	hybrid parent of	Dryopteris clintoniana (D.C. Eaton) Dowell
+5389	5390	hybrid parent of	Dryopteris cristata (Linnaeus) A. Gray
+5394	5392	hybrid parent of	Dryopteris filix-mas subsp. brittonii Fraser-Jenkins & Widen
+5394	5400	hybrid parent of	Dryopteris marginalis (Linnaeus) A. Gray
+5397	5396	hybrid parent of	Dryopteris goldiana (Hooker ex Goldie) A. Gray
+5397	5398	hybrid parent of	Dryopteris intermedia (Muhlenberg ex Willdenow) A. Gray
+5399	5398	hybrid parent of	Dryopteris intermedia (Muhlenberg ex Willdenow) A. Gray
+5399	5400	hybrid parent of	Dryopteris marginalis (Linnaeus) A. Gray
+5401	5395	hybrid parent of	Dryopteris fragrans (Linnaeus) Schott
+5401	5400	hybrid parent of	Dryopteris marginalis (Linnaeus) A. Gray
+5402	5387	hybrid parent of	Dryopteris carthusiana (Villars) H.P. Fuchs
+5402	5388	hybrid parent of	Dryopteris clintoniana (D.C. Eaton) Dowell
+5403	5390	hybrid parent of	Dryopteris cristata (Linnaeus) A. Gray
+5403	5398	hybrid parent of	Dryopteris intermedia (Muhlenberg ex Willdenow) A. Gray
+5404	5387	hybrid parent of	Dryopteris carthusiana (Villars) H.P. Fuchs
+5404	5392	hybrid parent of	Dryopteris filix-mas subsp. brittonii Fraser-Jenkins & Widen
+5405	5388	hybrid parent of	Dryopteris clintoniana (D.C. Eaton) Dowell
+5405	5400	hybrid parent of	Dryopteris marginalis (Linnaeus) A. Gray
+5407	5388	hybrid parent of	Dryopteris clintoniana (D.C. Eaton) Dowell
+5407	5396	hybrid parent of	Dryopteris goldiana (Hooker ex Goldie) A. Gray
+5408	5396	hybrid parent of	Dryopteris goldiana (Hooker ex Goldie) A. Gray
+5408	5400	hybrid parent of	Dryopteris marginalis (Linnaeus) A. Gray
+5409	5387	hybrid parent of	Dryopteris carthusiana (Villars) H.P. Fuchs
+5409	5400	hybrid parent of	Dryopteris marginalis (Linnaeus) A. Gray
+5410	5390	hybrid parent of	Dryopteris cristata (Linnaeus) A. Gray
+5410	5400	hybrid parent of	Dryopteris marginalis (Linnaeus) A. Gray
+5411	5387	hybrid parent of	Dryopteris carthusiana (Villars) H.P. Fuchs
+5411	5398	hybrid parent of	Dryopteris intermedia (Muhlenberg ex Willdenow) A. Gray
+5418	5414	hybrid parent of	Gymnocarpium dryopteris (Linnaeus) Newman
+5418	5417	hybrid parent of	Gymnocarpium robertianum (Hoffmann) Newman
+5419	5413	hybrid parent of	Gymnocarpium disjunctum (Ruprecht) Ching
+5419	5414	hybrid parent of	Gymnocarpium dryopteris (Linnaeus) Newman
+5437	5424	hybrid parent of	Polystichum acrostichoides (Michaux) Schott
+5437	5433	hybrid parent of	Polystichum lonchitis (Linnaeus) Roth
+5438	5424	hybrid parent of	Polystichum acrostichoides (Michaux) Schott
+5438	5426	hybrid parent of	Polystichum braunii (Spenner) Fée
+5450	5441	hybrid parent of	Woodsia ilvensis (Linnaeus) R. Brown
+5450	5444	hybrid parent of	Woodsia oregana subsp. cathcartiana (B.L. Robinson) Windham
+5451	5439	hybrid parent of	Woodsia alpina (Bolton) Gray
+5451	5441	hybrid parent of	Woodsia ilvensis (Linnaeus) R. Brown
+5452	5444	hybrid parent of	Woodsia oregana subsp. cathcartiana (B.L. Robinson) Windham
+5452	5447	hybrid parent of	Woodsia scopulina subsp. laurentiana Windham
+5453	5440	hybrid parent of	Woodsia glabella R. Brown ex Richardson
+5453	5441	hybrid parent of	Woodsia ilvensis (Linnaeus) R. Brown
+5454	5396	hybrid parent of	Dryopteris goldiana (Hooker ex Goldie) A. Gray
+5454	5433	hybrid parent of	Polystichum lonchitis (Linnaeus) Roth
+5480	5468	hybrid parent of	Equisetum hyemale subsp. affine (Engelmann) Calder & Roy L. Taylor
+5480	5470	hybrid parent of	Equisetum laevigatum A. Braun
+5482	5466	hybrid parent of	Equisetum arvense Linnaeus
+5482	5467	hybrid parent of	Equisetum fluviatile Linnaeus
+5483	5468	hybrid parent of	Equisetum hyemale subsp. affine (Engelmann) Calder & Roy L. Taylor
+5483	5477	hybrid parent of	Equisetum variegatum subsp. alaskanum (A.A. Eaton) Hultén
+5489	5486	hybrid parent of	Andromeda polifolia var. latifolia Aiton
+5489	5488	hybrid parent of	Andromeda polifolia Linnaeus var. polifolia
+5493	5491	hybrid parent of	Arctostaphylos columbiana Piper
+5493	5492	hybrid parent of	Arctostaphylos uva-ursi (Linnaeus) Sprengel
+5542	5540	hybrid parent of	Phyllodoce empetriformis (Smith) D. Don
+5542	5541	hybrid parent of	Phyllodoce glanduliflora (Hooker) Coville
+5554	5551	hybrid parent of	Pyrola grandiflora Radius
+5554	5552	hybrid parent of	Pyrola minor Linnaeus
+5564	5557	hybrid parent of	Rhododendron groenlandicum (Oeder) Kron & Judd
+5564	5561	hybrid parent of	Rhododendron neoglandulosum Harmaja
+5565	5558	hybrid parent of	Rhododendron lapponicum (Linnaeus) Wahlenberg
+5565	5563	hybrid parent of	Rhododendron tomentosum Harmaja
+5584	5568	hybrid parent of	Vaccinium cespitosum Michaux
+5584	5575	hybrid parent of	Vaccinium ovalifolium Smith
+5772	5763	hybrid parent of	Lespedeza capitata Michaux
+5772	5766	hybrid parent of	Lespedeza hirta (Linnaeus) Hornemann subsp. hirta
+5773	5766	hybrid parent of	Lespedeza hirta (Linnaeus) Hornemann subsp. hirta
+5773	5770	hybrid parent of	Lespedeza violacea (Linnaeus) Persoon
+5899	5895	hybrid parent of	Robinia hispida Linnaeus
+5899	5897	hybrid parent of	Robinia pseudoacacia Linnaeus
+5973	5959	hybrid parent of	Quercus alba Linnaeus
+5973	5965	hybrid parent of	Quercus macrocarpa Michaux
+5975	5970	hybrid parent of	Quercus rubra Linnaeus
+5975	5972	hybrid parent of	Quercus velutina Lamarck
+5976	5959	hybrid parent of	Quercus alba Linnaeus
+5976	5960	hybrid parent of	Quercus bicolor Willdenow
+5977	5961	hybrid parent of	Quercus ellipsoidalis E.J. Hill
+5977	5972	hybrid parent of	Quercus velutina Lamarck
+5979	5960	hybrid parent of	Quercus bicolor Willdenow
+5979	5965	hybrid parent of	Quercus macrocarpa Michaux
+6007	5994	hybrid parent of	Gentiana andrewsii Grisebach
+6007	6004	hybrid parent of	Gentiana puberulenta J.S. Pringle
+6008	5992	hybrid parent of	Gentiana alba Muhlenberg
+6008	5994	hybrid parent of	Gentiana andrewsii Grisebach
+6191	6188	hybrid parent of	Iris versicolor Linnaeus
+6191	6189	hybrid parent of	Iris virginica var. shrevei (Small) E.S. Anderson
+6228	6215	hybrid parent of	Isoetes echinospora Durieu
+6228	6225	hybrid parent of	Isoetes tuckermanii A. Braun ex Engelmann
+6230	6218	hybrid parent of	Isoetes lacustris Linnaeus
+6230	6225	hybrid parent of	Isoetes tuckermanii A. Braun ex Engelmann
+6231	6215	hybrid parent of	Isoetes echinospora Durieu
+6231	6218	hybrid parent of	Isoetes lacustris Linnaeus
+6240	6235	hybrid parent of	Carya cordiformis (Wangenheim) K. Koch
+6240	6238	hybrid parent of	Carya ovata (Miller) K. Koch var. ovata
+6316	6247	hybrid parent of	Juncus alpinoarticulatus Chaix
+6316	6252	hybrid parent of	Juncus articulatus Linnaeus
+6317	6252	hybrid parent of	Juncus articulatus Linnaeus
+6317	6257	hybrid parent of	Juncus brevicaudatus (Engelmann) Fernald
+6318	6247	hybrid parent of	Juncus alpinoarticulatus Chaix
+6318	6257	hybrid parent of	Juncus brevicaudatus (Engelmann) Fernald
+6319	6252	hybrid parent of	Juncus articulatus Linnaeus
+6319	6264	hybrid parent of	Juncus canadensis J. Gay ex Laharpe
+6320	6247	hybrid parent of	Juncus alpinoarticulatus Chaix
+6320	6295	hybrid parent of	Juncus nodosus Linnaeus
+6347	6346	hybrid parent of	Triglochin gaspensis Lieth & D. Löve
+6347	6348	hybrid parent of	Triglochin maritima Linnaeus
+6396	6394	hybrid parent of	Lycopus uniflorus Michaux
+6396	6395	hybrid parent of	Lycopus virginicus Linnaeus
+6410	6400	hybrid parent of	Mentha aquatica Linnaeus
+6410	6405	hybrid parent of	Mentha spicata Linnaeus
+6412	6405	hybrid parent of	Mentha spicata Linnaeus
+6412	6406	hybrid parent of	Mentha suaveolens Ehrhart
+6422	6415	hybrid parent of	Monarda didyma Linnaeus
+6422	6416	hybrid parent of	Monarda fistulosa Linnaeus var. fistulosa
+6459	6454	hybrid parent of	Scutellaria galericulata var. pubescens Bentham
+6459	6456	hybrid parent of	Scutellaria lateriflora Linnaeus
+6579	6576	hybrid parent of	Diphasiastrum digitatum (Dillenius ex A. Braun) Holub
+6579	6578	hybrid parent of	Diphasiastrum tristachyum (Pursh) Holub
+6580	6577	hybrid parent of	Diphasiastrum sitchense (Ruprecht) Holub
+6580	6578	hybrid parent of	Diphasiastrum tristachyum (Pursh) Holub
+6581	6574	hybrid parent of	Diphasiastrum alpinum (Linnaeus) Holub
+6581	6577	hybrid parent of	Diphasiastrum sitchense (Ruprecht) Holub
+6582	6575	hybrid parent of	Diphasiastrum complanatum (Linnaeus) Holub
+6582	6578	hybrid parent of	Diphasiastrum tristachyum (Pursh) Holub
+6589	6585	hybrid parent of	Huperzia lucidula (Michaux) Trevisan
+6589	6588	hybrid parent of	Huperzia selago (Linnaeus) Bernhardi ex Schrank & Martius
+6590	6583	hybrid parent of	Huperzia appressa (Desvaux) Á. Löve & D. Löve
+6590	6588	hybrid parent of	Huperzia selago (Linnaeus) Bernhardi ex Schrank & Martius
+6696	6693	hybrid parent of	Lysimachia terrestris (Linnaeus) Britton, Sterns & Poggenberg
+6696	6694	hybrid parent of	Lysimachia thyrsiflora Linnaeus
+6697	6691	hybrid parent of	Lysimachia quadriflora Sims
+6697	6693	hybrid parent of	Lysimachia terrestris (Linnaeus) Britton, Sterns & Poggenberg
+6716	6713	hybrid parent of	Nuphar microphylla (Persoon) Fernald
+6716	6715	hybrid parent of	Nuphar variegata Engelmann ex Durand
+6750	6745	hybrid parent of	Circaea alpina Linnaeus subsp. alpina
+6750	6748	hybrid parent of	Circaea canadensis (Linnaeus) Hill subsp. canadensis
+6794	6765	hybrid parent of	Epilobium ciliatum subsp. glandulosum (Lehmann) Hoch & P.H. Raven
+6794	6783	hybrid parent of	Epilobium luteum Pursh
+6795	6762	hybrid parent of	Epilobium ciliatum Rafinesque subsp. ciliatum var. ciliatum
+6795	6769	hybrid parent of	Epilobium coloratum Biehler
+6865	6856	hybrid parent of	Cypripedium candidum Muhlenberg ex Willdenow
+6865	6860	hybrid parent of	Cypripedium parviflorum var. makasin (Farwell) Sheviak
+6866	6859	hybrid parent of	Cypripedium montanum Douglas ex Lindley
+6866	6862	hybrid parent of	Cypripedium parviflorum var. pubescens (Willdenow) Knight
+6929	6920	hybrid parent of	Platanthera lacera (Michaux) G. Don
+6929	6927	hybrid parent of	Platanthera psycodes (Linnaeus) Lindley
+6930	6920	hybrid parent of	Platanthera lacera (Michaux) G. Don
+6930	6921	hybrid parent of	Platanthera leucophaea (Nuttall) Lindley
+6933	6921	hybrid parent of	Platanthera leucophaea (Nuttall) Lindley
+6933	6927	hybrid parent of	Platanthera psycodes (Linnaeus) Lindley
+6934	6904	hybrid parent of	Platanthera blephariglottis (Willdenow) Lindley var. blephariglottis
+6934	6908	hybrid parent of	Platanthera clavellata (Michaux) Luer
+6950	6939	hybrid parent of	Spiranthes casei var. novaescotiae Catling
+6950	6946	hybrid parent of	Spiranthes ochroleuca (Rydberg) Rydberg
+6952	6943	hybrid parent of	Spiranthes lacera (Rafinesque) Rafinesque var. lacera
+6952	6949	hybrid parent of	Spiranthes romanzoffiana Chamisso
+7097	7096	hybrid parent of	Dicentra canadensis (Goldie) Walpers
+7097	7098	hybrid parent of	Dicentra cucullaria (Linnaeus) Bernhardi
+7172	7170	hybrid parent of	Picea engelmannii Engelmann var. engelmannii
+7172	7173	hybrid parent of	Picea glauca (Moench) Voss
+7175	7174	hybrid parent of	Picea mariana (Miller) Britton, Sterns & Poggenburgh
+7175	7177	hybrid parent of	Picea rubens Sargent
+7179	7173	hybrid parent of	Picea glauca (Moench) Voss
+7179	7178	hybrid parent of	Picea sitchensis (Bongard) Carrière
+7198	7181	hybrid parent of	Pinus banksiana Lambert
+7198	7185	hybrid parent of	Pinus contorta var. latifolia Engelmann
+7205	7203	hybrid parent of	Tsuga heterophylla (Rafinesque) Sargent
+7205	7204	hybrid parent of	Tsuga mertensiana (Bongard) Carrière
+7253	7251	hybrid parent of	Linaria repens (Linnaeus) Miller
+7253	7252	hybrid parent of	Linaria vulgaris Miller
+7397	7388	hybrid parent of	Alopecurus aequalis Sobolewski var. aequalis
+7397	7393	hybrid parent of	Alopecurus geniculatus Linnaeus
+7490	7486	hybrid parent of	Calamagrostis canadensis (Michaux) Palisot de Beauvois var. canadensis
+7490	7496	hybrid parent of	Calamagrostis pickeringii A. Gray
+7620	7735	hybrid parent of	Elymus hystrix Linnaeus
+7620	7615	hybrid parent of	Elymus virginicus Linnaeus var. virginicus
+7621	7587	hybrid parent of	Elymus canadensis Linnaeus var. canadensis
+7621	7615	hybrid parent of	Elymus virginicus Linnaeus var. virginicus
+7622	7587	hybrid parent of	Elymus canadensis Linnaeus var. canadensis
+7622	7609	hybrid parent of	Elymus trachycaulus (Link) Gould ex Shinners subsp. trachycaulus
+7623	7598	hybrid parent of	Elymus lanceolatus (Scribner & J.G. Smith) Gould subsp. lanceolatus
+7623	7609	hybrid parent of	Elymus trachycaulus (Link) Gould ex Shinners subsp. trachycaulus
+7624	7592	hybrid parent of	Elymus elymoides (Rafinesque) Swezey subsp. elymoides
+7624	7609	hybrid parent of	Elymus trachycaulus (Link) Gould ex Shinners subsp. trachycaulus
+7625	7583	hybrid parent of	Elymus alaskanus (Scribner & Merrill) Á. Löve subsp. alaskanus
+7625	7600	hybrid parent of	Elymus lanceolatus subsp. psammophilus (J.M. Gillett & H. Senn) Á. Löve
+7691	7653	hybrid parent of	Festuca frederikseniae E.B. Alexeev
+7691	7676	hybrid parent of	Festuca rubra Linnaeus subsp. rubra
+7705	7698	hybrid parent of	Glyceria fluitans (Linnaeus) R. Brown
+7705	7701	hybrid parent of	Glyceria leptostachya Buckley
+7712	7694	hybrid parent of	Glyceria canadensis (Michaux) Trinius var. canadensis
+7712	7710	hybrid parent of	Glyceria striata (Lamarck) Hitchcock
+7745	7744	hybrid parent of	Leymus arenarius (Linnaeus) Hochstetter
+7745	7750	hybrid parent of	Leymus mollis (Trinius) Pilger subsp. mollis
+8013	7384	hybrid parent of	Agrostis stolonifera Linnaeus
+8013	7917	hybrid parent of	Polypogon monspeliensis (Linnaeus) Desfontaines
+8014	7419	hybrid parent of	Arctophila fulva (Trinius) Andersson
+8014	7572	hybrid parent of	Dupontia fisheri R. Brown
+8015	7863	hybrid parent of	Arctopoa eminens (J. Presl) Probatova
+8015	7572	hybrid parent of	Dupontia fisheri R. Brown
+8022	7821	hybrid parent of	Phippsia algida (Solander) R. Brown
+8022	7936	hybrid parent of	Puccinellia vahliana (Liebmann) Scribner & Merrill
+8146	8145	hybrid parent of	Persicaria hydropiperoides (Michaux) Small
+8146	8156	hybrid parent of	Persicaria robustior (Small) E.P. Bicknell
+8175	8173	hybrid parent of	Polygonum fowleri B.L. Robinson subsp. fowleri
+8175	8176	hybrid parent of	Polygonum fowleri subsp. hudsonianum (S.J. Wolf & McNeill) Costea & Tardif
+8232	8214	hybrid parent of	Rumex maritimus Linnaeus
+8232	8224	hybrid parent of	Rumex stenophyllus Ledebour
+8233	8221	hybrid parent of	Rumex pseudonatronatus (Borbás) Borbás ex Murbeck
+8233	8228	hybrid parent of	Rumex triangulivalvis (Danser) Rechinger f.
+8234	8208	hybrid parent of	Rumex crispus Linnaeus
+8234	8215	hybrid parent of	Rumex obtusifolius Linnaeus
+8271	8262	hybrid parent of	Claytonia perfoliata Donn ex Willdenow subsp. perfoliata
+8271	8268	hybrid parent of	Claytonia sibirica Linnaeus
+8324	8311	hybrid parent of	Potamogeton perfoliatus Linnaeus
+8324	8312	hybrid parent of	Potamogeton praelongus Wulfén
+8325	8304	hybrid parent of	Potamogeton illinoensis Morong
+8325	8306	hybrid parent of	Potamogeton nodosus Poiret
+8326	8290	hybrid parent of	Potamogeton alpinus Balbis
+8326	8312	hybrid parent of	Potamogeton praelongus Wulfén
+8327	8301	hybrid parent of	Potamogeton gramineus Linnaeus
+8327	8318	hybrid parent of	Potamogeton richardsonii (A. Bennett) Rydberg
+8328	8321	hybrid parent of	Potamogeton strictifolius A. Bennett
+8328	8336	hybrid parent of	Potamogeton zosteriformis Fernald
+8329	8290	hybrid parent of	Potamogeton alpinus Balbis
+8329	8301	hybrid parent of	Potamogeton gramineus Linnaeus
+8330	8301	hybrid parent of	Potamogeton gramineus Linnaeus
+8330	8311	hybrid parent of	Potamogeton perfoliatus Linnaeus
+8332	8305	hybrid parent of	Potamogeton natans Linnaeus
+8332	8306	hybrid parent of	Potamogeton nodosus Poiret
+8334	8301	hybrid parent of	Potamogeton gramineus Linnaeus
+8334	8305	hybrid parent of	Potamogeton natans Linnaeus
+8335	8301	hybrid parent of	Potamogeton gramineus Linnaeus
+8335	8304	hybrid parent of	Potamogeton illinoensis Morong
+8407	8405	hybrid parent of	Aconitum napellus Linnaeus
+8407	8406	hybrid parent of	Aconitum variegatum Linnaeus
+8414	8409	hybrid parent of	Actaea pachypoda Elliott
+8414	8413	hybrid parent of	Actaea rubra (Aiton) Willdenow subsp. rubra
+8568	8537	hybrid parent of	Coptidium lapponicum (Linnaeus) Gandoger ex Rydberg
+8568	8550	hybrid parent of	Coptidium pallasii (Schlechtendal) Tzvelev
+8627	8619	hybrid parent of	Amelanchier bartramiana (Tausch) M. Roemer
+8627	8622	hybrid parent of	Amelanchier laevis Wiegand
+8628	8618	hybrid parent of	Amelanchier arborea (F. Michaux) Fernald
+8628	8619	hybrid parent of	Amelanchier bartramiana (Tausch) M. Roemer
+8638	8636	hybrid parent of	Aronia arbutifolia (Linnaeus) Persoon
+8638	8637	hybrid parent of	Aronia melanocarpa (Michaux) Elliott
+8779	8763	hybrid parent of	Geum aleppicum Jacquin
+8779	8772	hybrid parent of	Geum rivale Linnaeus
+8780	8765	hybrid parent of	Geum canadense Jacquin
+8780	8776	hybrid parent of	Geum urbanum Linnaeus
+8856	8797	hybrid parent of	Potentilla argentea Linnaeus
+8856	8843	hybrid parent of	Potentilla recta Linnaeus
+8857	9773	hybrid parent of	Potentilla hyparctica Malte subsp. hyparctica
+8857	8838	hybrid parent of	Potentilla litoralis Rydberg
+8919	8889	hybrid parent of	Rosa blanda Aiton
+8919	8918	hybrid parent of	Rosa woodsii Lindley subsp. woodsii
+8951	8934	hybrid parent of	Rubus idaeus subsp. strigosus (Michaux) Focke
+8951	8940	hybrid parent of	Rubus occidentalis Linnaeus
+8952	8921	hybrid parent of	Rubus arcticus subsp. acaulis (Michaux) Focke
+8952	8945	hybrid parent of	Rubus pubescens Rafinesque
+8988	8978	hybrid parent of	Spiraea douglasii var. menziesii (Hooker) C. Presl
+8988	8973	hybrid parent of	Spiraea lucida Douglas ex Greene
+8991	8638	hybrid parent of	Aronia ×prunifolia (Marshall) Rehder
+8991	8965	hybrid parent of	Sorbus decora (Sargent) C.K. Schneider
+8992	8638	hybrid parent of	Aronia ×prunifolia (Marshall) Rehder
+8992	8963	hybrid parent of	Sorbus americana Marshall
+9031	9009	hybrid parent of	Galium mollugo Linnaeus
+9031	9029	hybrid parent of	Galium verum Linnaeus
+9054	9043	hybrid parent of	Populus angustifolia E. James
+9054	9046	hybrid parent of	Populus deltoides W. Bartram ex Marshall subsp. deltoides
+9056	9043	hybrid parent of	Populus angustifolia E. James
+9056	9044	hybrid parent of	Populus balsamifera Linnaeus
+9057	9046	hybrid parent of	Populus deltoides W. Bartram ex Marshall subsp. deltoides
+9057	9051	hybrid parent of	Populus nigra var. italica Du Roi
+9058	9042	hybrid parent of	Populus alba Linnaeus
+9058	9828	hybrid parent of	Populus tremula Linnaeus
+9059	9042	hybrid parent of	Populus alba Linnaeus
+9059	9053	hybrid parent of	Populus tremuloides Michaux
+9060	9044	hybrid parent of	Populus balsamifera Linnaeus
+9060	9046	hybrid parent of	Populus deltoides W. Bartram ex Marshall subsp. deltoides
+9061	9042	hybrid parent of	Populus alba Linnaeus
+9061	9049	hybrid parent of	Populus grandidentata Michaux
+9062	9049	hybrid parent of	Populus grandidentata Michaux
+9062	9053	hybrid parent of	Populus tremuloides Michaux
+9073	9072	hybrid parent of	Salix athabascensis Raup
+9073	9137	hybrid parent of	Salix pedicellaris Pursh
+9088	9087	hybrid parent of	Salix candida Flüggé ex Willdenow
+9088	9138	hybrid parent of	Salix pellita (Andersson) Bebb
+9106	9066	hybrid parent of	Salix alba Linnaeus
+9106	9845	hybrid parent of	Salix euxina I.V. Belyaeva
+9171	9084	hybrid parent of	Salix calcicola Fernald & Wiegand var. calcicola
+9171	9087	hybrid parent of	Salix candida Flüggé ex Willdenow
+9172	9111	hybrid parent of	Salix glauca var. cordifolia (Pursh) Dorn
+9172	9128	hybrid parent of	Salix myricoides Muhlenberg
+9175	9083	hybrid parent of	Salix brachycarpa var. psammophila Raup
+9175	9165	hybrid parent of	Salix turnorii Raup
+9176	9079	hybrid parent of	Salix bebbiana Sargent
+9176	9087	hybrid parent of	Salix candida Flüggé ex Willdenow
+9178	9137	hybrid parent of	Salix pedicellaris Pursh
+9178	9138	hybrid parent of	Salix pellita (Andersson) Bebb
+9179	9066	hybrid parent of	Salix alba Linnaeus
+9179	9124	hybrid parent of	Salix lucida Muhlenberg
+9180	9097	hybrid parent of	Salix discolor Muhlenberg
+9180	9128	hybrid parent of	Salix myricoides Muhlenberg
+9182	9097	hybrid parent of	Salix discolor Muhlenberg
+9182	9138	hybrid parent of	Salix pellita (Andersson) Bebb
+9183	9075	hybrid parent of	Salix babylonica Linnaeus
+9183	9845	hybrid parent of	Salix euxina I.V. Belyaeva
+9185	9124	hybrid parent of	Salix lucida Muhlenberg
+9185	9131	hybrid parent of	Salix nigra Marshall
+9188	9089	hybrid parent of	Salix caprea Linnaeus
+9188	9170	hybrid parent of	Salix viminalis Linnaeus
+9216	9212	hybrid parent of	Acer rubrum Linnaeus
+9216	9213	hybrid parent of	Acer saccharinum Linnaeus
+9251	9250	hybrid parent of	Micranthes lyallii (Engler) Small
+9251	9260	hybrid parent of	Micranthes odontoloma (Piper) A. Heller
+9423	9421	hybrid parent of	Typha angustifolia Linnaeus
+9423	9422	hybrid parent of	Typha latifolia Linnaeus
+9468	9460	hybrid parent of	Verbena bracteata Lagasca & Rodriguez
+9468	9465	hybrid parent of	Verbena stricta Ventenat
+9517	9495	hybrid parent of	Viola macloskeyi F.E. Lloyd
+9517	9516	hybrid parent of	Viola renifolia A. Gray
+9559	3529	hybrid parent of	Symphyotrichum ciliolatum (Lindley) Á. Löve & D. Löve
+9559	3565	hybrid parent of	Symphyotrichum novi-belgii (Linnaeus) G.L. Nesom var. novi-belgii
+9560	3529	hybrid parent of	Symphyotrichum ciliolatum (Lindley) Á. Löve & D. Löve
+9560	3546	hybrid parent of	Symphyotrichum laeve (Linnaeus) Á. Löve & D. Löve var. laeve
+9562	7703	hybrid parent of	Glyceria melicaria (Michaux) F.T. Hubbard
+9562	7710	hybrid parent of	Glyceria striata (Lamarck) Hitchcock
+9584	7587	hybrid parent of	Elymus canadensis Linnaeus var. canadensis
+9584	7609	hybrid parent of	Elymus trachycaulus (Link) Gould ex Shinners subsp. trachycaulus
+9596	8764	hybrid parent of	Geum calthifolium Menzies ex Smith
+9596	8599	hybrid parent of	Geum rossii (R. Brown) Seringe
+9598	8767	hybrid parent of	Geum laciniatum Murray
+9598	8776	hybrid parent of	Geum urbanum Linnaeus
+9599	8771	hybrid parent of	Geum macrophyllum var. perincisum (Rydberg) Raup
+9599	8772	hybrid parent of	Geum rivale Linnaeus
+9601	9115	hybrid parent of	Salix herbacea Linnaeus
+9601	9168	hybrid parent of	Salix uva-ursi Pursh
+9602	9070	hybrid parent of	Salix arctophila Cockerell ex A. Heller
+9602	9111	hybrid parent of	Salix glauca var. cordifolia (Pursh) Dorn
+9603	9069	hybrid parent of	Salix arctica Pallas
+9603	9137	hybrid parent of	Salix pedicellaris Pursh
+9604	9081	hybrid parent of	Salix brachycarpa Nuttall var. brachycarpa
+9604	9137	hybrid parent of	Salix pedicellaris Pursh
+9605	9077	hybrid parent of	Salix barclayi Andersson
+9605	9153	hybrid parent of	Salix richardsonii Hooker
+9608	9077	hybrid parent of	Salix barclayi Andersson
+9608	9113	hybrid parent of	Salix glauca var. villosa (D. Don ex Hooker) A.E. Murray
+9609	9077	hybrid parent of	Salix barclayi Andersson
+9609	9105	hybrid parent of	Salix farriae C.R. Ball
+9610	9077	hybrid parent of	Salix barclayi Andersson
+9610	9094	hybrid parent of	Salix commutata Bebb
+9611	9100	hybrid parent of	Salix eriocephala Michaux
+9611	9140	hybrid parent of	Salix petiolaris Smith
+9613	9116	hybrid parent of	Salix hookeriana Barratt ex Hooker
+9613	9157	hybrid parent of	Salix scouleriana Barratt ex Hooker
+9614	9138	hybrid parent of	Salix pellita (Andersson) Bebb
+9614	9143	hybrid parent of	Salix planifolia Pursh
+9615	9138	hybrid parent of	Salix pellita (Andersson) Bebb
+9615	9140	hybrid parent of	Salix petiolaris Smith
+9616	9143	hybrid parent of	Salix planifolia Pursh
+9616	9157	hybrid parent of	Salix scouleriana Barratt ex Hooker
+9618	9087	hybrid parent of	Salix candida Flüggé ex Willdenow
+9618	9130	hybrid parent of	Salix myrtillifolia Andersson
+9619	9087	hybrid parent of	Salix candida Flüggé ex Willdenow
+9619	9140	hybrid parent of	Salix petiolaris Smith
+9620	9087	hybrid parent of	Salix candida Flüggé ex Willdenow
+9620	9143	hybrid parent of	Salix planifolia Pursh
+9621	9084	hybrid parent of	Salix calcicola Fernald & Wiegand var. calcicola
+9621	9153	hybrid parent of	Salix richardsonii Hooker
+9622	9063	hybrid parent of	Salix alaxensis (Andersson) Coville var. alaxensis
+9622	9084	hybrid parent of	Salix calcicola Fernald & Wiegand var. calcicola
+9623	9063	hybrid parent of	Salix alaxensis (Andersson) Coville var. alaxensis
+9623	9138	hybrid parent of	Salix pellita (Andersson) Bebb
+9624	9078	hybrid parent of	Salix barrattiana Hooker
+9624	9094	hybrid parent of	Salix commutata Bebb
+9625	9071	hybrid parent of	Salix argyrocarpa Andersson
+9625	9137	hybrid parent of	Salix pedicellaris Pursh
+9626	9108	hybrid parent of	Salix geyeriana Andersson
+9626	9120	hybrid parent of	Salix lemmonii Bebb
+9633	9044	hybrid parent of	Populus balsamifera Linnaeus
+9633	9045	hybrid parent of	Populus trichocarpa Torrey & A. Gray
+9744	8889	hybrid parent of	Rosa blanda Aiton
+9744	8911	hybrid parent of	Rosa rugosa Thunberg
+9801	9048	hybrid parent of	Populus deltoides subsp. monilifera (Aiton) Eckenwalder
+9801	9053	hybrid parent of	Populus tremuloides Michaux
+9804	8291	hybrid parent of	Potamogeton amplifolius Tuckerman
+9804	8301	hybrid parent of	Potamogeton gramineus Linnaeus
+9812	8527	hybrid parent of	Ranunculus gmelinii de Candolle
+9812	8534	hybrid parent of	Ranunculus hyperboreus Rottbøll
+9827	3364	hybrid parent of	Nabalus racemosus (Michaux) Hooker
+9827	3366	hybrid parent of	Nabalus trifoliolatus Cassini
+9846	9144	hybrid parent of	Salix polaris Wahlenberg
+9846	9156	hybrid parent of	Salix rotundifolia Trautvetter var. rotundifolia
+9847	9069	hybrid parent of	Salix arctica Pallas
+9847	9115	hybrid parent of	Salix herbacea Linnaeus
+9848	9069	hybrid parent of	Salix arctica Pallas
+9848	9144	hybrid parent of	Salix polaris Wahlenberg
+9849	9092	hybrid parent of	Salix chlorolepis Fernald
+9849	9137	hybrid parent of	Salix pedicellaris Pursh
+9850	9083	hybrid parent of	Salix brachycarpa var. psammophila Raup
+9850	9150	hybrid parent of	Salix pyrifolia Andersson
+9851	9132	hybrid parent of	Salix niphoclada Rydberg
+9851	9160	hybrid parent of	Salix setchelliana C.R. Ball
+9852	9109	hybrid parent of	Salix glauca var. acutifolia (Hooker) C.K. Schneider
+9852	9132	hybrid parent of	Salix niphoclada Rydberg
+9853	9111	hybrid parent of	Salix glauca var. cordifolia (Pursh) Dorn
+9853	9137	hybrid parent of	Salix pedicellaris Pursh
+9854	9076	hybrid parent of	Salix ballii Dorn
+9854	9111	hybrid parent of	Salix glauca var. cordifolia (Pursh) Dorn
+9855	9080	hybrid parent of	Salix boothii Dorn
+9855	9113	hybrid parent of	Salix glauca var. villosa (D. Don ex Hooker) A.E. Murray
+9856	9077	hybrid parent of	Salix barclayi Andersson
+9856	9078	hybrid parent of	Salix barrattiana Hooker
+9857	9612	hybrid parent of	Salix famelica (C.R. Ball) Argus
+9857	9146	hybrid parent of	Salix pseudomonticola C.R. Ball
+9858	9083	hybrid parent of	Salix brachycarpa var. psammophila Raup
+9858	9165	hybrid parent of	Salix turnorii Raup
+9859	9079	hybrid parent of	Salix bebbiana Sargent
+9859	9140	hybrid parent of	Salix petiolaris Smith
+9860	9087	hybrid parent of	Salix candida Flüggé ex Willdenow
+9860	9612	hybrid parent of	Salix famelica (C.R. Ball) Argus
+9861	9063	hybrid parent of	Salix alaxensis (Andersson) Coville var. alaxensis
+9861	9143	hybrid parent of	Salix planifolia Pursh
+3713	3685	hybrid parent of	Betula alleghaniensis Britton
+3713	3703	hybrid parent of	Betula pumila var. glandulifera Regel
+3717	3696	hybrid parent of	Betula occidentalis Hooker
+3717	3697	hybrid parent of	Betula papyrifera Marshall
+6931	6916	hybrid parent of	Platanthera grandiflora (Bigelow) Lindley
+6931	6920	hybrid parent of	Platanthera lacera (Michaux) G. Don
+20371	8929	hybrid parent of	Rubus flagellaris Willdenow
+20371	8927	hybrid parent of	Rubus canadensis Linnaeus
+8725	8721	hybrid parent of	Crataegus succulenta Schrader ex Link
+8725	8668	hybrid parent of	Crataegus crus-galli Linnaeus
+8379	8378	hybrid parent of	Primula veris Linnaeus
+9791	8371	hybrid parent of	Primula egaliksensis Wormskjöld
+9791	8377	hybrid parent of	Primula stricta Hornemann
+9975	2521	hybrid parent of	Rhus typhina Linnaeus
+9975	2520	hybrid parent of	Rhus glabra Linnaeus
+8781	8768	hybrid parent of	Geum macrophyllum Willdenow var. macrophyllum
+8781	8772	hybrid parent of	Geum rivale Linnaeus
+8724	23982	hybrid parent of	Crataegus monogyna Jacquin var. monogyna
+8724	8689	hybrid parent of	Crataegus laevigata (Poiret) de Candolle
+7792	7780	hybrid parent of	Muhlenbergia frondosa (Poiret) Fernald
+7792	7787	hybrid parent of	Muhlenbergia schreberi J.F. Gmelin
+7619	7604	hybrid parent of	Elymus scribneri (Vasey) M.E. Jones
+7619	7610	hybrid parent of	Elymus violaceus (Hornemann) Feilberg
+7754	7750	hybrid parent of	Leymus mollis (Trinius) Pilger subsp. mollis
+7754	7753	hybrid parent of	Leymus triticoides (Buckley) Pilger
+8020	7598	hybrid parent of	Elymus lanceolatus (Scribner & J.G. Smith) Gould subsp. lanceolatus
+8020	7749	hybrid parent of	Leymus innovatus (Beal) Pilger
+9701	7593	hybrid parent of	Elymus glaucus Buckley subsp. glaucus
+9701	7750	hybrid parent of	Leymus mollis (Trinius) Pilger subsp. mollis
+9703	7609	hybrid parent of	Elymus trachycaulus (Link) Gould ex Shinners subsp. trachycaulus
+9703	7750	hybrid parent of	Leymus mollis (Trinius) Pilger subsp. mollis
+9582	7750	hybrid parent of	Leymus mollis (Trinius) Pilger subsp. mollis
+9582	7610	hybrid parent of	Elymus violaceus (Hornemann) Feilberg
+8018	7726	hybrid parent of	Hordeum jubatum Linnaeus subsp. jubatum
+8018	7616	hybrid parent of	Elymus virginicus Linnaeus
+7618	7749	hybrid parent of	Leymus innovatus (Beal) Pilger
+7618	7814	hybrid parent of	Pascopyrum smithii (Rydberg) Barkworth & D.R. Dewey
+9702	7749	hybrid parent of	Leymus innovatus (Beal) Pilger
+9702	7609	hybrid parent of	Elymus trachycaulus (Link) Gould ex Shinners subsp. trachycaulus
+5158	4908	hybrid parent of	Carex hostiana de Candolle
+5158	5138	hybrid parent of	Carex viridula subsp. brachyrrhyncha var. elatior (Schlechtendal) Crins
+6233	6219	hybrid parent of	Isoetes maritima Underwood
+6233	6215	hybrid parent of	Isoetes echinospora Durieu
+25236	6315	hybrid parent of	Juncus vaseyi Engelmann
+25236	6275	hybrid parent of	Juncus dudleyi Wiegand
+4148	4143	hybrid parent of	Opuntia fragilis (Nuttall) Haworth
+4148	4146	hybrid parent of	Opuntia polyacantha Haworth var. polyacantha
+7914	7841	hybrid parent of	Poa alpina Linnaeus subsp. alpina
+7914	7894	hybrid parent of	Poa pratensis subsp. alpigena (Lindman) Hiitonen
+7913	7903	hybrid parent of	Poa secunda subsp. juncifolia (Scribner) Soreng
+7913	7893	hybrid parent of	Poa pratensis Linnaeus
+9571	7865	hybrid parent of	Poa fendleriana (Steudel) Vasey
+9571	7861	hybrid parent of	Poa cusickii subsp. pallida Soreng
+25515	9214	hybrid parent of	Acer saccharum Marshall
+25515	9207	hybrid parent of	Acer nigrum F. Michaux
+7724	7726	hybrid parent of	Hordeum jubatum Linnaeus subsp. jubatum
+9181	9150	hybrid parent of	Salix pyrifolia Andersson
+9181	9128	hybrid parent of	Salix myricoides Muhlenberg
+9617	9100	hybrid parent of	Salix eriocephala Michaux
+9617	9087	hybrid parent of	Salix candida Flüggé ex Willdenow
+9186	9075	hybrid parent of	Salix babylonica Linnaeus
+9186	9066	hybrid parent of	Salix alba Linnaeus
+26113	6310	hybrid parent of	Juncus torreyi Coville
+26113	6247	hybrid parent of	Juncus alpinoarticulatus Chaix
+26143	8241	hybrid parent of	Polypodium virginianum Linnaeus
+26143	8236	hybrid parent of	Polypodium appalachianum Haufler & Windham
+26155	5552	hybrid parent of	Pyrola minor Linnaeus
+26155	5547	hybrid parent of	Pyrola asarifolia Michaux
+26177	3687	hybrid parent of	Betula glandulosa Michaux
+26177	3695	hybrid parent of	Betula neoalaskana Sargent
+26202	8291	hybrid parent of	Potamogeton amplifolius Tuckerman
+26202	8313	hybrid parent of	Potamogeton pulcher Tuckerman
+9530	9527	hybrid parent of	Viola striata Aiton
+9530	9518	hybrid parent of	Viola rostrata Pursh
+9533	9518	hybrid parent of	Viola rostrata Pursh
+9533	9491	hybrid parent of	Viola labradorica Schrank
+26210	9117	hybrid parent of	Salix humilis Marshall var. humilis
+26210	9079	hybrid parent of	Salix bebbiana Sargent
+9177	9092	hybrid parent of	Salix chlorolepis Fernald
+9177	9081	hybrid parent of	Salix brachycarpa Nuttall var. brachycarpa
+26293	5014	hybrid parent of	Carex paleacea Schreber ex Wahlenberg
+26476	8859	hybrid parent of	Prunus avium (Linnaeus) Linnaeus
+26476	8864	hybrid parent of	Prunus emarginata (Douglas) Eaton
+6951	6941	hybrid parent of	Spiranthes lacera var. gracilis (Bigelow) Luer
+26499	3565	hybrid parent of	Symphyotrichum novi-belgii (Linnaeus) G.L. Nesom var. novi-belgii
+26499	3521	hybrid parent of	Symphyotrichum anticostense (Fernald) G.L. Nesom
+5618	5608	hybrid parent of	Euphorbia esula Linnaeus
+5618	5604	hybrid parent of	Euphorbia cyparissias Linnaeus
+6645	6643	hybrid parent of	Tilia platyphyllos Scopoli
+6645	6641	hybrid parent of	Tilia cordata Miller
+9537	9495	hybrid parent of	Viola macloskeyi F.E. Lloyd
+9537	9492	hybrid parent of	Viola lanceolata Linnaeus
+20036	8735	hybrid parent of	Dryas integrifolia Vahl subsp. integrifolia
+20036	8732	hybrid parent of	Dryas drummondii Richardson ex Hooker
+26920	7136	hybrid parent of	Mimulus alatus Aiton
+26920	7149	hybrid parent of	Mimulus ringens Linnaeus
+9777	8830	hybrid parent of	Potentilla hyparctica Malte
+9777	9776	hybrid parent of	Potentilla arenosa (Turczaninow) Juzepczuk subsp. arenosa
+26942	8825	hybrid parent of	Potentilla arenosa subsp. chamissonis (Hultén) Elven & D.F. Murray
+26942	8832	hybrid parent of	Potentilla nivea Linnaeus
+26944	3552	hybrid parent of	Symphyotrichum lanceolatum (Willdenow) G.L. Nesom subsp. lanceolatum var. lanceolatum
+26944	3546	hybrid parent of	Symphyotrichum laeve (Linnaeus) Á. Löve & D. Löve var. laeve
+26945	3552	hybrid parent of	Symphyotrichum lanceolatum (Willdenow) G.L. Nesom subsp. lanceolatum var. lanceolatum
+26945	3555	hybrid parent of	Symphyotrichum lateriflorum (Linnaeus) Á. Löve & D. Löve
+26949	3546	hybrid parent of	Symphyotrichum laeve (Linnaeus) Á. Löve & D. Löve var. laeve
+26949	3555	hybrid parent of	Symphyotrichum lateriflorum (Linnaeus) Á. Löve & D. Löve
+8019	7749	hybrid parent of	Leymus innovatus (Beal) Pilger
+8019	7607	hybrid parent of	Elymus trachycaulus (Link) Gould ex Shinners
+5288	5280	hybrid parent of	Eriophorum vaginatum subsp. spissum (Fernald) Hultén
+5288	5275	hybrid parent of	Eriophorum russeolum Fries subsp. russeolum
+3714	3705	hybrid parent of	Betula pumila Linnaeus var. pumila
+3714	3699	hybrid parent of	Betula populifolia Marshall
+27145	3697	hybrid parent of	Betula papyrifera Marshall
+27145	3705	hybrid parent of	Betula pumila Linnaeus var. pumila
+3708	3687	hybrid parent of	Betula glandulosa Michaux
+3708	3695	hybrid parent of	Betula neoalaskana Sargent
+12857	3687	hybrid parent of	Betula glandulosa Michaux
+12857	3697	hybrid parent of	Betula papyrifera Marshall
+3711	3688	hybrid parent of	Betula kenaica W.H. Evans
+3711	3692	hybrid parent of	Betula nana subsp. exilis (Sukaczev) Hultén
+5180	5132	hybrid parent of	Carex utriculata Boott
+5180	5067	hybrid parent of	Carex saxatilis Linnaeus
+11667	3285	hybrid parent of	Liatris ligulistylis (A. Nelson) K. Schumann
+11667	3282	hybrid parent of	Liatris aspera Michaux
+6177	6182	hybrid parent of	Iris pallida Lamarck
+27237	8947	hybrid parent of	Rubus setosus Bigelow
+27237	8931	hybrid parent of	Rubus hispidus Linnaeus
+27293	7600	hybrid parent of	Elymus lanceolatus subsp. psammophilus (J.M. Gillett & H. Senn) Á. Löve
+27293	7609	hybrid parent of	Elymus trachycaulus (Link) Gould ex Shinners subsp. trachycaulus
+27318	8929	hybrid parent of	Rubus flagellaris Willdenow
+27318	8947	hybrid parent of	Rubus setosus Bigelow
+20439	8929	hybrid parent of	Rubus flagellaris Willdenow
+20439	8944	hybrid parent of	Rubus pensilvanicus Poiret
+8930	8920	hybrid parent of	Rubus allegheniensis Porter
+8930	8947	hybrid parent of	Rubus setosus Bigelow
+3508	3477	hybrid parent of	Solidago rigida subsp. humilis (Porter) Heard & Semple
+3508	3472	hybrid parent of	Solidago ptarmicoides (Torrey & A. Gray) B. Boivin
+8021	7750	hybrid parent of	Leymus mollis (Trinius) Pilger subsp. mollis
+8021	7725	hybrid parent of	Hordeum jubatum Linnaeus
+5481	15836	hybrid parent of	Equisetum telmateia subsp. braunii (J. Milde) Hauke
+5481	5471	hybrid parent of	Equisetum palustre Linnaeus
+5484	5479	hybrid parent of	Equisetum variegatum Schleicher ex F. Weber & D. Mohr subsp. variegatum
+5484	5470	hybrid parent of	Equisetum laevigatum A. Braun
+5974	5959	hybrid parent of	Quercus alba Linnaeus
+5974	5966	hybrid parent of	Quercus muehlenbergii Engelmann
+9470	9467	hybrid parent of	Verbena urticifolia Linnaeus
+9470	9460	hybrid parent of	Verbena bracteata Lagasca & Rodriguez
+27750	6576	hybrid parent of	Diphasiastrum digitatum (Dillenius ex A. Braun) Holub
+27750	6575	hybrid parent of	Diphasiastrum complanatum (Linnaeus) Holub
+27800	2503	hybrid parent of	Amaranthus hybridus Linnaeus
+27800	2506	hybrid parent of	Amaranthus retroflexus Linnaeus
+27801	2506	hybrid parent of	Amaranthus retroflexus Linnaeus
+27801	27783	hybrid parent of	Amaranthus powellii S. Watson subsp. powellii
+27802	25270	hybrid parent of	Amaranthus blitum Linnaeus subsp. blitum
+27802	2498	hybrid parent of	Amaranthus albus Linnaeus
+27805	9814	hybrid parent of	Amaranthus tuberculatus var. rudis (J.D. Sauer) Costea & Tardif
+27805	27760	hybrid parent of	Amaranthus hybridus Linnaeus subsp. hybridus
+27913	6390	hybrid parent of	Lycopus americanus Muhlenberg ex W.P.C. Barton
+27913	6393	hybrid parent of	Lycopus europaeus Linnaeus
+27919	6676	hybrid parent of	Morus alba Linnaeus
+27919	6677	hybrid parent of	Morus rubra Linnaeus
+8310	8303	hybrid parent of	Potamogeton hillii Morong
+8310	8336	hybrid parent of	Potamogeton zosteriformis Fernald
+6407	6400	hybrid parent of	Mentha aquatica Linnaeus
+27907	17625	hybrid parent of	Neottia auriculata (Wiegand) Szlachetko
+27907	27906	hybrid parent of	Neottia convallarioides (Swartz) Richard
+5081	5079	hybrid parent of	Carex scoparia Schkuhr ex Willdenow
+5081	5088	hybrid parent of	Carex silicea Olney
+4830	5079	hybrid parent of	Carex scoparia Schkuhr ex Willdenow
+4830	4828	hybrid parent of	Carex cumulata (L.H. Bailey) Mackenzie
+28156	6788	hybrid parent of	Epilobium palustre Linnaeus
+28156	6763	hybrid parent of	Epilobium ciliatum Rafinesque subsp. ciliatum
+27246	4644	hybrid parent of	Cornus canadensis Linnaeus
+27246	4652	hybrid parent of	Cornus suecica Linnaeus
+28322	4104	hybrid parent of	Rorippa amphibia (Linnaeus) Besser
+28322	4115	hybrid parent of	Rorippa sylvestris (Linnaeus) Besser
+28372	8825	hybrid parent of	Potentilla arenosa subsp. chamissonis (Hultén) Elven & D.F. Murray
+28372	8832	hybrid parent of	Potentilla nivea Linnaeus
+28391	4815	hybrid parent of	Carex comosa Boott
+28391	4958	hybrid parent of	Carex lupulina Muhlenberg ex Willdenow
+28436	8700	hybrid parent of	Crataegus monogyna Jacquin
+28436	8713	hybrid parent of	Crataegus punctata Jacquin
+8723	8668	hybrid parent of	Crataegus crus-galli Linnaeus
+8723	8713	hybrid parent of	Crataegus punctata Jacquin
+28464	7725	hybrid parent of	Hordeum jubatum Linnaeus
+28464	7596	hybrid parent of	Elymus hirsutus J. Presl
+8016	7725	hybrid parent of	Hordeum jubatum Linnaeus
+8016	7601	hybrid parent of	Elymus macrourus (Turczaninow) Tzvelev
+9671	8657	hybrid parent of	Crataegus chrysocarpa Ashe
+9671	8686	hybrid parent of	Crataegus jonesiae Sargent
+28522	5387	hybrid parent of	Dryopteris carthusiana (Villars) H.P. Fuchs
+28522	5390	hybrid parent of	Dryopteris cristata (Linnaeus) A. Gray
+3503	27639	hybrid parent of	Solidago brendae Semple
+3503	3499	hybrid parent of	Solidago uliginosa Nuttall
+6192	6178	hybrid parent of	Iris hookeri Penny ex G. Don
+6192	6188	hybrid parent of	Iris versicolor Linnaeus
+19077	28612	hybrid parent of	Reynoutria japonica Houttuyn var. japonica
+19077	19072	hybrid parent of	Reynoutria sachalinensis (F. Schmidt) Nakai
+28654	9542	hybrid parent of	Vitis labrusca Linnaeus
+28654	9543	hybrid parent of	Vitis riparia Michaux
+6408	6402	hybrid parent of	Mentha arvensis Linnaeus
+6408	6405	hybrid parent of	Mentha spicata Linnaeus
+6409	6402	hybrid parent of	Mentha arvensis Linnaeus
+6409	6406	hybrid parent of	Mentha suaveolens Ehrhart
+6411	6402	hybrid parent of	Mentha arvensis Linnaeus
+6411	6400	hybrid parent of	Mentha aquatica Linnaeus
+4793	23712	hybrid parent of	Carex brunnescens (Persoon) Poiret subsp. brunnescens
+4793	4797	hybrid parent of	Carex canescens Linnaeus subsp. canescens
+5420	22036	hybrid parent of	Gymnocarpium continentale (Petrov) Pojarkova
+5420	5414	hybrid parent of	Gymnocarpium dryopteris (Linnaeus) Newman
+5194	28432	hybrid parent of	Carex lasiocarpa subsp. americana (Fernald) D. Löve & J.-P. Bernard
+5194	4910	hybrid parent of	Carex hyalinolepis Steudel
+28713	3633	hybrid parent of	Tragopogon dubius Scopoli
+28713	3634	hybrid parent of	Tragopogon porrifolius Linnaeus
+28716	8860	hybrid parent of	Prunus cerasifera Ehrhart
+28716	8874	hybrid parent of	Prunus pumila Linnaeus
+28719	9067	hybrid parent of	Salix amygdaloides Andersson
+28719	9131	hybrid parent of	Salix nigra Marshall
+28769	8929	hybrid parent of	Rubus flagellaris Willdenow
+28769	8931	hybrid parent of	Rubus hispidus Linnaeus
+28772	8920	hybrid parent of	Rubus allegheniensis Porter
+28772	8929	hybrid parent of	Rubus flagellaris Willdenow
+6227	6215	hybrid parent of	Isoetes echinospora Durieu
+6227	6216	hybrid parent of	Isoetes engelmannii A. Braun
+6234	6222	hybrid parent of	Isoetes occidentalis L.F. Henderson
+6234	6219	hybrid parent of	Isoetes maritima Underwood
+18134	7458	hybrid parent of	Bromus hordeaceus Linnaeus subsp. hordeaceus
+29084	9069	hybrid parent of	Salix arctica Pallas
+29084	9070	hybrid parent of	Salix arctophila Cockerell ex A. Heller
+3506	3486	hybrid parent of	Solidago sempervirens Linnaeus
+3506	3444	hybrid parent of	Solidago canadensis Linnaeus var. canadensis
+4778	5050	hybrid parent of	Carex rariflora (Wahlenberg) Smith
+4778	4774	hybrid parent of	Carex bigelowii Torrey ex Schweinitz subsp. bigelowii
+4871	5112	hybrid parent of	Carex tenera Dewey
+4871	4869	hybrid parent of	Carex foenea Willdenow
+5156	5050	hybrid parent of	Carex rariflora (Wahlenberg) Smith
+5156	4951	hybrid parent of	Carex limosa Linnaeus
+5190	5050	hybrid parent of	Carex rariflora (Wahlenberg) Smith
+5190	5104	hybrid parent of	Carex subspathacea Wormskjold
+5201	23712	hybrid parent of	Carex brunnescens (Persoon) Poiret subsp. brunnescens
+5201	4924	hybrid parent of	Carex lachenalii Schkuhr
+8744	20034	hybrid parent of	Dryas hookeriana Juzepczuk
+8744	8732	hybrid parent of	Dryas drummondii Richardson ex Hooker
+9471	9462	hybrid parent of	Verbena hastata Linnaeus
+9471	9465	hybrid parent of	Verbena stricta Ventenat
+26576	3486	hybrid parent of	Solidago sempervirens Linnaeus
+26576	3499	hybrid parent of	Solidago uliginosa Nuttall
+9469	9462	hybrid parent of	Verbena hastata Linnaeus
+9469	9467	hybrid parent of	Verbena urticifolia Linnaeus
+29117	3239	hybrid parent of	Hieracium umbellatum Linnaeus
+29117	3235	hybrid parent of	Hieracium scabrum Michaux
+29118	3241	hybrid parent of	Hieracium vulgatum Fries
+29118	3239	hybrid parent of	Hieracium umbellatum Linnaeus
+5153	4892	hybrid parent of	Carex gynandra Schweinitz
+5153	4741	hybrid parent of	Carex aquatilis Wahlenberg var. aquatilis
+29150	21750	hybrid parent of	Euphorbia virgata Waldstein & Kitaibel
+29150	5608	hybrid parent of	Euphorbia esula Linnaeus
+29155	5612	hybrid parent of	Euphorbia lucida Waldstein & Kitamura
+29155	21750	hybrid parent of	Euphorbia virgata Waldstein & Kitaibel
+6232	29176	hybrid parent of	Isoetes septentrionalis D.F. Brunton
+6232	6218	hybrid parent of	Isoetes lacustris Linnaeus
+6226	29176	hybrid parent of	Isoetes septentrionalis D.F. Brunton
+6226	6215	hybrid parent of	Isoetes echinospora Durieu
+15481	5059	hybrid parent of	Carex rostrata Stokes nom. cons.
+15481	5136	hybrid parent of	Carex vesicaria Linnaeus
+6169	16605	hybrid parent of	Hypericum boreale (Britton) E.P. Bicknell
+6169	6152	hybrid parent of	Hypericum canadense Linnaeus
+17313	6643	hybrid parent of	Tilia platyphyllos Scopoli
+17313	6641	hybrid parent of	Tilia cordata Miller
+9536	9486	hybrid parent of	Viola cucullata Aiton
+9536	9522	hybrid parent of	Viola sagittata Aiton var. sagittata
+9532	9491	hybrid parent of	Viola labradorica Schrank
+9532	9527	hybrid parent of	Viola striata Aiton
+9534	9498	hybrid parent of	Viola sororia Willdenow
+9534	9486	hybrid parent of	Viola cucullata Aiton
+9535	9498	hybrid parent of	Viola sororia Willdenow
+9535	9502	hybrid parent of	Viola palmata Linnaeus
+9531	9498	hybrid parent of	Viola sororia Willdenow
+9531	9522	hybrid parent of	Viola sagittata Aiton var. sagittata
+29352	9479	hybrid parent of	Viola biflora var. carlottae (Calder & Roy L. Taylor) B. Boivin
+29352	9488	hybrid parent of	Viola glabella Nuttall
+9189	9069	hybrid parent of	Salix arctica Pallas
+9189	9111	hybrid parent of	Salix glauca var. cordifolia (Pursh) Dorn
+5157	4741	hybrid parent of	Carex aquatilis Wahlenberg var. aquatilis
+5157	5104	hybrid parent of	Carex subspathacea Wormskjold
+5284	29908	hybrid parent of	Eriophorum russeolum subsp. albidum (F. Nylander) Väre
+5284	5278	hybrid parent of	Eriophorum scheuchzeri Hoppe subsp. scheuchzeri
+29326	9507	hybrid parent of	Viola pedatifida G. Don
+29326	9498	hybrid parent of	Viola sororia Willdenow
+30004	9111	hybrid parent of	Salix glauca var. cordifolia (Pursh) Dorn
+30004	9119	hybrid parent of	Salix jejuna Fernald
+4656	30197	hybrid parent of	Cornus sericea Linnaeus
+4656	4650	hybrid parent of	Cornus rugosa Lamarck
+4654	30197	hybrid parent of	Cornus sericea Linnaeus
+4654	4641	hybrid parent of	Cornus alternifolia Linnaeus f.
+30254	9473	hybrid parent of	Viola adunca Smith var. adunca
+30254	9491	hybrid parent of	Viola labradorica Schrank
+30319	30317	hybrid parent of	Sporobolus alterniflorus (Loiseleur-Deslongchamps) P.M. Peterson & Saarela
+30321	30323	hybrid parent of	Sporobolus pumilus (Roth) P.M. Peterson & Saarela
+30321	30324	hybrid parent of	Sporobolus michauxianus (Hitchcock) P.M. Peterson & Saarela
+2851	2848	hybrid parent of	Arctium minus (Hill) Bernhardi
+2851	2847	hybrid parent of	Arctium lappa Linnaeus
+30359	8918	hybrid parent of	Rosa woodsii Lindley subsp. woodsii
+30359	8886	hybrid parent of	Rosa acicularis subsp. sayi (Schweinitz) W.H. Lewis
+30360	8901	hybrid parent of	Rosa nitida Willdenow
+30360	8889	hybrid parent of	Rosa blanda Aiton
+30361	8902	hybrid parent of	Rosa nutkana subsp. macdougalii (Holzinger) Piper
+30361	8886	hybrid parent of	Rosa acicularis subsp. sayi (Schweinitz) W.H. Lewis
+30362	8904	hybrid parent of	Rosa nutkana C. Presl subsp. nutkana
+30362	8886	hybrid parent of	Rosa acicularis subsp. sayi (Schweinitz) W.H. Lewis
+30363	8892	hybrid parent of	Rosa carolina Linnaeus
+30363	8889	hybrid parent of	Rosa blanda Aiton
+30364	8915	hybrid parent of	Rosa virginiana Miller, nom. cons.
+30364	8889	hybrid parent of	Rosa blanda Aiton
+30365	8888	hybrid parent of	Rosa arkansana Porter
+30365	8886	hybrid parent of	Rosa acicularis subsp. sayi (Schweinitz) W.H. Lewis
+30366	8915	hybrid parent of	Rosa virginiana Miller, nom. cons.
+30366	8901	hybrid parent of	Rosa nitida Willdenow
+30367	8918	hybrid parent of	Rosa woodsii Lindley subsp. woodsii
+30367	8888	hybrid parent of	Rosa arkansana Porter
+30368	8889	hybrid parent of	Rosa blanda Aiton
+30368	8886	hybrid parent of	Rosa acicularis subsp. sayi (Schweinitz) W.H. Lewis
+30369	8907	hybrid parent of	Rosa pisocarpa A. Gray subsp. pisocarpa
+30369	8903	hybrid parent of	Rosa nutkana C. Presl
+9792	27639	hybrid parent of	Solidago brendae Semple
+9792	3441	hybrid parent of	Solidago bicolor Linnaeus
+30496	30495	hybrid parent of	Huperzia continentalis Testo, A. Haines & A.V. Gilman
+30496	6587	hybrid parent of	Huperzia occidentalis (Clute) Kartesz & Gandhi
+30497	30495	hybrid parent of	Huperzia continentalis Testo, A. Haines & A.V. Gilman
+30497	6588	hybrid parent of	Huperzia selago (Linnaeus) Bernhardi ex Schrank & Martius
+6591	6583	hybrid parent of	Huperzia appressa (Desvaux) Á. Löve & D. Löve
+6591	6585	hybrid parent of	Huperzia lucidula (Michaux) Trevisan
+30507	2709	hybrid parent of	Asclepias speciosa Torrey
+30507	2711	hybrid parent of	Asclepias syriaca Linnaeus
+30563	6216	hybrid parent of	Isoetes engelmannii A. Braun
+30563	6224	hybrid parent of	Isoetes riparia Engelmann ex A. Braun
+30568	2731	hybrid parent of	Hyacinthoides hispanica (Miller) Rothmaler
+30568	2732	hybrid parent of	Hyacinthoides non-scripta (Linnaeus) Chouard
+30610	8963	hybrid parent of	Sorbus americana Marshall
+30610	8964	hybrid parent of	Sorbus aucuparia Linnaeus
+30629	4958	hybrid parent of	Carex lupulina Muhlenberg ex Willdenow
+30629	4959	hybrid parent of	Carex lurida Wahlenberg
+30747	8311	hybrid parent of	Potamogeton perfoliatus Linnaeus
+30747	8318	hybrid parent of	Potamogeton richardsonii (A. Bennett) Rydberg
+8331	8315	hybrid parent of	Potamogeton pusillus Linnaeus
+8331	8309	hybrid parent of	Potamogeton obtusifolius Mertens & W.D.J. Koch
+8343	8338	hybrid parent of	Stuckenia filiformis (Persoon) Börner
+8343	8341	hybrid parent of	Stuckenia pectinata (Linnaeus) Börner
+5836	16329	hybrid parent of	Medicago sativa subsp. falcata (Linnaeus) Arcangeli
+5836	5834	hybrid parent of	Medicago sativa Linnaeus subsp. sativa
+30855	4743	hybrid parent of	Carex aquatilis var. dives (Holm) Kükenthal
+30855	30854	hybrid parent of	Carex kelloggii W. Boott var. kelloggii
+4824	4941	hybrid parent of	Carex lenticularis Michaux
+4824	4822	hybrid parent of	Carex crinita Lamarck var. crinita
+4947	4941	hybrid parent of	Carex lenticularis Michaux
+4947	5101	hybrid parent of	Carex stylosa C.A. Meyer
+5173	4941	hybrid parent of	Carex lenticularis Michaux
+5173	4774	hybrid parent of	Carex bigelowii Torrey ex Schweinitz subsp. bigelowii
+30995	8927	hybrid parent of	Rubus canadensis Linnaeus
+30995	8944	hybrid parent of	Rubus pensilvanicus Poiret
+31170	8944	hybrid parent of	Rubus pensilvanicus Poiret
+31170	8947	hybrid parent of	Rubus setosus Bigelow
+3502	3486	hybrid parent of	Solidago sempervirens Linnaeus
+3502	3482	hybrid parent of	Solidago rugosa Miller subsp. rugosa var. rugosa
+12209	3472	hybrid parent of	Solidago ptarmicoides (Torrey & A. Gray) B. Boivin
+12209	3476	hybrid parent of	Solidago riddellii Frank
+5406	5388	hybrid parent of	Dryopteris clintoniana (D.C. Eaton) Dowell
+5406	5398	hybrid parent of	Dryopteris intermedia (Muhlenberg ex Willdenow) A. Gray
+2663	2659	hybrid parent of	Apocynum androsaemifolium Linnaeus
+2663	2662	hybrid parent of	Apocynum cannabinum Linnaeus
+31367	5304	hybrid parent of	Schoenoplectus acutus (Muhlenberg ex Bigelow) Á. Löve & D. Löve var. acutus
+31367	5322	hybrid parent of	Schoenoplectus tabernaemontani (C.C. Gmelin) Palla
+31374	6295	hybrid parent of	Juncus nodosus Linnaeus
+31374	6310	hybrid parent of	Juncus torreyi Coville
+31391	4720	hybrid parent of	Bolboschoenus robustus (Pursh) Soják
+31391	4717	hybrid parent of	Bolboschoenus maritimus (Linnaeus) Palla

@@ -16,4 +16,10 @@
     <ProjectReference Include="..\DwC_A\DWC_A.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="resources\dwca-vascan-v37.5\meta.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
