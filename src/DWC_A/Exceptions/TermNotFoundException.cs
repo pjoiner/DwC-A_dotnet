@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace DwC_A.Exceptions
+namespace DWC_A.Exceptions
 {
     public class TermNotFoundException : Exception
     {

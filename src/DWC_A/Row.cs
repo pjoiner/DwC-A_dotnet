@@ -1,5 +1,5 @@
 ﻿using Dwc.Text;
-using DwC_A.Exceptions;
+using DWC_A.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

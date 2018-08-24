@@ -1,6 +1,6 @@
 ﻿using Dwc.Text;
-using DwC_A.Exceptions;
 using DWC_A;
+using DWC_A.Exceptions;
 using System.Collections.Generic;
 using Xunit;
 
