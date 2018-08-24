@@ -1,5 +1,6 @@
 ﻿using Dwc.Text;
 using DWC_A;
+using System;
 using System.Linq;
 using Xunit;
 
@@ -71,6 +72,20 @@ namespace UnitTests
         public void CSVFieldWithQuotesShouldReturndefCommaghi()
         {
             Tokenizer tokenizer = new Tokenizer(fileAttributesWithQuotes);
+            var fields = tokenizer.Split(csvWithQuotes);
+            Assert.Equal("def,ghi", fields.Last());
+        }
+
+        [Fact]
+        public void ShouldThrowOnNullFileAttributes()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Tokenizer(null));
+        }
+
+        [Fact]
+        public void DefaultFileAttributesShouldNotThrow()
+        {
+            var tokenizer = new Tokenizer(new FileType());
             var fields = tokenizer.Split(csvWithQuotes);
             Assert.Equal("def,ghi", fields.Last());
         }

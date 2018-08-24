@@ -1,5 +1,6 @@
 ﻿using Dwc.Text;
 using DWC_A.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,10 +16,12 @@ namespace DWC_A
 
         public Tokenizer(IFileAttributes fileAttributes)
         {
-            //TODO: Initialize fileAttributes if null
-            //      Also need to check FieldsEnclosedBy and FieldsTerminatedBy
+            if(fileAttributes == null)
+            {
+                throw new ArgumentNullException("fileAttributes");
+            }
             this.fileAttributes = fileAttributes;
-            this.HasQuotes = fileAttributes.FieldsEnclosedBy?.Length > 0;
+            this.HasQuotes = fileAttributes.FieldsEnclosedBy.Length > 0;
             this.Delimiter = fileAttributes.FieldsTerminatedBy.FirstOrDefault();
             this.Quotes = fileAttributes.FieldsEnclosedBy.FirstOrDefault();
         }
