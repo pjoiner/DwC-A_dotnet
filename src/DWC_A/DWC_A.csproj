@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RootNamespace>DwC_A</RootNamespace>
+    <RootNamespace>DWC_A</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

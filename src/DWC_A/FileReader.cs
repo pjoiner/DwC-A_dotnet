@@ -1,0 +1,92 @@
+﻿using Dwc.Text;
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace DWC_A
+{
+    public class FileReader : IDisposable, IFileReader
+    {
+        private readonly StreamEnumerator streamEnumerator;
+        private Stream stream;
+        private readonly IFileAttributes fileAttributes;
+        private bool disposed = false;
+
+        public FileReader(string fileName,
+            IRowFactory rowFactory,
+            ITokenizer tokenizer,
+            IFileAttributes fileAttributes)
+        {
+            this.fileAttributes = fileAttributes;
+            stream = new FileStream(fileName, FileMode.Open);
+            streamEnumerator = new StreamEnumerator(stream, rowFactory, tokenizer);
+        }
+
+        public IEnumerable<IRow> Rows
+        {
+            get
+            {
+                return streamEnumerator.Rows;
+            }
+        }
+
+        public IEnumerable<IRow> HeaderRows
+        {
+            get
+            {
+                return streamEnumerator.HeaderRows(HeaderRowCount);
+            }
+        }
+
+        public IEnumerable<IRow> DataRows
+        {
+            get
+            {
+                return streamEnumerator.DataRows(HeaderRowCount);
+            }
+        }
+
+        private int HeaderRowCount
+        {
+            get
+            {
+                if (!Int32.TryParse(fileAttributes.IgnoreHeaderLines, out int headerRowCount))
+                {
+                    headerRowCount = 0;
+                }
+
+                return headerRowCount;
+            }
+        }
+
+        #region IDisposable
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if(!disposed)
+            {
+                if (disposing)
+                {
+                    // free managed resources
+                    if (stream != null)
+                    {
+                        stream.Dispose();
+                        stream = null;
+                    }
+                }
+            }
+            disposed = true;
+        }
+
+        ~FileReader()
+        {
+            Dispose(false);
+        }
+        #endregion
+    }
+}
