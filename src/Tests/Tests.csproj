@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="resources\dwca-vascan-v37.5.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="resources\dwca-vascan-v37.5\meta.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

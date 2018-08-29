@@ -26,6 +26,7 @@ namespace DWC_A
         {
             get
             {
+                stream.Seek(0, 0);
                 return streamEnumerator.Rows;
             }
         }
@@ -34,6 +35,7 @@ namespace DWC_A
         {
             get
             {
+                stream.Seek(0, 0);
                 return streamEnumerator.HeaderRows(HeaderRowCount);
             }
         }
@@ -42,6 +44,7 @@ namespace DWC_A
         {
             get
             {
+                stream.Seek(0, 0);
                 return streamEnumerator.DataRows(HeaderRowCount);
             }
         }

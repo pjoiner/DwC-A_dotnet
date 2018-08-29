@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DWC_A
 {
@@ -16,14 +17,15 @@ namespace DWC_A
 
         public Tokenizer(IFileAttributes fileAttributes)
         {
+            //TODO: Characters in meta.xml are stored as string so convert \\t to \t
             if(fileAttributes == null)
             {
                 throw new ArgumentNullException("fileAttributes");
             }
             this.fileAttributes = fileAttributes;
             this.HasQuotes = fileAttributes.FieldsEnclosedBy.Length > 0;
-            this.Delimiter = fileAttributes.FieldsTerminatedBy.FirstOrDefault();
-            this.Quotes = fileAttributes.FieldsEnclosedBy.FirstOrDefault();
+            this.Delimiter = Regex.Unescape(fileAttributes.FieldsTerminatedBy).FirstOrDefault();
+            this.Quotes = Regex.Unescape(fileAttributes.FieldsEnclosedBy).FirstOrDefault();
         }
 
         public IEnumerable<string> Split(string line)

@@ -1,4 +1,4 @@
-﻿using DwC_A.Meta;
+﻿using DWC_A.Meta;
 using Xunit;
 
 namespace Tests

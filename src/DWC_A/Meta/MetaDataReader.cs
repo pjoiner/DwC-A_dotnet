@@ -1,10 +1,9 @@
-﻿using Dwc.Text;
-using System.IO;
+﻿using System.IO;
 using System.Xml.Serialization;
 
-namespace DwC_A.Meta
+namespace DWC_A.Meta
 {
-    public class MetaDataReader
+    public class MetaDataReader : IMetaDataReader
     {
         private const string MetaFileName = "meta.xml";
 
@@ -13,13 +12,13 @@ namespace DwC_A.Meta
         /// </summary>
         /// <param name="path">Path to the meta.xml file (excluding filename)</param>
         /// <returns>Archive object</returns>
-        public Archive ReadMetaData(string path)
+        public Dwc.Text.Archive ReadMetaData(string path)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Archive));
+            XmlSerializer serializer = new XmlSerializer(typeof(Dwc.Text.Archive));
             string fileName = Path.Combine(path, MetaFileName);
             using (Stream stream = new FileStream(fileName, FileMode.Open))
             {
-                return serializer.Deserialize(stream) as Archive;
+                return serializer.Deserialize(stream) as Dwc.Text.Archive;
             }
         }
     }
