@@ -1,5 +1,6 @@
 ﻿using DWC_A.Meta;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -11,7 +12,6 @@ namespace DWC_A
         private readonly IArchiveFolder archiveFolder;
         private readonly IMetaDataReader metaDataReader;
         private readonly Dwc.Text.Archive meta;
-        private readonly IFileReader coreFileReader;
 
         public string FileName {get;}
 
@@ -42,7 +42,18 @@ namespace DWC_A
             var coreFieldTypes = meta.Core.Field;
             var coreRowFactory = abstractFactory.CreateRowFactory(coreFieldTypes);
             var coreTokenizer = abstractFactory.CreateTokenizer(meta.Core);
-            coreFileReader = abstractFactory.CreateFileReader(coreFileName, coreRowFactory, coreTokenizer, meta.Core);
+            CoreFile = abstractFactory.CreateFileReader(coreFileName, coreRowFactory, coreTokenizer, meta.Core);
+            //Create file readers for extensions
+            Extensions = new Dictionary<string, IFileReader>();
+            foreach(var extension in meta.Extension)
+            {
+                var extensionFileName = Path.Combine(OutputPath, extension.Files.FirstOrDefault());
+                var extensionFieldTypes = extension.Field;
+                var extensionRowFactory = abstractFactory.CreateRowFactory(extensionFieldTypes);
+                var extensionTokenizer = abstractFactory.CreateTokenizer(extension);
+                Extensions[extension.Files.FirstOrDefault()] = abstractFactory.CreateFileReader(extensionFileName, 
+                    extensionRowFactory, extensionTokenizer, extension);
+            }
         }
 
         public void Delete()
@@ -50,14 +61,9 @@ namespace DWC_A
             archiveFolder.DeleteFolder();
         }
 
-        public IFileReader CoreFile
-        {
-            get
-            {
-                return coreFileReader;
-            }
+        public readonly IFileReader CoreFile;
 
-        }
+        public readonly IDictionary<string, IFileReader> Extensions;
 
         #region IDisposable
         private bool disposed = false;
@@ -73,7 +79,11 @@ namespace DWC_A
             {
                 if (disposing)
                 {
-                    coreFileReader.Dispose();
+                    CoreFile?.Dispose();
+                    foreach(var extension in Extensions)
+                    {
+                        extension.Value.Dispose();
+                    }
                     Delete();
                 }
             }

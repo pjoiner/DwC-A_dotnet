@@ -18,5 +18,16 @@ namespace Tests
                 }
             }
         }
+
+        [Fact]
+        public void ShouldReturnDescriptionExtensionFile()
+        {
+            using (var archive = new Archive(archiveFileName))
+            {
+                var descriptionFile = archive.Extensions["description.txt"];
+                Assert.NotEmpty(descriptionFile.Rows);
+            }
+        }
+
     }
 }
