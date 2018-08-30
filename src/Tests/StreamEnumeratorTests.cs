@@ -22,7 +22,7 @@ namespace Tests
             fileAttributesMock.Setup(n => n.FieldsEnclosedBy).Returns("");
             fileAttributesMock.Setup(n => n.FieldsTerminatedBy).Returns("\t");
             fileAttributesMock.Setup(n => n.LinesTerminatedBy).Returns("\n");
-            rowFactory = new RowFactory(fieldTypes);
+            rowFactory = new RowFactory();
             tokenizer = new Tokenizer(fileAttributesMock.Object);
         }
 
@@ -38,7 +38,8 @@ namespace Tests
             {
                 var streamEnumerator = new StreamEnumerator(stream,
                     rowFactory,
-                    tokenizer);
+                    tokenizer,
+                    fieldTypes);
                 Assert.NotEmpty(streamEnumerator.Rows.ToArray());
             }
         }
@@ -50,7 +51,8 @@ namespace Tests
             {
                 var streamEnumerator = new StreamEnumerator(stream,
                     rowFactory,
-                    tokenizer);
+                    tokenizer,
+                    fieldTypes);
                 Assert.Single(streamEnumerator.HeaderRows(1));
             }
         }
@@ -62,7 +64,8 @@ namespace Tests
             {
                 var streamEnumerator = new StreamEnumerator(stream,
                     rowFactory,
-                    tokenizer);
+                    tokenizer,
+                    fieldTypes);
                 Assert.NotEmpty(streamEnumerator.DataRows(1));
             }
         }

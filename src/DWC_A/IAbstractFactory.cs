@@ -9,10 +9,11 @@ namespace DWC_A
         IArchiveFolder CreateArchiveFolder(string fileName, string outputPath);
         IMetaDataReader CreateMetaDataReader();
         ITokenizer CreateTokenizer(IFileAttributes fileAttributes);
-        IRowFactory CreateRowFactory(ICollection<FieldType> fieldTypes);
+        IRowFactory CreateRowFactory();
         IFileReader CreateFileReader(string fileName,
             IRowFactory rowFactory,
             ITokenizer tokenizer,
-            IFileAttributes fileAttributes);
+            IFileAttributes fileAttributes,
+            ICollection<FieldType> fieldTypes);
     }
 }

@@ -27,14 +27,14 @@ namespace Tests
             fileAttributesMock.Setup(n => n.FieldsTerminatedBy).Returns("\t");
             fileAttributesMock.Setup(n => n.LinesTerminatedBy).Returns("\n");
             fileAttributesMock.Setup(n => n.IgnoreHeaderLines).Returns("1");
-            rowFactory = new RowFactory(fieldTypes);
+            rowFactory = new RowFactory();
             tokenizer = new Tokenizer(fileAttributesMock.Object);
         }
 
         [Fact]
         public void ShouldEnumerateFile()
         {
-            using (IFileReader fileReader = new FileReader(fileName, rowFactory, tokenizer, fileAttributesMock.Object))
+            using (IFileReader fileReader = new FileReader(fileName, rowFactory, tokenizer, fileAttributesMock.Object, fieldTypes))
             {
                 Assert.NotEmpty(fileReader.Rows.ToArray());
             }
@@ -43,7 +43,7 @@ namespace Tests
         [Fact]
         public void ShouldReturnHeaderRow()
         {
-            using (IFileReader fileReader = new FileReader(fileName, rowFactory, tokenizer, fileAttributesMock.Object))
+            using (IFileReader fileReader = new FileReader(fileName, rowFactory, tokenizer, fileAttributesMock.Object, fieldTypes))
             {
                 Assert.Single(fileReader.HeaderRows);
             }
@@ -52,9 +52,19 @@ namespace Tests
         [Fact]
         public void ShouldReturnDataRows()
         {
-            using (IFileReader fileReader = new FileReader(fileName, rowFactory, tokenizer, fileAttributesMock.Object))
+            using (IFileReader fileReader = new FileReader(fileName, rowFactory, tokenizer, fileAttributesMock.Object, fieldTypes))
             {
                 Assert.NotEmpty(fileReader.DataRows);
+            }
+        }
+
+        [Fact]
+        public void ShouldSeekToBeginningForHeaderRows()
+        {
+            using (var fileReader = new FileReader(fileName, rowFactory, tokenizer, fileAttributesMock.Object, fieldTypes))
+            {
+                Assert.NotEmpty(fileReader.DataRows);
+                Assert.NotEmpty(fileReader.HeaderRows);
             }
         }
 

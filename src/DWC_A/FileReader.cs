@@ -15,11 +15,14 @@ namespace DWC_A
         public FileReader(string fileName,
             IRowFactory rowFactory,
             ITokenizer tokenizer,
-            IFileAttributes fileAttributes)
+            IFileAttributes fileAttributes,
+            ICollection<FieldType> fieldTypes)
         {
+            this.FileName = fileName;
             this.fileAttributes = fileAttributes;
+            this.FieldTypes = fieldTypes;
             stream = new FileStream(fileName, FileMode.Open);
-            streamEnumerator = new StreamEnumerator(stream, rowFactory, tokenizer);
+            streamEnumerator = new StreamEnumerator(stream, rowFactory, tokenizer, fieldTypes);
         }
 
         public IEnumerable<IRow> Rows
@@ -61,6 +64,10 @@ namespace DWC_A
                 return headerRowCount;
             }
         }
+
+        public string FileName { get; private set; }
+
+        public ICollection<FieldType> FieldTypes { get; private set; }
 
         #region IDisposable
         public void Dispose()

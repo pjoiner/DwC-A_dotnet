@@ -1,6 +1,4 @@
-﻿using Dwc.Text;
-using DWC_A.Exceptions;
-using System;
+﻿using DWC_A.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,33 +6,25 @@ namespace DWC_A
 {
     public class Row : IRow
     {
-        private readonly IEnumerable<string> fields;
-        private readonly ICollection<FieldType> fieldTypes;
+        private readonly IDictionary<string, int> fieldTypeIndex;
 
-        public Row(IEnumerable<string> fields, ICollection<FieldType> fieldTypes)
+        public Row(IEnumerable<string> fields, IDictionary<string, int> fieldTypeIndex)
         {
-            this.fields = fields;
-            this.fieldTypes = fieldTypes;
+            this.Fields = fields;
+            this.fieldTypeIndex = fieldTypeIndex;
         }
 
-        public IEnumerable<string> Fields
-        {
-            get
-            {
-                return fields;
-            }
-        }
+        public IEnumerable<string> Fields { get; }
 
         public string this[string term]
         {
             get
             {
-                var field = fieldTypes.FirstOrDefault(n => n.Term == term);
-                if(field == null)
+                if(!fieldTypeIndex.ContainsKey(term))
                 {
                     throw new TermNotFoundException(term);
                 }
-                return this[Convert.ToInt32(field.Index)];
+                return this[fieldTypeIndex[term]];
             }
         }
 
@@ -42,7 +32,7 @@ namespace DWC_A
         {
             get
             {
-                return fields.ElementAt(index);
+                return Fields.ElementAt(index);
             }
         }
 

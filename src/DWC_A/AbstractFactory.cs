@@ -21,14 +21,14 @@ namespace DWC_A
             return new Tokenizer(fileAttributes);
         }
 
-        public virtual IRowFactory CreateRowFactory(ICollection<FieldType> fieldTypes)
+        public virtual IRowFactory CreateRowFactory()
         {
-            return new RowFactory(fieldTypes);
+            return new RowFactory();
         }
 
-        public IFileReader CreateFileReader(string fileName, IRowFactory rowFactory, ITokenizer tokenizer, IFileAttributes fileAttributes)
+        public IFileReader CreateFileReader(string fileName, IRowFactory rowFactory, ITokenizer tokenizer, IFileAttributes fileAttributes, ICollection<FieldType> fieldTypes)
         {
-            return new FileReader(fileName, rowFactory, tokenizer, fileAttributes);
+            return new FileReader(fileName, rowFactory, tokenizer, fileAttributes, fieldTypes);
         }
     }
 }

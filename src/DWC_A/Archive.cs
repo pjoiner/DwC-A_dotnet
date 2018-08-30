@@ -40,19 +40,19 @@ namespace DWC_A
             //Create a core file reader
             var coreFileName = Path.Combine(OutputPath, meta.Core.Files.FirstOrDefault());
             var coreFieldTypes = meta.Core.Field;
-            var coreRowFactory = abstractFactory.CreateRowFactory(coreFieldTypes);
+            var coreRowFactory = abstractFactory.CreateRowFactory();
             var coreTokenizer = abstractFactory.CreateTokenizer(meta.Core);
-            CoreFile = abstractFactory.CreateFileReader(coreFileName, coreRowFactory, coreTokenizer, meta.Core);
+            CoreFile = abstractFactory.CreateFileReader(coreFileName, coreRowFactory, coreTokenizer, meta.Core, coreFieldTypes);
             //Create file readers for extensions
             Extensions = new Dictionary<string, IFileReader>();
             foreach(var extension in meta.Extension)
             {
                 var extensionFileName = Path.Combine(OutputPath, extension.Files.FirstOrDefault());
                 var extensionFieldTypes = extension.Field;
-                var extensionRowFactory = abstractFactory.CreateRowFactory(extensionFieldTypes);
+                var extensionRowFactory = abstractFactory.CreateRowFactory();
                 var extensionTokenizer = abstractFactory.CreateTokenizer(extension);
                 Extensions[extension.Files.FirstOrDefault()] = abstractFactory.CreateFileReader(extensionFileName, 
-                    extensionRowFactory, extensionTokenizer, extension);
+                    extensionRowFactory, extensionTokenizer, extension, extensionFieldTypes);
             }
         }
 

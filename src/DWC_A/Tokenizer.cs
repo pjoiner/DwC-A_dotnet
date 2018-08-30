@@ -17,7 +17,6 @@ namespace DWC_A
 
         public Tokenizer(IFileAttributes fileAttributes)
         {
-            //TODO: Characters in meta.xml are stored as string so convert \\t to \t
             if(fileAttributes == null)
             {
                 throw new ArgumentNullException("fileAttributes");

@@ -1,20 +1,12 @@
-﻿using Dwc.Text;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace DWC_A
 {
     public class RowFactory : IRowFactory
     {
-        private ICollection<FieldType> fieldTypes;
-
-        public RowFactory(ICollection<FieldType> fieldTypes)
+        public IRow CreateRow(IEnumerable<string> fields, IDictionary<string, int> fieldTypeIndex)
         {
-            this.fieldTypes = fieldTypes;
-        }
-
-        public IRow CreateRow(IEnumerable<string> fields)
-        {
-            return new Row(fields, fieldTypes);
+            return new Row(fields, fieldTypeIndex);
         }
     }
 }

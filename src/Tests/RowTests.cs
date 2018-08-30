@@ -1,5 +1,4 @@
-﻿using Dwc.Text;
-using DWC_A;
+﻿using DWC_A;
 using DWC_A.Exceptions;
 using System.Collections.Generic;
 using Xunit;
@@ -8,10 +7,10 @@ namespace Tests
 {
     public class RowTests
     {
-        private ICollection<FieldType> fieldTypes = new List<FieldType>()
+        private IDictionary<string, int> fieldTypeIndex = new Dictionary<string, int>()
         {
-            new FieldType(){ Index = "0", Term="Name" },
-            new FieldType(){ Index = "1", Term="Value"}
+            {"Name", 0 },
+            {"Value", 1 }
         };
 
         private IEnumerable<string> fields = new string[]
@@ -22,7 +21,7 @@ namespace Tests
         [Fact]
         public void ShowReturnField()
         {
-            var row = new Row(fields, fieldTypes);
+            var row = new Row(fields, fieldTypeIndex);
             Assert.Equal("nameField", row[0]);
             Assert.Equal("valueField", row["Value"]);
         }
@@ -30,7 +29,7 @@ namespace Tests
         [Fact]
         public void ShouldThrowOnTermNotFound()
         {
-            var row = new Row(fields, fieldTypes);
+            var row = new Row(fields, fieldTypeIndex);
             Assert.Throws<TermNotFoundException>(() => row["notAField"]);
         }
     }
