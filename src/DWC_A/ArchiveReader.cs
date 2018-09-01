@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace DWC_A
 {
@@ -17,6 +18,12 @@ namespace DWC_A
         public string FileName {get;}
 
         public string OutputPath { get; }
+
+        public Dwc.Text.Archive MetaData { get { return meta; } }
+
+        public IFileReader CoreFile { get; }
+
+        public IDictionary<string, IFileReader> Extensions { get; }
 
         public ArchiveReader(string fileName) : 
             this(fileName, null)
@@ -52,20 +59,26 @@ namespace DWC_A
         private IFileReader CreateFileReader(string fileName, FileType fileType, ICollection<FieldType> fieldTypes)
         {
             //Create a core file reader
+            ValidateLineEnds(fileType);
             var fullFileName = Path.Combine(OutputPath, fileName);
             var rowFactory = abstractFactory.CreateRowFactory();
             var tokenizer = abstractFactory.CreateTokenizer(fileType);
             return abstractFactory.CreateFileReader(fullFileName, rowFactory, tokenizer, fileType, fieldTypes);
         }
 
+        private void ValidateLineEnds(FileType fileType)
+        {
+            var linesTerminatedBy = Regex.Unescape(fileType.LinesTerminatedBy);
+            if (new[] { "\n", "r", "\r\n" }.Contains(linesTerminatedBy) == false)
+            {
+                throw new NotSupportedException($"Lines terminated by {fileType.LinesTerminatedBy} not supported.  Only files terminated by '\n', '\r' or '\r\n' are supported.");
+            }
+        }
+
         public void Delete()
         {
             archiveFolder.DeleteFolder();
         }
-
-        public readonly IFileReader CoreFile;
-
-        public readonly IDictionary<string, IFileReader> Extensions;
 
         #region IDisposable
         private bool disposed = false;

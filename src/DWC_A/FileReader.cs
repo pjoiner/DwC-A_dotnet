@@ -9,8 +9,8 @@ namespace DWC_A
     {
         private readonly StreamEnumerator streamEnumerator;
         private Stream stream;
-        private readonly IFileAttributes fileAttributes;
         private bool disposed = false;
+        private readonly IFileAttributes fileAttributes;
 
         public FileReader(string fileName,
             IRowFactory rowFactory,
