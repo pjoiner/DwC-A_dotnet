@@ -22,7 +22,7 @@ namespace DWC_A
             this.fileAttributes = fileAttributes;
             this.FieldTypes = fieldTypes;
             stream = new FileStream(fileName, FileMode.Open);
-            streamEnumerator = new StreamEnumerator(stream, rowFactory, tokenizer, fieldTypes);
+            streamEnumerator = new StreamEnumerator(stream, rowFactory, tokenizer, fieldTypes, fileAttributes);
         }
 
         public IEnumerable<IRow> Rows

@@ -11,15 +11,18 @@ namespace DWC_A
     {
         private readonly ITokenizer tokenizer;
         private readonly IRowFactory rowFactory;
+        private readonly IFileAttributes fileAttributes;
         private readonly IDictionary<string, int> fieldTypeIndex;
         private readonly Stream stream;
 
         public StreamEnumerator(Stream stream,
             IRowFactory rowFactory,
             ITokenizer tokenizer,
-            ICollection<FieldType> fieldTypes)
+            ICollection<FieldType> fieldTypes,
+            IFileAttributes fileAttributes)
         {
             this.stream = stream;
+            this.fileAttributes = fileAttributes;
             this.rowFactory = rowFactory;
             this.fieldTypeIndex = fieldTypes.ToDictionary(k => k.Term, 
                 v => Int32.TryParse(v.Index, out int value) ? value : 0);
@@ -30,7 +33,8 @@ namespace DWC_A
         {
             get
             {
-                using (TextReader reader = new StreamReader(stream, Encoding.UTF8, false, 1024, leaveOpen: true))
+                Encoding encoding = Encoding.GetEncoding(fileAttributes.Encoding);
+                using (TextReader reader = new StreamReader(stream, encoding, false, 1024, leaveOpen: true))
                 {
                     string line;
                     while ((line = reader.ReadLine()) != null)

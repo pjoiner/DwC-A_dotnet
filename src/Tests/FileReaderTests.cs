@@ -27,6 +27,7 @@ namespace Tests
             fileAttributesMock.Setup(n => n.FieldsTerminatedBy).Returns("\t");
             fileAttributesMock.Setup(n => n.LinesTerminatedBy).Returns("\n");
             fileAttributesMock.Setup(n => n.IgnoreHeaderLines).Returns("1");
+            fileAttributesMock.Setup(n => n.Encoding).Returns("UTF-8");
             rowFactory = new RowFactory();
             tokenizer = new Tokenizer(fileAttributesMock.Object);
         }
