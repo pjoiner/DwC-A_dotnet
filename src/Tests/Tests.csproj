@@ -24,6 +24,9 @@
     <None Update="resources\dwca-vascan-v37.5\meta.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="resources\dwca-vascan-v37.5\resourcerelationship.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="resources\dwca-vascan-v37.5\taxon.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

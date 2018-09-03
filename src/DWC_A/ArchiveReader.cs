@@ -61,9 +61,8 @@ namespace DWC_A
             //Create a core file reader
             ValidateLineEnds(fileType);
             var fullFileName = Path.Combine(OutputPath, fileName);
-            var rowFactory = abstractFactory.CreateRowFactory();
             var tokenizer = abstractFactory.CreateTokenizer(fileType);
-            return abstractFactory.CreateFileReader(fullFileName, rowFactory, tokenizer, fileType, fieldTypes);
+            return abstractFactory.CreateFileReader(fullFileName, tokenizer, fileType, fieldTypes);
         }
 
         private void ValidateLineEnds(FileType fileType)

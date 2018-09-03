@@ -26,9 +26,14 @@ namespace DWC_A
             return new RowFactory();
         }
 
-        public IFileReader CreateFileReader(string fileName, IRowFactory rowFactory, ITokenizer tokenizer, IFileAttributes fileAttributes, ICollection<FieldType> fieldTypes)
+        public virtual IFileReader CreateFileReader(string fileName, ITokenizer tokenizer, IFileAttributes fileAttributes, ICollection<FieldType> fieldTypes)
         {
-            return new FileReader(fileName, rowFactory, tokenizer, fileAttributes, fieldTypes);
+            return new FileReader(fileName, CreateRowFactory(), tokenizer, fileAttributes, fieldTypes, CreateIndexFactory());
+        }
+
+        public virtual IIndexFactory CreateIndexFactory()
+        {
+            return new IndexFactory();
         }
     }
 }

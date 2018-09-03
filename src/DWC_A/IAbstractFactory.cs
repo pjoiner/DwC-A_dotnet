@@ -11,9 +11,9 @@ namespace DWC_A
         ITokenizer CreateTokenizer(IFileAttributes fileAttributes);
         IRowFactory CreateRowFactory();
         IFileReader CreateFileReader(string fileName,
-            IRowFactory rowFactory,
             ITokenizer tokenizer,
             IFileAttributes fileAttributes,
             ICollection<FieldType> fieldTypes);
+        IIndexFactory CreateIndexFactory();
     }
 }

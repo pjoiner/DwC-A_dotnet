@@ -11,16 +11,19 @@ namespace DWC_A
         private Stream stream;
         private bool disposed = false;
         private readonly IFileAttributes fileAttributes;
+        private readonly IIndexFactory indexFactory;
 
         public FileReader(string fileName,
             IRowFactory rowFactory,
             ITokenizer tokenizer,
             IFileAttributes fileAttributes,
-            ICollection<FieldType> fieldTypes)
+            ICollection<FieldType> fieldTypes,
+            IIndexFactory indexFactory)
         {
             this.FileName = fileName;
             this.fileAttributes = fileAttributes;
             this.FieldTypes = fieldTypes;
+            this.indexFactory = indexFactory;
             stream = new FileStream(fileName, FileMode.Open);
             streamEnumerator = new StreamEnumerator(stream, rowFactory, tokenizer, fieldTypes, fileAttributes);
         }
@@ -65,6 +68,25 @@ namespace DWC_A
             }
         }
 
+        public IFileIndex CreateIndexOn(string term)
+        {
+            var indexList = new List<KeyValuePair<string, long>>();
+            foreach(var row in DataRows)
+            {
+                indexList.Add(KeyValuePair.Create(row[term], streamEnumerator.CurrentOffset));
+            }
+            return indexFactory.CreateFileIndex(indexList);
+        }
+
+        public IEnumerable<IRow> ReadRowsAtIndex(IFileIndex index, string indexValue)
+        {
+            foreach(var offset in index.OffsetsAt(indexValue))
+            {
+                stream.Seek(offset, 0);
+                yield return streamEnumerator.ReadRowAtOffset(offset);
+            }
+        }
+
         public string FileName { get; private set; }
 
         public ICollection<FieldType> FieldTypes { get; private set; }
@@ -83,6 +105,7 @@ namespace DWC_A
                 if (disposing)
                 {
                     // free managed resources
+                    streamEnumerator.Dispose();
                     if (stream != null)
                     {
                         stream.Dispose();

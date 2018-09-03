@@ -11,5 +11,7 @@ namespace DWC_A
         IEnumerable<IRow> DataRows { get; }
         IEnumerable<IRow> HeaderRows { get; }
         IEnumerable<IRow> Rows { get; }
+        IFileIndex CreateIndexOn(string term);
+        IEnumerable<IRow> ReadRowsAtIndex(IFileIndex index, string indexValue);
     }
 }
