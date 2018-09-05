@@ -7,5 +7,7 @@ namespace DWC_A
     {
         IEnumerator<FieldType> GetEnumerator();
         int IndexOf(string term);
+        FieldType this[int index] { get; }
+        FieldType this[string term] { get; }
     }
 }

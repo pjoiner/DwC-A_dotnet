@@ -17,9 +17,10 @@ namespace DWC_A
         public FieldMetaData(IdFieldType idFieldType, ICollection<FieldType> fieldTypes)
         {
             this.idFieldType = idFieldType;
-            this.fieldTypes = fieldTypes.OrderBy(n => Convert.ToInt32(n.Index));
-            this.fieldIndexDictionary = fieldTypes.ToDictionary(k => k.Term, v => Convert.ToInt32(v.Index));
-            fieldIndexDictionary.Add(idFieldName, Convert.ToInt32(idFieldType.Index));
+            this.fieldTypes = fieldTypes
+                .Append(new FieldType() { Index = idFieldType.Index, Term = idFieldName })
+                .OrderBy(n => Convert.ToInt32(n.Index));
+            this.fieldIndexDictionary = this.fieldTypes.ToDictionary(k => k.Term, v => Convert.ToInt32(v.Index));
         }
 
         public int IndexOf(string term)
@@ -39,6 +40,22 @@ namespace DWC_A
         IEnumerator IEnumerable.GetEnumerator()
         {
             return fieldTypes.GetEnumerator();
+        }
+
+        public FieldType this[int index]
+        {
+            get
+            {
+                return fieldTypes.ElementAt(index);
+            }
+        }
+
+        public FieldType this[string term]
+        {
+            get
+            {
+                return fieldTypes.ElementAt(IndexOf(term));
+            }
         }
     }
 }

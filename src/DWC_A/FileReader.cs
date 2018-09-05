@@ -76,7 +76,9 @@ namespace DWC_A
 
         public string FileName { get; private set; }
 
-        public ICollection<FieldType> FieldTypes { get; private set; }
+        //public ICollection<FieldType> FieldTypes { get; private set; }
+        //public IFieldMetaData FieldTypes { get { return fileMetaData.Fields; } }
+        public IFileMetaData FileMetaData { get { return fileMetaData; } } 
 
         #region IDisposable
         public void Dispose()
