@@ -16,7 +16,7 @@ namespace DWC_A
             return new MetaDataReader();
         }
 
-        public virtual ITokenizer CreateTokenizer(IFileAttributes fileAttributes)
+        public virtual ITokenizer CreateTokenizer(IFileMetaData fileAttributes)
         {
             return new Tokenizer(fileAttributes);
         }
@@ -26,14 +26,25 @@ namespace DWC_A
             return new RowFactory();
         }
 
-        public virtual IFileReader CreateFileReader(string fileName, ITokenizer tokenizer, IFileAttributes fileAttributes, ICollection<FieldType> fieldTypes)
+        public virtual IFileReader CreateFileReader(string fileName, ITokenizer tokenizer, IFileMetaData fileMetaData)
         {
-            return new FileReader(fileName, CreateRowFactory(), tokenizer, fileAttributes, fieldTypes, CreateIndexFactory());
+            return new FileReader(fileName, CreateRowFactory(), tokenizer, fileMetaData, CreateIndexFactory());
         }
 
         public virtual IIndexFactory CreateIndexFactory()
         {
             return new IndexFactory();
         }
+
+        public virtual IFileMetaData CreateCoreMetaData(CoreFileType coreFileType)
+        {
+            return new CoreFileMetaData(coreFileType);
+        }
+
+        public virtual IFileMetaData CreateExtensionMetaData(ExtensionFileType extensionFileType)
+        {
+            return new ExtensionFileMetaData(extensionFileType);
+        }
+
     }
 }

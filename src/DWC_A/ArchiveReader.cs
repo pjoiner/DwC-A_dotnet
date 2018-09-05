@@ -46,26 +46,28 @@ namespace DWC_A
             metaDataReader = abstractFactory.CreateMetaDataReader();
             meta = metaDataReader.ReadMetaData(OutputPath);
             //Create a core file reader
-            CoreFile = CreateFileReader(meta.Core.Files.FirstOrDefault(), meta.Core, meta.Core.Field);
+            var coreFileMetaData = abstractFactory.CreateCoreMetaData(meta.Core);
+            CoreFile = CreateFileReader(coreFileMetaData);
             //Create file readers for extensions
             Extensions = new Dictionary<string, IFileReader>();
             foreach(var extension in meta.Extension)
             {
                 var extensionFileName = extension.Files.FirstOrDefault();
-                Extensions[extensionFileName] = CreateFileReader(extensionFileName, extension, extension.Field);
+                var extensionFileMetaData = abstractFactory.CreateExtensionMetaData(extension);
+                Extensions[extensionFileName] = CreateFileReader(extensionFileMetaData);
             }
         }
 
-        private IFileReader CreateFileReader(string fileName, FileType fileType, ICollection<FieldType> fieldTypes)
+        private IFileReader CreateFileReader(IFileMetaData fileMetaData)
         {
             //Create a core file reader
-            ValidateLineEnds(fileType);
-            var fullFileName = Path.Combine(OutputPath, fileName);
-            var tokenizer = abstractFactory.CreateTokenizer(fileType);
-            return abstractFactory.CreateFileReader(fullFileName, tokenizer, fileType, fieldTypes);
+            ValidateLineEnds(fileMetaData.Attributes);
+            var fullFileName = Path.Combine(OutputPath, fileMetaData.FileName);
+            var tokenizer = abstractFactory.CreateTokenizer(fileMetaData);
+            return abstractFactory.CreateFileReader(fullFileName, tokenizer, fileMetaData);
         }
 
-        private void ValidateLineEnds(FileType fileType)
+        private void ValidateLineEnds(IFileAttributes fileType)
         {
             var linesTerminatedBy = Regex.Unescape(fileType.LinesTerminatedBy);
             if (new[] { "\n", "r", "\r\n" }.Contains(linesTerminatedBy) == false)

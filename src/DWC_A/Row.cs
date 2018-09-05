@@ -1,17 +1,16 @@
-﻿using DWC_A.Exceptions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace DWC_A
 {
     public class Row : IRow
     {
-        private readonly IDictionary<string, int> fieldTypeIndex;
+        private readonly IFileMetaData fileMetaData;
 
-        public Row(IEnumerable<string> fields, IDictionary<string, int> fieldTypeIndex)
+        public Row(IEnumerable<string> fields, IFileMetaData fileMetaData)
         {
             this.Fields = fields;
-            this.fieldTypeIndex = fieldTypeIndex;
+            this.fileMetaData = fileMetaData;
         }
 
         public IEnumerable<string> Fields { get; }
@@ -20,11 +19,8 @@ namespace DWC_A
         {
             get
             {
-                if(!fieldTypeIndex.ContainsKey(term))
-                {
-                    throw new TermNotFoundException(term);
-                }
-                return this[fieldTypeIndex[term]];
+                var index = fileMetaData.Fields.IndexOf(term);
+                return this[index];
             }
         }
 

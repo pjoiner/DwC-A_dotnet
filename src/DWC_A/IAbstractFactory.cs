@@ -1,6 +1,5 @@
 ﻿using Dwc.Text;
 using DWC_A.Meta;
-using System.Collections.Generic;
 
 namespace DWC_A
 {
@@ -8,12 +7,13 @@ namespace DWC_A
     {
         IArchiveFolder CreateArchiveFolder(string fileName, string outputPath);
         IMetaDataReader CreateMetaDataReader();
-        ITokenizer CreateTokenizer(IFileAttributes fileAttributes);
+        ITokenizer CreateTokenizer(IFileMetaData fileAttributes);
         IRowFactory CreateRowFactory();
         IFileReader CreateFileReader(string fileName,
             ITokenizer tokenizer,
-            IFileAttributes fileAttributes,
-            ICollection<FieldType> fieldTypes);
+            IFileMetaData fileMetaData);
         IIndexFactory CreateIndexFactory();
+        IFileMetaData CreateCoreMetaData(CoreFileType coreFileType);
+        IFileMetaData CreateExtensionMetaData(ExtensionFileType extensionFileType);
     }
 }

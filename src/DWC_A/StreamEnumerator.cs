@@ -1,10 +1,7 @@
-﻿using Dwc.Text;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace DWC_A
 {
@@ -12,28 +9,20 @@ namespace DWC_A
     {
         private readonly ITokenizer tokenizer;
         private readonly IRowFactory rowFactory;
-        private readonly IFileAttributes fileAttributes;
-        private readonly IDictionary<string, int> fieldTypeIndex;
+        private readonly IFileMetaData fileMetaData;
         private readonly Stream stream;
         private readonly TextReader reader;
-        private readonly Encoding encoding;
-        private readonly long lineEndingSize;
 
         public StreamEnumerator(Stream stream,
             IRowFactory rowFactory,
             ITokenizer tokenizer,
-            ICollection<FieldType> fieldTypes,
-            IFileAttributes fileAttributes)
+            IFileMetaData fileMetaData)
         {
             this.stream = stream;
-            this.fileAttributes = fileAttributes;
+            this.fileMetaData = fileMetaData;
             this.rowFactory = rowFactory;
-            this.fieldTypeIndex = fieldTypes.ToDictionary(k => k.Term, 
-                v => Int32.TryParse(v.Index, out int value) ? value : 0);
             this.tokenizer = tokenizer;
-            encoding = Encoding.GetEncoding(fileAttributes.Encoding);
-            reader = new StreamReader(stream, encoding);
-            lineEndingSize = encoding.GetByteCount(Regex.Unescape(fileAttributes.LinesTerminatedBy));
+            reader = new StreamReader(stream, fileMetaData.Encoding);
         }
 
         public IEnumerable<IRow> Rows
@@ -44,8 +33,8 @@ namespace DWC_A
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    yield return rowFactory.CreateRow(tokenizer.Split(line), fieldTypeIndex);
-                    CurrentOffset += encoding.GetByteCount(line) + lineEndingSize;
+                    yield return rowFactory.CreateRow(tokenizer.Split(line), fileMetaData);
+                    CurrentOffset += fileMetaData.Encoding.GetByteCount(line) + fileMetaData.LineTerminatorLength;
                 }
             }
         }
@@ -58,8 +47,8 @@ namespace DWC_A
             {
                 throw new EndOfStreamException("Attempt to read offset beyond the end of file");
             }
-            CurrentOffset += encoding.GetByteCount(line) + lineEndingSize;
-            return rowFactory.CreateRow(tokenizer.Split(line), fieldTypeIndex);
+            CurrentOffset += fileMetaData.Encoding.GetByteCount(line) + fileMetaData.LineTerminatorLength;
+            return rowFactory.CreateRow(tokenizer.Split(line), fileMetaData);
         }
 
         public IEnumerable<IRow> HeaderRows(int headerRowCount)

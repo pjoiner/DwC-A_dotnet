@@ -4,6 +4,6 @@ namespace DWC_A
 {
     public interface IRowFactory
     {
-        IRow CreateRow(IEnumerable<string> fields, IDictionary<string,int> fieldTypeIndex);
+        IRow CreateRow(IEnumerable<string> fields, IFileMetaData fileMetaData);
     }
 }

@@ -4,6 +4,7 @@ using Moq;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Xunit;
 
 namespace Tests
@@ -15,20 +16,28 @@ namespace Tests
         private readonly IRowFactory rowFactory;
         private readonly ITokenizer tokenizer;
 
+        Mock<IFileMetaData> fileMetaDataMock = new Mock<IFileMetaData>();
         Mock<IFileAttributes> fileAttributesMock = new Mock<IFileAttributes>();
 
         public StreamEnumeratorTests()
         {
+            fileMetaDataMock.Setup(n => n.FieldsEnclosedBy).Returns("");
+            fileMetaDataMock.Setup(n => n.FieldsTerminatedBy).Returns("\t");
+            fileMetaDataMock.Setup(n => n.LinesTerminatedBy).Returns("\n");
+            fileMetaDataMock.Setup(n => n.Encoding).Returns(Encoding.UTF8);
+
             fileAttributesMock.Setup(n => n.FieldsEnclosedBy).Returns("");
             fileAttributesMock.Setup(n => n.FieldsTerminatedBy).Returns("\t");
             fileAttributesMock.Setup(n => n.LinesTerminatedBy).Returns("\n");
             fileAttributesMock.Setup(n => n.Encoding).Returns("UTF-8");
+
             rowFactory = new RowFactory();
-            tokenizer = new Tokenizer(fileAttributesMock.Object);
+            tokenizer = new Tokenizer(fileMetaDataMock.Object);
         }
 
         ICollection<FieldType> fieldTypes = new FieldType[]
         {
+
 
         };
 
@@ -40,8 +49,7 @@ namespace Tests
                 var streamEnumerator = new StreamEnumerator(stream,
                     rowFactory,
                     tokenizer,
-                    fieldTypes,
-                    fileAttributesMock.Object);
+                    fileMetaDataMock.Object);
                 Assert.NotEmpty(streamEnumerator.Rows.ToArray());
             }
         }
@@ -54,8 +62,7 @@ namespace Tests
                 var streamEnumerator = new StreamEnumerator(stream,
                     rowFactory,
                     tokenizer,
-                    fieldTypes,
-                    fileAttributesMock.Object);
+                    fileMetaDataMock.Object);
                 Assert.Single(streamEnumerator.HeaderRows(1));
             }
         }
@@ -68,8 +75,7 @@ namespace Tests
                 var streamEnumerator = new StreamEnumerator(stream,
                     rowFactory,
                     tokenizer,
-                    fieldTypes,
-                    fileAttributesMock.Object);
+                    fileMetaDataMock.Object);
                 Assert.NotEmpty(streamEnumerator.DataRows(1));
             }
         }

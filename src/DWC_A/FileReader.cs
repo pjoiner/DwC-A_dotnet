@@ -10,22 +10,20 @@ namespace DWC_A
         private readonly StreamEnumerator streamEnumerator;
         private Stream stream;
         private bool disposed = false;
-        private readonly IFileAttributes fileAttributes;
+        private readonly IFileMetaData fileMetaData;
         private readonly IIndexFactory indexFactory;
 
         public FileReader(string fileName,
             IRowFactory rowFactory,
             ITokenizer tokenizer,
-            IFileAttributes fileAttributes,
-            ICollection<FieldType> fieldTypes,
+            IFileMetaData fileMetaData,
             IIndexFactory indexFactory)
         {
             this.FileName = fileName;
-            this.fileAttributes = fileAttributes;
-            this.FieldTypes = fieldTypes;
+            this.fileMetaData = fileMetaData;
             this.indexFactory = indexFactory;
             stream = new FileStream(fileName, FileMode.Open);
-            streamEnumerator = new StreamEnumerator(stream, rowFactory, tokenizer, fieldTypes, fileAttributes);
+            streamEnumerator = new StreamEnumerator(stream, rowFactory, tokenizer, fileMetaData);
         }
 
         public IEnumerable<IRow> Rows
@@ -55,18 +53,7 @@ namespace DWC_A
             }
         }
 
-        private int HeaderRowCount
-        {
-            get
-            {
-                if (!Int32.TryParse(fileAttributes.IgnoreHeaderLines, out int headerRowCount))
-                {
-                    headerRowCount = 0;
-                }
-
-                return headerRowCount;
-            }
-        }
+        private int HeaderRowCount => fileMetaData.HeaderRowCount;
 
         public IFileIndex CreateIndexOn(string term)
         {
