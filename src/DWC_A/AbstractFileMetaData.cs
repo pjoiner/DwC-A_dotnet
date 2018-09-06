@@ -19,7 +19,7 @@ namespace DWC_A
 
         public string RowType { get { return fileType.RowType; } }
 
-        public IFileAttributes Attributes { get { return fileType; } }
+        //public IFileAttributes Attributes { get { return fileType; } }
 
         public Encoding Encoding { get { return Encoding.GetEncoding(fileType.Encoding); } }
 

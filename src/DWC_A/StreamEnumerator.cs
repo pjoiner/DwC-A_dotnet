@@ -11,7 +11,7 @@ namespace DWC_A
         private readonly IRowFactory rowFactory;
         private readonly IFileMetaData fileMetaData;
         private readonly Stream stream;
-        private readonly TextReader reader;
+        private readonly StreamReader reader;
 
         public StreamEnumerator(Stream stream,
             IRowFactory rowFactory,
@@ -42,6 +42,7 @@ namespace DWC_A
         public IRow ReadRowAtOffset(long offset)
         {
             CurrentOffset = offset;
+            reader.DiscardBufferedData();
             string line = reader.ReadLine();
             if (line == null)
             {

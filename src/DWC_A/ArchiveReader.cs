@@ -1,10 +1,8 @@
-﻿using Dwc.Text;
-using DWC_A.Meta;
+﻿using DWC_A.Meta;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace DWC_A
 {
@@ -61,19 +59,9 @@ namespace DWC_A
         private IFileReader CreateFileReader(IFileMetaData fileMetaData)
         {
             //Create a core file reader
-            ValidateLineEnds(fileMetaData.Attributes);
             var fullFileName = Path.Combine(OutputPath, fileMetaData.FileName);
             var tokenizer = abstractFactory.CreateTokenizer(fileMetaData);
             return abstractFactory.CreateFileReader(fullFileName, tokenizer, fileMetaData);
-        }
-
-        private void ValidateLineEnds(IFileAttributes fileType)
-        {
-            var linesTerminatedBy = Regex.Unescape(fileType.LinesTerminatedBy);
-            if (new[] { "\n", "r", "\r\n" }.Contains(linesTerminatedBy) == false)
-            {
-                throw new NotSupportedException($"Lines terminated by {fileType.LinesTerminatedBy} not supported.  Only files terminated by '\n', '\r' or '\r\n' are supported.");
-            }
         }
 
         public void Delete()

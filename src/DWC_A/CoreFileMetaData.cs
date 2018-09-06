@@ -1,5 +1,4 @@
 ﻿using Dwc.Text;
-using System.Collections.Generic;
 
 namespace DWC_A
 {
@@ -10,15 +9,12 @@ namespace DWC_A
         public CoreFileMetaData(CoreFileType coreFileType):
             base(coreFileType)
         {
-            this.coreFileType = coreFileType;
-            //TODO: Use a null object ???
-            if(coreFileType != null)
+            this.coreFileType = coreFileType ?? new CoreFileType();
+            if (this.coreFileType.Id != null)
             {
-                Fields = new FieldMetaData(coreFileType.Id, coreFileType.Field);
+                Fields = new FieldMetaData(this.coreFileType.Id, this.coreFileType.Field);
             }
         }
-
-        public ICollection<FieldType> FieldTypes { get { return coreFileType.Field; } }
 
         public IdFieldType Id { get { return coreFileType.Id; } }
 

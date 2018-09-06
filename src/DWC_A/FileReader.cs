@@ -1,7 +1,7 @@
-﻿using Dwc.Text;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace DWC_A
 {
@@ -10,7 +10,6 @@ namespace DWC_A
         private readonly StreamEnumerator streamEnumerator;
         private Stream stream;
         private bool disposed = false;
-        private readonly IFileMetaData fileMetaData;
         private readonly IIndexFactory indexFactory;
 
         public FileReader(string fileName,
@@ -20,10 +19,19 @@ namespace DWC_A
             IIndexFactory indexFactory)
         {
             this.FileName = fileName;
-            this.fileMetaData = fileMetaData;
+            this.FileMetaData = fileMetaData;
             this.indexFactory = indexFactory;
+            ValidateLineEnds(fileMetaData.LinesTerminatedBy);
             stream = new FileStream(fileName, FileMode.Open);
             streamEnumerator = new StreamEnumerator(stream, rowFactory, tokenizer, fileMetaData);
+        }
+
+        private void ValidateLineEnds(string linesTerminatedBy)
+        {
+            if (new[] { "\n", "r", "\r\n" }.Contains(linesTerminatedBy) == false)
+            {
+                throw new NotSupportedException($"Only files terminated by '\n', '\r' or '\r\n' are supported.");
+            }
         }
 
         public IEnumerable<IRow> Rows
@@ -40,7 +48,7 @@ namespace DWC_A
             get
             {
                 stream.Seek(0, 0);
-                return streamEnumerator.HeaderRows(HeaderRowCount);
+                return streamEnumerator.HeaderRows(FileMetaData.HeaderRowCount);
             }
         }
 
@@ -49,18 +57,16 @@ namespace DWC_A
             get
             {
                 stream.Seek(0, 0);
-                return streamEnumerator.DataRows(HeaderRowCount);
+                return streamEnumerator.DataRows(FileMetaData.HeaderRowCount);
             }
         }
-
-        private int HeaderRowCount => fileMetaData.HeaderRowCount;
 
         public IFileIndex CreateIndexOn(string term)
         {
             var indexList = new List<KeyValuePair<string, long>>();
             foreach(var row in DataRows)
             {
-                indexList.Add(KeyValuePair.Create(row[term], streamEnumerator.CurrentOffset));
+                indexList.Add(new KeyValuePair<string,long>(row[term], streamEnumerator.CurrentOffset));
             }
             return indexFactory.CreateFileIndex(indexList);
         }
@@ -74,11 +80,9 @@ namespace DWC_A
             }
         }
 
-        public string FileName { get; private set; }
+        public string FileName { get; }
 
-        //public ICollection<FieldType> FieldTypes { get; private set; }
-        //public IFieldMetaData FieldTypes { get { return fileMetaData.Fields; } }
-        public IFileMetaData FileMetaData { get { return fileMetaData; } } 
+        public IFileMetaData FileMetaData { get; }
 
         #region IDisposable
         public void Dispose()

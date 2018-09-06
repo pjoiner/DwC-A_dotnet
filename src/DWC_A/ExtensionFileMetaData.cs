@@ -14,8 +14,6 @@ namespace DWC_A
             Fields = new FieldMetaData(extensionFileType.Coreid, extensionFileType.Field);
         }
 
-        public ICollection<FieldType> FieldTypes { get { return extensionFileType.Field; } }
-
         public IdFieldType Id { get { return extensionFileType.Coreid; } }
 
         public IFieldMetaData Fields { get; }
