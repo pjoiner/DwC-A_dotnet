@@ -21,7 +21,7 @@ namespace DWC_A
 
         public IFileReader CoreFile { get; }
 
-        public IDictionary<string, IFileReader> Extensions { get; }
+        public FileReaderCollection Extensions { get; }
 
         public ArchiveReader(string fileName) : 
             this(fileName, null)
@@ -47,13 +47,14 @@ namespace DWC_A
             var coreFileMetaData = abstractFactory.CreateCoreMetaData(meta.Core);
             CoreFile = CreateFileReader(coreFileMetaData);
             //Create file readers for extensions
-            Extensions = new Dictionary<string, IFileReader>();
+            var fileReaders = new List<IFileReader>();
             foreach(var extension in meta.Extension)
             {
                 var extensionFileName = extension.Files.FirstOrDefault();
                 var extensionFileMetaData = abstractFactory.CreateExtensionMetaData(extension);
-                Extensions[extensionFileName] = CreateFileReader(extensionFileMetaData);
+                fileReaders.Add(CreateFileReader(extensionFileMetaData));
             }
+            Extensions = new FileReaderCollection(fileReaders);
         }
 
         private IFileReader CreateFileReader(IFileMetaData fileMetaData)
@@ -84,10 +85,7 @@ namespace DWC_A
                 if (disposing)
                 {
                     CoreFile?.Dispose();
-                    foreach(var extension in Extensions)
-                    {
-                        extension.Value.Dispose();
-                    }
+                    Extensions?.Dispose();
                     Delete();
                 }
             }

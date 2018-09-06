@@ -24,7 +24,7 @@ namespace Tests
         {
             using (var archive = new ArchiveReader(archiveFileName))
             {
-                var descriptionFile = archive.Extensions["description.txt"];
+                var descriptionFile = archive.Extensions.GetFileReaderByFileName("description.txt");
                 Assert.NotEmpty(descriptionFile.Rows);
             }
         }
