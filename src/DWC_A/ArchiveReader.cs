@@ -59,7 +59,6 @@ namespace DWC_A
 
         private IFileReader CreateFileReader(IFileMetaData fileMetaData)
         {
-            //Create a core file reader
             var fullFileName = Path.Combine(OutputPath, fileMetaData.FileName);
             var tokenizer = abstractFactory.CreateTokenizer(fileMetaData);
             return abstractFactory.CreateFileReader(fullFileName, tokenizer, fileMetaData);
