@@ -1,7 +1,7 @@
 ﻿using Dwc.Text;
 using DWC_A.Meta;
 
-namespace DWC_A
+namespace DWC_A.Factories
 {
     public interface IAbstractFactory
     {

@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using DWC_A.Meta;
+using System.Collections.Generic;
 
-namespace DWC_A
+namespace DWC_A.Factories
 {
     public interface IRowFactory
     {

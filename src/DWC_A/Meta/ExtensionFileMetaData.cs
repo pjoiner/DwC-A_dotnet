@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Dwc.Text;
+﻿using Dwc.Text;
 
-namespace DWC_A
+namespace DWC_A.Meta
 {
     public class ExtensionFileMetaData : AbstractFileMetaData, IFileMetaData
     {

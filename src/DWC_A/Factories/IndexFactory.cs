@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DWC_A
+namespace DWC_A.Factories
 {
     public class IndexFactory : IIndexFactory
     {

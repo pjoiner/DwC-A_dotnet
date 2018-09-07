@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Dwc.Text;
 
-namespace DWC_A
+namespace DWC_A.Meta
 {
     public interface IFileMetaData
     {

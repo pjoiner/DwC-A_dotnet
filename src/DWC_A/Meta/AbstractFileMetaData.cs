@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DWC_A
+namespace DWC_A.Meta
 {
     public abstract class AbstractFileMetaData
     {

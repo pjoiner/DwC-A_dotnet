@@ -1,6 +1,6 @@
 ﻿using Dwc.Text;
 
-namespace DWC_A
+namespace DWC_A.Meta
 {
     public class CoreFileMetaData : AbstractFileMetaData, IFileMetaData
     {

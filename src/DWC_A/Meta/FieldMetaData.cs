@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DWC_A
+namespace DWC_A.Meta
 {
     public class FieldMetaData : IEnumerable<FieldType>, IFieldMetaData
     {
