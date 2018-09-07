@@ -3,7 +3,7 @@ using System.IO.Compression;
 
 namespace DWC_A
 {
-    public class ArchiveFolder : IArchiveFolder
+    internal class ArchiveFolder : IArchiveFolder
     {
         private readonly string fileName;
         private readonly string folderPath;

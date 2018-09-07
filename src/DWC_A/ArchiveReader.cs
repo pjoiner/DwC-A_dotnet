@@ -14,28 +14,52 @@ namespace DWC_A
         private readonly IMetaDataReader metaDataReader;
         private readonly Dwc.Text.Archive meta;
 
+        /// <summary>
+        /// Fully qualified name for the archive file
+        /// </summary>
         public string FileName {get;}
-
+        /// <summary>
+        /// Path where archive is extracted to
+        /// </summary>
         public string OutputPath { get; }
-
+        /// <summary>
+        /// Raw meta data for archive
+        /// </summary>
         public Dwc.Text.Archive MetaData { get { return meta; } }
-
+        /// <summary>
+        /// File reader for Core file
+        /// </summary>
         public IFileReader CoreFile { get; }
-
+        /// <summary>
+        /// Collection of file readers for extension files
+        /// </summary>
         public FileReaderCollection Extensions { get; }
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="fileName">Fully qualified file name for archive file.  
+        /// Extracts archive to a temp directory</param>
         public ArchiveReader(string fileName) : 
             this(fileName, null)
         {
 
         }
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="fileName">Fully qualified file name for archive file</param>
+        /// <param name="outputPath">Directory path to extract archive to</param>
         public ArchiveReader(string fileName, string outputPath):
             this(fileName, outputPath, new DefaultFactory())
         {
 
         }
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="fileName">Fully qualified file name for archive file</param>
+        /// <param name="outputPath">Directory path to extract archive to</param>
+        /// <param name="abstractFactory">Factory to create tokenizers, readers etc.</param>
         public ArchiveReader(string fileName, string outputPath, IAbstractFactory abstractFactory)
         {
             FileName = fileName;
@@ -64,7 +88,9 @@ namespace DWC_A
             var tokenizer = abstractFactory.CreateTokenizer(fileMetaData);
             return abstractFactory.CreateFileReader(fullFileName, tokenizer, fileMetaData);
         }
-
+        /// <summary>
+        /// Used to cleanup extracted files.
+        /// </summary>
         public void Delete()
         {
             archiveFolder.DeleteFolder();

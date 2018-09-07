@@ -19,8 +19,6 @@ namespace DWC_A.Meta
 
         public string RowType { get { return fileType.RowType; } }
 
-        //public IFileAttributes Attributes { get { return fileType; } }
-
         public Encoding Encoding { get { return Encoding.GetEncoding(fileType.Encoding); } }
 
         public string LinesTerminatedBy { get { return Regex.Unescape(fileType.LinesTerminatedBy); } }
