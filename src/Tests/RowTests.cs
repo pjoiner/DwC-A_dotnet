@@ -1,6 +1,7 @@
 ﻿using DWC_A;
 using DWC_A.Exceptions;
 using DWC_A.Meta;
+using DWC_A.Terms;
 using Moq;
 using System.Collections.Generic;
 using Xunit;
@@ -29,12 +30,5 @@ namespace Tests
             Assert.Equal("valueField", row["Value"]);
         }
 
-        //TODO: Move this test to a FieldMetaData test unit 
-        [Fact(Skip = "true")]
-        public void ShouldThrowOnTermNotFound()
-        {
-            var row = new Row(fields, fileMetaDataMock.Object);
-            Assert.Throws<TermNotFoundException>(() => row["notAField"]);
-        }
     }
 }
