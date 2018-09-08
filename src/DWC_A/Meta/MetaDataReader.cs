@@ -1,4 +1,5 @@
 ﻿using Dwc.Text;
+using Microsoft.Extensions.Logging;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -8,6 +9,12 @@ namespace DWC_A.Meta
     public class MetaDataReader : IMetaDataReader
     {
         private const string MetaFileName = "meta.xml";
+        private readonly ILogger logger;
+
+        public MetaDataReader(ILogger logger)
+        {
+            this.logger = logger;
+        }
 
         /// <summary>
         /// Deserializes the meta.xml file into an Archive object
@@ -26,6 +33,7 @@ namespace DWC_A.Meta
 
         private Archive DefaultMetaData(string path)
         {
+            logger.LogDebug("No meta.xml metadata file found.  Creating default metadata");
             var fileNames = Directory.GetFiles(path);
             var coreFileName = fileNames.Single();
             var archive = new Dwc.Text.Archive()
@@ -36,12 +44,13 @@ namespace DWC_A.Meta
             return archive;
         }
 
-        private Dwc.Text.Archive DeserializeMetaDataFile(string fileName)
+        private Archive DeserializeMetaDataFile(string fileName)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Dwc.Text.Archive));
+            logger.LogDebug($"Reading meta.xml metadata for file {fileName}");
+            XmlSerializer serializer = new XmlSerializer(typeof(Archive));
             using (Stream stream = new FileStream(fileName, FileMode.Open))
             {
-                return serializer.Deserialize(stream) as Dwc.Text.Archive;
+                return serializer.Deserialize(stream) as Archive;
             }
         }
     }

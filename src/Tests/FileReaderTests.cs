@@ -36,7 +36,9 @@ namespace Tests
         [Fact]
         public void ShouldEnumerateFile()
         {
-            using (IFileReader fileReader = new FileReader(fileName, rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
+            fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
+            using (IFileReader fileReader = new FileReader(TestLogger.DebugLogger, 
+                fileName, rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
             {
                 Assert.NotEmpty(fileReader.Rows.ToArray());
             }
@@ -45,7 +47,9 @@ namespace Tests
         [Fact]
         public void ShouldReturnHeaderRow()
         {
-            using (IFileReader fileReader = new FileReader(fileName, rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
+            fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
+            using (IFileReader fileReader = new FileReader(TestLogger.DebugLogger,
+                fileName, rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
             {
                 Assert.Single(fileReader.HeaderRows);
             }
@@ -54,7 +58,9 @@ namespace Tests
         [Fact]
         public void ShouldReturnDataRows()
         {
-            using (IFileReader fileReader = new FileReader(fileName, rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
+            fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
+            using (IFileReader fileReader = new FileReader(TestLogger.DebugLogger,
+                fileName, rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
             {
                 Assert.NotEmpty(fileReader.DataRows);
             }
@@ -63,7 +69,9 @@ namespace Tests
         [Fact]
         public void ShouldSeekToBeginningForHeaderRows()
         {
-            using (var fileReader = new FileReader(fileName, rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
+            fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
+            using (var fileReader = new FileReader(TestLogger.DebugLogger,
+                fileName, rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
             {
                 Assert.NotEmpty(fileReader.DataRows);
                 Assert.NotEmpty(fileReader.HeaderRows);
@@ -73,7 +81,10 @@ namespace Tests
         [Fact]
         public void ShouldCreateIndexOnResourceRelationship()
         {
-            using (var fileReader = new FileReader(resourceRelationShipFileName, rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
+            fileMetaDataMock.Setup(n => n.FileName).Returns(resourceRelationShipFileName);
+            using (var fileReader = new FileReader(TestLogger.DebugLogger,
+                resourceRelationShipFileName, rowFactory, tokenizer, 
+                fileMetaDataMock.Object, indexFactory))
             {
                 var idIndex = fileReader.CreateIndexOn("id");
                 Assert.NotEmpty(idIndex.OffsetsAt("2850"));
@@ -85,7 +96,10 @@ namespace Tests
         [Fact]
         public void ShouldReadAllRowsAtIndexValue()
         {
-            using (var fileReader = new FileReader(resourceRelationShipFileName, rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
+            fileMetaDataMock.Setup(n => n.FileName).Returns(resourceRelationShipFileName);
+            using (var fileReader = new FileReader(TestLogger.DebugLogger,
+                resourceRelationShipFileName, rowFactory, tokenizer, 
+                fileMetaDataMock.Object, indexFactory))
             {
                 var idIndex = fileReader.CreateIndexOn("id");
                 var rowsWithId2850 = fileReader.ReadRowsAtIndex(idIndex, "2850");

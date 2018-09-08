@@ -1,5 +1,6 @@
 ﻿using DWC_A.Factories;
 using DWC_A.Meta;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,23 +10,26 @@ namespace DWC_A
 {
     public class FileReader : IDisposable, IFileReader
     {
-        private readonly StreamReader streamEnumerator;
+        private readonly StreamReader streamReader;
         private Stream stream;
         private bool disposed = false;
         private readonly IIndexFactory indexFactory;
+        private readonly ILogger logger;
 
-        public FileReader(string fileName,
+        public FileReader(ILogger logger,
+            string fileName,
             IRowFactory rowFactory,
             ITokenizer tokenizer,
             IFileMetaData fileMetaData,
             IIndexFactory indexFactory)
         {
+            this.logger = logger;
             this.FileName = fileName;
             this.FileMetaData = fileMetaData;
             this.indexFactory = indexFactory;
             ValidateLineEnds(fileMetaData.LinesTerminatedBy);
             stream = new FileStream(fileName, FileMode.Open);
-            streamEnumerator = new StreamReader(stream, rowFactory, tokenizer, fileMetaData);
+            streamReader = new StreamReader(stream, rowFactory, tokenizer, fileMetaData);
         }
 
         private void ValidateLineEnds(string linesTerminatedBy)
@@ -41,7 +45,7 @@ namespace DWC_A
             get
             {
                 stream.Seek(0, 0);
-                return streamEnumerator.Rows;
+                return streamReader.Rows;
             }
         }
 
@@ -50,7 +54,7 @@ namespace DWC_A
             get
             {
                 stream.Seek(0, 0);
-                return streamEnumerator.HeaderRows(FileMetaData.HeaderRowCount);
+                return streamReader.HeaderRows(FileMetaData.HeaderRowCount);
             }
         }
 
@@ -59,18 +63,22 @@ namespace DWC_A
             get
             {
                 stream.Seek(0, 0);
-                return streamEnumerator.DataRows(FileMetaData.HeaderRowCount);
+                return streamReader.DataRows(FileMetaData.HeaderRowCount);
             }
         }
 
         public IFileIndex CreateIndexOn(string term)
         {
+            logger.LogDebug($"Creating index on file {FileMetaData.FileName} for term {term}");
             var indexList = new List<KeyValuePair<string, long>>();
             foreach(var row in DataRows)
             {
-                indexList.Add(new KeyValuePair<string,long>(row[term], streamEnumerator.CurrentOffset));
+                indexList.Add(new KeyValuePair<string,long>(row[term], streamReader.CurrentOffset));
             }
-            return indexFactory.CreateFileIndex(indexList);
+            var index = indexFactory.CreateFileIndex(indexList);
+            logger.LogDebug($"Index for file {FileMetaData.FileName}, term {term} created. " +
+                $"{indexList.Count()} rows processed");
+            return index;
         }
 
         public IEnumerable<IRow> ReadRowsAtIndex(IFileIndex index, string indexValue)
@@ -78,7 +86,7 @@ namespace DWC_A
             foreach(var offset in index.OffsetsAt(indexValue))
             {
                 stream.Seek(offset, 0);
-                yield return streamEnumerator.ReadRowAtOffset(offset);
+                yield return streamReader.ReadRowAtOffset(offset);
             }
         }
 
@@ -100,7 +108,7 @@ namespace DWC_A
                 if (disposing)
                 {
                     // free managed resources
-                    streamEnumerator.Dispose();
+                    streamReader.Dispose();
                     if (stream != null)
                     {
                         stream.Dispose();

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Microsoft.Extensions.Logging;
+using System.IO;
 using System.IO.Compression;
 
 namespace DWC_A
@@ -7,6 +8,7 @@ namespace DWC_A
     {
         private readonly string fileName;
         private readonly string folderPath;
+        private readonly ILogger logger;
         
         public bool ShouldCleanup { get; private set; }
 
@@ -15,14 +17,16 @@ namespace DWC_A
         /// </summary>
         /// <param name="fileName">Zip archive file name</param>
         /// <param name="folderPath">Path to extract to.  Leave null for a temp folder</param>
-        public ArchiveFolder(string fileName, string folderPath = null)
+        public ArchiveFolder(ILogger<ArchiveFolder> logger, string fileName, string folderPath = null)
         {
             this.fileName = fileName;
+            this.logger = logger;
             this.folderPath = string.IsNullOrEmpty(folderPath) ? GetTempPath() : folderPath;
         }
 
         public string Extract()
         {
+            logger.LogDebug($"Extracting archive {fileName} into directory {folderPath}");
             Directory.CreateDirectory(folderPath);
             using (Stream stream = new FileStream(fileName, FileMode.Open))
             {
@@ -30,6 +34,7 @@ namespace DWC_A
                 {
                     foreach (var entry in zipArchive.Entries)
                     {
+                        logger.LogDebug($"Extracting file {entry.Name}");
                         entry.ExtractToFile(Path.Combine(folderPath, entry.Name), true);
                     }
                 }
@@ -39,6 +44,7 @@ namespace DWC_A
 
         public void DeleteFolder()
         {
+            logger.LogDebug($"Cleaning up archive folder {folderPath}");
             Directory.Delete(folderPath, true);
         }
 
