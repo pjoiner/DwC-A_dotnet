@@ -25,9 +25,11 @@ namespace DWC_A.Factories
             return new RowFactory();
         }
 
-        public virtual IFileReader CreateFileReader(string fileName, ITokenizer tokenizer, IFileMetaData fileMetaData)
+        public virtual IFileReader CreateFileReader(string fileName, IFileMetaData fileMetaData)
         {
-            return new FileReader(fileName, CreateRowFactory(), tokenizer, fileMetaData, CreateIndexFactory());
+            return new FileReader(fileName, 
+                CreateRowFactory(), CreateTokenizer(fileMetaData), 
+                fileMetaData, CreateIndexFactory());
         }
 
         public virtual IIndexFactory CreateIndexFactory()

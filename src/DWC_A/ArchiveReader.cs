@@ -98,8 +98,7 @@ namespace DWC_A
         private IFileReader CreateFileReader(IFileMetaData fileMetaData)
         {
             var fullFileName = Path.Combine(OutputPath, fileMetaData.FileName);
-            var tokenizer = abstractFactory.CreateTokenizer(fileMetaData);
-            return abstractFactory.CreateFileReader(fullFileName, tokenizer, fileMetaData);
+            return abstractFactory.CreateFileReader(fullFileName, fileMetaData);
         }
         /// <summary>
         /// Used to cleanup extracted files.

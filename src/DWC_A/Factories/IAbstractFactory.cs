@@ -10,7 +10,6 @@ namespace DWC_A.Factories
         ITokenizer CreateTokenizer(IFileMetaData fileAttributes);
         IRowFactory CreateRowFactory();
         IFileReader CreateFileReader(string fileName,
-            ITokenizer tokenizer,
             IFileMetaData fileMetaData);
         IIndexFactory CreateIndexFactory();
         IFileMetaData CreateCoreMetaData(CoreFileType coreFileType);
