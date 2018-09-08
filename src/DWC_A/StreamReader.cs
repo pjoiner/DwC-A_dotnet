@@ -7,15 +7,15 @@ using System.Linq;
 
 namespace DWC_A
 {
-    public class StreamEnumerator : IDisposable
+    public class StreamReader : IDisposable
     {
         private readonly ITokenizer tokenizer;
         private readonly IRowFactory rowFactory;
         private readonly IFileMetaData fileMetaData;
         private readonly Stream stream;
-        private readonly StreamReader reader;
+        private readonly System.IO.StreamReader reader;
 
-        public StreamEnumerator(Stream stream,
+        public StreamReader(Stream stream,
             IRowFactory rowFactory,
             ITokenizer tokenizer,
             IFileMetaData fileMetaData)
@@ -24,7 +24,7 @@ namespace DWC_A
             this.fileMetaData = fileMetaData;
             this.rowFactory = rowFactory;
             this.tokenizer = tokenizer;
-            reader = new StreamReader(stream, fileMetaData.Encoding);
+            reader = new System.IO.StreamReader(stream, fileMetaData.Encoding);
         }
 
         public IEnumerable<IRow> Rows
@@ -90,7 +90,7 @@ namespace DWC_A
             disposed = true;
         }
 
-        ~StreamEnumerator()
+        ~StreamReader()
         {
             Dispose(false);
         }

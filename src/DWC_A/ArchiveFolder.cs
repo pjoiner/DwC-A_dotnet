@@ -7,6 +7,8 @@ namespace DWC_A
     {
         private readonly string fileName;
         private readonly string folderPath;
+        
+        public bool ShouldCleanup { get; private set; }
 
         /// <summary>
         /// Extracts archive to a folder
@@ -42,6 +44,7 @@ namespace DWC_A
 
         private string GetTempPath()
         {
+            ShouldCleanup = true;
             return Path.Combine(Path.GetTempPath(), "dwca", Path.GetFileNameWithoutExtension(fileName));
         }
 

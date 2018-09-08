@@ -48,7 +48,7 @@ namespace Tests
         {
             using (Stream stream = new FileStream(fileName, FileMode.Open))
             {
-                var streamEnumerator = new StreamEnumerator(stream,
+                var streamEnumerator = new DWC_A.StreamReader(stream,
                     rowFactory,
                     tokenizer,
                     fileMetaDataMock.Object);
@@ -61,7 +61,7 @@ namespace Tests
         {
             using (Stream stream = new FileStream(fileName, FileMode.Open))
             {
-                var streamEnumerator = new StreamEnumerator(stream,
+                var streamEnumerator = new DWC_A.StreamReader(stream,
                     rowFactory,
                     tokenizer,
                     fileMetaDataMock.Object);
@@ -74,7 +74,7 @@ namespace Tests
         {
             using (Stream stream = new FileStream(fileName, FileMode.Open))
             {
-                var streamEnumerator = new StreamEnumerator(stream,
+                var streamEnumerator = new DWC_A.StreamReader(stream,
                     rowFactory,
                     tokenizer,
                     fileMetaDataMock.Object);

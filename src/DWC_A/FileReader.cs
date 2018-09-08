@@ -9,7 +9,7 @@ namespace DWC_A
 {
     public class FileReader : IDisposable, IFileReader
     {
-        private readonly StreamEnumerator streamEnumerator;
+        private readonly StreamReader streamEnumerator;
         private Stream stream;
         private bool disposed = false;
         private readonly IIndexFactory indexFactory;
@@ -25,7 +25,7 @@ namespace DWC_A
             this.indexFactory = indexFactory;
             ValidateLineEnds(fileMetaData.LinesTerminatedBy);
             stream = new FileStream(fileName, FileMode.Open);
-            streamEnumerator = new StreamEnumerator(stream, rowFactory, tokenizer, fileMetaData);
+            streamEnumerator = new StreamReader(stream, rowFactory, tokenizer, fileMetaData);
         }
 
         private void ValidateLineEnds(string linesTerminatedBy)

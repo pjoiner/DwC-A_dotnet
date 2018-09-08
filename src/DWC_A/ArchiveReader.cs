@@ -48,7 +48,10 @@ namespace DWC_A
         /// Constructor
         /// </summary>
         /// <param name="fileName">Fully qualified file name for archive file</param>
-        /// <param name="outputPath">Directory path to extract archive to</param>
+        /// <param name="outputPath">Directory path to extract archive to.
+        /// If you specify an outputPath then files will not be cleaned when
+        /// the ArchiveReader is disposed.  If you wish to cleanup the outputPath
+        /// then use the <seealso cref="Delete"/> method</param>
         public ArchiveReader(string fileName, string outputPath):
             this(fileName, outputPath, new DefaultFactory())
         {
@@ -58,7 +61,10 @@ namespace DWC_A
         /// Constructor
         /// </summary>
         /// <param name="fileName">Fully qualified file name for archive file</param>
-        /// <param name="outputPath">Directory path to extract archive to</param>
+        /// <param name="outputPath">Directory path to extract archive to.
+        /// If you specify an outputPath then files will not be cleaned when
+        /// the ArchiveReader is disposed.  If you wish to cleanup the outputPath
+        /// then use the <seealso cref="Delete"/> method</param>
         /// <param name="abstractFactory">Factory to create tokenizers, readers etc.</param>
         public ArchiveReader(string fileName, string outputPath, IAbstractFactory abstractFactory)
         {
@@ -112,7 +118,10 @@ namespace DWC_A
                 {
                     CoreFile?.Dispose();
                     Extensions?.Dispose();
-                    Delete();
+                    if(archiveFolder.ShouldCleanup)
+                    {
+                        Delete();
+                    }
                 }
             }
             disposed = true;
