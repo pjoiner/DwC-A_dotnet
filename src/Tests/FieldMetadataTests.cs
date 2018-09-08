@@ -2,9 +2,7 @@
 using DWC_A.Exceptions;
 using DWC_A.Meta;
 using DWC_A.Terms;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Tests

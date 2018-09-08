@@ -70,8 +70,15 @@ namespace DWC_A
         {
             FileName = fileName;
             this.abstractFactory = abstractFactory;
-            archiveFolder = abstractFactory.CreateArchiveFolder(fileName, outputPath);
-            OutputPath = archiveFolder.Extract();
+            if (string.IsNullOrEmpty(fileName))
+            {
+                OutputPath = outputPath;
+            }
+            else
+            { 
+                archiveFolder = abstractFactory.CreateArchiveFolder(fileName, outputPath);
+                OutputPath = archiveFolder.Extract();
+            }
             metaDataReader = abstractFactory.CreateMetaDataReader();
             meta = metaDataReader.ReadMetaData(OutputPath);
             //Create a core file reader
