@@ -17,6 +17,11 @@ namespace DWC_A.Factories
             logger.LogDebug($"{this.GetType().Name} factory created");
         }
 
+        public ArchiveReader CreateArchiveReader(string fileName, string outputPath = null)
+        {
+            return new ArchiveReader(fileName, outputPath, this);
+        }
+
         public virtual IArchiveFolder CreateArchiveFolder(string fileName, string outputPath)
         {
             return new ArchiveFolder(loggerFactory.CreateLogger<ArchiveFolder>(), 

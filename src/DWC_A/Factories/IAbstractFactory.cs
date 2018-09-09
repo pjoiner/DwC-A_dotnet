@@ -5,6 +5,7 @@ namespace DWC_A.Factories
 {
     public interface IAbstractFactory
     {
+        ArchiveReader CreateArchiveReader(string fileName, string outputPath);
         IArchiveFolder CreateArchiveFolder(string fileName, string outputPath);
         IMetaDataReader CreateMetaDataReader();
         ITokenizer CreateTokenizer(IFileMetaData fileAttributes);
