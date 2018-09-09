@@ -19,10 +19,14 @@ namespace DWC_A.Meta
             this.idFieldType = idFieldType;
             if( idFieldType != null )
             {
-                fieldTypes.Append(new FieldType { Index = idFieldType.Index, Term = idFieldName });
+                this.fieldTypes = fieldTypes.Append(new FieldType { Index = idFieldType.Index, Term = idFieldName })
+                    .OrderBy(n => Convert.ToInt32(n.Index));
             }
-            this.fieldTypes = fieldTypes
-                .OrderBy(n => Convert.ToInt32(n.Index));
+            else
+            {
+                this.fieldTypes = fieldTypes
+                    .OrderBy(n => Convert.ToInt32(n.Index));
+            }
             this.fieldIndexDictionary = this.fieldTypes.ToDictionary(k => k.Term, v => Convert.ToInt32(v.Index));
         }
 
