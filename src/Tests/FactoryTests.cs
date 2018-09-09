@@ -24,7 +24,7 @@ namespace Tests
         public void ShouldLogCreationOfNewTokenizer()
         {
             var factory = new DefaultFactory(TestLogger.LoggerFactory);
-            var fileMetaData = new CoreFileMetaData(coreFileType);
+            var fileMetaData = new CoreFileMetaData(TestLogger.DebugLogger, coreFileType);
             var tokenizer = factory.CreateTokenizer(fileMetaData);
             
         }

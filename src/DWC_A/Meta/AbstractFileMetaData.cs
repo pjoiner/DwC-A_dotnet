@@ -1,4 +1,5 @@
 ﻿using Dwc.Text;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,29 @@ namespace DWC_A.Meta
     public abstract class AbstractFileMetaData
     {
         private readonly FileType fileType;
+        private readonly ILogger logger;
 
-        public AbstractFileMetaData(FileType fileType)
+        public AbstractFileMetaData(ILogger logger, FileType fileType)
         {
-            this.fileType = fileType ?? new FileType();
+            this.logger = logger;
+            if(fileType == null)
+            {
+                logger.LogDebug("No file attributes found creating default attributes");
+                this.fileType = new FileType();
+            }
+            else
+            {
+                this.fileType = fileType;
+            }
+            logger.LogDebug($"Using file attributes for file {FileName}" +
+                $" Encoding: {this.fileType.Encoding}" +
+                $" LinesTerminatedBy: {this.fileType.LinesTerminatedBy}" +
+                $" FieldsTerminatedBy: {this.fileType.FieldsTerminatedBy}" +
+                $" FieldsEnclosedBy: {this.fileType.FieldsEnclosedBy}" +
+                $" HeaderRows: {this.fileType.IgnoreHeaderLines}");
         }
 
-        public string FileName { get { return fileType.Files.FirstOrDefault(); } }
+        public string FileName { get { return fileType.Files?.FirstOrDefault(); } }
 
         public string RowType { get { return fileType.RowType; } }
 

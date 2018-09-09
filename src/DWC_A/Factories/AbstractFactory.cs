@@ -2,7 +2,6 @@
 using DWC_A.Meta;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using System.Linq;
 
 namespace DWC_A.Factories
 {
@@ -58,25 +57,14 @@ namespace DWC_A.Factories
 
         public virtual IFileMetaData CreateCoreMetaData(CoreFileType coreFileType)
         {
-            logger.LogDebug($"Metadata for core file {coreFileType.Files.FirstOrDefault()}." +
-                $" Encoding: {coreFileType.Encoding}" +
-                $" LinesTerminatedBy: {coreFileType.LinesTerminatedBy}" +
-                $" FieldsTerminatedBy: {coreFileType.FieldsTerminatedBy}" +
-                $" FieldsEnclosedBy: {coreFileType.FieldsEnclosedBy}" +
-                $" HeaderRows: {coreFileType.IgnoreHeaderLines}");
-            return new CoreFileMetaData(coreFileType);
+            return new CoreFileMetaData(loggerFactory.CreateLogger<CoreFileMetaData>(), 
+                coreFileType);
         }
 
         public virtual IFileMetaData CreateExtensionMetaData(ExtensionFileType extensionFileType)
         {
-            logger.LogDebug($"Metadata for extension file {extensionFileType.Files.FirstOrDefault()}." +
-                $" Encoding: {extensionFileType.Encoding}" +
-                $" LinesTerminatedBy: {extensionFileType.LinesTerminatedBy}" +
-                $" FieldsTerminatedBy: {extensionFileType.FieldsTerminatedBy}" +
-                $" FieldsEnclosedBy: {extensionFileType.FieldsEnclosedBy}" +
-                $" HeaderRows: {extensionFileType.IgnoreHeaderLines}");
-            return new ExtensionFileMetaData(extensionFileType);
+            return new ExtensionFileMetaData(loggerFactory.CreateLogger<ExtensionFileMetaData>(),
+                extensionFileType);
         }
-
     }
 }

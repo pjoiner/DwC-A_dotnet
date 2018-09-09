@@ -6,9 +6,8 @@ namespace DWC_A.Meta
     /// <summary>
     /// Collection of meta data for fields
     /// </summary>
-    public interface IFieldMetaData
+    public interface IFieldMetaData: IEnumerable<FieldType>
     {
-        IEnumerator<FieldType> GetEnumerator();
         /// <summary>
         /// Retrieves index for a term
         /// </summary>

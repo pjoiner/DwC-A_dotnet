@@ -3,6 +3,7 @@ using DWC_A.Meta;
 using Moq;
 using System;
 using System.Linq;
+using Tests;
 using Xunit;
 
 namespace UnitTests
@@ -84,7 +85,7 @@ namespace UnitTests
         [Fact]
         public void DefaultFileAttributesShouldNotThrow()
         {
-            var tokenizer = new Tokenizer(new CoreFileMetaData(null));
+            var tokenizer = new Tokenizer(new CoreFileMetaData(TestLogger.DebugLogger, null));
             var fields = tokenizer.Split(csvWithQuotes);
             Assert.Equal("def,ghi", fields.Last());
         }
