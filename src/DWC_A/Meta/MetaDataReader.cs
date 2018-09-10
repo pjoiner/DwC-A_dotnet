@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace DWC_A.Meta
 {
-    public class MetaDataReader : IMetaDataReader
+    internal class MetaDataReader : IMetaDataReader
     {
         private const string MetaFileName = "meta.xml";
         private readonly ILogger logger;

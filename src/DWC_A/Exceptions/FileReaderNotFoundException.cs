@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace DWC_A.Exceptions
 {
-    public class FileReaderNotFoundException : Exception
+    internal class FileReaderNotFoundException : Exception
     {
         private static string BuildMessage(string fileName)
         {

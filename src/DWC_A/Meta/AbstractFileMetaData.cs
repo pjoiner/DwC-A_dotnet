@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace DWC_A.Meta
 {
-    public abstract class AbstractFileMetaData
+    internal abstract class AbstractFileMetaData
     {
         private readonly FileType fileType;
         private readonly ILogger logger;
@@ -54,6 +54,7 @@ namespace DWC_A.Meta
             {
                 if (!Int32.TryParse(fileType.IgnoreHeaderLines, out int headerRowCount))
                 {
+                    logger.LogWarning($"Unable to parse HeaderRowCount for file {FileName}");
                     return 0;
                 }
                 return headerRowCount;

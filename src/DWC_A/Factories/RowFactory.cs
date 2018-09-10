@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DWC_A.Factories
 {
-    public class RowFactory : IRowFactory
+    internal class RowFactory : IRowFactory
     {
         public IRow CreateRow(IEnumerable<string> fields, IFileMetaData fileMetaData)
         {

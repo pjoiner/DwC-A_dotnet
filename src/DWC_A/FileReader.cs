@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace DWC_A
 {
-    public class FileReader : IDisposable, IFileReader
+    internal class FileReader : IDisposable, IFileReader
     {
         private readonly StreamReader streamReader;
         private Stream stream;

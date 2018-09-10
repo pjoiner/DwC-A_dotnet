@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DWC_A.Meta
 {
-    public class ExtensionFileMetaData : AbstractFileMetaData, IFileMetaData
+    internal class ExtensionFileMetaData : AbstractFileMetaData, IFileMetaData
     {
         private readonly ExtensionFileType extensionFileType;
         private readonly ILogger logger;
@@ -13,10 +13,13 @@ namespace DWC_A.Meta
             :base(logger, extensionFileType)
         {
             this.logger = logger;
-            this.extensionFileType = extensionFileType;
-            Fields = new FieldMetaData(extensionFileType.Coreid, extensionFileType.Field);
-            logger.LogDebug($"Field meta data for extension file {FileName}");
-            Fields.ToList().ForEach(f => logger.LogDebug($"{f.Index}: {f.Term}"));
+            this.extensionFileType = extensionFileType ?? new ExtensionFileType();
+            if (this.extensionFileType.Coreid != null)
+            {
+                Fields = new FieldMetaData(extensionFileType.Coreid, extensionFileType.Field);
+                logger.LogDebug($"Field meta data for extension file {FileName}");
+                Fields.ToList().ForEach(f => logger.LogDebug($"{f.Index}: {f.Term}"));
+            }
         }
 
         public IdFieldType Id { get { return extensionFileType.Coreid; } }

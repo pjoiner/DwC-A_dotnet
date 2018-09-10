@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace DWC_A.Exceptions
 {
-    public class TermNotFoundException : Exception
+    internal class TermNotFoundException : Exception
     {
         private static string BuildMessage(string term)
         {

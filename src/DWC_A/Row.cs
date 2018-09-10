@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DWC_A
 {
-    public class Row : IRow
+    internal class Row : IRow
     {
         private readonly IFileMetaData fileMetaData;
 

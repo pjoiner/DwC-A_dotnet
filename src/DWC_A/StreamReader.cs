@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DWC_A
 {
-    public class StreamReader : IDisposable
+    internal class StreamReader : IDisposable
     {
         private readonly ITokenizer tokenizer;
         private readonly IRowFactory rowFactory;

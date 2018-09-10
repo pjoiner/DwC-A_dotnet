@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DWC_A.Meta
 {
-    public class FieldMetaData : IFieldMetaData
+    internal class FieldMetaData : IFieldMetaData
     {
         private const string idFieldName = "id"; 
         private readonly IdFieldType idFieldType;

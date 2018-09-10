@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace DWC_A
 {
-    public class FileIndex : IFileIndex
+    internal class FileIndex : IFileIndex
     {
         private readonly ILookup<string, long> lookup;
 

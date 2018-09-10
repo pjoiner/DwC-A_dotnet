@@ -2,7 +2,7 @@
 
 namespace DWC_A.Factories
 {
-    public class IndexFactory : IIndexFactory
+    internal class IndexFactory : IIndexFactory
     {
         public IFileIndex CreateFileIndex(IList<KeyValuePair<string, long>> offsetList)
         {

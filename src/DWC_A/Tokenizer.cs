@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DWC_A
 {
-    public class Tokenizer : ITokenizer
+    internal class Tokenizer : ITokenizer
     {
         private readonly IFileMetaData fileMetaData;
         private readonly bool HasQuotes;

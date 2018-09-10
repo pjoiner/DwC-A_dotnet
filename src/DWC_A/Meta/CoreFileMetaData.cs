@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DWC_A.Meta
 {
-    public class CoreFileMetaData : AbstractFileMetaData, IFileMetaData
+    internal class CoreFileMetaData : AbstractFileMetaData, IFileMetaData
     {
         private readonly CoreFileType coreFileType;
 
