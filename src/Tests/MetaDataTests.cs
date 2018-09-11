@@ -1,7 +1,6 @@
-﻿using DWC_A.Meta;
+﻿using DWC_A.Factories;
+using DWC_A.Meta;
 using DWC_A.Terms;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Debug;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
@@ -10,18 +9,21 @@ namespace Tests
 {
     public class MetaDataTests
     {
+        IAbstractFactory factory = new DefaultFactory(TestLogger.LoggerFactory);
+        
         [Fact]
         public void ArchiveShouldContainCoreFile()
         {
-            var metaDataReader = new MetaDataReader(TestLogger.DebugLogger);
+            var metaDataReader = factory.CreateMetaDataReader();
             var archive = metaDataReader.ReadMetaData("./resources/dwca-vascan-v37.5");
             Assert.NotNull(archive);
         }
 
         public static IEnumerable<object[]> GetMetaData()
         {
-            yield return new object[] { new CoreFileMetaData(TestLogger.DebugLogger, null) };
-            yield return new object[] { new ExtensionFileMetaData(TestLogger.DebugLogger, null) };
+            IAbstractFactory factory = new DefaultFactory(TestLogger.LoggerFactory);
+            yield return new object[] { factory.CreateCoreMetaData(null) };
+            yield return new object[] { factory.CreateExtensionMetaData(null) };
         }
 
         [Theory]

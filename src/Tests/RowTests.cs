@@ -1,34 +1,36 @@
 ﻿using DWC_A;
-using DWC_A.Exceptions;
 using DWC_A.Meta;
-using DWC_A.Terms;
 using Moq;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Tests
 {
     public class RowTests
     {
-        private Mock<IFileMetaData> fileMetaDataMock = new Mock<IFileMetaData>();
+        Mock<IFileMetaData> fileMetaDataMock = new Mock<IFileMetaData>();
 
-        private IEnumerable<string> fields = new string[]
+        IEnumerable<string> fields = new string[]
         {
                 "nameField", "valueField"
         };
+
+        IRow row;
 
         public RowTests()
         {
             fileMetaDataMock.Setup(n => n.Fields.IndexOf("Name")).Returns(0);
             fileMetaDataMock.Setup(n => n.Fields.IndexOf("Value")).Returns(1);
+            row = new Row(fields, fileMetaDataMock.Object);
         }
+
         [Fact]
         public void ShowReturnField()
         {
-            var row = new Row(fields, fileMetaDataMock.Object);
             Assert.Equal("nameField", row[0]);
             Assert.Equal("valueField", row["Value"]);
+            Assert.Equal(2, row.Fields.Count());
         }
-
     }
 }

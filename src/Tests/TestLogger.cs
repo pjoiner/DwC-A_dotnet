@@ -4,7 +4,7 @@ using Moq;
 
 namespace Tests
 {
-    public static class TestLogger
+    static class TestLogger
     {
         private static readonly Mock<ILoggerFactory> loggerFactoryMock = new Mock<ILoggerFactory>();
 

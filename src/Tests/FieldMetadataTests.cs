@@ -3,6 +3,7 @@ using DWC_A.Exceptions;
 using DWC_A.Meta;
 using DWC_A.Terms;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Tests
@@ -13,22 +14,37 @@ namespace Tests
         {
             new FieldType()
             {
-                Index = "0",
+                Index = "1",
                 Term = Terms.acceptedNameUsage
             },
             new FieldType()
             {
-                Index = "1",
+                Index = "2",
                 Term = Terms.acceptedNameUsageID
             }
         };
 
+        IFieldMetaData fieldMetaData;
+
         [Fact]
         public void ShouldThrowOnTermNotFound()
         {
-            var fieldMetaData = new FieldMetaData(null, fieldTypes);
+            fieldMetaData = new FieldMetaData(null, fieldTypes);
             Assert.Throws<TermNotFoundException>(() => fieldMetaData[Terms.scientificName]);
         }
 
+        [Fact]
+        public void ShouldReturn2For_acceptedNameUsageID()
+        {
+            fieldMetaData = new FieldMetaData(null, fieldTypes);
+            Assert.Equal(2, fieldMetaData.IndexOf(Terms.acceptedNameUsageID));
+        }
+
+        [Fact]
+        public void ShouldReturnCount3WithId()
+        {
+            fieldMetaData = new FieldMetaData( new IdFieldType() { Index = "0" }, fieldTypes);
+            Assert.Equal(3, fieldMetaData.Count());
+        }
     }
 }

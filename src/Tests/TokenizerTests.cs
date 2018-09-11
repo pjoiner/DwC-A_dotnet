@@ -3,10 +3,9 @@ using DWC_A.Meta;
 using Moq;
 using System;
 using System.Linq;
-using Tests;
 using Xunit;
 
-namespace UnitTests
+namespace Tests
 {
     public class TokenizerTests
     {
