@@ -1,6 +1,4 @@
-﻿using Dwc.Text;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -48,17 +46,6 @@ namespace DWC_A.Meta
 
         public int LineTerminatorLength { get { return Encoding.GetByteCount(LinesTerminatedBy); } }
 
-        public int HeaderRowCount
-        {
-            get
-            {
-                if (!Int32.TryParse(fileType.IgnoreHeaderLines, out int headerRowCount))
-                {
-                    logger.LogWarning($"Unable to parse HeaderRowCount for file {FileName}");
-                    return 0;
-                }
-                return headerRowCount;
-            }
-        }
+        public int HeaderRowCount { get { return fileType.IgnoreHeaderLines; } }
     }
 }

@@ -12,7 +12,7 @@ namespace DWC_A
         private readonly IAbstractFactory abstractFactory;
         private readonly IArchiveFolder archiveFolder;
         private readonly IMetaDataReader metaDataReader;
-        private readonly Dwc.Text.Archive meta;
+        private readonly Archive meta;
 
         /// <summary>
         /// Fully qualified name for the archive file
@@ -25,7 +25,7 @@ namespace DWC_A
         /// <summary>
         /// Raw meta data for archive
         /// </summary>
-        public Dwc.Text.Archive MetaData { get { return meta; } }
+        public Archive MetaData { get { return meta; } }
         /// <summary>
         /// File reader for Core file
         /// </summary>

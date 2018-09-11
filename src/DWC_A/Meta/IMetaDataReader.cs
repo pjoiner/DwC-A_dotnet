@@ -2,6 +2,6 @@
 {
     public interface IMetaDataReader
     {
-        Dwc.Text.Archive ReadMetaData(string path);
+        Archive ReadMetaData(string path);
     }
 }

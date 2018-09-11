@@ -1,5 +1,4 @@
-﻿using Dwc.Text;
-using DWC_A.Exceptions;
+﻿using DWC_A.Exceptions;
 using DWC_A.Meta;
 using DWC_A.Terms;
 using System.Collections.Generic;
@@ -14,12 +13,12 @@ namespace Tests
         {
             new FieldType()
             {
-                Index = "1",
+                Index = 1,
                 Term = Terms.acceptedNameUsage
             },
             new FieldType()
             {
-                Index = "2",
+                Index = 2,
                 Term = Terms.acceptedNameUsageID
             }
         };
@@ -43,7 +42,7 @@ namespace Tests
         [Fact]
         public void ShouldReturnCount3WithId()
         {
-            fieldMetaData = new FieldMetaData( new IdFieldType() { Index = "0" }, fieldTypes);
+            fieldMetaData = new FieldMetaData( new IdFieldType() { Index = 0 }, fieldTypes);
             Assert.Equal(3, fieldMetaData.Count());
         }
     }

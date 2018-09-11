@@ -1,5 +1,4 @@
-﻿using Dwc.Text;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -36,7 +35,7 @@ namespace DWC_A.Meta
             logger.LogDebug("No meta.xml metadata file found.  Creating default metadata");
             var fileNames = Directory.GetFiles(path);
             var coreFileName = fileNames.Single();
-            var archive = new Dwc.Text.Archive()
+            var archive = new Archive()
             {
                 Core = new CoreFileType()
             };
