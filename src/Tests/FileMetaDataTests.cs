@@ -7,10 +7,9 @@ using Xunit;
 
 namespace Tests
 {
-    public class MetaDataTests
+    public class FileMetaDataTests
     {
-        IAbstractFactory factory = new DefaultFactory(TestLogger.LoggerFactory);
-        
+        /* MetaDataReader test
         [Fact]
         public void ArchiveShouldContainCoreFile()
         {
@@ -18,6 +17,7 @@ namespace Tests
             var archive = metaDataReader.ReadMetaData("./resources/dwca-vascan-v37.5");
             Assert.NotNull(archive);
         }
+        */
 
         public static IEnumerable<object[]> GetMetaData()
         {

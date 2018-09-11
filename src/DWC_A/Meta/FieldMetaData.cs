@@ -1,5 +1,4 @@
 ﻿using DWC_A.Exceptions;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,14 +18,14 @@ namespace DWC_A.Meta
             if( idFieldType != null )
             {
                 this.fieldTypes = fieldTypes.Append(new FieldType { Index = idFieldType.Index, Term = idFieldName })
-                    .OrderBy(n => Convert.ToInt32(n.Index));
+                    .OrderBy(n => n.Index);
             }
             else
             {
                 this.fieldTypes = fieldTypes
-                    .OrderBy(n => Convert.ToInt32(n.Index));
+                    .OrderBy(n => n.Index);
             }
-            this.fieldIndexDictionary = this.fieldTypes.ToDictionary(k => k.Term, v => Convert.ToInt32(v.Index));
+            this.fieldIndexDictionary = this.fieldTypes.ToDictionary(k => k.Term, v => v.Index);
         }
 
         public int IndexOf(string term)

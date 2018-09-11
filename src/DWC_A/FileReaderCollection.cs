@@ -1,12 +1,11 @@
 ﻿using DWC_A.Exceptions;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace DWC_A
 {
-    public class FileReaderCollection : IEnumerable<IFileReader>, IDisposable
+    public class FileReaderCollection : IEnumerable<IFileReader>
     {
         private readonly IEnumerable<IFileReader> fileReaders;
 
@@ -46,34 +45,5 @@ namespace DWC_A
             }
             return fileReader;
         }
-
-        #region IDisposable implementation
-        private bool disposed = false;
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    foreach (var fileReader in fileReaders)
-                    {
-                        fileReader.Dispose();
-                    }
-                }
-            }
-            disposed = true;
-        }
-
-        ~FileReaderCollection()
-        {
-            Dispose(false);
-        }
-        #endregion
     }
 }

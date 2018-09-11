@@ -123,7 +123,7 @@ namespace DWC_A
                 if (disposing)
                 {
                     CoreFile?.Dispose();
-                    Extensions?.Dispose();
+                    Extensions?.ToList().ForEach(e => e.Dispose());
                     if(archiveFolder.ShouldCleanup)
                     {
                         Delete();
