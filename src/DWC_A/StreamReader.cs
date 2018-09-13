@@ -35,7 +35,7 @@ namespace DWC_A
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    yield return rowFactory.CreateRow(tokenizer.Split(line), fileMetaData);
+                    yield return rowFactory.CreateRow(tokenizer.Split(line), fileMetaData.Fields);
                     CurrentOffset += fileMetaData.Encoding.GetByteCount(line) + fileMetaData.LineTerminatorLength;
                 }
             }
@@ -51,7 +51,7 @@ namespace DWC_A
                 throw new EndOfStreamException("Attempt to read offset beyond the end of file");
             }
             CurrentOffset += fileMetaData.Encoding.GetByteCount(line) + fileMetaData.LineTerminatorLength;
-            return rowFactory.CreateRow(tokenizer.Split(line), fileMetaData);
+            return rowFactory.CreateRow(tokenizer.Split(line), fileMetaData.Fields);
         }
 
         public IEnumerable<IRow> HeaderRows(int headerRowCount)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DWC_A.Meta;
+using System.Collections.Generic;
 
 namespace DWC_A
 {
@@ -7,6 +8,10 @@ namespace DWC_A
     /// </summary>
     public interface IRow
     {
+        /// <summary>
+        /// List of meta data properties for the fields in this row
+        /// </summary>
+        IFieldMetaData FieldMetaData { get; }
         /// <summary>
         /// An enumerable collection of field values
         /// </summary>

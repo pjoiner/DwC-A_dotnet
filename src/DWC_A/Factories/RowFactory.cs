@@ -5,9 +5,9 @@ namespace DWC_A.Factories
 {
     internal class RowFactory : IRowFactory
     {
-        public IRow CreateRow(IEnumerable<string> fields, IFileMetaData fileMetaData)
+        public IRow CreateRow(IEnumerable<string> fields, IFieldMetaData fieldMetaData)
         {
-            return new Row(fields, fileMetaData);
+            return new Row(fields, fieldMetaData);
         }
     }
 }

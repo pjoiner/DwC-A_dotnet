@@ -6,21 +6,21 @@ namespace DWC_A
 {
     internal class Row : IRow
     {
-        private readonly IFileMetaData fileMetaData;
-
-        public Row(IEnumerable<string> fields, IFileMetaData fileMetaData)
+        public Row(IEnumerable<string> fields, IFieldMetaData fieldMetaData)
         {
             this.Fields = fields;
-            this.fileMetaData = fileMetaData;
+            this.FieldMetaData = fieldMetaData;
         }
 
         public IEnumerable<string> Fields { get; }
+
+        public IFieldMetaData FieldMetaData { get; }
 
         public string this[string term]
         {
             get
             {
-                var index = fileMetaData.Fields.IndexOf(term);
+                var index = FieldMetaData.IndexOf(term);
                 return this[index];
             }
         }
@@ -32,7 +32,6 @@ namespace DWC_A
                 return Fields.ElementAt(index);
             }
         }
-
     }
 
 }
