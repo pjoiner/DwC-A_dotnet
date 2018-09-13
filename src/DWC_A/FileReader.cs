@@ -1,6 +1,5 @@
 ﻿using DWC_A.Factories;
 using DWC_A.Meta;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,16 +13,13 @@ namespace DWC_A
         private Stream stream;
         private bool disposed = false;
         private readonly IIndexFactory indexFactory;
-        private readonly ILogger logger;
 
-        public FileReader(ILogger logger,
-            string fileName,
+        public FileReader(string fileName,
             IRowFactory rowFactory,
             ITokenizer tokenizer,
             IFileMetaData fileMetaData,
             IIndexFactory indexFactory)
         {
-            this.logger = logger;
             this.FileName = fileName;
             this.FileMetaData = fileMetaData;
             this.indexFactory = indexFactory;
@@ -69,15 +65,12 @@ namespace DWC_A
 
         public IFileIndex CreateIndexOn(string term)
         {
-            logger.LogDebug($"Creating index on file {FileMetaData.FileName} for term {term}");
             var indexList = new List<KeyValuePair<string, long>>();
             foreach(var row in DataRows)
             {
                 indexList.Add(new KeyValuePair<string,long>(row[term], streamReader.CurrentOffset));
             }
             var index = indexFactory.CreateFileIndex(indexList);
-            logger.LogDebug($"Index for file {FileMetaData.FileName}, term {term} created. " +
-                $"{indexList.Count()} rows processed");
             return index;
         }
 

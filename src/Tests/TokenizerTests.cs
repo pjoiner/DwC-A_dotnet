@@ -84,7 +84,7 @@ namespace Tests
         [Fact]
         public void DefaultFileAttributesShouldNotThrow()
         {
-            var tokenizer = new Tokenizer(new CoreFileMetaData(TestLogger.DebugLogger, null));
+            var tokenizer = new Tokenizer(new CoreFileMetaData(null));
             var fields = tokenizer.Split(csvWithQuotes);
             Assert.Equal("def,ghi", fields.Last());
         }

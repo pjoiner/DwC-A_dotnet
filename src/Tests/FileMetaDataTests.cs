@@ -21,7 +21,7 @@ namespace Tests
 
         public static IEnumerable<object[]> GetMetaData()
         {
-            IAbstractFactory factory = new DefaultFactory(TestLogger.LoggerFactory);
+            IAbstractFactory factory = new DefaultFactory();
             yield return new object[] { factory.CreateCoreMetaData(null) };
             yield return new object[] { factory.CreateExtensionMetaData(null) };
         }

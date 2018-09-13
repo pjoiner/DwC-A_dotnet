@@ -1,20 +1,9 @@
 ﻿using DWC_A.Meta;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace DWC_A.Factories
 {
     public abstract class AbstractFactory : IAbstractFactory
     {
-        private readonly ILoggerFactory loggerFactory;
-        private readonly ILogger logger;
-
-        public AbstractFactory(ILoggerFactory loggerFactory = null)
-        {
-            this.loggerFactory = loggerFactory == null ? NullLoggerFactory.Instance : loggerFactory;
-            logger = this.loggerFactory.CreateLogger(this.GetType().Name);
-            logger.LogDebug($"{this.GetType().Name} factory created");
-        }
 
         public ArchiveReader CreateArchiveReader(string fileName, string outputPath = null)
         {
@@ -23,19 +12,16 @@ namespace DWC_A.Factories
 
         public virtual IArchiveFolder CreateArchiveFolder(string fileName, string outputPath)
         {
-            return new ArchiveFolder(loggerFactory.CreateLogger<ArchiveFolder>(), 
-                fileName, outputPath );
+            return new ArchiveFolder(fileName, outputPath );
         }
 
         public virtual IMetaDataReader CreateMetaDataReader()
         {
-            return new MetaDataReader(loggerFactory.CreateLogger<MetaDataReader>());
+            return new MetaDataReader();
         }
 
         public virtual ITokenizer CreateTokenizer(IFileMetaData fileMetaData)
         {
-            this.logger.LogDebug($"Creating Tokenizer for {fileMetaData.FileName} " +
-                $"using {fileMetaData.GetType().Name}");
             return new Tokenizer(fileMetaData);
         }
 
@@ -46,8 +32,7 @@ namespace DWC_A.Factories
 
         public virtual IFileReader CreateFileReader(string fileName, IFileMetaData fileMetaData)
         {
-            return new FileReader(loggerFactory.CreateLogger<FileReader>(),
-                fileName, 
+            return new FileReader(fileName, 
                 CreateRowFactory(), 
                 CreateTokenizer(fileMetaData), 
                 fileMetaData, 
@@ -61,14 +46,12 @@ namespace DWC_A.Factories
 
         public virtual IFileMetaData CreateCoreMetaData(CoreFileType coreFileType)
         {
-            return new CoreFileMetaData(loggerFactory.CreateLogger<CoreFileMetaData>(), 
-                coreFileType);
+            return new CoreFileMetaData(coreFileType);
         }
 
         public virtual IFileMetaData CreateExtensionMetaData(ExtensionFileType extensionFileType)
         {
-            return new ExtensionFileMetaData(loggerFactory.CreateLogger<ExtensionFileMetaData>(),
-                extensionFileType);
+            return new ExtensionFileMetaData(extensionFileType);
         }
     }
 }
