@@ -63,12 +63,19 @@ namespace DWC_A
             }
         }
 
-        public IFileIndex CreateIndexOn(string term)
+        public IFileIndex CreateIndexOn(string term, Action<int> progress = null)
         {
             var indexList = new List<KeyValuePair<string, long>>();
-            foreach(var row in DataRows)
+            long blockSize = stream.Seek(0, SeekOrigin.End) / 100;
+            int percentComplete = 0;
+            foreach (var row in DataRows)
             {
-                indexList.Add(new KeyValuePair<string,long>(row[term], streamReader.CurrentOffset));
+                indexList.Add(new KeyValuePair<string, long>(row[term], streamReader.CurrentOffset));
+                if (progress != null && (int)(streamReader.CurrentOffset / blockSize) > percentComplete)
+                {
+                    percentComplete = (int)(streamReader.CurrentOffset / blockSize);
+                    progress(percentComplete);
+                }
             }
             var index = indexFactory.CreateFileIndex(indexList);
             return index;

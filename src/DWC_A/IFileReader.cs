@@ -33,12 +33,13 @@ namespace DWC_A
         /// Creates an index on the file for the term
         /// </summary>
         /// <param name="term">Darwin Core Term</param>
+        /// <param name="progress">Optional delegate to display progress</param>
         /// <returns>Interface to an index collection</returns>
-        IFileIndex CreateIndexOn(string term);
+        IFileIndex CreateIndexOn(string term, Action<int> progress = null);
         /// <summary>
         /// Returns an enumerable collection of row objects for a specified index
         /// </summary>
-        /// <param name="index">Index collection created with <seealso cref="CreateIndexOn(string)"/></param>
+        /// <param name="index">Index collection created with <seealso cref="CreateIndexOn(string, Action{int})"/></param>
         /// <param name="indexValue"></param>
         /// <returns>An enumerable collection of row objects</returns>
         IEnumerable<IRow> ReadRowsAtIndex(IFileIndex index, string indexValue);
