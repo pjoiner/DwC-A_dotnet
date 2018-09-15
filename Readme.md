@@ -1,12 +1,30 @@
-Readme
+# Readme
 
-Schema Import
+DWC_A is a simple Darwin Core Archive reader for dotnet.
 
-Used dotnet core tool xscgen to generate classes for serializing TDWG schema found at
-http://rs.tdwg.org/dwc/text/tdwg_dwc_text.xsd
+## Install
 
-Install as a global tool from NuGet using the following command
-	dotnet tool install --global dotnet-xscgen --version 2.0.149
+To add DWC_A to your project run the following command in the Visual Studio Package Manager Console
 
-usage:
-	xscgen -i=i -n "|tdwg_dwc_text.xsd=DWC_A.Meta" -o ./src/DWC_A/Meta/ http://rs.tdwg.org/dwc/text/tdwg_dwc_text.xsd
+	PM> Install-Package DWC_A
+
+## Usage
+
+To read a Darwin Core Archive file and display core data rows.
+
+```
+using DWC_A;
+
+using (var archive = new ArchiveReader(fileName))
+{
+	foreach(var row in archive.CoreFile.Rows)
+	{
+		//Display field 0 of each row
+		Console.WriteLine(row[0]);
+	}
+}
+```
+
+More information can be found in the [documentation](docs/Documentation.md).
+
+
