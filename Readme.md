@@ -1,4 +1,4 @@
-# Readme
+# Readme [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 DWC_A is a simple Darwin Core Archive reader for dotnet.
 

@@ -13,3 +13,11 @@ usage:
 ```
 xscgen -i=i -n "|tdwg_dwc_text.xsd=DWC_A.Meta" -o ./src/DWC_A/Meta/ http://rs.tdwg.org/dwc/text/tdwg_dwc_text.xsd
 ```
+
+## Test Coverage
+
+Test coverage tool coverlet has been installed in this project and can be activated by issuing the following command
+```
+dotnet test "./src/DWC_A.sln" /p:CollectCoverage=true
+```
+This tool can be used to set threshold coverage for passing builds.  See https://github.com/tonerdo/coverlet for more information and more detailed reports.
