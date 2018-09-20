@@ -2,6 +2,7 @@
 using DwC_A.Factories;
 using DwC_A.Meta;
 using Moq;
+using System;
 using System.Linq;
 using System.Text;
 using Xunit;
@@ -85,10 +86,12 @@ namespace Tests
             using (var fileReader = new FileReader(resourceRelationShipFileName, rowFactory, tokenizer, 
                 fileMetaDataMock.Object, indexFactory))
             {
-                var idIndex = fileReader.CreateIndexOn("id");
+                int progressCount = 0;
+                var idIndex = fileReader.CreateIndexOn("id", (progress) => progressCount = progress);
                 Assert.NotEmpty(idIndex.OffsetsAt("2850"));
                 Assert.Equal(429, idIndex.OffsetsAt("2850").FirstOrDefault());
                 Assert.NotEmpty(idIndex.OffsetsAt("31391"));
+                Assert.Equal(100, progressCount);
             }
         }
 

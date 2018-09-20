@@ -77,6 +77,7 @@ namespace DwC_A
                     progress(percentComplete);
                 }
             }
+            progress?.Invoke(100);
             var index = indexFactory.CreateFileIndex(indexList);
             return index;
         }
