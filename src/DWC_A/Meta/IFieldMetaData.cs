@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DWC_A.Meta
+namespace DwC_A.Meta
 {
     /// <summary>
     /// Collection of meta data for fields

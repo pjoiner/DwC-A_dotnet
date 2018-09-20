@@ -1,11 +1,11 @@
-﻿using DWC_A.Extensions;
-using DWC_A.Meta;
+﻿using DwC_A.Extensions;
+using DwC_A.Meta;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DWC_A
+namespace DwC_A
 {
     internal class Tokenizer : ITokenizer
     {

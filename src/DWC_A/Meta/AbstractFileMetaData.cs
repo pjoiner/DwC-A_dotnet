@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DWC_A.Meta
+namespace DwC_A.Meta
 {
     internal abstract class AbstractFileMetaData
     {

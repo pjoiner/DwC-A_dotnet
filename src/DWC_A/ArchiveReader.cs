@@ -1,11 +1,11 @@
-﻿using DWC_A.Factories;
-using DWC_A.Meta;
+﻿using DwC_A.Factories;
+using DwC_A.Meta;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace DWC_A
+namespace DwC_A
 {
     public class ArchiveReader : IDisposable
     {

@@ -1,6 +1,6 @@
-﻿using DWC_A;
-using DWC_A.Factories;
-using DWC_A.Meta;
+﻿using DwC_A;
+using DwC_A.Factories;
+using DwC_A.Meta;
 using Moq;
 using System.Collections.Generic;
 using System.IO;
@@ -47,7 +47,7 @@ namespace Tests
         {
             using (Stream stream = new FileStream(fileName, FileMode.Open))
             {
-                var streamEnumerator = new DWC_A.StreamReader(stream,
+                var streamEnumerator = new DwC_A.StreamReader(stream,
                     rowFactory,
                     tokenizer,
                     fileMetaDataMock.Object);
@@ -60,7 +60,7 @@ namespace Tests
         {
             using (Stream stream = new FileStream(fileName, FileMode.Open))
             {
-                var streamEnumerator = new DWC_A.StreamReader(stream,
+                var streamEnumerator = new DwC_A.StreamReader(stream,
                     rowFactory,
                     tokenizer,
                     fileMetaDataMock.Object);
@@ -73,7 +73,7 @@ namespace Tests
         {
             using (Stream stream = new FileStream(fileName, FileMode.Open))
             {
-                var streamEnumerator = new DWC_A.StreamReader(stream,
+                var streamEnumerator = new DwC_A.StreamReader(stream,
                     rowFactory,
                     tokenizer,
                     fileMetaDataMock.Object);

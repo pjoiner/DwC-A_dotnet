@@ -1,4 +1,4 @@
-﻿namespace DWC_A.Factories
+﻿namespace DwC_A.Factories
 {
     public class DefaultFactory : AbstractFactory
     {

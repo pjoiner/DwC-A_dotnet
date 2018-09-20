@@ -1,6 +1,6 @@
-﻿using DWC_A.Meta;
+﻿using DwC_A.Meta;
 
-namespace DWC_A.Factories
+namespace DwC_A.Factories
 {
     public abstract class AbstractFactory : IAbstractFactory
     {

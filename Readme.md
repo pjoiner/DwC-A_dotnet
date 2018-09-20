@@ -1,20 +1,21 @@
 # Readme [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-DWC_A is a simple Darwin Core Archive reader for dotnet.
+DwC-A_dotnet is a simple Darwin Core Archive reader for dotnet.
 
 ## Install
 
-To add DWC_A to your project run the following command in the Visual Studio Package Manager Console
+To add DwC-A_dotnet to your project run the following command in the Visual Studio Package Manager Console
 
-	PM> Install-Package DWC_A
+	PM> Install-Package DwC-A_dotnet
 
 ## Usage
 
 To read a Darwin Core Archive file and display core data rows.
 
 ```
-using DWC_A;
+using DwC_A;
 
+string fileName = "./dwca-uta_herps-v8.1.zip";
 using (var archive = new ArchiveReader(fileName))
 {
 	foreach(var row in archive.CoreFile.Rows)

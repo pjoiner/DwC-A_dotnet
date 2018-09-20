@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace DWC_A.Meta
+namespace DwC_A.Meta
 {
     /// <summary>
     /// Reads various file meta data

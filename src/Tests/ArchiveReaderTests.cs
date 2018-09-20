@@ -1,4 +1,4 @@
-﻿using DWC_A;
+﻿using DwC_A;
 using Xunit;
 
 namespace Tests

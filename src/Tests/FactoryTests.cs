@@ -1,5 +1,5 @@
-﻿using DWC_A.Factories;
-using DWC_A.Meta;
+﻿using DwC_A.Factories;
+using DwC_A.Meta;
 using Xunit;
 
 namespace Tests

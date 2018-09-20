@@ -1,8 +1,8 @@
-﻿using DWC_A.Meta;
+﻿using DwC_A.Meta;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DWC_A
+namespace DwC_A
 {
     internal class Row : IRow
     {

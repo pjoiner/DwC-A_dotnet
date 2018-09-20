@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.IO.Compression;
 
-namespace DWC_A
+namespace DwC_A
 {
     internal class ArchiveFolder : IArchiveFolder
     {

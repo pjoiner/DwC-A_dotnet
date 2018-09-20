@@ -1,4 +1,4 @@
-﻿namespace DWC_A.Terms
+﻿namespace DwC_A.Terms
 {
     public static class Terms
     {

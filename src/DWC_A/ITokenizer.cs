@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DWC_A
+namespace DwC_A
 {
     public interface ITokenizer
     {

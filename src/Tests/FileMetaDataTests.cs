@@ -1,6 +1,6 @@
-﻿using DWC_A.Factories;
-using DWC_A.Meta;
-using DWC_A.Terms;
+﻿using DwC_A.Factories;
+using DwC_A.Meta;
+using DwC_A.Terms;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;

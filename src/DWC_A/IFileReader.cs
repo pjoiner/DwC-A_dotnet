@@ -1,8 +1,8 @@
-﻿using DWC_A.Meta;
+﻿using DwC_A.Meta;
 using System;
 using System.Collections.Generic;
 
-namespace DWC_A
+namespace DwC_A
 {
     /// <summary>
     /// Reads a file

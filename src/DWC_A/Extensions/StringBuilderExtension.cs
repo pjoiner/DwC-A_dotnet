@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace DWC_A.Extensions
+namespace DwC_A.Extensions
 {
     internal static class StringBuilderExtension
     {

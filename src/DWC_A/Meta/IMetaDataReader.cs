@@ -1,4 +1,4 @@
-﻿namespace DWC_A.Meta
+﻿namespace DwC_A.Meta
 {
     public interface IMetaDataReader
     {

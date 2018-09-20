@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace DWC_A.Exceptions
+namespace DwC_A.Exceptions
 {
     internal class FileReaderNotFoundException : Exception
     {

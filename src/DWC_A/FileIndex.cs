@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace DWC_A
+namespace DwC_A
 {
     internal class FileIndex : IFileIndex
     {

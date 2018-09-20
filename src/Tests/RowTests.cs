@@ -1,6 +1,6 @@
-﻿using DWC_A;
-using DWC_A.Meta;
-using DWC_A.Terms;
+﻿using DwC_A;
+using DwC_A.Meta;
+using DwC_A.Terms;
 using Moq;
 using System.Collections.Generic;
 using System.Linq;

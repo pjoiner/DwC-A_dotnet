@@ -10,8 +10,8 @@
 ## Reading Core File Data
 
 ```
-    using DWC_A;
-    using DWC_A.Terms;
+    using DwC_A;
+    using DwC_A.Terms;
     using System.Linq;
 
     class Program
@@ -19,7 +19,7 @@
         static void Main()
         {
 
-            string fileName = "./dwca-global-v2.1.zip";
+            string fileName = "./dwca-uta_herps-v8.1.zip";
             using (var archive = new ArchiveReader(fileName))
             {
                 foreach(var row in archive.CoreFile.Rows)

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace DWC_A.Meta
+namespace DwC_A.Meta
 {
     internal class MetaDataReader : IMetaDataReader
     {

@@ -1,9 +1,9 @@
-﻿using DWC_A.Exceptions;
+﻿using DwC_A.Exceptions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DWC_A.Meta
+namespace DwC_A.Meta
 {
     internal class FieldMetaData : IFieldMetaData
     {

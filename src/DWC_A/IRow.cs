@@ -1,7 +1,7 @@
-﻿using DWC_A.Meta;
+﻿using DwC_A.Meta;
 using System.Collections.Generic;
 
-namespace DWC_A
+namespace DwC_A
 {
     /// <summary>
     /// Collection of fields

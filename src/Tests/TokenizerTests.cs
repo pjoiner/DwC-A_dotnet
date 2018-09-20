@@ -1,5 +1,5 @@
-﻿using DWC_A;
-using DWC_A.Meta;
+﻿using DwC_A;
+using DwC_A.Meta;
 using Moq;
 using System;
 using System.Linq;
