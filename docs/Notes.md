@@ -18,7 +18,7 @@ xscgen -i=i -n "|tdwg_dwc_text.xsd=DWC_A.Meta" -o ./src/DWC_A/Meta/ http://rs.td
 
 Test coverage tool coverlet has been installed in this project and can be activated by issuing the following command
 ```
-dotnet test "./src/DWC_A.sln" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=".coverage"
+dotnet test "./src/DwC-A_dotnet.sln" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=".coverage/report"
 ```
 This tool can be used to set threshold coverage for passing builds.  See https://github.com/tonerdo/coverlet for more information and more detailed reports.
 
@@ -26,5 +26,5 @@ Detailed coverage reports can be generated using ReportGenerator (See https://gi
 
 Note: Replace the following example with dotnet-cli command
 ```
-\users\pjoiner_2\.nuget\packages\reportgenerator\3.1.2\tools\reportgenerator.exe "-reports:coverage.opencover.xml" "-targetdir:./report"
+\users\pjoiner_2\.nuget\packages\reportgenerator\3.1.2\tools\reportgenerator.exe "-reports:report.opencover.xml" "-targetdir:./report"
 ```

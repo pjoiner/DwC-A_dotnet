@@ -1,0 +1,4 @@
+taxonID,vernacularName,language
+123,"sperm whale","english"
+123,"cachalot","french"
+124,"gray whale","english"

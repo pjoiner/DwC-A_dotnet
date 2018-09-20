@@ -26,7 +26,7 @@ namespace DwC_A.Meta
         private Archive DefaultMetaData(string path)
         {
             var fileNames = Directory.GetFiles(path);
-            var coreFileName = fileNames.Single();
+            var coreFileName = Path.GetFileName(fileNames.Single());
             var archive = new Archive()
             {
                 Core = new CoreFileType()

@@ -1,4 +1,5 @@
 ﻿using DwC_A;
+using System;
 using Xunit;
 
 namespace Tests
@@ -27,6 +28,12 @@ namespace Tests
                 var descriptionFile = archive.Extensions.GetFileReaderByFileName("description.txt");
                 Assert.NotEmpty(descriptionFile.Rows);
             }
+        }
+
+        [Fact]
+        public void ShouldThrowOnNullName()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ArchiveReader(null, null));
         }
 
     }

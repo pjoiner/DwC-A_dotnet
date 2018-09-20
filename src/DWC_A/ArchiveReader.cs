@@ -69,10 +69,12 @@ namespace DwC_A
         public ArchiveReader(string fileName, string outputPath, IAbstractFactory abstractFactory)
         {
             FileName = fileName;
-            this.abstractFactory = abstractFactory;
+            this.abstractFactory = abstractFactory ?? 
+                throw new ArgumentNullException(nameof(abstractFactory));
             if (string.IsNullOrEmpty(fileName))
             {
-                OutputPath = outputPath;
+                OutputPath = string.IsNullOrEmpty(outputPath) ? 
+                    throw new ArgumentNullException(nameof(fileName)) : outputPath;
             }
             else
             { 
