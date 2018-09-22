@@ -15,11 +15,11 @@ namespace DwC_A
         private readonly Archive meta;
 
         /// <summary>
-        /// Fully qualified name for the archive file
+        /// Relative or absolute path name for the archive file if one was specified in the constructor or null
         /// </summary>
         public string FileName {get;}
         /// <summary>
-        /// Path where archive is extracted to
+        /// Path where archive is extracted to or the path specified in the constructor
         /// </summary>
         public string OutputPath { get; }
         /// <summary>
@@ -37,50 +37,37 @@ namespace DwC_A
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="fileName">Fully qualified file name for archive file.  
-        /// Extracts archive to a temp directory</param>
-        public ArchiveReader(string fileName) : 
-            this(fileName, null)
+        /// <param name="archivePath">Relative or absolute file name for archive file or
+        /// the name of a directory containing the extracted archive files
+        /// </param>
+        public ArchiveReader(string archivePath):
+            this(archivePath, new DefaultFactory())
         {
 
         }
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="fileName">Fully qualified file name for archive file</param>
-        /// <param name="outputPath">Directory path to extract archive to.
-        /// If you specify an outputPath then files will not be cleaned when
-        /// the ArchiveReader is disposed.  If you wish to cleanup the outputPath
-        /// then use the <seealso cref="Delete"/> method</param>
-        public ArchiveReader(string fileName, string outputPath):
-            this(fileName, outputPath, new DefaultFactory())
-        {
-
-        }
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fileName">Fully qualified file name for archive file</param>
-        /// <param name="outputPath">Directory path to extract archive to.
-        /// If you specify an outputPath then files will not be cleaned when
-        /// the ArchiveReader is disposed.  If you wish to cleanup the outputPath
-        /// then use the <seealso cref="Delete"/> method</param>
+        /// <param name="archivePath">Fully qualified file name for archive file</param>
         /// <param name="abstractFactory">Factory to create tokenizers, readers etc.</param>
-        public ArchiveReader(string fileName, string outputPath, IAbstractFactory abstractFactory)
+        public ArchiveReader(string archivePath, IAbstractFactory abstractFactory)
         {
-            FileName = fileName;
-            this.abstractFactory = abstractFactory ?? 
+            this.abstractFactory = abstractFactory ??
                 throw new ArgumentNullException(nameof(abstractFactory));
-            if (string.IsNullOrEmpty(fileName))
+            FileAttributes fileAttributes = File.GetAttributes(archivePath);
+            if((fileAttributes & FileAttributes.Directory) == FileAttributes.Directory)
             {
-                OutputPath = string.IsNullOrEmpty(outputPath) ? 
-                    throw new ArgumentNullException(nameof(fileName)) : outputPath;
+                //File is a directory.  Set the outputPath and continue
+                OutputPath = string.IsNullOrEmpty(archivePath) ?
+                    throw new ArgumentNullException(nameof(archivePath)) : archivePath;
             }
             else
-            { 
-                archiveFolder = abstractFactory.CreateArchiveFolder(fileName, outputPath);
+            {
+                //File is an archive file.  Extract to temp directory
+                archiveFolder = abstractFactory.CreateArchiveFolder(archivePath, null);
                 OutputPath = archiveFolder.Extract();
             }
+            FileName = archivePath;
             metaDataReader = abstractFactory.CreateMetaDataReader();
             meta = metaDataReader.ReadMetaData(OutputPath);
             //Create a core file reader

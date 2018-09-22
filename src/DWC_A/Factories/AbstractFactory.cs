@@ -5,9 +5,9 @@ namespace DwC_A.Factories
     public abstract class AbstractFactory : IAbstractFactory
     {
 
-        public ArchiveReader CreateArchiveReader(string fileName, string outputPath = null)
+        public ArchiveReader CreateArchiveReader(string fileName)
         {
-            return new ArchiveReader(fileName, outputPath, this);
+            return new ArchiveReader(fileName, this);
         }
 
         public virtual IArchiveFolder CreateArchiveFolder(string fileName, string outputPath)

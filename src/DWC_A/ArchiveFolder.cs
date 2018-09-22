@@ -23,17 +23,7 @@ namespace DwC_A
 
         public string Extract()
         {
-            Directory.CreateDirectory(folderPath);
-            using (Stream stream = new FileStream(fileName, FileMode.Open))
-            {
-                using (ZipArchive zipArchive = new ZipArchive(stream))
-                {
-                    foreach (var entry in zipArchive.Entries)
-                    {
-                        entry.ExtractToFile(Path.Combine(folderPath, entry.Name), true);
-                    }
-                }
-            }
+            ZipFile.ExtractToDirectory(fileName, folderPath);
             return folderPath;
         }
 
