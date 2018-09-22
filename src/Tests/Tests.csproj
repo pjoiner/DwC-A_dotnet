@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DwC_A\DwC-A_dotnet.csproj" />
+    <ProjectReference Include="..\DWC_A\DwC-A_dotnet.csproj" />
   </ItemGroup>
 
   <ItemGroup>
