@@ -17,5 +17,5 @@ steps:
 
 - task: PublishTestResults@1
   inputs: 
-    testRunner: 'xUnit'
+    testRunner: VSTest
     testResultsFiles: 'src/Tests/TestResults/*.trx'
