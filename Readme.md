@@ -1,4 +1,4 @@
-# Readme [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+# Readme [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)[![Build Status](https://dev.azure.com/pjoiner/DwC-A_dotnet/_apis/build/status/pjoiner.DwC-A_dotnet%20Build)](https://dev.azure.com/pjoiner/DwC-A_dotnet/_build/latest?definitionId=7)
 
 DwC-A_dotnet is a simple Darwin Core Archive reader for dotnet.
 

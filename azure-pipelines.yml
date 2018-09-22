@@ -12,5 +12,10 @@ variables:
 steps:
 - script: dotnet build --configuration $(buildConfiguration) 
   displayName: 'dotnet build $(buildConfiguration)'
-- script: dotnet test "src/Tests/Tests.csproj" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=".coverage/report" -l trx
+- script: dotnet test "src/Tests/Tests.csproj" -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=".coverage/report" -l trx
   displayName: 'dotnet test with coverage'
+
+- task: PublishTestResults
+  inputs: 
+    testRunner: 'xUnit'
+    testResultsFiles: 'src/Tests/TestResults/*.trx'
