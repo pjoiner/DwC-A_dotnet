@@ -25,4 +25,4 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'cobertura' # Options: cobertura, jaCoCo
-    summaryFileLocation: 'src/Tests/coverage/report.cobertura.xml'
+    summaryFileLocation: 'coverage/report.cobertura.xml'
