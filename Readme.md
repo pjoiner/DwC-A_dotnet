@@ -28,6 +28,6 @@ using (var archive = new ArchiveReader(fileName))
 }
 ```
 
-More information can be found in the [documentation](docs/Documentation.md).
+More information can be found in the [documentation](docs/documentation.md).
 
 
