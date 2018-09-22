@@ -15,7 +15,7 @@ steps:
 - script: dotnet test "src/Tests/Tests.csproj" -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=".coverage/report" -l trx
   displayName: 'dotnet test with coverage'
 
-- task: PublishTestResults
+- task: PublishTestResults@1
   inputs: 
     testRunner: 'xUnit'
     testResultsFiles: 'src/Tests/TestResults/*.trx'
