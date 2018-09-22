@@ -26,3 +26,4 @@ steps:
   inputs:
     codeCoverageTool: 'Cobertura' # Options: cobertura, jaCoCo
     summaryFileLocation: '**/report.cobertura.xml'
+    reportDirectory: 'CoverageReport'
