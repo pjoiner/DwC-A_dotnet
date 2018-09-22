@@ -12,5 +12,5 @@ variables:
 steps:
 - script: dotnet build --configuration $(buildConfiguration) 
   displayName: 'dotnet build $(buildConfiguration)'
-- script: dotnet test "DwC-A_dotnet.sln" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=".coverage/report"
+- script: dotnet test "src/Tests/Tests.csproj" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=".coverage/report"
   displayName: 'dotnet test with coverage'
