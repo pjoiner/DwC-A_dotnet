@@ -41,7 +41,6 @@ steps:
     majorVersion: '$(majorVersion)'
     minorVersion: '$(minorVersion)'
     patchVersion: '$(rev:.r)'
-    verbosityPack: 'diagnostic'
 
 # Publish Package as Build Artifact
 - task: PublishBuildArtifacts@1
