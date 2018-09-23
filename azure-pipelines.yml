@@ -15,7 +15,7 @@ steps:
     dotnet test "src/Tests/Tests.csproj" -p:CollectCoverage=true -p:CoverletOutputFormat=cobertura -p:CoverletOutput="coverage/report" -l trx
     dotnet tool install dotnet-reportgenerator-globaltool --tool-path tools --version=4.0.0-rc4
     dir /s
-    tools/reportgenerator "-reports:*/report.cobertura.xml" "-targetdir:report" "-verbosity:Verbose"
+    tools/reportgenerator "-reports:src/Tests/coverage/report.cobertura.xml" "-targetdir:report" "-verbosity:Verbose"
   displayName: 'dotnet build $(buildConfiguration)'
 
 - task: PublishTestResults@1
