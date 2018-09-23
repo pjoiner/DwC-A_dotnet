@@ -16,7 +16,7 @@ steps:
   displayName: 'dotnet test with coverage'
 - script: dotnet tool install dotnet-reportgenerator-globaltool --tool-path tools --version=4.0.0-rc4
   displayName: 'dotnet install report generator tool'
-- script: tools/reportgenerator "-reports:coverage/report.cobertura.xml" "-targetdir:report"
+- script: tools/reportgenerator "-reports:*/report.cobertura.xml" "-targetdir:report" "-verbosity:Verbose"
   displayName: 'generate coverage report'
 
 - task: PublishTestResults@1
