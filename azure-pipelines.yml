@@ -38,5 +38,5 @@ steps:
     packagesToPack: '$(System.DefaultWorkingDirectory)/src/DWC/DwC-A_dotnet.csproj' 
     packDirectory: '$(build.artifactStagingDirectory)'
     nobuild: false
-    versioningScheme: byBuildNumber
+    versioningScheme: byPrereleaseNumber
     verbosityPack: 'diagnostic'
