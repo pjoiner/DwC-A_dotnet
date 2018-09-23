@@ -4,18 +4,28 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 pool:
-  vmImage: 'Ubuntu 16.04'
+  vmImage: 'vs2017-win2016'
 
 variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration) 
+- script: |
+    dotnet build --configuration $(buildConfiguration) 
+    dotnet test "src/Tests/Tests.csproj" -p:CollectCoverage=true -p:CoverletOutputFormat=cobertura -p:CoverletOutput="coverage/report" -l trx
+    dotnet tool install dotnet-reportgenerator-globaltool --tool-path tools --version=4.0.0-rc4
+    tools\reportgenerator "-reports:src/Tests/coverage/report.cobertura.xml" "-targetdir:report" "-verbosity:Verbose"
   displayName: 'dotnet build $(buildConfiguration)'
-- script: dotnet test "src/Tests/Tests.csproj" -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=".coverage/report" -l trx
-  displayName: 'dotnet test with coverage'
 
 - task: PublishTestResults@1
   inputs: 
     testRunner: VSTest
     testResultsFiles: 'src/Tests/TestResults/*.trx'
+
+# Publish Code Coverage Results
+# Publish Cobertura or JaCoCo code coverage results from a build
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura' # Options: cobertura, jaCoCo
+    summaryFileLocation: '**/report.cobertura.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/report'
