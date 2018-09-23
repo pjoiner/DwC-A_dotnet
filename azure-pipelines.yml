@@ -40,7 +40,7 @@ steps:
     versioningScheme: byPrereleaseNumber
     majorVersion: '$(majorVersion)'
     minorVersion: '$(minorVersion)'
-    patchVersion: '$(rev:.r)'
+    patchVersion: '$(patchVersion)'
 
 # Publish Package as Build Artifact
 - task: PublishBuildArtifacts@1
