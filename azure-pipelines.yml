@@ -14,9 +14,9 @@ steps:
   displayName: 'dotnet build $(buildConfiguration)'
 - script: dotnet test "src/Tests/Tests.csproj" -p:CollectCoverage=true -p:CoverletOutputFormat=cobertura -p:CoverletOutput="coverage/report" -l trx
   displayName: 'dotnet test with coverage'
-- script: dotnet tool install dotnet-reportgenerator-globaltool --global --version=4.0.0-rc4
+- script: dotnet tool install dotnet-reportgenerator-globaltool --tool-path tools --version=4.0.0-rc4
   displayName: 'dotnet install report generator tool'
-- script: reportgenerator "-reports:coverage/report.cobertura.xml" "-targetdir:report"
+- script: tools/reportgenerator "-reports:coverage/report.cobertura.xml" "-targetdir:report"
   displayName: 'generate coverage report'
 
 - task: PublishTestResults@1
