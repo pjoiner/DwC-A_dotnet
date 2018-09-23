@@ -31,12 +31,20 @@ steps:
     reportDirectory: '$(System.DefaultWorkingDirectory)/report'
 
 # Build NuGet package
-- task: DotNetCoreCLI@2
+- task: NuGetCommand@2
   inputs:
     command: 'pack'
     configuration: 'release'
     packagesToPack: '$(System.DefaultWorkingDirectory)/**/DwC-A_dotnet.csproj' 
-    packDirectory: '$(build.artifactStagingDirectory)'
-    nobuild: false
+    packDestination: '$(build.artifactStagingDirectory)'
     versioningScheme: byPrereleaseNumber
+    majorVersion: '$(majorVersion)'
+    minorVersion: '$(minorVersion)'
+    patchVersion: '$(rev:.r)'
     verbosityPack: 'diagnostic'
+
+# Publish Package as Build Artifact
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'NuGet package' 
