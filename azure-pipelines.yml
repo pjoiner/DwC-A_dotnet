@@ -8,8 +8,6 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  majorVersion: '0'
-  minorVersion: '1'
 
 steps:
 - script: |
@@ -41,6 +39,4 @@ steps:
     packDirectory: '$(build.artifactStagingDirectory)'
     nobuild: false
     versioningScheme: byBuildNumber
-    majorVersion: '$(majorVersion)'
-    minorVersion: '$(minorVersion)'
     verbosityPack: 'diagnostic'
