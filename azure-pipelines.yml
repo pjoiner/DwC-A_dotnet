@@ -35,7 +35,7 @@ steps:
   inputs:
     command: 'pack'
     configuration: 'release'
-    packagesToPack: '$(System.DefaultWorkingDirectory)/src/DWC/DwC-A_dotnet.csproj' 
+    packagesToPack: '$(System.DefaultWorkingDirectory)/**/DwC-A_dotnet.csproj' 
     packDirectory: '$(build.artifactStagingDirectory)'
     nobuild: false
     versioningScheme: byPrereleaseNumber
