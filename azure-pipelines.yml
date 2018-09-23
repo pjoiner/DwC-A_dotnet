@@ -8,6 +8,8 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  majorVersion: '0'
+  minorVersion: '1'
 
 steps:
 - script: |
@@ -29,3 +31,16 @@ steps:
     codeCoverageTool: 'Cobertura' # Options: cobertura, jaCoCo
     summaryFileLocation: '**/report.cobertura.xml'
     reportDirectory: '$(System.DefaultWorkingDirectory)/report'
+
+# Build NuGet package
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    configuration: 'release'
+    packagesToPack: '$(System.DefaultWorkingDirectory)/src/DWC/DwC-A_dotnet.csproj' 
+    packDirectory: '$(build.artifactStagingDirectory)'
+    nobuild: false
+    versioningScheme: byBuildNumber
+    majorVersion: '$(majorVersion)'
+    minorVersion: '$(minorVersion)'
+    verbosityPack: 'diagnostic'
