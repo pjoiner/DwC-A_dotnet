@@ -32,12 +32,13 @@ steps:
 
 # Build NuGet package
 - task: DotNetCoreCLI@2
+  displayName: 'Build NuGet Package'
   inputs:
     command: 'pack'
     configuration: 'release'
     packagesToPack: '$(System.DefaultWorkingDirectory)/**/DwC-A_dotnet.csproj' 
     packDestination: '$(build.artifactStagingDirectory)'
-    versioningScheme: byPrereleaseNumber
+    versioningScheme: $(versioningScheme)
     majorVersion: '$(majorVersion)'
     minorVersion: '$(minorVersion)'
     patchVersion: '$(patchVersion)'
