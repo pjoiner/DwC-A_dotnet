@@ -38,7 +38,7 @@ namespace Tests
         public void ShouldEnumerateFile()
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
-            using (IFileReader fileReader = new FileReader(fileName, 
+            using (var fileReader = new FileReader(fileName,
                 rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
             {
                 Assert.NotEmpty(fileReader.Rows.ToArray());
@@ -49,7 +49,7 @@ namespace Tests
         public void ShouldReturnHeaderRow()
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
-            using (IFileReader fileReader = new FileReader(fileName, 
+            using (var fileReader = new FileReader(fileName,
                 rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
             {
                 Assert.Single(fileReader.HeaderRows);
@@ -60,7 +60,7 @@ namespace Tests
         public void ShouldReturnDataRows()
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
-            using (IFileReader fileReader = new FileReader(fileName, 
+            using( var fileReader = new FileReader(fileName, 
                 rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
             {
                 Assert.NotEmpty(fileReader.DataRows);

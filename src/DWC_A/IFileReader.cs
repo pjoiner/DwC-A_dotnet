@@ -7,7 +7,7 @@ namespace DwC_A
     /// <summary>
     /// Reads a file
     /// </summary>
-    public interface IFileReader : IDisposable
+    public interface IFileReader
     {
         /// <summary>
         /// Fully qualified path to file
