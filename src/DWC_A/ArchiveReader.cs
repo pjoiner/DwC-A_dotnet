@@ -13,6 +13,8 @@ namespace DwC_A
         private readonly IArchiveFolder archiveFolder;
         private readonly IMetaDataReader metaDataReader;
         private readonly Archive meta;
+        private readonly IDisposableFileReader coreFile;
+        private readonly IList<IDisposableFileReader> extensionFiles = new List<IDisposableFileReader>();
 
         /// <summary>
         /// Relative or absolute path name for the archive file if one was specified in the constructor or null
@@ -29,11 +31,12 @@ namespace DwC_A
         /// <summary>
         /// File reader for Core file
         /// </summary>
-        public IFileReader CoreFile { get; }
+        public IFileReader CoreFile { get { return coreFile; } }
         /// <summary>
         /// Collection of file readers for extension files
         /// </summary>
         public FileReaderCollection Extensions { get; }
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -72,19 +75,18 @@ namespace DwC_A
             meta = metaDataReader.ReadMetaData(OutputPath);
             //Create a core file reader
             var coreFileMetaData = abstractFactory.CreateCoreMetaData(meta.Core);
-            CoreFile = CreateFileReader(coreFileMetaData);
+            coreFile = CreateFileReader(coreFileMetaData);
             //Create file readers for extensions
-            var fileReaders = new List<IFileReader>();
-            foreach(var extension in meta.Extension)
+            foreach (var extension in meta.Extension)
             {
                 var extensionFileName = extension.Files.FirstOrDefault();
                 var extensionFileMetaData = abstractFactory.CreateExtensionMetaData(extension);
-                fileReaders.Add(CreateFileReader(extensionFileMetaData));
+                extensionFiles.Add(CreateFileReader(extensionFileMetaData));
             }
-            Extensions = new FileReaderCollection(fileReaders);
+            Extensions = new FileReaderCollection(extensionFiles);
         }
 
-        private IFileReader CreateFileReader(IFileMetaData fileMetaData)
+        private IDisposableFileReader CreateFileReader(IFileMetaData fileMetaData)
         {
             var fullFileName = Path.Combine(OutputPath, fileMetaData.FileName);
             return abstractFactory.CreateFileReader(fullFileName, fileMetaData);
@@ -111,8 +113,8 @@ namespace DwC_A
             {
                 if (disposing)
                 {
-                    CoreFile?.Dispose();
-                    Extensions?.ToList().ForEach(e => e.Dispose());
+                    coreFile?.Dispose();
+                    extensionFiles?.ToList().ForEach(e => e.Dispose());
                     if(archiveFolder.ShouldCleanup)
                     {
                         Delete();

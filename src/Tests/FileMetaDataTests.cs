@@ -9,16 +9,6 @@ namespace Tests
 {
     public class FileMetaDataTests
     {
-        /* MetaDataReader test
-        [Fact]
-        public void ArchiveShouldContainCoreFile()
-        {
-            var metaDataReader = factory.CreateMetaDataReader();
-            var archive = metaDataReader.ReadMetaData("./resources/dwca-vascan-v37.5");
-            Assert.NotNull(archive);
-        }
-        */
-
         public static IEnumerable<object[]> GetMetaData()
         {
             IAbstractFactory factory = new DefaultFactory();
