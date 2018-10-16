@@ -1,4 +1,6 @@
-﻿namespace DwC_A.Terms
+﻿using System.Text.RegularExpressions;
+
+namespace DwC_A.Terms
 {
     public static class Terms
     {
@@ -210,5 +212,16 @@
         public static string vernacularName = "http://rs.tdwg.org/dwc/terms/vernacularName";
         public static string waterBody = "http://rs.tdwg.org/dwc/terms/waterBody";
         public static string year = "http://rs.tdwg.org/dwc/terms/year";
+
+        public static string ShortName(string term)
+        {
+            if(term == null)
+            {
+                return null;
+            }
+            Regex regex = new Regex("[^/]+$");
+            var match = regex.Match(term);
+            return string.IsNullOrEmpty(match.Value) ? term : match.Value;
+        }
     }
 }
