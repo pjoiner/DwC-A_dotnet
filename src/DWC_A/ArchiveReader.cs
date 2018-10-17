@@ -115,7 +115,7 @@ namespace DwC_A
                 {
                     coreFile?.Dispose();
                     extensionFiles?.ToList().ForEach(e => e.Dispose());
-                    if(archiveFolder.ShouldCleanup)
+                    if(archiveFolder != null && archiveFolder.ShouldCleanup)
                     {
                         Delete();
                     }
