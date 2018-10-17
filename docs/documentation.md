@@ -2,10 +2,10 @@
 
 ## Contents
 - Basic Usage
-  * [Reading Core File Data](##Reading_Core_File_Data)
-  * [Read Archive Meta data](##Read_Archive_Meta_data)
-  * [Reading Extension Files](##Reading_Extension_Files)
-  * [Indexing Files](##Indexing_Files)
+  * [Reading Core File Data](#reading-core-file-data)
+  * [Read Archive Meta data](#read-archive-meta-data)
+  * [Reading Extension Files](#reading-extension-files)
+  * [Indexing Files](#indexing-files)
 
 ## Reading Core File Data
 
