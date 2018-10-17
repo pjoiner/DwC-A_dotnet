@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.IO.Compression;
 
 namespace DwC_A
@@ -35,7 +36,8 @@ namespace DwC_A
         private string GetTempPath()
         {
             ShouldCleanup = true;
-            return Path.Combine(Path.GetTempPath(), "dwca", Path.GetFileNameWithoutExtension(fileName));
+            var newPath = Path.Combine(Path.GetTempPath(), "dwca", Guid.NewGuid().ToString());
+            return newPath;
         }
 
     }
