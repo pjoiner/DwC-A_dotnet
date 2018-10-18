@@ -14,11 +14,13 @@ namespace Tests
             new FieldType()
             {
                 Index = 1,
+                IndexSpecified = true,
                 Term = Terms.acceptedNameUsage
             },
             new FieldType()
             {
                 Index = 2,
+                IndexSpecified = true,
                 Term = Terms.acceptedNameUsageID
             }
         };
@@ -42,8 +44,26 @@ namespace Tests
         [Fact]
         public void ShouldReturnCount3WithId()
         {
-            fieldMetaData = new FieldMetaData( new IdFieldType() { Index = 0 }, fieldTypes);
+            var idField = new IdFieldType()
+            {
+                Index = 0,
+                IndexSpecified = true
+            };
+            fieldMetaData = new FieldMetaData( idField, fieldTypes);
             Assert.Equal(3, fieldMetaData.Count());
+        }
+
+        [Fact]
+        //issue#12
+        public void ShouldNotCreateDuplicateIdFields()
+        {
+            var idField = new IdFieldType()
+            {
+                Index = 1,
+                IndexSpecified = true
+            };
+            fieldMetaData = new FieldMetaData(idField, fieldTypes);
+            Assert.Equal(2, fieldMetaData.Count());
         }
     }
 }

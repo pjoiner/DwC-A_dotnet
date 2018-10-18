@@ -15,7 +15,8 @@ namespace DwC_A.Meta
         public FieldMetaData(IdFieldType idFieldType, ICollection<FieldType> fieldTypes)
         {
             this.idFieldType = idFieldType;
-            if( idFieldType != null )
+            if( idFieldType != null && idFieldType.IndexSpecified 
+                && fieldTypes.All(n => n.Index != idFieldType.Index))
             {
                 this.fieldTypes = fieldTypes.Append(new FieldType { Index = idFieldType.Index, Term = idFieldName })
                     .OrderBy(n => n.Index);
