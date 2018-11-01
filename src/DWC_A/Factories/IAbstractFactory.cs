@@ -39,7 +39,7 @@ namespace DwC_A.Factories
         /// <param name="fileName">Name of file to read</param>
         /// <param name="fileMetaData">File meta data</param>
         /// <returns>File reader object</returns>
-        IDisposableFileReader CreateFileReader(string fileName,
+        IFileReader CreateFileReader(string fileName,
             IFileMetaData fileMetaData);
         /// <summary>
         /// Creates a factory that produces IIndex objects

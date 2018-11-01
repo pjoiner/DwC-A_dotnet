@@ -30,7 +30,7 @@ namespace DwC_A.Factories
             return new RowFactory();
         }
 
-        public virtual IDisposableFileReader CreateFileReader(string fileName, IFileMetaData fileMetaData)
+        public virtual IFileReader CreateFileReader(string fileName, IFileMetaData fileMetaData)
         {
             return new FileReader(fileName, 
                 CreateRowFactory(), 
