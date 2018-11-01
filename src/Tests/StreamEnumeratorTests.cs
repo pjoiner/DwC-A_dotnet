@@ -47,37 +47,11 @@ namespace Tests
         {
             using (Stream stream = new FileStream(fileName, FileMode.Open))
             {
-                var streamEnumerator = new DwC_A.StreamReader(stream,
+                var streamEnumerator = new DwC_A.StreamReader(
                     rowFactory,
                     tokenizer,
                     fileMetaDataMock.Object);
-                Assert.NotEmpty(streamEnumerator.Rows.ToArray());
-            }
-        }
-
-        [Fact]
-        public void ShouldReturnHeaderRow()
-        {
-            using (Stream stream = new FileStream(fileName, FileMode.Open))
-            {
-                var streamEnumerator = new DwC_A.StreamReader(stream,
-                    rowFactory,
-                    tokenizer,
-                    fileMetaDataMock.Object);
-                Assert.Single(streamEnumerator.HeaderRows(1));
-            }
-        }
-
-        [Fact]
-        public void ShouldReturnDataRows()
-        {
-            using (Stream stream = new FileStream(fileName, FileMode.Open))
-            {
-                var streamEnumerator = new DwC_A.StreamReader(stream,
-                    rowFactory,
-                    tokenizer,
-                    fileMetaDataMock.Object);
-                Assert.NotEmpty(streamEnumerator.DataRows(1));
+                Assert.NotEmpty(streamEnumerator.ReadRows(stream).ToArray());
             }
         }
     }

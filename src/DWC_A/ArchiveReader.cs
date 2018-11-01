@@ -13,8 +13,8 @@ namespace DwC_A
         private readonly IArchiveFolder archiveFolder;
         private readonly IMetaDataReader metaDataReader;
         private readonly Archive meta;
-        private readonly IDisposableFileReader coreFile;
-        private readonly IList<IDisposableFileReader> extensionFiles = new List<IDisposableFileReader>();
+        private readonly IFileReader coreFile;
+        private readonly IList<IFileReader> extensionFiles = new List<IFileReader>();
 
         /// <summary>
         /// Relative or absolute path name for the archive file if one was specified in the constructor or null
@@ -86,7 +86,7 @@ namespace DwC_A
             Extensions = new FileReaderCollection(extensionFiles);
         }
 
-        private IDisposableFileReader CreateFileReader(IFileMetaData fileMetaData)
+        private IFileReader CreateFileReader(IFileMetaData fileMetaData)
         {
             var fullFileName = Path.Combine(OutputPath, fileMetaData.FileName);
             return abstractFactory.CreateFileReader(fullFileName, fileMetaData);
@@ -113,8 +113,6 @@ namespace DwC_A
             {
                 if (disposing)
                 {
-                    coreFile?.Dispose();
-                    extensionFiles?.ToList().ForEach(e => e.Dispose());
                     if(archiveFolder != null && archiveFolder.ShouldCleanup)
                     {
                         Delete();

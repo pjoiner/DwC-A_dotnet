@@ -2,7 +2,6 @@
 using DwC_A.Factories;
 using DwC_A.Meta;
 using Moq;
-using System;
 using System.Linq;
 using System.Text;
 using Xunit;
@@ -38,74 +37,62 @@ namespace Tests
         public void ShouldEnumerateFile()
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
-            using (var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
-            {
+            var fileReader = new FileReader(fileName,
+                rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory);
                 Assert.NotEmpty(fileReader.Rows.ToArray());
-            }
         }
 
         [Fact]
         public void ShouldReturnHeaderRow()
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
-            using (var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
-            {
-                Assert.Single(fileReader.HeaderRows);
-            }
+            var fileReader = new FileReader(fileName,
+                rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory);
+            Assert.Single(fileReader.HeaderRows);
         }
 
         [Fact]
         public void ShouldReturnDataRows()
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
-            using( var fileReader = new FileReader(fileName, 
-                rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
-            {
-                Assert.NotEmpty(fileReader.DataRows);
-            }
+            var fileReader = new FileReader(fileName,
+                rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory);
+            Assert.NotEmpty(fileReader.DataRows);
         }
 
         [Fact]
         public void ShouldSeekToBeginningForHeaderRows()
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
-            using (var fileReader = new FileReader(fileName, 
-                rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
-            {
-                Assert.NotEmpty(fileReader.DataRows);
-                Assert.NotEmpty(fileReader.HeaderRows);
-            }
+            var fileReader = new FileReader(fileName,
+                rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory);
+            Assert.NotEmpty(fileReader.DataRows);
+            Assert.NotEmpty(fileReader.HeaderRows);
         }
 
         [Fact]
         public void ShouldCreateIndexOnResourceRelationship()
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(resourceRelationShipFileName);
-            using (var fileReader = new FileReader(resourceRelationShipFileName, rowFactory, tokenizer, 
-                fileMetaDataMock.Object, indexFactory))
-            {
-                int progressCount = 0;
-                var idIndex = fileReader.CreateIndexOn("id", (progress) => progressCount = progress);
-                Assert.NotEmpty(idIndex.OffsetsAt("2850"));
-                Assert.Equal(429, idIndex.OffsetsAt("2850").FirstOrDefault());
-                Assert.NotEmpty(idIndex.OffsetsAt("31391"));
-                Assert.Equal(100, progressCount);
-            }
+            var fileReader = new FileReader(resourceRelationShipFileName, rowFactory, tokenizer,
+                fileMetaDataMock.Object, indexFactory);
+            int progressCount = 0;
+            var idIndex = fileReader.CreateIndexOn("id", (progress) => progressCount = progress);
+            Assert.NotEmpty(idIndex.OffsetsAt("2850"));
+            Assert.Equal(429, idIndex.OffsetsAt("2850").FirstOrDefault());
+            Assert.NotEmpty(idIndex.OffsetsAt("31391"));
+            Assert.Equal(100, progressCount);
         }
 
         [Fact]
         public void ShouldReadAllRowsAtIndexValue()
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(resourceRelationShipFileName);
-            using (var fileReader = new FileReader(resourceRelationShipFileName, 
-                rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory))
-            {
-                var idIndex = fileReader.CreateIndexOn("id");
-                var rowsWithId2850 = fileReader.ReadRowsAtIndex(idIndex, "2850");
-                Assert.NotEmpty(rowsWithId2850);
-            }
+            var fileReader = new FileReader(resourceRelationShipFileName,
+            rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory);
+            var idIndex = fileReader.CreateIndexOn("id");
+            var rowsWithId2850 = fileReader.ReadRowsAtIndex(idIndex, "2850");
+            Assert.NotEmpty(rowsWithId2850);
         }
     }
 }
