@@ -6,9 +6,12 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <PackageProjectUrl>https://github.com/pjoiner/DwC-A_dotnet</PackageProjectUrl>
     <RepositoryUrl>https://github.com/pjoiner/DwC-A_dotnet</RepositoryUrl>
+    <Authors>Paul Joiner</Authors>
+    <Company />
+    <Copyright>Copyright © Paul Joiner 2018</Copyright>
   </PropertyGroup>
 
 </Project>
