@@ -7,6 +7,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <PackageProjectUrl>https://github.com/pjoiner/DwC-A_dotnet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pjoiner/DwC-A_dotnet</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
