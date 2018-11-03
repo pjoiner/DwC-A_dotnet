@@ -12,6 +12,7 @@
     <Authors>Paul Joiner</Authors>
     <Company />
     <Copyright>Copyright © Paul Joiner 2018</Copyright>
+    <PackageLicenseUrl>https://github.com/pjoiner/DwC-A_dotnet/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
 </Project>
