@@ -36,14 +36,9 @@ namespace DwC_A
             return fileReader;
         }
 
-        public IFileReader GetFileReaderByRowType(string rowType)
+        public IEnumerable<IFileReader> GetFileReadersByRowType(string rowType)
         {
-            var fileReader = fileReaders.FirstOrDefault(n => n.FileMetaData.RowType == rowType);
-            if (fileReader == null)
-            {
-                throw new FileReaderNotFoundException(rowType);
-            }
-            return fileReader;
+            return fileReaders.Where(n => n.FileMetaData.RowType == rowType);
         }
     }
 }
