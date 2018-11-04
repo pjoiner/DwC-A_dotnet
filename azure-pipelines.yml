@@ -9,6 +9,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   BUILD_BUILDNUMBER: '$(majorVersion).$(minorVersion).$(patchVersion)'
+  VersionPrefix: '0.$(BUILD_BUILDNUMBER)'
 
 steps:
 - script: |
