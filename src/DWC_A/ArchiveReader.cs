@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace DwC_A
 {
+    /// <summary>
+    /// Reads a Darwin Core archive zip file or directory contents
+    /// </summary>
     public class ArchiveReader : IDisposable
     {
         private readonly IAbstractFactory abstractFactory;
