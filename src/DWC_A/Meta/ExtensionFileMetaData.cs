@@ -8,10 +8,7 @@
             :base(extensionFileType)
         {
             this.extensionFileType = extensionFileType ?? new ExtensionFileType();
-            if (this.extensionFileType.Coreid != null)
-            {
-                Fields = new FieldMetaData(extensionFileType.Coreid, extensionFileType.Field);
-            }
+            Fields = new FieldMetaData(this.extensionFileType?.Coreid, this.extensionFileType?.Field);
         }
 
         public IdFieldType Id { get { return extensionFileType.Coreid; } }

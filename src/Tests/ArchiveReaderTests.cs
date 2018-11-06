@@ -1,5 +1,6 @@
 ﻿using DwC_A;
 using System;
+using System.Linq;
 using Xunit;
 
 namespace Tests
@@ -8,6 +9,7 @@ namespace Tests
     {
         private const string archiveFileName = "./resources/dwca-vascan-v37.5.zip";
         private const string archiveFolder = "./resources/dwca-vascan-v37.5";
+        private const string whalesArchiveFileName = "./resources/whales.zip";
 
         [Fact]
         public void ShouldOpenCoreFile()
@@ -45,5 +47,15 @@ namespace Tests
             Assert.Null(exception);
         }
 
+        [Fact]
+        public void ShouldOpenWhalesArchive()
+        {
+            using (var whales = new ArchiveReader(whalesArchiveFileName))
+            {
+                Assert.NotEmpty(whales.CoreFile.Rows);
+                Assert.Empty(whales.CoreFile.FileMetaData.Fields);
+                Assert.Equal(4, whales.CoreFile.DataRows.Count());
+            }
+        }
     }
 }
