@@ -21,7 +21,7 @@ namespace Tests
         public void ShouldReturnDefaultMetaDataOnNull(IFileMetaData fileMetaData)
         {
             Assert.Null(fileMetaData.FileName);
-            Assert.Null(fileMetaData.Fields);
+            Assert.Empty(fileMetaData.Fields);
             Assert.Equal(Encoding.UTF8, fileMetaData.Encoding);
             Assert.Equal("YYYY-MM-DD", fileMetaData.DateFormat);
             Assert.Equal("\"", fileMetaData.FieldsEnclosedBy);

@@ -8,10 +8,7 @@
             base(coreFileType)
         {
             this.coreFileType = coreFileType ?? new CoreFileType();
-            if (this.coreFileType.Id != null)
-            {
-                Fields = new FieldMetaData(this.coreFileType.Id, this.coreFileType.Field);
-            }
+            Fields = new FieldMetaData(this.coreFileType?.Id, this.coreFileType?.Field);
         }
 
         public IdFieldType Id { get { return coreFileType.Id; } }
