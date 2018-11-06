@@ -26,6 +26,12 @@ namespace DwC_A
         }
         #endregion
 
+        /// <summary>
+        /// Retrieves an IFileReader for the specified file name
+        /// </summary>
+        /// <param name="fileName">Name of the file in the archive (e.g. taxon.txt)</param>
+        /// <returns>IFileReader</returns>
+        /// <exception cref="FileReaderNotFoundException"/>
         public IFileReader GetFileReaderByFileName(string fileName)
         {
             var fileReader = fileReaders.FirstOrDefault(n => n.FileMetaData.FileName == fileName);
@@ -36,14 +42,14 @@ namespace DwC_A
             return fileReader;
         }
 
-        public IFileReader GetFileReaderByRowType(string rowType)
+        /// <summary>
+        /// Returns a list of IFileReaders of a given row type
+        /// </summary>
+        /// <param name="rowType">Fully qualified name of the row type. <seealso cref="Terms.RowTypes"/></param>
+        /// <returns>IEnumerable list of IFileReaders of rowType</returns>
+        public IEnumerable<IFileReader> GetFileReadersByRowType(string rowType)
         {
-            var fileReader = fileReaders.FirstOrDefault(n => n.FileMetaData.RowType == rowType);
-            if (fileReader == null)
-            {
-                throw new FileReaderNotFoundException(rowType);
-            }
-            return fileReader;
+            return fileReaders.Where(n => n.FileMetaData.RowType == rowType);
         }
     }
 }

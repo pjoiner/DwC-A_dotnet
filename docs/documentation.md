@@ -47,9 +47,9 @@ Extension files can be accessed through the `ArchiveReader.Extensions` `FileRead
 ```
 IFileReader fileReader = archive.Extensions.GetFileReaderByFileName("event.txt");
 ```
-OR they can referenced by the row type associated with the extension file.
+OR they can referenced by the row type associated with the extension file.  Note that there may be multiple extension files of the same row type.
 ```
-IFileReader fileReader = archive.Extensions.GetFileReaderByRowType(RowTypes.Event);
+IEnumerable<IFileReader> fileReader = archive.Extensions.GetFileReadersByRowType(RowTypes.Event);
 ```
 
 ## Indexing Files
