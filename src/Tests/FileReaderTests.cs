@@ -15,9 +15,7 @@ namespace Tests
         private const string resourceRelationShipFileName = "./resources/dwca-vascan-v37.5/resourcerelationship.txt";
         private readonly IRowFactory rowFactory;
         private readonly ITokenizer tokenizer;
-        private readonly IIndexFactory indexFactory;
-
-        Mock<IFileMetaData> fileMetaDataMock = new Mock<IFileMetaData>();
+        private readonly Mock<IFileMetaData> fileMetaDataMock = new Mock<IFileMetaData>();
 
         public FileReaderTests()
         {
@@ -29,7 +27,6 @@ namespace Tests
             fileMetaDataMock.Setup(n => n.Fields.IndexOf("id")).Returns(0);
             fileMetaDataMock.Setup(n => n.LineTerminatorLength).Returns(1);
             rowFactory = new RowFactory();
-            indexFactory = new IndexFactory();
             tokenizer = new Tokenizer(fileMetaDataMock.Object);
         }
 
@@ -38,7 +35,7 @@ namespace Tests
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
             var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory);
+                rowFactory, tokenizer, fileMetaDataMock.Object);
                 Assert.NotEmpty(fileReader.Rows.ToArray());
         }
 
@@ -47,7 +44,7 @@ namespace Tests
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
             var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory);
+                rowFactory, tokenizer, fileMetaDataMock.Object);
             Assert.Single(fileReader.HeaderRows);
         }
 
@@ -56,7 +53,7 @@ namespace Tests
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
             var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory);
+                rowFactory, tokenizer, fileMetaDataMock.Object);
             Assert.NotEmpty(fileReader.DataRows);
         }
 
@@ -65,34 +62,9 @@ namespace Tests
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
             var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory);
+                rowFactory, tokenizer, fileMetaDataMock.Object);
             Assert.NotEmpty(fileReader.DataRows);
             Assert.NotEmpty(fileReader.HeaderRows);
-        }
-
-        [Fact]
-        public void ShouldCreateIndexOnResourceRelationship()
-        {
-            fileMetaDataMock.Setup(n => n.FileName).Returns(resourceRelationShipFileName);
-            var fileReader = new FileReader(resourceRelationShipFileName, rowFactory, tokenizer,
-                fileMetaDataMock.Object, indexFactory);
-            int progressCount = 0;
-            var idIndex = fileReader.CreateIndexOn("id", (progress) => progressCount = progress);
-            Assert.NotEmpty(idIndex.OffsetsAt("2850"));
-            Assert.Equal(429, idIndex.OffsetsAt("2850").FirstOrDefault());
-            Assert.NotEmpty(idIndex.OffsetsAt("31391"));
-            Assert.Equal(100, progressCount);
-        }
-
-        [Fact]
-        public void ShouldReadAllRowsAtIndexValue()
-        {
-            fileMetaDataMock.Setup(n => n.FileName).Returns(resourceRelationShipFileName);
-            var fileReader = new FileReader(resourceRelationShipFileName,
-            rowFactory, tokenizer, fileMetaDataMock.Object, indexFactory);
-            var idIndex = fileReader.CreateIndexOn("id");
-            var rowsWithId2850 = fileReader.ReadRowsAtIndex(idIndex, "2850");
-            Assert.NotEmpty(rowsWithId2850);
         }
     }
 }
