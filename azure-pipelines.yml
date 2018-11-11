@@ -32,7 +32,7 @@ steps:
     reportDirectory: '$(System.DefaultWorkingDirectory)/report'
 
 # Build NuGet package
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   displayName: 'Build NuGet Package'
   inputs:
     command: 'pack'
