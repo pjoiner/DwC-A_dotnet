@@ -8,7 +8,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  BUILD_BUILDNUMBER: '$(majorVersion).$(minorVersion).$(patchVersion)'
+  BUILD_BUILDNUMBER: '$(majorVersion).$(minorVersion).$(patchVersion)-$(VersionSuffix)'
   VersionPrefix: '0.$(BUILD_BUILDNUMBER)'
 
 steps:
@@ -33,14 +33,15 @@ steps:
     reportDirectory: '$(System.DefaultWorkingDirectory)/report'
 
 # Build NuGet package
-- task: DotNetCoreCLI@2
+- task: NuGetCommand@2
   displayName: 'Build NuGet Package'
   inputs:
     command: 'pack'
-    configuration: 'release'
+    configuration: '$(BuildConfiguration)'
     packagesToPack: '$(System.DefaultWorkingDirectory)/**/DwC-A_dotnet.csproj' 
     packDestination: '$(build.artifactStagingDirectory)'
     versioningScheme: $(versioningScheme)
+    versionEnvVar: 'BUILD_BUILDNUMBER'
     majorVersion: '$(majorVersion)'
     minorVersion: '$(minorVersion)'
     patchVersion: '$(patchVersion)'
