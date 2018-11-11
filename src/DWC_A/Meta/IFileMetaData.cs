@@ -46,7 +46,6 @@ namespace DwC_A.Meta
         string LinesTerminatedBy { get; }
         /// <summary>
         /// Number of characters for line end.  
-        /// Used internally to determine line length for indexing
         /// </summary>
         int LineTerminatorLength { get; }
         /// <summary>

@@ -5,7 +5,7 @@
   * [Reading Core File Data](#reading-core-file-data)
   * [Read Archive Meta data](#read-archive-meta-data)
   * [Reading Extension Files](#reading-extension-files)
-  * [Indexing Files](#indexing-files)
+  * [Using LinQ](#using-linq)
 
 ## Reading Core File Data
 
@@ -45,24 +45,52 @@ Archive meta data can be accessed through the `ArchiveReader.MetaData` property.
 
 Extension files can be accessed through the `ArchiveReader.Extensions` `FileReaderCollection`.  Extension file readers can be referenced by filename
 ```
-IFileReader fileReader = archive.Extensions.GetFileReaderByFileName("event.txt");
+IFileReader fileReaders = archive.Extensions.GetFileReaderByFileName("event.txt");
 ```
 OR they can referenced by the row type associated with the extension file.  Note that there may be multiple extension files of the same row type.
 ```
 IEnumerable<IFileReader> fileReader = archive.Extensions.GetFileReadersByRowType(RowTypes.Event);
 ```
 
-## Indexing Files
+## Using LINQ
 
-Indexes can be created on fields in a file to improve lookup performance.  This is useful for reading extension rows for a specified core id value.  An index is created using the `IFileReader.CreateIndexOn` method as follows.
+The archive CoreFile and Extension file rows support LINQ queries to search, sort and filter data rows.  For example, a list of all ids and scientific names for a specific genus may be queried from a taxon file as follows.
 ```
-IFileIndex index = fileReader.CreateIndexOn(Terms.eventID);
+var taxon = from t in archive.CoreFile.DataRows
+            where t[Terms.genus] == "Equisetum"
+            select new { id = t["id"], ScientificName = t[Terms.scientificName] };
 ```
-Rows can then be read from the `IFileReader` using the `ReadRowsAtIndex` method as follows.
+OR
 ```
-string indexValue = "1234";  //Value of index to lookup
-IEnumerable<IRow> rows = fileReader.ReadRowsAtIndex(index, indexValue);
+var taxon = archive.CoreFile.DataRows
+            .Where(t => t[Terms.genus] == "Equisetum")
+            .Select(t => new { id = t["id"], ScientificName = t[Terms.scientificName] });
 ```
-Multiple indexes can be created for a file.
-
- 
+A one-to-many relationship between a taxon file and a vernacularname extension file may be queried using a group join as follows.
+```
+var vernacularNamesFile = archive.Extensions.GetFileReaderByFileName("vernacularname.txt");
+var taxon = from t in archive.CoreFile.DataRows
+            where t[Terms.genus] == "Equisetum"
+            join v in vernacularNamesFile.DataRows on t["id"] equals v["id"] into vGroup
+            select new
+            {
+                id = t["id"],
+                ScientificName = t[Terms.scientificName],
+                VernacularNames = from v1 in vGroup select v1[Terms.vernacularName]
+            };
+```
+OR a lookup could be used to accomplish the same as follows.
+```
+var vernacularNameLookup = archive.Extensions
+                                  .GetFileReaderByFileName("vernacularname.txt")
+                                  .DataRows  
+                                  .ToLookup(v => v["id"], v => v[Terms.vernacularName]);
+var vernacularNames = archive.CoreFile.DataRows
+                        .Where(t => t[Terms.genus] == "Equisetum")
+                        .Select(t => new
+                        {
+                            id = t["id"],
+                            ScientificName = t[Terms.scientificName],
+                            VernacularNames = vernacularNameLookup[t["id"]]
+                        });
+``` 

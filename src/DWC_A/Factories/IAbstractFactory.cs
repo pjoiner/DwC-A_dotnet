@@ -42,11 +42,6 @@ namespace DwC_A.Factories
         IFileReader CreateFileReader(string fileName,
             IFileMetaData fileMetaData);
         /// <summary>
-        /// Creates a factory that produces IIndex objects
-        /// </summary>
-        /// <returns>IIndexFactory</returns>
-        IIndexFactory CreateIndexFactory();
-        /// <summary>
         /// Creates an object that is used to wrap CoreFileTypes and ExtensionFileTypes to a common interface
         /// </summary>
         /// <param name="coreFileType">CoreFileType raw meta data</param>

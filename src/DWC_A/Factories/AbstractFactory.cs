@@ -35,13 +35,7 @@ namespace DwC_A.Factories
             return new FileReader(fileName, 
                 CreateRowFactory(), 
                 CreateTokenizer(fileMetaData), 
-                fileMetaData, 
-                CreateIndexFactory());
-        }
-
-        public virtual IIndexFactory CreateIndexFactory()
-        {
-            return new IndexFactory();
+                fileMetaData);
         }
 
         public virtual IFileMetaData CreateCoreMetaData(CoreFileType coreFileType)
