@@ -66,18 +66,17 @@ var taxon = archive.CoreFile.DataRows
             .Where(t => t[Terms.genus] == "Equisetum")
             .Select(t => new { id = t["id"], ScientificName = t[Terms.scientificName] });
 ```
-A one-to-many relationship between a taxon file and a vernacularname extension file may be queried as follows.
+A one-to-many relationship between a taxon file and a vernacularname extension file may be queried using a group join as follows.
 ```
 var vernacularNamesFile = archive.Extensions.GetFileReaderByFileName("vernacularname.txt");
-var vernacularNames = from t in archive.CoreFile.DataRows
+var taxon = from t in archive.CoreFile.DataRows
             where t[Terms.genus] == "Equisetum"
+            join v in vernacularNamesFile.DataRows on t["id"] equals v["id"] into vGroup
             select new
             {
                 id = t["id"],
                 ScientificName = t[Terms.scientificName],
-                VernacularNames = from v in vernacularNamesFile.DataRows
-                                where v["id"] == t["id"]
-                                select v[Terms.vernacularName]
+                VernacularNames = from v1 in vGroup select v1[Terms.vernacularName]
             };
 ```
 OR a lookup could be used to accomplish the same as follows.
