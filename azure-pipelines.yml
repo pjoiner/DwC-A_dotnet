@@ -8,8 +8,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  BUILD_BUILDNUMBER: '$(majorVersion).$(minorVersion).$(patchVersion)'
-  VersionPrefix: '0.$(BUILD_BUILDNUMBER)'
+  VersionPrefix: '0.$(majorVersion).$(minorVersion).$(patchVersion)'
 
 steps:
 - script: |
@@ -37,10 +36,11 @@ steps:
   displayName: 'Build NuGet Package'
   inputs:
     command: 'pack'
-    configuration: 'release'
+    configuration: '$(BuildConfiguration)'
     packagesToPack: '$(System.DefaultWorkingDirectory)/**/DwC-A_dotnet.csproj' 
     packDestination: '$(build.artifactStagingDirectory)'
     versioningScheme: $(versioningScheme)
+    versionEnvVar: 'BUILDNUMBER'
     majorVersion: '$(majorVersion)'
     minorVersion: '$(minorVersion)'
     patchVersion: '$(patchVersion)'
