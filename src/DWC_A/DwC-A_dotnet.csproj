@@ -15,6 +15,7 @@
     <PackageLicenseUrl>https://github.com/pjoiner/DwC-A_dotnet/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <Description>A simple Darwin Core Archive Reader for dotnet</Description>
+    <PackageTags>DwC-A darwin-core Biodiversity</PackageTags>
   </PropertyGroup>
 
 </Project>
