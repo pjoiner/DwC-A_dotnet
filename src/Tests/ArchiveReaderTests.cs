@@ -1,6 +1,7 @@
 ﻿using DwC_A;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Tests
@@ -24,12 +25,34 @@ namespace Tests
         }
 
         [Fact]
+        public async Task ShouldOpenCoreFileAsync()
+        {
+            using(var archive = new ArchiveReader(archiveFileName))
+            {
+                await foreach(var row in archive.GetCoreFileAsync().GetDataRowsAsync())
+                {
+                    Assert.NotNull(row[0]);
+                }
+            }
+        }
+
+        [Fact]
         public void ShouldReturnDescriptionExtensionFile()
         {
             using (var archive = new ArchiveReader(archiveFileName))
             {
                 var descriptionFile = archive.Extensions.GetFileReaderByFileName("description.txt");
                 Assert.NotEmpty(descriptionFile.Rows);
+            }
+        }
+
+        [Fact]
+        public async Task ShouldReturnDescriptionExtensionFileAsync()
+        {
+            using (var archive = new ArchiveReader(archiveFileName))
+            {
+                var descriptionFile = archive.Extensions.GetFileReaderAsyncByFileName("description.txt");
+                Assert.NotEmpty(await descriptionFile.GetDataRowsAsync().ToArrayAsync());
             }
         }
 

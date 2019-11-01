@@ -4,6 +4,7 @@ using DwC_A.Meta;
 using Moq;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
@@ -40,12 +41,30 @@ namespace Tests
         }
 
         [Fact]
+        public async Task ShouldEnumerateFileAsync()
+        {
+            fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
+            var fileReader = new FileReaderAsync(fileName,
+                rowFactory, tokenizer, fileMetaDataMock.Object);
+            Assert.NotEmpty(await fileReader.GetDataRowsAsync().ToArrayAsync());
+        }
+
+        [Fact]
         public void ShouldReturnHeaderRow()
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
             var fileReader = new FileReader(fileName,
                 rowFactory, tokenizer, fileMetaDataMock.Object);
             Assert.Single(fileReader.HeaderRows);
+        }
+
+        [Fact]
+        public async Task ShouldReturnHeaderRowAsync()
+        {
+            fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
+            var fileReader = new FileReaderAsync(fileName,
+                rowFactory, tokenizer, fileMetaDataMock.Object);
+            Assert.Single(await fileReader.GetHeaderRowsAsync().ToArrayAsync());
         }
 
         [Fact]
@@ -58,6 +77,15 @@ namespace Tests
         }
 
         [Fact]
+        public async Task ShouldReturnDataRowsAsync()
+        {
+            fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
+            var fileReader = new FileReaderAsync(fileName,
+                rowFactory, tokenizer, fileMetaDataMock.Object);
+            Assert.NotEmpty(await fileReader.GetDataRowsAsync().ToArrayAsync());
+        }
+
+        [Fact]
         public void ShouldSeekToBeginningForHeaderRows()
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
@@ -65,6 +93,16 @@ namespace Tests
                 rowFactory, tokenizer, fileMetaDataMock.Object);
             Assert.NotEmpty(fileReader.DataRows);
             Assert.NotEmpty(fileReader.HeaderRows);
+        }
+
+        [Fact]
+        public async Task ShouldSeekToBeginningForHeaderRowsAsync()
+        {
+            fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
+            var fileReader = new FileReaderAsync(fileName,
+                rowFactory, tokenizer, fileMetaDataMock.Object);
+            Assert.NotEmpty(await fileReader.GetDataRowsAsync().ToArrayAsync());
+            Assert.NotEmpty(await fileReader.GetHeaderRowsAsync().ToArrayAsync());
         }
     }
 }

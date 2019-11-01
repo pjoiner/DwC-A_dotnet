@@ -32,5 +32,17 @@ namespace DwC_A
                 }
             }
         }
+
+        public async IAsyncEnumerable<IRow> ReadRowsAsync(Stream stream)
+        {
+            using(var reader = new System.IO.StreamReader(stream, fileMetaData.Encoding))
+            {
+                string line;
+                while((line = await reader.ReadLineAsync()) != null)
+                {
+                    yield return rowFactory.CreateRow(tokenizer.Split(line), fileMetaData.Fields);
+                }
+            }
+        }
     }
 }

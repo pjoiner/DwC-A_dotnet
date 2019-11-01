@@ -1,6 +1,5 @@
 ﻿using DwC_A.Factories;
 using DwC_A.Meta;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,16 +17,8 @@ namespace DwC_A
         {
             this.FileName = fileName;
             this.FileMetaData = fileMetaData;
-            ValidateLineEnds(fileMetaData.LinesTerminatedBy);
+            FileReaderUtils.ValidateLineEnds(fileMetaData.LinesTerminatedBy);
             streamReader = new StreamReader(rowFactory, tokenizer, fileMetaData);
-        }
-
-        private void ValidateLineEnds(string linesTerminatedBy)
-        {
-            if (new[] { "\n", "r", "\r\n" }.Contains(linesTerminatedBy) == false)
-            {
-                throw new NotSupportedException($"Only files terminated by '\n', '\r' or '\r\n' are supported.");
-            }
         }
 
         public IEnumerable<IRow> Rows

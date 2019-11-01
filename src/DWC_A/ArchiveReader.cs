@@ -17,12 +17,14 @@ namespace DwC_A
         private readonly IMetaDataReader metaDataReader;
         private readonly Archive meta;
         private readonly IFileReader coreFile;
+        private readonly IFileReaderAsync coreFileAsync;
         private readonly IList<IFileReader> extensionFiles = new List<IFileReader>();
+        private readonly IList<IFileReaderAsync> asyncExtensionFiles = new List<IFileReaderAsync>();
 
         /// <summary>
         /// Relative or absolute path name for the archive file if one was specified in the constructor or null
         /// </summary>
-        public string FileName {get;}
+        public string FileName { get; }
         /// <summary>
         /// Path where archive is extracted to or the path specified in the constructor
         /// </summary>
@@ -35,6 +37,14 @@ namespace DwC_A
         /// File reader for Core file
         /// </summary>
         public IFileReader CoreFile { get { return coreFile; } }
+        /// <summary>
+        /// Async File reader for Core file
+        /// </summary>
+        /// <returns>Async File reader</returns>
+        public IFileReaderAsync GetCoreFileAsync()
+        {
+            return coreFileAsync;
+        }
         /// <summary>
         /// Collection of file readers for extension files
         /// </summary>
@@ -79,20 +89,28 @@ namespace DwC_A
             //Create a core file reader
             var coreFileMetaData = abstractFactory.CreateCoreMetaData(meta.Core);
             coreFile = CreateFileReader(coreFileMetaData);
+            coreFileAsync = CreateAsyncFileReader(coreFileMetaData);
             //Create file readers for extensions
             foreach (var extension in meta.Extension)
             {
                 var extensionFileName = extension.Files.FirstOrDefault();
                 var extensionFileMetaData = abstractFactory.CreateExtensionMetaData(extension);
                 extensionFiles.Add(CreateFileReader(extensionFileMetaData));
+                asyncExtensionFiles.Add(CreateAsyncFileReader(extensionFileMetaData));
             }
-            Extensions = new FileReaderCollection(extensionFiles);
+            Extensions = new FileReaderCollection(extensionFiles, asyncExtensionFiles);
         }
 
         private IFileReader CreateFileReader(IFileMetaData fileMetaData)
         {
             var fullFileName = Path.Combine(OutputPath, fileMetaData.FileName);
             return abstractFactory.CreateFileReader(fullFileName, fileMetaData);
+        }
+
+        private IFileReaderAsync CreateAsyncFileReader(IFileMetaData fileMetaData)
+        {
+            var fullFileName = Path.Combine(OutputPath, fileMetaData.FileName);
+            return abstractFactory.CreateAsyncFileReader(fullFileName, fileMetaData);
         }
         /// <summary>
         /// Used to cleanup extracted files.

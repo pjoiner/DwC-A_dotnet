@@ -38,6 +38,14 @@ namespace DwC_A.Factories
                 fileMetaData);
         }
 
+        public virtual IFileReaderAsync CreateAsyncFileReader(string fileName, IFileMetaData fileMetaData)
+        {
+            return new FileReaderAsync(fileName,
+                CreateRowFactory(),
+                CreateTokenizer(fileMetaData),
+                fileMetaData);
+        }
+
         public virtual IFileMetaData CreateCoreMetaData(CoreFileType coreFileType)
         {
             return new CoreFileMetaData(coreFileType);
