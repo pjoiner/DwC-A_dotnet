@@ -18,15 +18,15 @@ xscgen -i=i -n "|tdwg_dwc_text.xsd=DWC_A.Meta" -o ./src/DWC_A/Meta/ http://rs.td
 
 Test coverage tool coverlet has been installed in this project and can be activated by issuing the following command
 ```
-dotnet test "./src/DwC-A_dotnet.sln" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=".coverage/report"
+dotnet test "./DwC-A_dotnet.sln" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=".coverage/report"
 ```
 This tool can be used to set threshold coverage for passing builds.  See https://github.com/tonerdo/coverlet for more information and more detailed reports.
 
 Detailed coverage reports can be generated using ReportGenerator (See https://github.com/danielpalme/ReportGenerator).
 
 ```
-dotnet tool install dotnet-reportgenerator-globaltool --tool-path tools --version=4.0.0-rc4
-tools\reportgenerator.exe "-reports:report.cobertura.xml" "-targetdir:/report"
+dotnet tool install dotnet-reportgenerator-globaltool --tool-path tools
+tools\reportgenerator.exe "-reports:./src/Tests/.coverage/report.cobertura.xml" "-targetdir:./src/Tests/report"
 ```
 
 ## Azure Pipeline
