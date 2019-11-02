@@ -11,6 +11,12 @@ variables:
   VersionPrefix: '0.$(majorVersion).$(minorVersion).$(patchVersion)'
 
 steps:
+- task: UseDotNet@2
+  displayName: 'Use dotnet sdk 3.x'
+  inputs:
+    version: 3.x
+    includePreviewVersions: true
+
 - script: |
     dotnet build --configuration $(buildConfiguration) 
     dotnet test "src/Tests/Tests.csproj" -p:CollectCoverage=true -p:CoverletOutputFormat=cobertura -p:CoverletOutput="coverage/report" -l trx
