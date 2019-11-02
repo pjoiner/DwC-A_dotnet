@@ -6,21 +6,21 @@ using System.Linq;
 
 namespace DwC_A
 {
-    public class FileReaderCollection : IEnumerable<Tuple<IFileReader, IFileReaderAsync>>
+    public class FileReaderCollection : IEnumerable<Tuple<IFileReader, IAsyncFileReader>>
     {
-        private readonly IEnumerable<Tuple<IFileReader, IFileReaderAsync>> fileReaders;
+        private readonly IEnumerable<Tuple<IFileReader, IAsyncFileReader>> fileReaders;
 
         public FileReaderCollection(
             IEnumerable<IFileReader> fileReaders, 
-            IEnumerable<IFileReaderAsync> asyncFileReaders)
+            IEnumerable<IAsyncFileReader> asyncFileReaders)
         {
             this.fileReaders = fileReaders.Zip(asyncFileReaders,
                 (fileReader, asyncFileReader) =>
-                    new Tuple<IFileReader, IFileReaderAsync>(fileReader, asyncFileReader));
+                    new Tuple<IFileReader, IAsyncFileReader>(fileReader, asyncFileReader));
         }
 
         #region IEnumerable implementation
-        public IEnumerator<Tuple<IFileReader, IFileReaderAsync>> GetEnumerator()
+        public IEnumerator<Tuple<IFileReader, IAsyncFileReader>> GetEnumerator()
         {
             return fileReaders.GetEnumerator();
         }
@@ -48,12 +48,12 @@ namespace DwC_A
         }
 
         /// <summary>
-        /// Retrieves an IFileReaderAsync for the specified file name
+        /// Retrieves an IAsyncFileReader for the specified file name
         /// </summary>
         /// <param name="fileName">Name of the file in the archive (e.g. taxon.txt)</param>
-        /// <returns>IFileReaderAsync</returns>
+        /// <returns>IAsyncFileReader</returns>
         /// <exception cref="FileReaderNotFoundException"/>
-        public IFileReaderAsync GetFileReaderAsyncByFileName(string fileName)
+        public IAsyncFileReader GetAsyncFileReaderByFileName(string fileName)
         {
             var fileReader = fileReaders.FirstOrDefault(n => n.Item2.FileMetaData.FileName == fileName);
             if (fileReader == null)
@@ -76,11 +76,11 @@ namespace DwC_A
         }
 
         /// <summary>
-        /// Returns a list of IFileReadersAsync of a given row type
+        /// Returns a list of IAsyncFileReaders of a given row type
         /// </summary>
         /// <param name="rowType">Fully qualified name of the row type. <seealso cref="Terms.RowTypes"/></param>
-        /// <returns>IEnumerable list of IFileReadersAsync of rowType</returns>
-        public IEnumerable<IFileReaderAsync> GetFileReadersAsyncByRowType(string rowType)
+        /// <returns>IEnumerable list of IAsyncFileReaders of rowType</returns>
+        public IEnumerable<IAsyncFileReader> GetAsyncFileReadersByRowType(string rowType)
         {
             return fileReaders
                 .Where(n => n.Item2.FileMetaData.RowType == rowType)

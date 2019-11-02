@@ -42,7 +42,7 @@ namespace DwC_A.Factories
         IFileReader CreateFileReader(string fileName,
             IFileMetaData fileMetaData);
         
-        IFileReaderAsync CreateAsyncFileReader(string fileName,
+        IAsyncFileReader CreateAsyncFileReader(string fileName,
             IFileMetaData fileMetaData);
 
         /// <summary>

@@ -17,9 +17,9 @@ namespace DwC_A
         private readonly IMetaDataReader metaDataReader;
         private readonly Archive meta;
         private readonly IFileReader coreFile;
-        private readonly IFileReaderAsync coreFileAsync;
+        private readonly IAsyncFileReader coreFileAsync;
         private readonly IList<IFileReader> extensionFiles = new List<IFileReader>();
-        private readonly IList<IFileReaderAsync> asyncExtensionFiles = new List<IFileReaderAsync>();
+        private readonly IList<IAsyncFileReader> asyncExtensionFiles = new List<IAsyncFileReader>();
 
         /// <summary>
         /// Relative or absolute path name for the archive file if one was specified in the constructor or null
@@ -41,7 +41,7 @@ namespace DwC_A
         /// Async File reader for Core file
         /// </summary>
         /// <returns>Async File reader</returns>
-        public IFileReaderAsync GetCoreFileAsync()
+        public IAsyncFileReader GetAsyncCoreFile()
         {
             return coreFileAsync;
         }
@@ -107,7 +107,7 @@ namespace DwC_A
             return abstractFactory.CreateFileReader(fullFileName, fileMetaData);
         }
 
-        private IFileReaderAsync CreateAsyncFileReader(IFileMetaData fileMetaData)
+        private IAsyncFileReader CreateAsyncFileReader(IFileMetaData fileMetaData)
         {
             var fullFileName = Path.Combine(OutputPath, fileMetaData.FileName);
             return abstractFactory.CreateAsyncFileReader(fullFileName, fileMetaData);

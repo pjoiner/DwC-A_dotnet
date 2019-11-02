@@ -29,7 +29,7 @@ namespace Tests
         {
             using(var archive = new ArchiveReader(archiveFileName))
             {
-                await foreach(var row in archive.GetCoreFileAsync().GetDataRowsAsync())
+                await foreach(var row in archive.GetAsyncCoreFile().GetDataRowsAsync())
                 {
                     Assert.NotNull(row[0]);
                 }
@@ -51,7 +51,7 @@ namespace Tests
         {
             using (var archive = new ArchiveReader(archiveFileName))
             {
-                var descriptionFile = archive.Extensions.GetFileReaderAsyncByFileName("description.txt");
+                var descriptionFile = archive.Extensions.GetAsyncFileReaderByFileName("description.txt");
                 Assert.NotEmpty(await descriptionFile.GetDataRowsAsync().ToArrayAsync());
             }
         }

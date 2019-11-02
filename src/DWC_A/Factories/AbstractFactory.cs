@@ -38,9 +38,9 @@ namespace DwC_A.Factories
                 fileMetaData);
         }
 
-        public virtual IFileReaderAsync CreateAsyncFileReader(string fileName, IFileMetaData fileMetaData)
+        public virtual IAsyncFileReader CreateAsyncFileReader(string fileName, IFileMetaData fileMetaData)
         {
-            return new FileReaderAsync(fileName,
+            return new AsyncFileReader(fileName,
                 CreateRowFactory(),
                 CreateTokenizer(fileMetaData),
                 fileMetaData);
