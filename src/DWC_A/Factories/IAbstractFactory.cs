@@ -39,12 +39,9 @@ namespace DwC_A.Factories
         /// <param name="fileName">Name of file to read</param>
         /// <param name="fileMetaData">File meta data</param>
         /// <returns>File reader object</returns>
-        IFileReader CreateFileReader(string fileName,
+        IFileReaderAggregate CreateFileReader(string fileName,
             IFileMetaData fileMetaData);
         
-        IAsyncFileReader CreateAsyncFileReader(string fileName,
-            IFileMetaData fileMetaData);
-
         /// <summary>
         /// Creates an object that is used to wrap CoreFileTypes and ExtensionFileTypes to a common interface
         /// </summary>

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DwC_A
 {
-    internal class FileReader : IFileReader
+    internal class FileReader : IFileReaderAggregate
     {
         private readonly StreamReader streamReader;
 
@@ -48,6 +48,50 @@ namespace DwC_A
             get
             {
                 return Rows.Skip(FileMetaData.HeaderRowCount);
+            }
+        }
+
+        public async IAsyncEnumerable<IRow> GetRowsAsync()
+        {
+            using (var stream = new FileStream(FileName, FileMode.Open))
+            {
+                await foreach (var row in streamReader.ReadRowsAsync(stream))
+                {
+                    yield return row;
+                }
+            }
+        }
+
+        public async IAsyncEnumerable<IRow> GetHeaderRowsAsync()
+        {
+            int count = 0;
+            await foreach (var row in GetRowsAsync())
+            {
+                if (count < FileMetaData.HeaderRowCount)
+                {
+                    yield return row;
+                }
+                else
+                {
+                    break;
+                }
+                count++;
+            }
+        }
+
+        public async IAsyncEnumerable<IRow> GetDataRowsAsync()
+        {
+            int count = 0;
+            await foreach (var row in GetRowsAsync())
+            {
+                if (count >= FileMetaData.HeaderRowCount)
+                {
+                    yield return row;
+                }
+                else
+                {
+                    count++;
+                }
             }
         }
 

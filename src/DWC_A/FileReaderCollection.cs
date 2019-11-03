@@ -1,35 +1,19 @@
 ﻿using DwC_A.Exceptions;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace DwC_A
 {
-    public class FileReaderCollection : IEnumerable<Tuple<IFileReader, IAsyncFileReader>>
+    public class FileReaderCollection  
     {
-        private readonly IEnumerable<Tuple<IFileReader, IAsyncFileReader>> fileReaders;
+        private readonly IEnumerable fileReaders;
 
         public FileReaderCollection(
-            IEnumerable<IFileReader> fileReaders, 
-            IEnumerable<IAsyncFileReader> asyncFileReaders)
+            IEnumerable fileReaders)
         {
-            this.fileReaders = fileReaders.Zip(asyncFileReaders,
-                (fileReader, asyncFileReader) =>
-                    new Tuple<IFileReader, IAsyncFileReader>(fileReader, asyncFileReader));
+            this.fileReaders = fileReaders;
         }
-
-        #region IEnumerable implementation
-        public IEnumerator<Tuple<IFileReader, IAsyncFileReader>> GetEnumerator()
-        {
-            return fileReaders.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
-        #endregion
 
         /// <summary>
         /// Retrieves an IFileReader for the specified file name
@@ -39,12 +23,13 @@ namespace DwC_A
         /// <exception cref="FileReaderNotFoundException"/>
         public IFileReader GetFileReaderByFileName(string fileName) 
         {
-            var fileReader = fileReaders.FirstOrDefault(n => n.Item1.FileMetaData.FileName == fileName);
+            var fileReader = fileReaders.OfType<IFileReader>()
+                .FirstOrDefault(n => n.FileMetaData.FileName == fileName);
             if(fileReader == null)
             {
                 throw new FileReaderNotFoundException(fileName);
             }
-            return fileReader.Item1;
+            return fileReader;
         }
 
         /// <summary>
@@ -55,12 +40,13 @@ namespace DwC_A
         /// <exception cref="FileReaderNotFoundException"/>
         public IAsyncFileReader GetAsyncFileReaderByFileName(string fileName)
         {
-            var fileReader = fileReaders.FirstOrDefault(n => n.Item2.FileMetaData.FileName == fileName);
+            var fileReader = fileReaders.OfType<IAsyncFileReader>()
+                .FirstOrDefault(n => n.FileMetaData.FileName == fileName);
             if (fileReader == null)
             {
                 throw new FileReaderNotFoundException(fileName);
             }
-            return fileReader.Item2;
+            return fileReader;
         }
 
         /// <summary>
@@ -70,9 +56,8 @@ namespace DwC_A
         /// <returns>IEnumerable list of IFileReaders of rowType</returns>
         public IEnumerable<IFileReader> GetFileReadersByRowType(string rowType)
         {
-            return fileReaders
-                .Where(n => n.Item1.FileMetaData.RowType == rowType)
-                .Select(n => n.Item1);
+            return fileReaders.OfType<IFileReader>()
+                .Where(n => n.FileMetaData.RowType == rowType);
         }
 
         /// <summary>
@@ -82,9 +67,8 @@ namespace DwC_A
         /// <returns>IEnumerable list of IAsyncFileReaders of rowType</returns>
         public IEnumerable<IAsyncFileReader> GetAsyncFileReadersByRowType(string rowType)
         {
-            return fileReaders
-                .Where(n => n.Item2.FileMetaData.RowType == rowType)
-                .Select(n => n.Item2);
+            return fileReaders.OfType<IAsyncFileReader>()
+                .Where(n => n.FileMetaData.RowType == rowType);
         }
     }
 }
