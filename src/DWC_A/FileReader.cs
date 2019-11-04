@@ -8,6 +8,7 @@ namespace DwC_A
 {
     internal class FileReader : IFileReaderAggregate
     {
+        const int BufferSize = 65536;   //TODO: Make this configurable to allow tuning
         private readonly StreamReader streamReader;
 
         public FileReader(string fileName,
@@ -25,7 +26,8 @@ namespace DwC_A
         {
             get
             {
-                using (var stream = new FileStream(FileName, FileMode.Open))
+                using (var stream = new FileStream(FileName, 
+                    FileMode.Open, FileAccess.Read, FileShare.Read, BufferSize, false))
                 {
                     foreach(var row in streamReader.ReadRows(stream))
                     {
@@ -53,7 +55,8 @@ namespace DwC_A
 
         public async IAsyncEnumerable<IRow> GetRowsAsync()
         {
-            using (var stream = new FileStream(FileName, FileMode.Open))
+            using (var stream = new FileStream(FileName, 
+                FileMode.Open, FileAccess.Read, FileShare.Read, BufferSize, true))
             {
                 await foreach (var row in streamReader.ReadRowsAsync(stream))
                 {
