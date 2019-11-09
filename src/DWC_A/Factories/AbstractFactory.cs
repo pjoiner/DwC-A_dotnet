@@ -30,19 +30,11 @@ namespace DwC_A.Factories
             return new RowFactory();
         }
 
-        public virtual IFileReader CreateFileReader(string fileName, IFileMetaData fileMetaData)
+        public virtual IFileReaderAggregate CreateFileReader(string fileName, IFileMetaData fileMetaData)
         {
             return new FileReader(fileName, 
                 CreateRowFactory(), 
                 CreateTokenizer(fileMetaData), 
-                fileMetaData);
-        }
-
-        public virtual IAsyncFileReader CreateAsyncFileReader(string fileName, IFileMetaData fileMetaData)
-        {
-            return new AsyncFileReader(fileName,
-                CreateRowFactory(),
-                CreateTokenizer(fileMetaData),
                 fileMetaData);
         }
 

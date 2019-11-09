@@ -30,7 +30,7 @@ steps:
     reporttypes: 'HtmlInline_AzurePipelines;Cobertura;Badges'
     assemblyfilters: '-xunit*'
 
-- task: PublishTestResults@1
+- task: PublishTestResults@2
   inputs: 
     testRunner: VSTest
     testResultsFiles: 'src/Tests/TestResults/*.trx'

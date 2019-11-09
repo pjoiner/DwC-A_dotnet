@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Tests
@@ -54,5 +55,19 @@ namespace Tests
                 Assert.NotEmpty(streamEnumerator.ReadRows(stream).ToArray());
             }
         }
+
+        [Fact]
+        public async Task ShouldEnumerateFileAsync()
+        {
+            using (Stream stream = new FileStream(fileName, FileMode.Open))
+            {
+                var streamEnumerator = new DwC_A.StreamReader(
+                    rowFactory,
+                    tokenizer,
+                    fileMetaDataMock.Object);
+                Assert.NotEmpty(await streamEnumerator.ReadRowsAsync(stream).ToArrayAsync());
+            }
+        }
+
     }
 }

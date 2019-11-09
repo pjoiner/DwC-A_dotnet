@@ -6,8 +6,9 @@ using System.Linq;
 
 namespace DwC_A
 {
-    internal class FileReader : IFileReader
+    internal class FileReader : IFileReaderAggregate
     {
+        const int BufferSize = 65536;   //TODO: Make this configurable to allow tuning
         private readonly StreamReader streamReader;
 
         public FileReader(string fileName,
@@ -25,7 +26,8 @@ namespace DwC_A
         {
             get
             {
-                using (var stream = new FileStream(FileName, FileMode.Open))
+                using (var stream = new FileStream(FileName, 
+                    FileMode.Open, FileAccess.Read, FileShare.Read, BufferSize, false))
                 {
                     foreach(var row in streamReader.ReadRows(stream))
                     {
@@ -48,6 +50,51 @@ namespace DwC_A
             get
             {
                 return Rows.Skip(FileMetaData.HeaderRowCount);
+            }
+        }
+
+        public async IAsyncEnumerable<IRow> GetRowsAsync()
+        {
+            using (var stream = new FileStream(FileName, 
+                FileMode.Open, FileAccess.Read, FileShare.Read, BufferSize, true))
+            {
+                await foreach (var row in streamReader.ReadRowsAsync(stream))
+                {
+                    yield return row;
+                }
+            }
+        }
+
+        public async IAsyncEnumerable<IRow> GetHeaderRowsAsync()
+        {
+            int count = 0;
+            await foreach (var row in GetRowsAsync())
+            {
+                if (count < FileMetaData.HeaderRowCount)
+                {
+                    yield return row;
+                }
+                else
+                {
+                    break;
+                }
+                count++;
+            }
+        }
+
+        public async IAsyncEnumerable<IRow> GetDataRowsAsync()
+        {
+            int count = 0;
+            await foreach (var row in GetRowsAsync())
+            {
+                if (count >= FileMetaData.HeaderRowCount)
+                {
+                    yield return row;
+                }
+                else
+                {
+                    count++;
+                }
             }
         }
 
