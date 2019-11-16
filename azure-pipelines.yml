@@ -15,7 +15,7 @@ steps:
   displayName: 'Use dotnet sdk 3.x'
   inputs:
     version: 3.x
-    includePreviewVersions: true
+    includePreviewVersions: false
 
 - script: |
     dotnet build --configuration $(buildConfiguration) 
