@@ -9,6 +9,7 @@ namespace Tests
 {
     public class StreamReaderTests
     {
+        string data = "abc,\"def\nghi\",jkl\nmno,pqr";
         Mock<IFileMetaData> fileMetaDataMock = new Mock<IFileMetaData>();
 
         public StreamReaderTests()
@@ -22,17 +23,28 @@ namespace Tests
         [Fact]
         public void ShouldReadStreamWithQuotes()
         {
-            var data = "abc,\"def\nghi\",jkl\nmno,pqr";
             using(var stream = new MemoryStream(Encoding.UTF8.GetBytes(data)))
             {
                 using(var reader = new StreamReader(stream))
                 {
                     var actual = new StringBuilder();
-                    Assert.True(reader.ReadRow(fileMetaDataMock.Object, ref actual));
-                    Assert.Equal("abc,\"def\nghi\",jkl", actual.Flush());
-                    Assert.True(reader.ReadRow(fileMetaDataMock.Object, ref actual));
-                    Assert.Equal("mno,pqr", actual.Flush());
-                    Assert.False(reader.ReadRow(fileMetaDataMock.Object, ref actual));
+                    Assert.Equal("abc,\"def\nghi\",jkl", reader.ReadRow(fileMetaDataMock.Object));
+                    Assert.Equal("mno,pqr", reader.ReadRow(fileMetaDataMock.Object));
+                    Assert.Null(reader.ReadRow(fileMetaDataMock.Object));
+                }
+            }
+        }
+
+        [Fact]
+        public async void ShouldReadStreamWithQuotesAsync()
+        {
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(data)))
+            {
+                using (var reader = new StreamReader(stream))
+                {
+                    Assert.Equal("abc,\"def\nghi\",jkl", await reader.ReadRowAsync(fileMetaDataMock.Object));
+                    Assert.Equal("mno,pqr", await reader.ReadRowAsync(fileMetaDataMock.Object));
+                    Assert.Null(await reader.ReadRowAsync(fileMetaDataMock.Object));
                 }
             }
         }

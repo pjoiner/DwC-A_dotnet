@@ -1,4 +1,5 @@
-﻿using DwC_A.Factories;
+﻿using DwC_A.Extensions;
+using DwC_A.Factories;
 using DwC_A.Meta;
 using System.Collections.Generic;
 using System.IO;
@@ -26,7 +27,7 @@ namespace DwC_A
             using(var reader = new System.IO.StreamReader(stream, fileMetaData.Encoding))
             {
                 string line;
-                while ((line = reader.ReadLine()) != null)
+                while ((line = reader.ReadRow(fileMetaData)) != null)
                 {
                     yield return rowFactory.CreateRow(tokenizer.Split(line), fileMetaData.Fields);
                 }
@@ -38,7 +39,7 @@ namespace DwC_A
             using(var reader = new System.IO.StreamReader(stream, fileMetaData.Encoding))
             {
                 string line;
-                while((line = await reader.ReadLineAsync()) != null)
+                while((line = await reader.ReadRowAsync(fileMetaData)) != null)
                 {
                     yield return rowFactory.CreateRow(tokenizer.Split(line), fileMetaData.Fields);
                 }
