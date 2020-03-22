@@ -18,6 +18,11 @@
     <PackageTags>DwC-A darwin-core Biodiversity</PackageTags>
   </PropertyGroup>
   <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="System.Linq.Async" Version="4.0.0" />
   </ItemGroup>
 
