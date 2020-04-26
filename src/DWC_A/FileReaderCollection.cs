@@ -16,6 +16,24 @@ namespace DwC_A
         }
 
         /// <summary>
+        /// Retrieves all the synchronous file readers
+        /// </summary>
+        /// <returns>Enumerable of IFileReader</returns>
+        public IEnumerable<IFileReader> GetFileReaders()
+        {
+            return fileReaders.OfType<IFileReader>();
+        }
+
+        /// <summary>
+        /// Retrieves all the asyncronous file readers
+        /// </summary>
+        /// <returns>Enumerable of IAsyncFileReader</returns>
+        public IEnumerable<IAsyncFileReader> GetAsyncFileReaders()
+        {
+            return fileReaders.OfType<IAsyncFileReader>();
+        }
+
+        /// <summary>
         /// Retrieves an IFileReader for the specified file name
         /// </summary>
         /// <param name="fileName">Name of the file in the archive (e.g. taxon.txt)</param>
