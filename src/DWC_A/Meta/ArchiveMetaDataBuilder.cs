@@ -53,13 +53,13 @@ namespace DwC_A.Meta
         {
             var attributeNames = new[]
             {
-                "LinesTerminatedBy",
-                "FieldsTerminatedBy",
-                "FieldsEnclosedBy",
-                "IgnoreHeaderLines",
-                "RowType",
-                "Encoding",
-                "DateFormat"
+                "linesTerminatedBy",
+                "fieldsTerminatedBy",
+                "fieldsEnclosedBy",
+                "ignoreHeaderLines",
+                "rowType",
+                "encoding",
+                "dateFormat"
             };
             var overrides = new XmlAttributeOverrides();
             foreach(var attributeName in attributeNames)
@@ -67,11 +67,20 @@ namespace DwC_A.Meta
                 var attribute = new XmlAttributes()
                 {
                     XmlDefaultValue = null,
-                    XmlAttribute = new XmlAttributeAttribute() { AttributeName = attributeName }
+                    XmlAttribute = new XmlAttributeAttribute()
+                    { 
+                        AttributeName = attributeName                        
+                    }
                 };
-                overrides.Add(typeof(FileType), attributeName, attribute);
+                var memberName = Capitalize(attributeName);
+                overrides.Add(typeof(FileType), memberName, attribute);
             }
             return overrides;
+        }
+
+        private string Capitalize(string name)
+        {
+            return char.ToUpper(name[0]) + name.Substring(1);
         }
     }
 }

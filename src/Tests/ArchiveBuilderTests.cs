@@ -2,78 +2,69 @@
 using DwC_A.Terms;
 using DwC_A.Writers;
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Tests
 {
     public class ArchiveBuilderTests
     {
-        class Taxon
+        class Occurrence
         {
-            public string Id { get; set; }
-            public string ScientificName { get; set; }
+            public Guid OccurrenceID { get; set; }
+            public string BasisOfRecord { get; set; }
+            public string ScientificName {get; set;}
+            public DateTime EventDate { get; set; }
+            public double DecimalLatitude { get; set; }
+            public double DecimalLongitude { get; set; }
+            public string GeodeticDatum { get; set; }
         }
 
-        readonly Taxon[] taxa = new[]
-        {
-            new Taxon
-            {
-                Id = "1234",
-                ScientificName = "Platax orbicularis"
-            },
-            new Taxon
-            {
-                Id = "4567",
-                ScientificName = "Pterois volitans"
-            }
-        };
-
         [Fact]
-        public void ShouldBuildArchive()
+        public async Task ShouldBuildArchive()
         {
+            Occurrence[] occurrences;
+            using (var fs = File.OpenRead("./resources/occurrenceData.json"))
+            {
+                occurrences = await JsonSerializer.DeserializeAsync<Occurrence[]>(fs);
+            }
             var fieldsMetaDataBuilder = FieldsMetaDataBuilder.Fields()
                 .AutomaticallyIndex()
-                .AddField(_ => _.Term(Terms.identificationID))
-                .AddField(_ => _.Term(Terms.scientificName));
+                .AddField(_ => _.Term(Terms.occurrenceID))
+                .AddField(_ => _.Term(Terms.basisOfRecord))
+                .AddField(_ => _.Term(Terms.scientificName))
+                .AddField(_ => _.Term(Terms.eventDate))
+                .AddField(_ => _.Term(Terms.decimalLatitude))
+                .AddField(_ => _.Term(Terms.decimalLongitude))
+                .AddField(_ => _.Term(Terms.geodeticDatum));
 
-            var coreFile = CoreFileMetaDataBuilder.File("taxon.txt")
-                .Encoding(Encoding.UTF8)
-                .Index(0)
-                .RowType(RowTypes.Taxon)
-                .AddFields(fieldsMetaDataBuilder);
-
-            var extensionFieldsBuilder = FieldsMetaDataBuilder.Fields()
-                .AutomaticallyIndex()
-                .AddField(_ => _.Term(Terms.identificationID))
-                .AddField(_ => _.Term(Terms.sampleSizeValue));
-
-            var extensionFile = ExtensionFileMetaDataBuilder.File("occurrent.txt")
-                .CoreIndex(0)
-                .RowType(RowTypes.Occurrence)
-                .AddFields(extensionFieldsBuilder);
-
-            var archiveMetaDataBuilder = new ArchiveMetaDataBuilder(".")
-                .CoreFile(coreFile)
-                .AddExtension(extensionFile);
-
-            var coreFileMetaDataRaw = CoreFileMetaDataBuilder.File("taxon.txt")
+            var coreFileMetaDataBuilder = CoreFileMetaDataBuilder.File("occurrence.txt")
                 .IgnoreHeaderLines(1)
                 .Encoding(Encoding.UTF8)
                 .Index(0)
-                .RowType(RowTypes.Taxon)
-                .AddFields(fieldsMetaDataBuilder)
-                .Build();
+                .RowType(RowTypes.Occurrence)
+                .AddFields(fieldsMetaDataBuilder);
 
-            var coreFileMetaData = new CoreFileMetaData(coreFileMetaDataRaw);
+            var coreFileMetaData = new CoreFileMetaData(coreFileMetaDataBuilder.Build());
+
+            var archiveMetaDataBuilder = new ArchiveMetaDataBuilder(".")
+                .CoreFile(coreFileMetaDataBuilder);
+
             var fileBuilder = new FileBuilder(coreFileMetaData);
             fileBuilder.BuildRows(rowBuilder =>
             {
-                foreach (var taxon in taxa)
+                foreach (var occurrence in occurrences)
                 {
-                    rowBuilder.AddField(taxon.Id)
-                              .AddField(taxon.ScientificName)
+                    rowBuilder.AddField(occurrence.OccurrenceID)
+                              .AddField(occurrence.BasisOfRecord)
+                              .AddField(occurrence.ScientificName)
+                              .AddField(occurrence.EventDate.ToString("yyyy-MM-dd"))
+                              .AddField(occurrence.DecimalLatitude)
+                              .AddField(occurrence.DecimalLongitude)
+                              .AddField(occurrence.GeodeticDatum)
                               .Build();
                 }
             });
