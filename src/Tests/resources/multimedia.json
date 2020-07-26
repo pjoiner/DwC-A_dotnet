@@ -1,0 +1,20 @@
+[
+    {
+        "Id": "971d0cc0-3415-4626-9693-fa92e405a220",
+        "Type": "StillImage",
+        "Format": "image/jpeg",
+        "Identifier": "https://static.inaturalist.org/photos/38199510/original.jpeg?1557188819"
+    },
+    {
+        "Id": "67e0aa36-273f-4eea-9fc2-65b4b78c97e9",
+        "Type": "StillImage",
+        "Format": "image/jpeg",
+        "Identifier": "https://static.inaturalist.org/photos/53842273/original.jpeg?1570842304"
+    },
+    {
+        "Id": "cb7af069-5bf0-4be7-8759-ea8178c89a5b",
+        "Type": "StillImage",
+        "Format": "image/jpeg",
+        "Identifier": "https://static.inaturalist.org/photos/39035359/original.jpeg?1558021655"
+    }
+]

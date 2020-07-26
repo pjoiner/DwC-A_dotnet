@@ -1,9 +1,8 @@
 ﻿using DwC_A.Meta;
-using DwC_A.Terms;
 using System;
 using System.IO;
 
-namespace DwC_A.Writers
+namespace DwC_A.Builders
 {
     public class FileBuilder
     {
@@ -19,7 +18,7 @@ namespace DwC_A.Writers
         public FileBuilder AddHeader(TextWriter writer)
         {
             var rowBuilder = new RowBuilder(fileMetaData, writer);
-            foreach(var field in fileMetaData.Fields)
+            foreach (var field in fileMetaData.Fields)
             {
                 rowBuilder.AddField(Terms.Terms.ShortName(field.Term));
             }
@@ -27,7 +26,7 @@ namespace DwC_A.Writers
             return this;
         }
 
-        public void BuildRows( Action<RowBuilder> row )
+        public void BuildRows(Action<RowBuilder> row)
         {
             using (var stream = new FileStream(fileMetaData.FileName, FileMode.Create))
             {
@@ -35,7 +34,7 @@ namespace DwC_A.Writers
                 {
                     var rowBuilder = new RowBuilder(fileMetaData, writer);
                     writer.NewLine = fileMetaData.LinesTerminatedBy;
-                    if(fileMetaData.HeaderRowCount > 0)
+                    if (fileMetaData.HeaderRowCount > 0)
                     {
                         AddHeader(writer);
                     }

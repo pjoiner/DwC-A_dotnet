@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace DwC_A.Writers
+namespace DwC_A.Builders
 {
     public class RowBuilder
     {

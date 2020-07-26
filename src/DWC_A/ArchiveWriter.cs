@@ -1,30 +1,31 @@
-﻿using DwC_A.Meta;
+﻿using DwC_A.Builders;
+using DwC_A.Meta;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 
 namespace DwC_A.Writers
 {
-    public class ArchiveBuilder
+    public class ArchiveWriter
     {
         private readonly ArchiveMetaDataBuilder archiveMetaDataBuilder;
         private readonly FileBuilder coreFileBuilder;
         private readonly IList<FileBuilder> extensionFileBuilders = new List<FileBuilder>();
         private readonly IList<string> extraFiles = new List<string>();
 
-        public ArchiveBuilder(ArchiveMetaDataBuilder archiveMetaDataBuilder, FileBuilder coreFileBuilder)
+        public ArchiveWriter(ArchiveMetaDataBuilder archiveMetaDataBuilder, FileBuilder coreFileBuilder)
         {
             this.archiveMetaDataBuilder = archiveMetaDataBuilder;
             this.coreFileBuilder = coreFileBuilder;
         }
 
-        public ArchiveBuilder AddExtensionFileBuilder(FileBuilder extension)
+        public ArchiveWriter AddExtensionFileBuilder(FileBuilder extension)
         {
             extensionFileBuilders.Add(extension);
             return this;
         }
 
-        public ArchiveBuilder AddExtraFile(string fileName)
+        public ArchiveWriter AddExtraFile(string fileName)
         {
             extraFiles.Add(fileName);
             return this;

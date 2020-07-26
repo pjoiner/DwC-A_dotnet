@@ -5,15 +5,20 @@ using Xunit;
 
 namespace Tests
 {
+    [Collection("ArchiveWriterCollection")]
     public class CoreFileMetaDataBuilderTests
     {
+        private readonly ArchiveWriterFixture fixture;
+
+        public CoreFileMetaDataBuilderTests(ArchiveWriterFixture fixture)
+        {
+            this.fixture = fixture;
+        }
+
         [Fact]
         public void ShoudBuildFileMetaData()
         {
-            var fieldsMetaDataBuilder = FieldsMetaDataBuilder.Fields()
-                .AutomaticallyIndex()
-                .AddField(_ => _.Term(Terms.identificationID))
-                .AddField(_ => _.Term(Terms.scientificName));
+            var fieldsMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
 
             var fileMetaData = CoreFileMetaDataBuilder.File("taxon.txt")
                 .Encoding(Encoding.UTF8)

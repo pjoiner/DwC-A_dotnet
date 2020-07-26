@@ -1,61 +1,54 @@
-﻿using DwC_A.Meta;
+﻿using DwC_A.Builders;
+using DwC_A.Meta;
 using DwC_A.Terms;
-using DwC_A.Writers;
+using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Tests
 {
+    [Collection("ArchiveWriterCollection")]
     public class FileBuilderTests
     {
-        class Taxon
+        private readonly ArchiveWriterFixture fixture;
+
+        public FileBuilderTests(ArchiveWriterFixture fixture)
         {
-            public string Id { get; set; }
-            public string ScientificName { get; set; }
+            this.fixture = fixture;
         }
 
-        readonly Taxon[] taxa = new[]
-        {
-            new Taxon
-            {
-                Id = "1234",
-                ScientificName = "Platax orbicularis"
-            },
-            new Taxon
-            {
-                Id = "4567",
-                ScientificName = "Pterois volitans"
-            }
-        };
-
         [Fact]
-        public void ShouldBuildTaxonFile()
+        public async Task ShouldBuildOccurrenceFile()
         {
-            var fieldsMetaDataBuilder = FieldsMetaDataBuilder.Fields()
-                .AutomaticallyIndex()
-                .AddField(_ => _.Term(Terms.identificationID))
-                .AddField(_ => _.Term(Terms.scientificName));
+            var occurrences = await fixture.GetOccurrencesAsync();
+            var fieldsMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
 
-            var coreFileMetaDataRaw = CoreFileMetaDataBuilder.File("taxon.txt")
+            var occurrenceMetaData = CoreFileMetaDataBuilder.File("occurrence.txt")
                 .IgnoreHeaderLines(1)
                 .Encoding(Encoding.UTF8)
                 .Index(0)
-                .RowType(RowTypes.Taxon)
+                .RowType(RowTypes.Occurrence)
                 .AddFields(fieldsMetaDataBuilder)
                 .Build();
 
-            var coreFileMetaData = new CoreFileMetaData(coreFileMetaDataRaw);
+            var coreFileMetaData = new CoreFileMetaData(occurrenceMetaData);
             var fileBuilder = new FileBuilder(coreFileMetaData);
-            fileBuilder.BuildRows( rowBuilder =>
+            fileBuilder.BuildRows(rowBuilder =>
             {
-                foreach (var taxon in taxa)
+                foreach (var occurrence in occurrences)
                 {
-                    rowBuilder.AddField(taxon.Id)
-                              .AddField(taxon.ScientificName)
+                    rowBuilder.AddField(occurrence.OccurrenceID)
+                              .AddField(occurrence.BasisOfRecord)
+                              .AddField(occurrence.ScientificName)
+                              .AddField(occurrence.EventDate.ToString("yyyy-MM-dd"))
+                              .AddField(occurrence.DecimalLatitude)
+                              .AddField(occurrence.DecimalLongitude)
+                              .AddField(occurrence.GeodeticDatum)
                               .Build();
                 }
             });
-
+            Assert.True(File.Exists("occurrence.txt"));
         }
     }
 }

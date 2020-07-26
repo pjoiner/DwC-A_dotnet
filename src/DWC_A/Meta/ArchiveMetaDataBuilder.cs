@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace DwC_A.Meta
