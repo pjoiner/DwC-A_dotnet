@@ -31,8 +31,7 @@ namespace Tests
                 .RowType(RowTypes.Occurrence)
                 .AddFields(extensionFieldsBuilder);
 
-            new ArchiveMetaDataBuilder(".")
-                .CoreFile(coreFile)
+            ArchiveMetaDataBuilder.CoreFile(coreFile)
                 .AddExtension(extensionFile)
                 .Serialize();
         }

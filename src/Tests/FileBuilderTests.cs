@@ -48,7 +48,7 @@ namespace Tests
                               .Build();
                 }
             });
-            Assert.True(File.Exists("occurrence.txt"));
+            Assert.True(File.Exists(fileBuilder.FullFileName));
         }
     }
 }

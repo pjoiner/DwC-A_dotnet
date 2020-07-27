@@ -21,6 +21,8 @@ namespace Tests
         [Fact]
         public async Task ShouldBuildArchive()
         {
+            //ArchiveBuilderHelper.SetPath(".");
+
             var occurrences = await fixture.GetOccurrencesAsync();
             var occurrenceMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
             var coreFileMetaDataBuilder = CoreFileMetaDataBuilder.File("occurrence.txt")
@@ -30,8 +32,8 @@ namespace Tests
                 .RowType(RowTypes.Occurrence)
                 .AddFields(occurrenceMetaDataBuilder);
             var coreFileMetaData = new CoreFileMetaData(coreFileMetaDataBuilder.Build());
-            var fileBuilder = new FileBuilder(coreFileMetaData);
-            fileBuilder.BuildRows(rowBuilder =>
+            var coreFileBuilder = new FileBuilder(coreFileMetaData);
+            coreFileBuilder.BuildRows(rowBuilder =>
             {
                 foreach (var occurrence in occurrences)
                 {
@@ -68,13 +70,8 @@ namespace Tests
                 }
             });
 
-            var archiveMetaDataBuilder = new ArchiveMetaDataBuilder(".")
-                .CoreFile(coreFileMetaDataBuilder)
-                .AddExtension(extensionFileMetaDataBuilder);
-
-            var archiveWriter = new ArchiveWriter(archiveMetaDataBuilder, fileBuilder);
-            archiveWriter
-                .AddExtensionFileBuilder(extensionFileBuilder)
+            ArchiveWriter.CoreFile(coreFileBuilder, coreFileMetaDataBuilder)
+                .AddExtensionFile(extensionFileBuilder, extensionFileMetaDataBuilder)
                 .AddExtraFile("resources/ExtraData.txt")
                 .Build("archivexxx.zip");
         }

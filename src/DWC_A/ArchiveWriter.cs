@@ -9,18 +9,24 @@ namespace DwC_A.Writers
     public class ArchiveWriter
     {
         private readonly ArchiveMetaDataBuilder archiveMetaDataBuilder;
-        private readonly FileBuilder coreFileBuilder;
+        private FileBuilder coreFileBuilder;
         private readonly IList<FileBuilder> extensionFileBuilders = new List<FileBuilder>();
         private readonly IList<string> extraFiles = new List<string>();
 
-        public ArchiveWriter(ArchiveMetaDataBuilder archiveMetaDataBuilder, FileBuilder coreFileBuilder)
+        protected ArchiveWriter(FileBuilder coreFileBuilder, CoreFileMetaDataBuilder coreFileMetaDataBuilder)
         {
-            this.archiveMetaDataBuilder = archiveMetaDataBuilder;
             this.coreFileBuilder = coreFileBuilder;
+            archiveMetaDataBuilder = ArchiveMetaDataBuilder.CoreFile(coreFileMetaDataBuilder);
         }
 
-        public ArchiveWriter AddExtensionFileBuilder(FileBuilder extension)
+        public static ArchiveWriter CoreFile(FileBuilder coreFileBuilder, CoreFileMetaDataBuilder coreFileMetaDataBuilder)
         {
+            return new ArchiveWriter(coreFileBuilder, coreFileMetaDataBuilder);
+        }
+
+        public ArchiveWriter AddExtensionFile(FileBuilder extension, ExtensionFileMetaDataBuilder extensionFileMetaDataBuilder)
+        {
+            archiveMetaDataBuilder.AddExtension(extensionFileMetaDataBuilder);
             extensionFileBuilders.Add(extension);
             return this;
         }
@@ -33,17 +39,16 @@ namespace DwC_A.Writers
 
         public void Build(string archiveFileName)
         {
-            const string metaDataFileName = "meta.xml";
-            archiveMetaDataBuilder.Serialize();
+            var metaDataFileName = archiveMetaDataBuilder.Serialize();
             using(var stream = new FileStream(archiveFileName, FileMode.Create))
             {
                 using(var zipArchive = new ZipArchive(stream, ZipArchiveMode.Create, false))
                 {
-                    zipArchive.CreateEntryFromFile(metaDataFileName, metaDataFileName);
-                    zipArchive.CreateEntryFromFile(coreFileBuilder.FileName, coreFileBuilder.FileName);
+                    zipArchive.CreateEntryFromFile(metaDataFileName, archiveMetaDataBuilder.FileName);
+                    zipArchive.CreateEntryFromFile(coreFileBuilder.FullFileName, coreFileBuilder.FileName);
                     foreach(var extensionFileBuilder in extensionFileBuilders)
                     {
-                        zipArchive.CreateEntryFromFile(extensionFileBuilder.FileName, extensionFileBuilder.FileName);
+                        zipArchive.CreateEntryFromFile(extensionFileBuilder.FullFileName, extensionFileBuilder.FileName);
                     }
                     foreach(var extraFile in extraFiles)
                     {

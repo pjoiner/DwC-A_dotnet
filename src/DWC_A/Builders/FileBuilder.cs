@@ -14,6 +14,7 @@ namespace DwC_A.Builders
         }
 
         public string FileName => fileMetaData.FileName;
+        public string FullFileName { get; private set; }
 
         public FileBuilder AddHeader(TextWriter writer)
         {
@@ -26,9 +27,10 @@ namespace DwC_A.Builders
             return this;
         }
 
-        public void BuildRows(Action<RowBuilder> row)
+        public string BuildRows(Action<RowBuilder> row)
         {
-            using (var stream = new FileStream(fileMetaData.FileName, FileMode.Create))
+            FullFileName = Path.Combine(ArchiveBuilderHelper.Path, fileMetaData.FileName);
+            using (var stream = new FileStream(FullFileName, FileMode.Create))
             {
                 using (var writer = new StreamWriter(stream, fileMetaData.Encoding))
                 {
@@ -41,6 +43,7 @@ namespace DwC_A.Builders
                     row(rowBuilder);
                 }
             }
+            return FullFileName;
         }
 
     }
