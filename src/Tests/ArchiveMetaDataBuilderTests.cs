@@ -1,4 +1,5 @@
-﻿using DwC_A.Meta;
+﻿using DwC_A.Builders;
+using DwC_A.Meta;
 using DwC_A.Terms;
 using System.Text;
 using Xunit;
@@ -10,6 +11,8 @@ namespace Tests
         [Fact]
         public void ShouldBuildMetaFile()
         {
+            var context = new BuilderContext(".");
+
             var fieldsMetaDataBuilder = FieldsMetaDataBuilder.Fields()
                 .AutomaticallyIndex()
                 .AddField(_ => _.Term(Terms.identificationID))
@@ -32,6 +35,7 @@ namespace Tests
                 .AddFields(extensionFieldsBuilder);
 
             ArchiveMetaDataBuilder.CoreFile(coreFile)
+                .Context(context)
                 .AddExtension(extensionFile)
                 .Serialize();
         }

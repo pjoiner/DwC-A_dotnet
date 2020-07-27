@@ -8,6 +8,7 @@ namespace DwC_A.Meta
     {
         private readonly Archive archive = new Archive();
         private readonly string fileName = "meta.xml";
+        private BuilderContext context;
 
         protected ArchiveMetaDataBuilder(CoreFileMetaDataBuilder coreFile)
         {
@@ -27,6 +28,12 @@ namespace DwC_A.Meta
             return this;
         }
 
+        public ArchiveMetaDataBuilder Context(BuilderContext context)
+        {
+            this.context = context;
+            return this;
+        }
+
         public ArchiveMetaDataBuilder MetaData(string fileName)
         {
             archive.Metadata = fileName;
@@ -40,7 +47,7 @@ namespace DwC_A.Meta
 
         public string Serialize()
         {
-            var path = ArchiveBuilderHelper.Path;
+            var path = GetPath();
             var metaDataFileName = System.IO.Path.Combine(path, fileName);
             var overrides = GetXmlAttributeOverrides();
             XmlSerializer serializer = new XmlSerializer(typeof(Archive), overrides);
@@ -49,6 +56,15 @@ namespace DwC_A.Meta
                 serializer.Serialize(stream, Build());
             }
             return metaDataFileName;
+        }
+
+        private string GetPath()
+        {
+            if(context == null)
+            {
+                return BuilderContext.Default.Path;
+            }
+            return context.Path;
         }
 
         private XmlAttributeOverrides GetXmlAttributeOverrides()

@@ -23,6 +23,7 @@ namespace Tests
         {
             var occurrences = await fixture.GetOccurrencesAsync();
             var fieldsMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
+            var context = new BuilderContext(".");
 
             var occurrenceMetaData = CoreFileMetaDataBuilder.File("occurrence.txt")
                 .IgnoreHeaderLines(1)
@@ -33,22 +34,24 @@ namespace Tests
                 .Build();
 
             var coreFileMetaData = new CoreFileMetaData(occurrenceMetaData);
-            var fileBuilder = new FileBuilder(coreFileMetaData);
-            fileBuilder.BuildRows(rowBuilder =>
-            {
-                foreach (var occurrence in occurrences)
+            var fileBuilder = new FileBuilder(coreFileMetaData)
+                .Context(context)
+                .BuildRows(rowBuilder =>
                 {
-                    rowBuilder.AddField(occurrence.OccurrenceID)
-                              .AddField(occurrence.BasisOfRecord)
-                              .AddField(occurrence.ScientificName)
-                              .AddField(occurrence.EventDate.ToString("yyyy-MM-dd"))
-                              .AddField(occurrence.DecimalLatitude)
-                              .AddField(occurrence.DecimalLongitude)
-                              .AddField(occurrence.GeodeticDatum)
-                              .Build();
-                }
-            });
-            Assert.True(File.Exists(fileBuilder.FullFileName));
+                    foreach (var occurrence in occurrences)
+                    {
+                        rowBuilder.AddField(occurrence.OccurrenceID)
+                                    .AddField(occurrence.BasisOfRecord)
+                                    .AddField(occurrence.ScientificName)
+                                    .AddField(occurrence.EventDate.ToString("yyyy-MM-dd"))
+                                    .AddField(occurrence.DecimalLatitude)
+                                    .AddField(occurrence.DecimalLongitude)
+                                    .AddField(occurrence.GeodeticDatum)
+                                    .Build();
+                    }
+                });
+            var fileName = fileBuilder.Build();
+            Assert.True(File.Exists(fileName));
         }
     }
 }

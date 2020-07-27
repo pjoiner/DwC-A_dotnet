@@ -7,6 +7,8 @@ namespace DwC_A.Builders
     public class FileBuilder
     {
         private readonly IFileMetaData fileMetaData;
+        private Action<RowBuilder> row;
+        private BuilderContext context;
 
         public FileBuilder(IFileMetaData fileMetaData)
         {
@@ -16,7 +18,7 @@ namespace DwC_A.Builders
         public string FileName => fileMetaData.FileName;
         public string FullFileName { get; private set; }
 
-        public FileBuilder AddHeader(TextWriter writer)
+        private FileBuilder AddHeader(TextWriter writer)
         {
             var rowBuilder = new RowBuilder(fileMetaData, writer);
             foreach (var field in fileMetaData.Fields)
@@ -27,9 +29,30 @@ namespace DwC_A.Builders
             return this;
         }
 
-        public string BuildRows(Action<RowBuilder> row)
+        private string GetPath()
         {
-            FullFileName = Path.Combine(ArchiveBuilderHelper.Path, fileMetaData.FileName);
+            if(context == null)
+            {
+                return BuilderContext.Default.Path;
+            }
+            return context.Path;
+        }
+
+        public FileBuilder Context(BuilderContext context)
+        {
+            this.context = context;
+            return this;
+        }
+
+        public FileBuilder BuildRows(Action<RowBuilder> row)
+        {
+            this.row = row;
+            return this;
+        }
+
+        public string Build()
+        {
+            FullFileName = Path.Combine(GetPath(), fileMetaData.FileName);
             using (var stream = new FileStream(FullFileName, FileMode.Create))
             {
                 using (var writer = new StreamWriter(stream, fileMetaData.Encoding))
@@ -45,6 +68,5 @@ namespace DwC_A.Builders
             }
             return FullFileName;
         }
-
     }
 }

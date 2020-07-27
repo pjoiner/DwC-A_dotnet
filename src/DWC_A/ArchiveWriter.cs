@@ -12,6 +12,7 @@ namespace DwC_A.Writers
         private FileBuilder coreFileBuilder;
         private readonly IList<FileBuilder> extensionFileBuilders = new List<FileBuilder>();
         private readonly IList<string> extraFiles = new List<string>();
+        private BuilderContext context;
 
         protected ArchiveWriter(FileBuilder coreFileBuilder, CoreFileMetaDataBuilder coreFileMetaDataBuilder)
         {
@@ -31,6 +32,12 @@ namespace DwC_A.Writers
             return this;
         }
 
+        public ArchiveWriter Context(BuilderContext context)
+        {
+            this.context = context;
+            return this;
+        }
+
         public ArchiveWriter AddExtraFile(string fileName)
         {
             extraFiles.Add(fileName);
@@ -39,16 +46,18 @@ namespace DwC_A.Writers
 
         public void Build(string archiveFileName)
         {
-            var metaDataFileName = archiveMetaDataBuilder.Serialize();
+            var metaDataFileName = archiveMetaDataBuilder
+                .Context(context)
+                .Serialize();
             using(var stream = new FileStream(archiveFileName, FileMode.Create))
             {
                 using(var zipArchive = new ZipArchive(stream, ZipArchiveMode.Create, false))
                 {
                     zipArchive.CreateEntryFromFile(metaDataFileName, archiveMetaDataBuilder.FileName);
-                    zipArchive.CreateEntryFromFile(coreFileBuilder.FullFileName, coreFileBuilder.FileName);
+                    zipArchive.CreateEntryFromFile(coreFileBuilder.Build(), coreFileBuilder.FileName);
                     foreach(var extensionFileBuilder in extensionFileBuilders)
                     {
-                        zipArchive.CreateEntryFromFile(extensionFileBuilder.FullFileName, extensionFileBuilder.FileName);
+                        zipArchive.CreateEntryFromFile(extensionFileBuilder.Build(), extensionFileBuilder.FileName);
                     }
                     foreach(var extraFile in extraFiles)
                     {
