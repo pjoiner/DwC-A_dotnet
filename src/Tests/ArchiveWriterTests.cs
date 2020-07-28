@@ -2,6 +2,8 @@
 using DwC_A.Meta;
 using DwC_A.Terms;
 using DwC_A.Writers;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,20 +37,7 @@ namespace Tests
             var coreFileMetaData = new CoreFileMetaData(coreFileMetaDataBuilder.Build());
             var coreFileBuilder = FileBuilder.MetaData(coreFileMetaData)
                 .Context(context)
-                .BuildRows(rowBuilder =>
-                {
-                    foreach (var occurrence in occurrences)
-                    {
-                        rowBuilder.AddField(occurrence.OccurrenceID)
-                                  .AddField(occurrence.BasisOfRecord)
-                                  .AddField(occurrence.ScientificName)
-                                  .AddField(occurrence.EventDate.ToString("yyyy-MM-dd"))
-                                  .AddField(occurrence.DecimalLatitude)
-                                  .AddField(occurrence.DecimalLongitude)
-                                  .AddField(occurrence.GeodeticDatum)
-                                  .Build();
-                    }
-                });
+                .BuildRows(rowBuilder => BuildCoreRows(rowBuilder));
 
             var multimedia = await fixture.GetMultimediaAsync();
             var multimediaMetaDataBuilder = fixture.MultimediaMetaDataBuilder;
@@ -61,17 +50,7 @@ namespace Tests
             var extensionFileMetaData = new ExtensionFileMetaData(extensionFileMetaDataBuilder.Build());
             var extensionFileBuilder = FileBuilder.MetaData(extensionFileMetaData)
                 .Context(context)
-                .BuildRows(rowBuilder =>
-                {
-                    foreach (var media in multimedia)
-                    {
-                        rowBuilder.AddField(media.Id)
-                                  .AddField(media.Type)
-                                  .AddField(media.Format)
-                                  .AddField(media.Identifier)
-                                  .Build();
-                    }
-                });
+                .BuildRows(rowBuilder => BuildExtensionRows(rowBuilder));
 
             var archiveName = "archivexxx.zip";
             ArchiveWriter.CoreFile(coreFileBuilder, coreFileMetaDataBuilder)
@@ -82,6 +61,35 @@ namespace Tests
 
             Assert.True(File.Exists(archiveName));
             context.Cleanup();
+        }
+
+        private IEnumerable<string> BuildCoreRows(RowBuilder rowBuilder)
+        {
+            var occurrences = fixture.GetOccurrencesAsync().Result;
+            foreach (var occurrence in occurrences)
+            {
+                yield return rowBuilder.AddField(occurrence.OccurrenceID)
+                          .AddField(occurrence.BasisOfRecord)
+                          .AddField(occurrence.ScientificName)
+                          .AddField(occurrence.EventDate.ToString("yyyy-MM-dd"))
+                          .AddField(occurrence.DecimalLatitude)
+                          .AddField(occurrence.DecimalLongitude)
+                          .AddField(occurrence.GeodeticDatum)
+                          .Build();
+            }
+        }
+
+        private IEnumerable<string> BuildExtensionRows(RowBuilder rowBuilder)
+        {
+            var multimedia = fixture.GetMultimediaAsync().Result;
+            foreach (var media in multimedia)
+            {
+                yield return rowBuilder.AddField(media.Id)
+                          .AddField(media.Type)
+                          .AddField(media.Format)
+                          .AddField(media.Identifier)
+                          .Build();
+            }
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using DwC_A.Meta;
 using System.Collections.Generic;
-using System.IO;
 
 namespace DwC_A.Builders
 {
@@ -11,11 +10,9 @@ namespace DwC_A.Builders
     {
         private readonly IFileMetaData fileMetaData;
         private IList<string> fields = new List<string>();
-        private readonly TextWriter writer;
 
-        internal RowBuilder(IFileMetaData fileMetaData, TextWriter writer)
+        internal RowBuilder(IFileMetaData fileMetaData)
         {
-            this.writer = writer;
             this.fileMetaData = fileMetaData;
         }
 
@@ -31,11 +28,18 @@ namespace DwC_A.Builders
         }
 
         /// <summary>
-        /// Call this method to write the row to the file.
+        /// Call this method to generate a string that represents one row in the file.
         /// </summary>
-        public void Build()
+        public string Build()
         {
-            writer.WriteLine(string.Join(fileMetaData.FieldsTerminatedBy, fields));
+            try
+            {
+                return string.Join(fileMetaData.FieldsTerminatedBy, fields);
+            }
+            finally
+            {
+                fields.Clear();
+            }
         }
     }
 }

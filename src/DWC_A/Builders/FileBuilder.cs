@@ -1,5 +1,6 @@
 ﻿using DwC_A.Meta;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace DwC_A.Builders
@@ -10,7 +11,7 @@ namespace DwC_A.Builders
     public class FileBuilder
     {
         private readonly IFileMetaData fileMetaData;
-        private Action<RowBuilder> row;
+        private Func<RowBuilder, IEnumerable<string>> row;
         private BuilderContext context;
 
         private FileBuilder(IFileMetaData fileMetaData)
@@ -39,7 +40,7 @@ namespace DwC_A.Builders
 
         private FileBuilder AddHeader(TextWriter writer)
         {
-            var rowBuilder = new RowBuilder(fileMetaData, writer);
+            var rowBuilder = new RowBuilder(fileMetaData);
             foreach (var field in fileMetaData.Fields)
             {
                 rowBuilder.AddField(Terms.Terms.ShortName(field.Term));
@@ -70,12 +71,12 @@ namespace DwC_A.Builders
         }
 
         /// <summary>
-        /// 
+        /// Builds rows for data file.
         /// </summary>
         /// <param name="row">Implement a delegate or lambda to iterate through data and build rows for the file.  
-        /// Call the Build() method on each row using the supplied RowBuilder object.</param>
+        /// Call yield return on the Build() method on each row using the supplied RowBuilder object.</param>
         /// <returns>this</returns>
-        public FileBuilder BuildRows(Action<RowBuilder> row)
+        public FileBuilder BuildRows(Func<RowBuilder, IEnumerable<string>> row)
         {
             this.row = row;
             return this;
@@ -92,13 +93,16 @@ namespace DwC_A.Builders
             {
                 using (var writer = new StreamWriter(stream, fileMetaData.Encoding))
                 {
-                    var rowBuilder = new RowBuilder(fileMetaData, writer);
+                    var rowBuilder = new RowBuilder(fileMetaData);
                     writer.NewLine = fileMetaData.LinesTerminatedBy;
                     if (fileMetaData.HeaderRowCount > 0)
                     {
                         AddHeader(writer);
                     }
-                    row(rowBuilder);
+                    foreach(var line in row(rowBuilder))
+                    {
+                        writer.WriteLine(line);
+                    }
                 }
             }
             return FullFileName;
