@@ -18,6 +18,15 @@ namespace Tests
         }
 
         [Fact]
+        public void ShouldBuildFieldMetaDataThroughCstor()
+        {
+            var fieldMetaData = FieldMetaDataBuilder.Field(Terms.Identification)
+                .Index(0)
+                .Build();
+            Assert.Equal(Terms.Identification, fieldMetaData.Term);
+        }
+
+        [Fact]
         public void ShouldBuildFieldMetaDataArray()
         {
             var fieldsMetaData = FieldsMetaDataBuilder.Fields()

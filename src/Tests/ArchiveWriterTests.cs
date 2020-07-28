@@ -33,7 +33,7 @@ namespace Tests
                 .RowType(RowTypes.Occurrence)
                 .AddFields(occurrenceMetaDataBuilder);
             var coreFileMetaData = new CoreFileMetaData(coreFileMetaDataBuilder.Build());
-            var coreFileBuilder = new FileBuilder(coreFileMetaData)
+            var coreFileBuilder = FileBuilder.MetaData(coreFileMetaData)
                 .Context(context)
                 .BuildRows(rowBuilder =>
                 {
@@ -59,7 +59,7 @@ namespace Tests
                 .RowType(RowTypes.Occurrence)
                 .AddFields(multimediaMetaDataBuilder);
             var extensionFileMetaData = new ExtensionFileMetaData(extensionFileMetaDataBuilder.Build());
-            var extensionFileBuilder = new FileBuilder(extensionFileMetaData)
+            var extensionFileBuilder = FileBuilder.MetaData(extensionFileMetaData)
                 .Context(context)
                 .BuildRows(rowBuilder =>
                 {

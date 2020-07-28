@@ -25,7 +25,7 @@ namespace Tests
             var fieldsMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
             var context = new BuilderContext(".");
 
-            var occurrenceMetaData = CoreFileMetaDataBuilder.File("occurrence.txt")
+            var occurrenceMetaDataBuilder = CoreFileMetaDataBuilder.File("occurrence.txt")
                 .IgnoreHeaderLines(1)
                 .Encoding(Encoding.UTF8)
                 .Index(0)
@@ -33,8 +33,8 @@ namespace Tests
                 .AddFields(fieldsMetaDataBuilder)
                 .Build();
 
-            var coreFileMetaData = new CoreFileMetaData(occurrenceMetaData);
-            var fileBuilder = new FileBuilder(coreFileMetaData)
+            var coreFileMetaData = new CoreFileMetaData(occurrenceMetaDataBuilder);
+            var fileBuilder = FileBuilder.MetaData(coreFileMetaData)
                 .Context(context)
                 .BuildRows(rowBuilder =>
                 {
