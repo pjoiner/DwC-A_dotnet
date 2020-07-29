@@ -1,0 +1,2 @@
+﻿This is an extra file to test the ArchiveBuilder.
+Use this for files such as license.txt or eml.xml

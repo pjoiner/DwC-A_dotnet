@@ -1,0 +1,29 @@
+[
+    {
+        "OccurrenceID": "971d0cc0-3415-4626-9693-fa92e405a220",
+        "BasisOfRecord": "HUMAN_OBSERVATION",
+        "ScientificName": "Anax junius Drury, 1773",
+        "EventDate": "2019-05-16T10:46:52Z",
+        "DecimalLatitude": 32.984988,
+        "DecimalLongitude": -97.174628,
+        "GeodeticDatum": ""
+    },
+    {
+        "OccurrenceID": "67e0aa36-273f-4eea-9fc2-65b4b78c97e9",
+        "BasisOfRecord": "HUMAN_OBSERVATION",
+        "ScientificName": "Sceloporus olivaceus Smith, 1934",
+        "EventDate": "2019-05-04T12:04:19Z",
+        "DecimalLatitude": 32.865714,
+        "DecimalLongitude": -96.982113,
+        "GeodeticDatum": ""
+    },
+    {
+        "OccurrenceID": "cb7af069-5bf0-4be7-8759-ea8178c89a5b",
+        "BasisOfRecord": "HUMAN_OBSERVATION",
+        "ScientificName": "Helianthus petiolaris Nutt.",
+        "EventDate": "2019-10-08T13:16:16Z",
+        "DecimalLatitude": 35.128113,
+        "DecimalLongitude": -106.727951,
+        "GeodeticDatum": ""
+    }
+]
