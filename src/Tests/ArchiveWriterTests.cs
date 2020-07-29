@@ -39,7 +39,7 @@ namespace Tests
                 .Index(0)
                 .RowType(RowTypes.Taxon)
                 .AddFields(fieldMetaDataBuilder);
-            var fileBuider = FileBuilder.MetaData(new CoreFileMetaData(fileMetaData.Build()))
+            var fileBuider = FileBuilder.MetaData(fileMetaData)
                 .UseExistingFile("./resources/whales/whales.txt");
             ArchiveWriter.CoreFile(fileBuider, fileMetaData)
                 .Build("whales.zip");
@@ -68,8 +68,7 @@ namespace Tests
                 .Index(0)
                 .RowType(RowTypes.Occurrence)
                 .AddFields(occurrenceMetaDataBuilder);
-            var coreFileMetaData = new CoreFileMetaData(coreFileMetaDataBuilder.Build());
-            var coreFileBuilder = FileBuilder.MetaData(coreFileMetaData)
+            var coreFileBuilder = FileBuilder.MetaData(coreFileMetaDataBuilder)
                 .Context(context)
                 .BuildRows(rowBuilder => BuildCoreRows(rowBuilder));
 
@@ -81,8 +80,7 @@ namespace Tests
                 .CoreIndex(0)
                 .RowType(RowTypes.Occurrence)
                 .AddFields(multimediaMetaDataBuilder);
-            var extensionFileMetaData = new ExtensionFileMetaData(extensionFileMetaDataBuilder.Build());
-            var extensionFileBuilder = FileBuilder.MetaData(extensionFileMetaData)
+            var extensionFileBuilder = FileBuilder.MetaData(extensionFileMetaDataBuilder)
                 .Context(context)
                 .BuildRows(rowBuilder => BuildExtensionRows(rowBuilder));
 

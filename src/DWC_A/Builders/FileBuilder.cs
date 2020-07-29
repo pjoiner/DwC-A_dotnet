@@ -33,10 +33,30 @@ namespace DwC_A.Builders
         /// Use this method to create new FileBuilder object with supplied metadata
         /// </summary>
         /// <param name="fileMetaData"></param>
-        /// <returns></returns>
+        /// <returns>New FileBuilder</returns>
         public static FileBuilder MetaData(IFileMetaData fileMetaData)
         {
             return new FileBuilder(fileMetaData);
+        }
+
+        /// <summary>
+        /// Use this method to create new FileBuilder object with supplied metadata
+        /// </summary>
+        /// <param name="metaDataBuilder">A CoreFile metadata builder</param>
+        /// <returns>New FileBuilder</returns>
+        public static FileBuilder MetaData(CoreFileMetaDataBuilder metaDataBuilder)
+        {
+            return new FileBuilder(new CoreFileMetaData(metaDataBuilder.Build()));
+        }
+
+        /// <summary>
+        /// Use this method to create new FileBuilder object with supplied metadata
+        /// </summary>
+        /// <param name="metaDataBuilder">An ExtensionFile metadata builder</param>
+        /// <returns>New FileBuilder</returns>
+        public static FileBuilder MetaData(ExtensionFileMetaDataBuilder metaDataBuilder)
+        {
+            return new FileBuilder(new ExtensionFileMetaData(metaDataBuilder.Build()));
         }
 
         private FileBuilder AddHeader(TextWriter writer)
