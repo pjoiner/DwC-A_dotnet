@@ -19,7 +19,7 @@ namespace DwC_A.Meta
 
         public CoreFileMetaDataBuilder LinesTerminatedBy(string lineTerminator)
         {
-            file.FieldsTerminatedBy = lineTerminator;
+            file.LinesTerminatedBy = lineTerminator;
             return this;
         }
 

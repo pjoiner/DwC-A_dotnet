@@ -1,10 +1,11 @@
-﻿using DwC_A.Builders;
+﻿using DwC_A;
+using DwC_A.Builders;
 using DwC_A.Meta;
 using DwC_A.Terms;
 using DwC_A.Writers;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -19,6 +20,39 @@ namespace Tests
         public ArchiveWriterTests(ArchiveWriterFixture fixture)
         {
             this.fixture = fixture;
+        }
+
+        [Fact]
+        public void ShouldBuildArchiveFromExistingFile()
+        {
+            var fieldMetaDataBuilder = FieldsMetaDataBuilder.Fields()
+                .AutomaticallyIndex()
+                .AddField(_ => _.Term(Terms.taxonID))
+                .AddField(_ => _.Term(Terms.vernacularName))
+                .AddField(_ => _.Term(Terms.language));
+            var fileMetaData = CoreFileMetaDataBuilder.File("taxon.txt")
+                .FieldsEnclosedBy("\"")
+                .FieldsTerminatedBy(",")
+                .LinesTerminatedBy("\\r\\n")
+                .IgnoreHeaderLines(1)
+                .Encoding(Encoding.UTF8)
+                .Index(0)
+                .RowType(RowTypes.Taxon)
+                .AddFields(fieldMetaDataBuilder);
+            var fileBuider = FileBuilder.MetaData(new CoreFileMetaData(fileMetaData.Build()))
+                .UseExistingFile("./resources/whales/whales.txt");
+            ArchiveWriter.CoreFile(fileBuider, fileMetaData)
+                .Build("whales.zip");
+
+            Assert.True(File.Exists("whales.zip"));
+
+            using(var archive = new ArchiveReader("whales.zip"))
+            {
+                var whales = archive.CoreFile
+                    .DataRows
+                    .Select(n => n[Terms.vernacularName]);
+                Assert.Equal(new[] { "sperm whale", "cachalot", "gray whale" }, whales);
+            }
         }
 
         [Fact]

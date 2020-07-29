@@ -13,6 +13,7 @@ namespace DwC_A.Builders
         private readonly IFileMetaData fileMetaData;
         private Func<RowBuilder, IEnumerable<string>> row;
         private BuilderContext context;
+        private string existingFile;
 
         private FileBuilder(IFileMetaData fileMetaData)
         {
@@ -71,6 +72,17 @@ namespace DwC_A.Builders
         }
 
         /// <summary>
+        /// Use an existing file instead of building rows using RowBuilder.
+        /// </summary>
+        /// <param name="existingFile">Absolute or relative path of existing file</param>
+        /// <returns>this</returns>
+        public FileBuilder UseExistingFile(string existingFile)
+        {
+            this.existingFile = existingFile;
+            return this;
+        }
+
+        /// <summary>
         /// Builds rows for data file.
         /// </summary>
         /// <param name="row">Implement a delegate or lambda to iterate through data and build rows for the file.  
@@ -89,6 +101,12 @@ namespace DwC_A.Builders
         public string Build()
         {
             FullFileName = Path.Combine(GetPath(), fileMetaData.FileName);
+            if(!string.IsNullOrEmpty(existingFile))
+            {
+                File.Copy(existingFile, FullFileName);
+                return FullFileName;
+            }
+
             using (var stream = new FileStream(FullFileName, FileMode.Create))
             {
                 using (var writer = new StreamWriter(stream, fileMetaData.Encoding))
