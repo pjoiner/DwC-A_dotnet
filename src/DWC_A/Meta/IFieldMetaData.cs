@@ -11,7 +11,7 @@ namespace DwC_A.Meta
         /// Retrieves index for a term
         /// </summary>
         /// <param name="term">Darwin Core Term</param>
-        /// <returns>Index of column containing the term</returns>
+        /// <returns>Index of column containing the term.  If the term is not found then returns -1.</returns>
         int IndexOf(string term);
         /// <summary>
         /// Retrieves field at index
