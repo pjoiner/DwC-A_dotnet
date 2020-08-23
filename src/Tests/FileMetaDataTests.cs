@@ -31,5 +31,15 @@ namespace Tests
             Assert.Equal(1, fileMetaData.LineTerminatorLength);
             Assert.Equal(RowTypes.SimpleDarwinRecord, fileMetaData.RowType);
         }
+
+        [Fact]
+        public void ShouldReturnDefaultValue()
+        {
+            var whales = "./resources/MetaDataWithDefault";
+            var metaDataReader = new MetaDataReader();
+            var metaData = metaDataReader.ReadMetaData(whales);
+            var coreFileMetaData = new CoreFileMetaData(metaData.Core);
+            var fieldMetaData = coreFileMetaData.Fields[Terms.datasetID];
+        }
     }
 }

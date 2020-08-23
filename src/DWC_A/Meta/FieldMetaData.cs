@@ -7,7 +7,7 @@ namespace DwC_A.Meta
     internal class FieldMetaData : IFieldMetaData
     {
         private const string idFieldName = "id";
-        private readonly IDictionary<string, int> fieldIndexDictionary;
+        private readonly IDictionary<string, FieldType> fieldIndexDictionary;
         private readonly FieldType[] fieldTypes;
 
         public FieldMetaData(IdFieldType idFieldType, ICollection<FieldType> fieldTypes)
@@ -15,26 +15,36 @@ namespace DwC_A.Meta
             if (idFieldType != null && idFieldType.IndexSpecified
                 && fieldTypes.All(n => n.Index != idFieldType.Index))
             {
-                this.fieldTypes = fieldTypes.Append(new FieldType { Index = idFieldType.Index, Term = idFieldName })
+                this.fieldTypes = fieldTypes
+                    .Append(new FieldType 
+                    { 
+                        Index = idFieldType.Index,
+                        IndexSpecified = true,
+                        Term = idFieldName 
+                    })
+                    .Where(n => n.IndexSpecified)
                     .OrderBy(n => n.Index)
                     .ToArray();
             }
             else
             {
                 this.fieldTypes = fieldTypes
+                    .Where(n => n.IndexSpecified)
                     .OrderBy(n => n.Index)
                     .ToArray();
             }
-            this.fieldIndexDictionary = this.fieldTypes.ToDictionary(k => k.Term, v => v.Index);
+            this.fieldIndexDictionary = fieldTypes
+                .ToDictionary(k => k.Term);
         }
 
         public int IndexOf(string term)
         {
-            if (!fieldIndexDictionary.ContainsKey(term))
+            if(fieldIndexDictionary.ContainsKey(term) && 
+                fieldIndexDictionary[term].IndexSpecified )
             {
-                return -1;
+                return fieldIndexDictionary[term].Index;
             }
-            return fieldIndexDictionary[term];
+            return -1;
         }
 
         public IEnumerator<FieldType> GetEnumerator()
@@ -59,7 +69,7 @@ namespace DwC_A.Meta
         {
             get
             {
-                return fieldTypes[IndexOf(term)];
+                return fieldIndexDictionary[term];
             }
         }
     }

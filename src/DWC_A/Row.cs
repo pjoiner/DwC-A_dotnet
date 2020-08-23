@@ -29,6 +29,10 @@ namespace DwC_A
             get
             {
                 var index = FieldMetaData.IndexOf(term);
+                if(index == -1)
+                {
+                    return FieldMetaData[term].Default;
+                }
                 return this[index];
             }
         }

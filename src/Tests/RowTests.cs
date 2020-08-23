@@ -24,6 +24,13 @@ namespace Tests
             Term = Terms.acceptedNameUsage
         };
 
+        FieldType defaultFieldType = new FieldType()
+        {
+            IndexSpecified = false,
+            Term = Terms.acceptedNameUsageID,
+            Default = "Default Value"
+        };
+
         IRow row;
 
         public RowTests()
@@ -46,6 +53,14 @@ namespace Tests
         public void ShouldDisplayFieldMetaData()
         {
             Assert.Equal(Terms.acceptedNameUsage, row.FieldMetaData[1].Term);
+        }
+
+        [Fact]
+        public void ShouldReturnDefaultValue()
+        {
+            var fieldMetaData = new FieldMetaData(null, new[] { fieldType, defaultFieldType });
+            var row = new Row(fields, fieldMetaData);
+            Assert.Equal("Default Value", row[Terms.acceptedNameUsageID]);
         }
     }
 }
