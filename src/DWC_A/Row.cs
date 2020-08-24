@@ -44,6 +44,19 @@ namespace DwC_A
                 return fields[index];
             }
         }
+
+        public bool TryGetField(string term, out string value)
+        {
+            if (FieldMetaData.TryGetFieldType(term, out FieldType fieldType) &&
+                fieldType.Index < fields.Length)
+            {
+                value = fieldType.IndexSpecified ? this[fieldType.Index] : fieldType.Default;
+                return true;
+            }
+            value = null;
+            return false;
+        }
+
     }
 
 }

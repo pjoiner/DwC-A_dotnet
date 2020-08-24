@@ -72,5 +72,16 @@ namespace DwC_A.Meta
                 return fieldIndexDictionary[term];
             }
         }
+
+        public bool TryGetFieldType(string term, out FieldType value)
+        {
+            if(fieldIndexDictionary.ContainsKey(term))
+            {
+                value = fieldIndexDictionary[term];
+                return true;
+            }
+            value = null;
+            return false;
+        }
     }
 }

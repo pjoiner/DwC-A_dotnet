@@ -59,8 +59,10 @@ namespace Tests
         public void ShouldReturnDefaultValue()
         {
             var fieldMetaData = new FieldMetaData(null, new[] { fieldType, defaultFieldType });
-            var row = new Row(fields, fieldMetaData);
+            IRow row = new Row(fields, fieldMetaData);
             Assert.Equal("Default Value", row[Terms.acceptedNameUsageID]);
+            Assert.True(row.TryGetField(Terms.acceptedNameUsageID, out string actual));
+            Assert.Equal("Default Value", actual);
         }
     }
 }

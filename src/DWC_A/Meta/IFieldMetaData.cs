@@ -25,5 +25,12 @@ namespace DwC_A.Meta
         /// <param name="term">Darwin Core Term</param>
         /// <returns>String representation of field</returns>
         FieldType this[string term] { get; }
+        /// <summary>
+        /// Attempts to retrieve the field by term name
+        /// </summary>
+        /// <param name="term">Darwin Core Term</param>
+        /// <param name="value">FieldType</param>
+        /// <returns>Returns false if not found</returns>
+        bool TryGetFieldType(string term, out FieldType value);
     }
 }
