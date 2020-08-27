@@ -38,6 +38,14 @@ namespace Tests
             fileMetaDataMock.Setup(n => n.Fields.IndexOf("Name")).Returns(0);
             fileMetaDataMock.Setup(n => n.Fields.IndexOf("Value")).Returns(1);
             fileMetaDataMock.Setup(n => n.Fields[It.IsAny<int>()]).Returns(fieldType);
+            var valueFieldType = new FieldType()
+            {
+                Index = 1,
+                IndexSpecified = true,
+                Term = "Value"
+            };
+            fileMetaDataMock.Setup(n => n.Fields.TryGetFieldType("Value", out valueFieldType))
+                .Returns(true);
             row = new Row(fields, fileMetaDataMock.Object.Fields);
         }
 

@@ -1,4 +1,5 @@
-﻿using DwC_A.Meta;
+﻿using DwC_A.Exceptions;
+using DwC_A.Meta;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,12 +29,11 @@ namespace DwC_A
         {
             get
             {
-                var index = FieldMetaData.IndexOf(term);
-                if(index == -1)
+                if(TryGetField(term, out string value))
                 {
-                    return FieldMetaData[term].Default;
+                    return value;
                 }
-                return this[index];
+                throw new TermNotFoundException(term);
             }
         }
 
