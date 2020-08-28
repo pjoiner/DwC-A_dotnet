@@ -32,5 +32,9 @@ namespace DwC_A.Meta
         /// <param name="value">FieldType</param>
         /// <returns>Returns false if not found</returns>
         bool TryGetFieldType(string term, out FieldType value);
+        /// <summary>
+        /// Returns the number of indexed fields
+        /// </summary>
+        int Length { get; }
     }
 }

@@ -8,11 +8,12 @@ namespace Benchmarks
     [Config(typeof(Config))]
     public class MetaFileDataBenchmarks
     {
-        private readonly IAbstractFactory defaultFactory;
-        private readonly CoreFileType coreFileType;
+        private IAbstractFactory defaultFactory;
+        private CoreFileType coreFileType;
         private FieldType[] metaData;
 
-        public MetaFileDataBenchmarks()
+        [GlobalSetup]
+        public void Setup()
         {
             metaData = FieldsMetaDataBuilder.Fields()
                 .AutomaticallyIndex()
@@ -116,6 +117,5 @@ namespace Benchmarks
             var bibliographicCitation = fieldsMetaData[Terms.bibliographicCitation];
             var references = fieldsMetaData[Terms.references];
         }
-
     }
 }

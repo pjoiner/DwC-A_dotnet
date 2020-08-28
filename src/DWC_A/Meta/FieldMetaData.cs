@@ -83,5 +83,7 @@ namespace DwC_A.Meta
             value = null;
             return false;
         }
+
+        public int Length => fieldTypes.Length;
     }
 }

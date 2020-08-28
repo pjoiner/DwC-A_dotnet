@@ -1,4 +1,5 @@
 ﻿using DwC_A.Exceptions;
+using DwC_A.Extensions;
 using DwC_A.Meta;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace DwC_A
 
         public Row(IEnumerable<string> fields, IFieldMetaData fieldMetaData)
         {
-            this.fields = fields.ToArray();
+            this.fields = fields.ToArray(fieldMetaData.Length);
             this.FieldMetaData = fieldMetaData;
         }
 
@@ -50,7 +51,7 @@ namespace DwC_A
             if (FieldMetaData.TryGetFieldType(term, out FieldType fieldType) &&
                 fieldType.Index < fields.Length)
             {
-                value = fieldType.IndexSpecified ? this[fieldType.Index] : fieldType.Default;
+                value = fieldType.IndexSpecified && !string.IsNullOrEmpty(this[fieldType.Index]) ? this[fieldType.Index] : fieldType.Default;
                 return true;
             }
             value = null;

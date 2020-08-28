@@ -13,12 +13,13 @@ namespace Benchmarks
     public class RowBenchmarks
     {
         private readonly string[] fields = { "id", "taxonID", "acceptedNameUsageID", "parentNameUsageID", "nameAccordingToID", "scientificName", "acceptedNameUsage", "parentNameUsage", "nameAccordingTo", "higherClassification", "class", "order", "family", "genus", "subgenus", "specificEpithet", "infraspecificEpithet", "taxonRank", "scientificNameAuthorship", "taxonomicStatus", "modified", "license", "bibliographicCitation", "references" };
-        private readonly IFileMetaData fileMetaData;
-        private readonly IRowFactory rowFactory;
-        private readonly int[] sequence;
+        private IFileMetaData fileMetaData;
+        private IRowFactory rowFactory;
+        private int[] sequence;
         private readonly Consumer consumer = new Consumer();
 
-        public RowBenchmarks()
+        [GlobalSetup]
+        public void Setup()
         {
             Random rand = new Random();
             sequence = Enumerable.Range(0, fields.Length-1)

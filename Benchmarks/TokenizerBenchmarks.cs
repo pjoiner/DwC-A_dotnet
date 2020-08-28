@@ -11,12 +11,13 @@ namespace Benchmarks
     {
         private readonly string line = "id	taxonID	acceptedNameUsageID	parentNameUsageID	nameAccordingToID	scientificName	acceptedNameUsage	parentNameUsage	nameAccordingTo	higherClassification	class	order	family	genus	subgenus	specificEpithet	infraspecificEpithet	taxonRank	scientificNameAuthorship	taxonomicStatus	modified	license	bibliographicCitation	references";
         private readonly IAbstractFactory abstractFactory = new DefaultFactory();
-        private readonly ITokenizer tokenizer;
+        private ITokenizer tokenizer;
         private readonly Consumer consumer = new Consumer();
 
-        public TokenizerBenchmarks()
+        [GlobalSetup]
+        public void Setup()
         {
-            IFileMetaData fileMetaData = abstractFactory.CreateCoreMetaData(new CoreFileType() 
+            IFileMetaData fileMetaData = abstractFactory.CreateCoreMetaData(new CoreFileType()
             {
                 FieldsTerminatedBy = "\\t",
                 FieldsEnclosedBy = ""
