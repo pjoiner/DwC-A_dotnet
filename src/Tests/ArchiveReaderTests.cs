@@ -20,6 +20,7 @@ namespace Tests
                 foreach(var row in archive.CoreFile.Rows)
                 {
                     Assert.NotNull(row[0]);
+                    Assert.NotNull(row["id"]);
                 }
             }
         }

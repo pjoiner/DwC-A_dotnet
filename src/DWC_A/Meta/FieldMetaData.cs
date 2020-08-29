@@ -15,16 +15,19 @@ namespace DwC_A.Meta
             if (idFieldType != null && idFieldType.IndexSpecified
                 && fieldTypes.All(n => n.Index != idFieldType.Index))
             {
-                this.fieldTypes = fieldTypes
-                    .Append(new FieldType 
-                    { 
+                var allFields = fieldTypes
+                    .Append(new FieldType
+                    {
                         Index = idFieldType.Index,
                         IndexSpecified = true,
-                        Term = idFieldName 
-                    })
+                        Term = idFieldName
+                    });
+                this.fieldTypes = allFields 
                     .Where(n => n.IndexSpecified)
                     .OrderBy(n => n.Index)
                     .ToArray();
+                this.fieldIndexDictionary = allFields
+                    .ToDictionary(k => k.Term);
             }
             else
             {
@@ -32,9 +35,9 @@ namespace DwC_A.Meta
                     .Where(n => n.IndexSpecified)
                     .OrderBy(n => n.Index)
                     .ToArray();
+                this.fieldIndexDictionary = fieldTypes
+                    .ToDictionary(k => k.Term);
             }
-            this.fieldIndexDictionary = fieldTypes
-                .ToDictionary(k => k.Term);
         }
 
         public int IndexOf(string term)
