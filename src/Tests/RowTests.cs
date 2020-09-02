@@ -46,6 +46,7 @@ namespace Tests
             };
             fileMetaDataMock.Setup(n => n.Fields.TryGetFieldType("Value", out valueFieldType))
                 .Returns(true);
+            fileMetaDataMock.Setup(n => n.Fields.Length).Returns(2);
             row = new Row(fields, fileMetaDataMock.Object.Fields);
         }
 

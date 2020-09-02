@@ -1,9 +1,7 @@
-﻿using DwC_A.Extensions;
-using DwC_A.Meta;
+﻿using DwC_A.Meta;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DwC_A
 {
@@ -13,7 +11,6 @@ namespace DwC_A
         private readonly bool HasQuotes;
         private readonly char Delimiter;
         private readonly char Quotes;
-        private readonly StringBuilder token = new StringBuilder();
 
         public Tokenizer(IFileMetaData fileMetaData)
         {
@@ -26,23 +23,49 @@ namespace DwC_A
         public IEnumerable<string> Split(string line)
         {
             bool inQuotes = false;
-
-            foreach (var c in line)
+            bool isData = false;
+            int start = 0;
+            int end = 0;
+            for (int idx = 0; idx < line.Length; idx++)
             {
+                var c = line[idx];
                 if (HasQuotes && c == Quotes)
                 {
+                    if (inQuotes)
+                    {
+                        isData = false;
+                        end = idx - 1;
+                    }
                     inQuotes = !inQuotes;
                 }
                 else if(!inQuotes && c == Delimiter)
                 {
-                    yield return token.Flush();
+                    isData = false;
+                    yield return line.Substring(start, (end + 1) - start);
+                    if(idx == line.Length - 1)
+                    {
+                        start = idx;
+                        end = start - 1;
+                    }
+                    else
+                    {
+                        start = end = idx + 1;
+                    }
                 }
                 else
                 {
-                    token.Append(c);
+                    if (isData)
+                    {
+                        end = idx;
+                    }
+                    else
+                    {
+                        isData = true;
+                        start = idx;
+                    }
                 }
             }
-            yield return token.Flush();
+            yield return line.Substring(start, (end + 1) - start);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Tests
         [Fact]
         public void ParseCSVLineShouldReturnThreeFields()
         {
-            Tokenizer tokenizer = new Tokenizer(fileMetaDataMockWithoutQuotes.Object);
+            var tokenizer = new Tokenizer(fileMetaDataMockWithoutQuotes.Object);
             var fields = tokenizer.Split(csvLine);
             Assert.Equal(3, fields.ToList().Count);
         }
@@ -38,7 +38,7 @@ namespace Tests
         [Fact]
         public void FirstCSVFieldShouldBeabc()
         {
-            Tokenizer tokenizer = new Tokenizer(fileMetaDataMockWithoutQuotes.Object);
+            var tokenizer = new Tokenizer(fileMetaDataMockWithoutQuotes.Object);
             var fields = tokenizer.Split(csvLine);
             Assert.Equal("abc", fields.ToArray()[0]);            
         }
@@ -46,7 +46,7 @@ namespace Tests
         [Fact]
         public void SecondCSVFieldShouldBedef()
         {
-            Tokenizer tokenizer = new Tokenizer(fileMetaDataMockWithoutQuotes.Object);
+            var tokenizer = new Tokenizer(fileMetaDataMockWithoutQuotes.Object);
             var fields = tokenizer.Split(csvLine);
             Assert.Equal("def", fields.ToArray()[1]);
         }
@@ -54,7 +54,7 @@ namespace Tests
         [Fact]
         public void ThirdCSVFieldShouldBeghi()
         {
-            Tokenizer tokenizer = new Tokenizer(fileMetaDataMockWithoutQuotes.Object);
+            var tokenizer = new Tokenizer(fileMetaDataMockWithoutQuotes.Object);
             var fields = tokenizer.Split(csvLine);
             Assert.Equal("ghi", fields.ToArray()[2]);
         }
@@ -62,7 +62,7 @@ namespace Tests
         [Fact]
         public void CSVFieldWithTrailineCommaShouldProduceEmptyField()
         {
-            Tokenizer tokenizer = new Tokenizer(fileMetaDataMockWithoutQuotes.Object);
+            var tokenizer = new Tokenizer(fileMetaDataMockWithoutQuotes.Object);
             var fields = tokenizer.Split(csvLineWithTrailingComma);
             Assert.Equal("", fields.Last());
         }
@@ -70,7 +70,7 @@ namespace Tests
         [Fact]
         public void CSVFieldWithQuotesShouldReturndefCommaghi()
         {
-            Tokenizer tokenizer = new Tokenizer(fileMetaDataMockWithQuotes.Object);
+            var tokenizer = new Tokenizer(fileMetaDataMockWithQuotes.Object);
             var fields = tokenizer.Split(csvWithQuotes);
             Assert.Equal("def,ghi", fields.Last());
         }

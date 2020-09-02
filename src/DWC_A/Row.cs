@@ -1,5 +1,4 @@
 ﻿using DwC_A.Exceptions;
-using DwC_A.Extensions;
 using DwC_A.Meta;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +7,11 @@ namespace DwC_A
 {
     internal class Row : IRow
     {
-        private readonly string[] fields;
+        private readonly IEnumerable<string> fields;
 
         public Row(IEnumerable<string> fields, IFieldMetaData fieldMetaData)
         {
-            this.fields = fields.ToArray(fieldMetaData.Length);
+            this.fields = fields;
             this.FieldMetaData = fieldMetaData;
         }
 
@@ -30,7 +29,7 @@ namespace DwC_A
         {
             get
             {
-                if(TryGetField(term, out string value))
+                if (TryGetField(term, out string value))
                 {
                     return value;
                 }
@@ -42,14 +41,14 @@ namespace DwC_A
         {
             get
             {
-                return fields[index];
+                return fields.ElementAt(index);
             }
         }
 
         public bool TryGetField(string term, out string value)
         {
             if (FieldMetaData.TryGetFieldType(term, out FieldType fieldType) &&
-                fieldType.Index < fields.Length)
+                fieldType.Index < FieldMetaData.Length)
             {
                 value = fieldType.IndexSpecified && !string.IsNullOrEmpty(this[fieldType.Index]) ? this[fieldType.Index] : fieldType.Default;
                 return true;
@@ -59,5 +58,4 @@ namespace DwC_A
         }
 
     }
-
 }
