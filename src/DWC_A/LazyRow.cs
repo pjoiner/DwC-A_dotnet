@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace DwC_A
 {
-    internal class Row : IRow
+    internal class LazyRow : IRow
     {
         private readonly IEnumerable<string> fields;
 
-        public Row(IEnumerable<string> fields, IFieldMetaData fieldMetaData)
+        public LazyRow(IEnumerable<string> fields, IFieldMetaData fieldMetaData)
         {
             this.fields = fields;
             this.FieldMetaData = fieldMetaData;

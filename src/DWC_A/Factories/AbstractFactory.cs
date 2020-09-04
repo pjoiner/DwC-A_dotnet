@@ -38,7 +38,7 @@ namespace DwC_A.Factories
 
         public virtual IRowFactory CreateRowFactory()
         {
-            return new RowFactory();
+            return new RowFactory(configuration.GetOptions<RowFactoryConfiguration>().Strategy);
         }
 
         public virtual IFileReaderAggregate CreateFileReader(string fileName, IFileMetaData fileMetaData)

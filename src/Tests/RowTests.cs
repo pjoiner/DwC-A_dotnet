@@ -47,7 +47,7 @@ namespace Tests
             fileMetaDataMock.Setup(n => n.Fields.TryGetFieldType("Value", out valueFieldType))
                 .Returns(true);
             fileMetaDataMock.Setup(n => n.Fields.Length).Returns(2);
-            row = new Row(fields, fileMetaDataMock.Object.Fields);
+            row = new LazyRow(fields, fileMetaDataMock.Object.Fields);
         }
 
         [Fact]
@@ -68,7 +68,7 @@ namespace Tests
         public void ShouldReturnDefaultValue()
         {
             var fieldMetaData = new FieldMetaData(null, new[] { fieldType, defaultFieldType });
-            IRow row = new Row(fields, fieldMetaData);
+            IRow row = new LazyRow(fields, fieldMetaData);
             Assert.Equal("Default Value", row[Terms.acceptedNameUsageID]);
             Assert.True(row.TryGetField(Terms.acceptedNameUsageID, out string actual));
             Assert.Equal("Default Value", actual);
