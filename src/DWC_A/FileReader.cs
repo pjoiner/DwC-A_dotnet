@@ -1,4 +1,5 @@
-﻿using DwC_A.Factories;
+﻿using DwC_A.Config;
+using DwC_A.Factories;
 using DwC_A.Meta;
 using System.Collections.Generic;
 using System.IO;
@@ -8,14 +9,16 @@ namespace DwC_A
 {
     internal class FileReader : IFileReaderAggregate
     {
-        const int BufferSize = 65536;   //TODO: Make this configurable to allow tuning
         private readonly StreamReader streamReader;
+        private readonly FileReaderConfiguration config;
 
         public FileReader(string fileName,
             IRowFactory rowFactory,
             ITokenizer tokenizer,
-            IFileMetaData fileMetaData)
+            IFileMetaData fileMetaData,
+            FileReaderConfiguration config)
         {
+            this.config = config;
             this.FileName = fileName;
             this.FileMetaData = fileMetaData;
             FileReaderUtils.ValidateLineEnds(fileMetaData.LinesTerminatedBy);
@@ -27,7 +30,7 @@ namespace DwC_A
             get
             {
                 using (var stream = new FileStream(FileName, 
-                    FileMode.Open, FileAccess.Read, FileShare.Read, BufferSize, false))
+                    FileMode.Open, FileAccess.Read, FileShare.Read, config.BufferSize, false))
                 {
                     foreach(var row in streamReader.ReadRows(stream))
                     {
@@ -56,7 +59,7 @@ namespace DwC_A
         public async IAsyncEnumerable<IRow> GetRowsAsync()
         {
             using (var stream = new FileStream(FileName, 
-                FileMode.Open, FileAccess.Read, FileShare.Read, BufferSize, true))
+                FileMode.Open, FileAccess.Read, FileShare.Read, config.BufferSize, true))
             {
                 await foreach (var row in streamReader.ReadRowsAsync(stream))
                 {

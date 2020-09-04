@@ -1,9 +1,20 @@
-﻿using DwC_A.Meta;
+﻿using DwC_A.Config;
+using DwC_A.Meta;
+using System;
 
 namespace DwC_A.Factories
 {
     public abstract class AbstractFactory : IAbstractFactory
     {
+        private FactoryConfiguration configuration = new FactoryConfiguration();
+
+        public AbstractFactory(Action<FactoryConfiguration> configFunc = null)
+        {
+            if(configFunc != null)
+            {
+                configFunc(configuration);
+            }
+        }
 
         public ArchiveReader CreateArchiveReader(string fileName)
         {
@@ -35,7 +46,8 @@ namespace DwC_A.Factories
             return new FileReader(fileName, 
                 CreateRowFactory(), 
                 CreateTokenizer(fileMetaData), 
-                fileMetaData);
+                fileMetaData,
+                configuration.GetOptions<FileReaderConfiguration>());
         }
 
         public virtual IFileMetaData CreateCoreMetaData(CoreFileType coreFileType)

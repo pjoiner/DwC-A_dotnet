@@ -1,4 +1,5 @@
 ﻿using DwC_A;
+using DwC_A.Config;
 using DwC_A.Factories;
 using DwC_A.Meta;
 using Moq;
@@ -36,7 +37,8 @@ namespace Tests
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
             var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object);
+                rowFactory, tokenizer, fileMetaDataMock.Object,
+                new FileReaderConfiguration());
                 Assert.NotEmpty(fileReader.Rows.ToArray());
         }
 
@@ -45,7 +47,8 @@ namespace Tests
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
             var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object);
+                rowFactory, tokenizer, fileMetaDataMock.Object,
+                new FileReaderConfiguration());
             Assert.NotEmpty(await fileReader.GetDataRowsAsync().ToArrayAsync());
         }
 
@@ -54,7 +57,8 @@ namespace Tests
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
             var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object);
+                rowFactory, tokenizer, fileMetaDataMock.Object,
+                new FileReaderConfiguration());
             Assert.Single(fileReader.HeaderRows);
         }
 
@@ -63,7 +67,8 @@ namespace Tests
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
             var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object);
+                rowFactory, tokenizer, fileMetaDataMock.Object,
+                new FileReaderConfiguration());
             Assert.Single(await fileReader.GetHeaderRowsAsync().ToArrayAsync());
         }
 
@@ -72,7 +77,8 @@ namespace Tests
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
             var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object);
+                rowFactory, tokenizer, fileMetaDataMock.Object,
+                new FileReaderConfiguration());
             Assert.NotEmpty(fileReader.DataRows);
         }
 
@@ -81,7 +87,8 @@ namespace Tests
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
             var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object);
+                rowFactory, tokenizer, fileMetaDataMock.Object,
+                new FileReaderConfiguration());
             Assert.NotEmpty(await fileReader.GetDataRowsAsync().ToArrayAsync());
         }
 
@@ -90,7 +97,8 @@ namespace Tests
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
             var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object);
+                rowFactory, tokenizer, fileMetaDataMock.Object,
+                new FileReaderConfiguration());
             Assert.NotEmpty(fileReader.DataRows);
             Assert.NotEmpty(fileReader.HeaderRows);
         }
@@ -100,7 +108,8 @@ namespace Tests
         {
             fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
             var fileReader = new FileReader(fileName,
-                rowFactory, tokenizer, fileMetaDataMock.Object);
+                rowFactory, tokenizer, fileMetaDataMock.Object,
+                new FileReaderConfiguration());
             Assert.NotEmpty(await fileReader.GetDataRowsAsync().ToArrayAsync());
             Assert.NotEmpty(await fileReader.GetHeaderRowsAsync().ToArrayAsync());
         }
