@@ -34,6 +34,6 @@ namespace DwC_A
         /// <param name="term">Term</param>
         /// <param name="value">String value of field</param>
         /// <returns>True if found or default value returned.  False if not found.</returns>
-        public bool TryGetField(string term, out string value);
+        bool TryGetField(string term, out string value);
     }
 }

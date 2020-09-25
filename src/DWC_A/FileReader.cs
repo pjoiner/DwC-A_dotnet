@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DwC_A
 {
-    internal class FileReader : IFileReaderAggregate
+    internal partial class FileReader : IFileReaderAggregate
     {
         private readonly StreamReader streamReader;
         private readonly FileReaderConfiguration config;
@@ -55,52 +55,6 @@ namespace DwC_A
                 return Rows.Skip(FileMetaData.HeaderRowCount);
             }
         }
-
-        public async IAsyncEnumerable<IRow> GetRowsAsync()
-        {
-            using (var stream = new FileStream(FileName, 
-                FileMode.Open, FileAccess.Read, FileShare.Read, config.BufferSize, true))
-            {
-                await foreach (var row in streamReader.ReadRowsAsync(stream))
-                {
-                    yield return row;
-                }
-            }
-        }
-
-        public async IAsyncEnumerable<IRow> GetHeaderRowsAsync()
-        {
-            int count = 0;
-            await foreach (var row in GetRowsAsync())
-            {
-                if (count < FileMetaData.HeaderRowCount)
-                {
-                    yield return row;
-                }
-                else
-                {
-                    break;
-                }
-                count++;
-            }
-        }
-
-        public async IAsyncEnumerable<IRow> GetDataRowsAsync()
-        {
-            int count = 0;
-            await foreach (var row in GetRowsAsync())
-            {
-                if (count >= FileMetaData.HeaderRowCount)
-                {
-                    yield return row;
-                }
-                else
-                {
-                    count++;
-                }
-            }
-        }
-
         public string FileName { get; }
 
         public IFileMetaData FileMetaData { get; }

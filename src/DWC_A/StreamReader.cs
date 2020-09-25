@@ -6,7 +6,7 @@ using System.IO;
 
 namespace DwC_A
 {
-    internal class StreamReader 
+    internal partial class StreamReader 
     {
         private readonly ITokenizer tokenizer;
         private readonly IRowFactory rowFactory;
@@ -28,18 +28,6 @@ namespace DwC_A
             {
                 string line;
                 while ((line = reader.ReadRow(fileMetaData)) != null)
-                {
-                    yield return rowFactory.CreateRow(tokenizer.Split(line), fileMetaData.Fields);
-                }
-            }
-        }
-
-        public async IAsyncEnumerable<IRow> ReadRowsAsync(Stream stream)
-        {
-            using(var reader = new System.IO.StreamReader(stream, fileMetaData.Encoding))
-            {
-                string line;
-                while((line = await reader.ReadRowAsync(fileMetaData)) != null)
                 {
                     yield return rowFactory.CreateRow(tokenizer.Split(line), fileMetaData.Fields);
                 }
