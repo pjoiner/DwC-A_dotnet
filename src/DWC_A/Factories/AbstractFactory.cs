@@ -21,9 +21,9 @@ namespace DwC_A.Factories
             return new ArchiveReader(fileName, this);
         }
 
-        public virtual IArchiveFolder CreateArchiveFolder(string fileName, string outputPath)
+        public virtual IArchiveFolder CreateArchiveFolder(string fileName)
         {
-            return new ArchiveFolder(fileName, outputPath );
+            return new ArchiveFolder(fileName, configuration.GetOptions<ArchiveFolderConfiguration>() );
         }
 
         public virtual IMetaDataReader CreateMetaDataReader()
