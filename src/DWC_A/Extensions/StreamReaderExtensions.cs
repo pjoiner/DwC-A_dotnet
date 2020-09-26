@@ -12,7 +12,6 @@ namespace DwC_A.Extensions
         /// </summary>
         /// <param name="reader">Stream reader</param>
         /// <param name="fileMetaData">File MetaData containing line ending and quotes data</param>
-        /// <param name="line">StringBuffer to fill</param>
         /// <returns>false if this is the end of the file else true</returns>
         public static string ReadRow(this System.IO.StreamReader reader, IFileMetaData fileMetaData)
         {
