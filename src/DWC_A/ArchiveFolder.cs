@@ -9,9 +9,8 @@ namespace DwC_A
     {
         private readonly string fileName;
         private readonly string folderPath;
-        private readonly ArchiveFolderConfiguration config;
 
-        public bool ShouldCleanup => config.ShouldCleanup;
+        public bool ShouldCleanup { get; private set; }
 
         /// <summary>
         /// Extracts archive to a folder
@@ -20,8 +19,8 @@ namespace DwC_A
         /// <param name="config"><see cref="ArchiveFolderConfiguration"/></param>
         public ArchiveFolder(string fileName, ArchiveFolderConfiguration config)
         {
-            this.config = config;
             this.fileName = fileName;
+            ShouldCleanup = config.ShouldCleanup;
             this.folderPath = string.IsNullOrEmpty(config.OutputPath) ? GetTempPath() : config.OutputPath;
         }
 
@@ -33,7 +32,7 @@ namespace DwC_A
 
         public void DeleteFolder()
         {
-            if (config.ShouldCleanup)
+            if (ShouldCleanup)
             {
                 Directory.Delete(folderPath, true);
             }
@@ -41,7 +40,7 @@ namespace DwC_A
 
         private string GetTempPath()
         {
-            config.ShouldCleanup = true;
+            ShouldCleanup = true;
             var newPath = Path.Combine(Path.GetTempPath(), "dwca", Guid.NewGuid().ToString());
             return newPath;
         }
