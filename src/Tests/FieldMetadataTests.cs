@@ -28,10 +28,11 @@ namespace Tests
         IFieldMetaData fieldMetaData;
 
         [Fact]
-        public void ShouldThrowOnTermNotFound()
+        public void ShouldReturnNegativeOneOnNotFound()
         {
             fieldMetaData = new FieldMetaData(null, fieldTypes);
-            Assert.Throws<TermNotFoundException>(() => fieldMetaData[Terms.scientificName]);
+            var actual = fieldMetaData.IndexOf(Terms.scientificName);
+            Assert.Equal(-1, actual);
         }
 
         [Fact]

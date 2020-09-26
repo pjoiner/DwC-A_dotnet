@@ -6,7 +6,7 @@ DwC-A_dotnet is a simple Darwin Core Archive reader for dotnet.
 
 To add DwC-A_dotnet to your project run the following command in the Visual Studio Package Manager Console
 
-	PM> Install-Package DwC-A_dotnet
+    PM> Install-Package DwC-A_dotnet
 
 ## Usage
 
@@ -26,6 +26,4 @@ using (var archive = new ArchiveReader(fileName))
 }
 ```
 
-More information can be found in the [documentation](docs/documentation.md).
-
-
+More information can be found in the [Documentation Wiki](https://github.com/pjoiner/DwC-A_dotnet/wiki/Documentation).

@@ -33,7 +33,7 @@ namespace Tests
             var fileMetaData = CoreFileMetaDataBuilder.File("taxon.txt")
                 .FieldsEnclosedBy("\"")
                 .FieldsTerminatedBy(",")
-                .LinesTerminatedBy("\\r\\n")
+                .LinesTerminatedBy("\\n")
                 .IgnoreHeaderLines(1)
                 .Encoding(Encoding.UTF8)
                 .Index(0)

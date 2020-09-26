@@ -1,18 +1,29 @@
-﻿using DwC_A.Meta;
+﻿using DwC_A.Config;
+using DwC_A.Meta;
+using System;
 
 namespace DwC_A.Factories
 {
     public abstract class AbstractFactory : IAbstractFactory
     {
+        private FactoryConfiguration configuration = new FactoryConfiguration();
+
+        public AbstractFactory(Action<FactoryConfiguration> configFunc = null)
+        {
+            if(configFunc != null)
+            {
+                configFunc(configuration);
+            }
+        }
 
         public ArchiveReader CreateArchiveReader(string fileName)
         {
             return new ArchiveReader(fileName, this);
         }
 
-        public virtual IArchiveFolder CreateArchiveFolder(string fileName, string outputPath)
+        public virtual IArchiveFolder CreateArchiveFolder(string fileName)
         {
-            return new ArchiveFolder(fileName, outputPath );
+            return new ArchiveFolder(fileName, configuration.GetOptions<ArchiveFolderConfiguration>() );
         }
 
         public virtual IMetaDataReader CreateMetaDataReader()
@@ -27,7 +38,7 @@ namespace DwC_A.Factories
 
         public virtual IRowFactory CreateRowFactory()
         {
-            return new RowFactory();
+            return new RowFactory(configuration.GetOptions<RowFactoryConfiguration>().Strategy);
         }
 
         public virtual IFileReaderAggregate CreateFileReader(string fileName, IFileMetaData fileMetaData)
@@ -35,7 +46,8 @@ namespace DwC_A.Factories
             return new FileReader(fileName, 
                 CreateRowFactory(), 
                 CreateTokenizer(fileMetaData), 
-                fileMetaData);
+                fileMetaData,
+                configuration.GetOptions<FileReaderConfiguration>());
         }
 
         public virtual IFileMetaData CreateCoreMetaData(CoreFileType coreFileType)

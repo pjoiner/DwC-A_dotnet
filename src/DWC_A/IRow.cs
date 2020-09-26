@@ -28,5 +28,12 @@ namespace DwC_A
         /// <param name="index">Index into collection of fields</param>
         /// <returns>Field value</returns>
         string this[int index] { get; }
+        /// <summary>
+        /// Attempts to return a value for a term or the default value if it has been defined in metadata
+        /// </summary>
+        /// <param name="term">Term</param>
+        /// <param name="value">String value of field</param>
+        /// <returns>True if found or default value returned.  False if not found.</returns>
+        bool TryGetField(string term, out string value);
     }
 }

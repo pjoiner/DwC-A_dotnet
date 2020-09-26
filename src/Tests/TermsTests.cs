@@ -1,7 +1,4 @@
 ﻿using DwC_A.Terms;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Tests

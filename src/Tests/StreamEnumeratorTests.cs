@@ -27,6 +27,7 @@ namespace Tests
             fileMetaDataMock.Setup(n => n.FieldsTerminatedBy).Returns("\t");
             fileMetaDataMock.Setup(n => n.LinesTerminatedBy).Returns("\n");
             fileMetaDataMock.Setup(n => n.Encoding).Returns(Encoding.UTF8);
+            fileMetaDataMock.Setup(n => n.Fields.Length).Returns(24);
 
             fileAttributesMock.Setup(n => n.FieldsEnclosedBy).Returns("");
             fileAttributesMock.Setup(n => n.FieldsTerminatedBy).Returns("\t");

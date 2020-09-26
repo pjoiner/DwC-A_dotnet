@@ -13,6 +13,7 @@ namespace DwC_A
         private readonly bool HasQuotes;
         private readonly char Delimiter;
         private readonly char Quotes;
+        private readonly StringBuilder token = new StringBuilder();
 
         public Tokenizer(IFileMetaData fileMetaData)
         {
@@ -24,14 +25,13 @@ namespace DwC_A
 
         public IEnumerable<string> Split(string line)
         {
-            StringBuilder token = new StringBuilder();
             bool inQuotes = false;
 
             foreach (var c in line)
             {
                 if (HasQuotes && c == Quotes)
                 {
-                    inQuotes = inQuotes ^ true;
+                    inQuotes = !inQuotes;
                 }
                 else if(!inQuotes && c == Delimiter)
                 {

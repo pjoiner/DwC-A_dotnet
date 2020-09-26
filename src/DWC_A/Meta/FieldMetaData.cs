@@ -1,5 +1,4 @@
-﻿using DwC_A.Exceptions;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,40 +6,53 @@ namespace DwC_A.Meta
 {
     internal class FieldMetaData : IFieldMetaData
     {
-        private const string idFieldName = "id"; 
-        private readonly IdFieldType idFieldType;
-        private readonly IDictionary<string, int> fieldIndexDictionary;
-        private readonly IEnumerable<FieldType> fieldTypes;
+        private const string idFieldName = "id";
+        private readonly IDictionary<string, FieldType> fieldIndexDictionary;
+        private readonly FieldType[] fieldTypes;
 
         public FieldMetaData(IdFieldType idFieldType, ICollection<FieldType> fieldTypes)
         {
-            this.idFieldType = idFieldType;
-            if( idFieldType != null && idFieldType.IndexSpecified 
+            if (idFieldType != null && idFieldType.IndexSpecified
                 && fieldTypes.All(n => n.Index != idFieldType.Index))
             {
-                this.fieldTypes = fieldTypes.Append(new FieldType { Index = idFieldType.Index, Term = idFieldName })
-                    .OrderBy(n => n.Index);
+                var allFields = fieldTypes
+                    .Append(new FieldType
+                    {
+                        Index = idFieldType.Index,
+                        IndexSpecified = true,
+                        Term = idFieldName
+                    });
+                this.fieldTypes = allFields 
+                    .Where(n => n.IndexSpecified)
+                    .OrderBy(n => n.Index)
+                    .ToArray();
+                this.fieldIndexDictionary = allFields
+                    .ToDictionary(k => k.Term);
             }
             else
             {
                 this.fieldTypes = fieldTypes
-                    .OrderBy(n => n.Index);
+                    .Where(n => n.IndexSpecified)
+                    .OrderBy(n => n.Index)
+                    .ToArray();
+                this.fieldIndexDictionary = fieldTypes
+                    .ToDictionary(k => k.Term);
             }
-            this.fieldIndexDictionary = this.fieldTypes.ToDictionary(k => k.Term, v => v.Index);
         }
 
         public int IndexOf(string term)
         {
-            if(!fieldIndexDictionary.ContainsKey(term))
+            if(fieldIndexDictionary.ContainsKey(term) && 
+                fieldIndexDictionary[term].IndexSpecified )
             {
-                throw new TermNotFoundException(term);
+                return fieldIndexDictionary[term].Index;
             }
-            return fieldIndexDictionary[term];
+            return -1;
         }
 
         public IEnumerator<FieldType> GetEnumerator()
         {
-            return fieldTypes.GetEnumerator();
+            return fieldTypes.ToList().GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -52,7 +64,7 @@ namespace DwC_A.Meta
         {
             get
             {
-                return fieldTypes.ElementAt(index);
+                return fieldTypes[index];
             }
         }
 
@@ -60,8 +72,21 @@ namespace DwC_A.Meta
         {
             get
             {
-                return fieldTypes.ElementAt(IndexOf(term));
+                return fieldIndexDictionary[term];
             }
         }
+
+        public bool TryGetFieldType(string term, out FieldType value)
+        {
+            if(fieldIndexDictionary.ContainsKey(term))
+            {
+                value = fieldIndexDictionary[term];
+                return true;
+            }
+            value = null;
+            return false;
+        }
+
+        public int Length => fieldTypes.Length;
     }
 }

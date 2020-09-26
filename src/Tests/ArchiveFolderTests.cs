@@ -1,4 +1,6 @@
 ﻿using DwC_A;
+using DwC_A.Config;
+using System.IO;
 using Xunit;
 
 namespace Tests
@@ -10,13 +12,32 @@ namespace Tests
         [Fact]
         public void ShouldOpenNewInstanceInAnotherDirectory()
         {
-            var archiveFolder1 = new ArchiveFolder(archiveFileName);
+            var defaultConfig = new ArchiveFolderConfiguration();
+            var archiveFolder1 = new ArchiveFolder(archiveFileName, defaultConfig);
             var first = archiveFolder1.Extract();
-            var archiveFolder2 = new ArchiveFolder(archiveFileName);
+            var archiveFolder2 = new ArchiveFolder(archiveFileName, defaultConfig);
             var second = archiveFolder2.Extract();
             archiveFolder1.DeleteFolder();
             archiveFolder2.DeleteFolder();
             Assert.NotEqual(first, second);
+        }
+
+        [Fact]
+        public void ShouldKeepArchive()
+        {
+            var customConfig = new ArchiveFolderConfiguration()
+            {
+                OutputPath = "./CustomFolder",
+                ShouldCleanup = false
+            };
+            if (Directory.Exists(customConfig.OutputPath))
+            {
+                Directory.Delete(customConfig.OutputPath, true);
+            }
+            var archiveFolder = new ArchiveFolder(archiveFileName, customConfig);
+            var outputPath = archiveFolder.Extract();
+            archiveFolder.DeleteFolder();
+            Assert.True(Directory.Exists(customConfig.OutputPath));
         }
     }
 }

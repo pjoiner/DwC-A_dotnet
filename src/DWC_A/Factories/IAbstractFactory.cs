@@ -14,9 +14,8 @@ namespace DwC_A.Factories
         /// This class is used internally to manage extraction of archive zip files
         /// </summary>
         /// <param name="fileName">Archive zip file name</param>
-        /// <param name="outputPath">Path to extract archive to.  Leave null to use a temporary directory</param>
         /// <returns>IArchiveFolder</returns>
-        IArchiveFolder CreateArchiveFolder(string fileName, string outputPath);
+        IArchiveFolder CreateArchiveFolder(string fileName);
         /// <summary>
         /// Creates a meta.xml metadata reader
         /// </summary>

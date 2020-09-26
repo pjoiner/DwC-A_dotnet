@@ -24,6 +24,13 @@ namespace Tests
             Term = Terms.acceptedNameUsage
         };
 
+        FieldType defaultFieldType = new FieldType()
+        {
+            IndexSpecified = false,
+            Term = Terms.acceptedNameUsageID,
+            Default = "Default Value"
+        };
+
         IRow row;
 
         public RowTests()
@@ -31,7 +38,16 @@ namespace Tests
             fileMetaDataMock.Setup(n => n.Fields.IndexOf("Name")).Returns(0);
             fileMetaDataMock.Setup(n => n.Fields.IndexOf("Value")).Returns(1);
             fileMetaDataMock.Setup(n => n.Fields[It.IsAny<int>()]).Returns(fieldType);
-            row = new Row(fields, fileMetaDataMock.Object.Fields);
+            var valueFieldType = new FieldType()
+            {
+                Index = 1,
+                IndexSpecified = true,
+                Term = "Value"
+            };
+            fileMetaDataMock.Setup(n => n.Fields.TryGetFieldType("Value", out valueFieldType))
+                .Returns(true);
+            fileMetaDataMock.Setup(n => n.Fields.Length).Returns(2);
+            row = new LazyRow(fields, fileMetaDataMock.Object.Fields);
         }
 
         [Fact]
@@ -46,6 +62,16 @@ namespace Tests
         public void ShouldDisplayFieldMetaData()
         {
             Assert.Equal(Terms.acceptedNameUsage, row.FieldMetaData[1].Term);
+        }
+
+        [Fact]
+        public void ShouldReturnDefaultValue()
+        {
+            var fieldMetaData = new FieldMetaData(null, new[] { fieldType, defaultFieldType });
+            IRow row = new LazyRow(fields, fieldMetaData);
+            Assert.Equal("Default Value", row[Terms.acceptedNameUsageID]);
+            Assert.True(row.TryGetField(Terms.acceptedNameUsageID, out string actual));
+            Assert.Equal("Default Value", actual);
         }
     }
 }
