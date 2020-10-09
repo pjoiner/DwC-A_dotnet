@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/pjoiner/DwC-A_dotnet</RepositoryUrl>
     <Authors>Paul Joiner</Authors>
     <Company />
-    <Copyright>Copyright © Paul Joiner 2018</Copyright>
+    <Copyright>Copyright © Paul Joiner 2020</Copyright>
     <PackageLicenseUrl>https://github.com/pjoiner/DwC-A_dotnet/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <Description>A simple Darwin Core Archive Reader for dotnet</Description>
