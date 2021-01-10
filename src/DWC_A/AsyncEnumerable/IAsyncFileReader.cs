@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DwC_A
 {
-#if NETSTANDARD2_1
+#if !NETSTANDARD2_0
     /// <summary>
     /// Reads a file
     /// </summary>

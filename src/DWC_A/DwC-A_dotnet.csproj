@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net5.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <RootNamespace>DwC_A</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/pjoiner/DwC-A_dotnet</RepositoryUrl>
     <Authors>Paul Joiner</Authors>
     <Company />
-    <Copyright>Copyright © Paul Joiner 2020</Copyright>
+    <Copyright>Copyright © Paul Joiner 2021</Copyright>
     <PackageLicenseUrl>https://github.com/pjoiner/DwC-A_dotnet/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <Description>A simple Darwin Core Archive Reader for dotnet</Description>
@@ -34,7 +34,7 @@
     </AssemblyAttribute>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Linq.Async" Version="4.0.0" Condition="'$(TargetFramework)' == 'netstandard2.1'" />
+    <PackageReference Include="System.Linq.Async" Version="4.0.0" Condition="'$(TargetFramework)' != 'netstandard2.0'" />
   </ItemGroup>
 
 </Project>

@@ -4,7 +4,7 @@ using System.IO;
 
 namespace DwC_A
 {
-#if NETSTANDARD2_1
+#if !NETSTANDARD2_0
     internal partial class StreamReader
     {
         public async IAsyncEnumerable<IRow> ReadRowsAsync(Stream stream)

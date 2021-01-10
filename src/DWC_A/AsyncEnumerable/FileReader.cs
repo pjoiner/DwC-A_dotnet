@@ -3,7 +3,7 @@ using System.IO;
 
 namespace DwC_A
 {
-#if NETSTANDARD2_1
+#if !NETSTANDARD2_0
     internal partial class FileReader
     {
         public async IAsyncEnumerable<IRow> GetRowsAsync()

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DwC_A
 {
-#if NETSTANDARD2_1
+#if !NETSTANDARD2_0
     public partial class FileReaderCollection
     {
         /// <summary>

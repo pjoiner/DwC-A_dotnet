@@ -34,7 +34,7 @@ namespace DwC_A
         /// File reader for Core file
         /// </summary>
         public IFileReader CoreFile { get { return coreFile; } }
-#if NETSTANDARD2_1
+#if !NETSTANDARD2_0
         /// <summary>
         /// Async File reader for Core file
         /// </summary>
