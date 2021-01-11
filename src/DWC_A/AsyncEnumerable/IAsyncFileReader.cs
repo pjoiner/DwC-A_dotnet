@@ -21,14 +21,17 @@ namespace DwC_A
         /// <summary>
         /// Enumerable collection of data row objects
         /// </summary>
+        /// <param name="ct">Cancellation Token</param>
         IAsyncEnumerable<IRow> GetDataRowsAsync(CancellationToken ct = default);
         /// <summary>
         /// Enumerable collection of header row objects
         /// </summary>
+        /// <param name="ct">Cancellation Token</param>
         IAsyncEnumerable<IRow> GetHeaderRowsAsync(CancellationToken ct = default);
         /// <summary>
         /// Enumerable collection of all row objects including headers and data
         /// </summary>
+        /// <param name="ct">Cancellation Token</param>
         IAsyncEnumerable<IRow> GetRowsAsync(CancellationToken ct = default);
     }
 #endif
