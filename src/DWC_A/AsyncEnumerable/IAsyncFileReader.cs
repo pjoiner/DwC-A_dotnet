@@ -1,5 +1,6 @@
 ﻿using DwC_A.Meta;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace DwC_A
 {
@@ -20,15 +21,15 @@ namespace DwC_A
         /// <summary>
         /// Enumerable collection of data row objects
         /// </summary>
-        IAsyncEnumerable<IRow> GetDataRowsAsync();
+        IAsyncEnumerable<IRow> GetDataRowsAsync(CancellationToken ct = default);
         /// <summary>
         /// Enumerable collection of header row objects
         /// </summary>
-        IAsyncEnumerable<IRow> GetHeaderRowsAsync();
+        IAsyncEnumerable<IRow> GetHeaderRowsAsync(CancellationToken ct = default);
         /// <summary>
         /// Enumerable collection of all row objects including headers and data
         /// </summary>
-        IAsyncEnumerable<IRow> GetRowsAsync();
+        IAsyncEnumerable<IRow> GetRowsAsync(CancellationToken ct = default);
     }
 #endif
 }
