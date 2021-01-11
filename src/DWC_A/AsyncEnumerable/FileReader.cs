@@ -1,27 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace DwC_A
 {
-#if NETSTANDARD2_1
+#if !NETSTANDARD2_0
     internal partial class FileReader
     {
-        public async IAsyncEnumerable<IRow> GetRowsAsync()
+        public async IAsyncEnumerable<IRow> GetRowsAsync([EnumeratorCancellation] CancellationToken ct = default)
         {
             using (var stream = new FileStream(FileName,
                 FileMode.Open, FileAccess.Read, FileShare.Read, config.BufferSize, true))
             {
-                await foreach (var row in streamReader.ReadRowsAsync(stream))
+                await foreach (var row in streamReader.ReadRowsAsync(stream, ct))
                 {
                     yield return row;
                 }
             }
         }
 
-        public async IAsyncEnumerable<IRow> GetHeaderRowsAsync()
+        public async IAsyncEnumerable<IRow> GetHeaderRowsAsync([EnumeratorCancellation] CancellationToken ct = default)
         {
             int count = 0;
-            await foreach (var row in GetRowsAsync())
+            await foreach (var row in GetRowsAsync(ct))
             {
                 if (count < FileMetaData.HeaderRowCount)
                 {
@@ -35,10 +37,10 @@ namespace DwC_A
             }
         }
 
-        public async IAsyncEnumerable<IRow> GetDataRowsAsync()
+        public async IAsyncEnumerable<IRow> GetDataRowsAsync([EnumeratorCancellation] CancellationToken ct = default)
         {
             int count = 0;
-            await foreach (var row in GetRowsAsync())
+            await foreach (var row in GetRowsAsync(ct))
             {
                 if (count >= FileMetaData.HeaderRowCount)
                 {

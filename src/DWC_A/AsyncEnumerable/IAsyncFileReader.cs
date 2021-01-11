@@ -1,9 +1,10 @@
 ﻿using DwC_A.Meta;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace DwC_A
 {
-#if NETSTANDARD2_1
+#if !NETSTANDARD2_0
     /// <summary>
     /// Reads a file
     /// </summary>
@@ -20,15 +21,18 @@ namespace DwC_A
         /// <summary>
         /// Enumerable collection of data row objects
         /// </summary>
-        IAsyncEnumerable<IRow> GetDataRowsAsync();
+        /// <param name="ct">Cancellation Token</param>
+        IAsyncEnumerable<IRow> GetDataRowsAsync(CancellationToken ct = default);
         /// <summary>
         /// Enumerable collection of header row objects
         /// </summary>
-        IAsyncEnumerable<IRow> GetHeaderRowsAsync();
+        /// <param name="ct">Cancellation Token</param>
+        IAsyncEnumerable<IRow> GetHeaderRowsAsync(CancellationToken ct = default);
         /// <summary>
         /// Enumerable collection of all row objects including headers and data
         /// </summary>
-        IAsyncEnumerable<IRow> GetRowsAsync();
+        /// <param name="ct">Cancellation Token</param>
+        IAsyncEnumerable<IRow> GetRowsAsync(CancellationToken ct = default);
     }
 #endif
 }

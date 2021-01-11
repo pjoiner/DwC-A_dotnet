@@ -3,8 +3,10 @@ using DwC_A.Config;
 using DwC_A.Factories;
 using DwC_A.Meta;
 using Moq;
+using System;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -90,6 +92,20 @@ namespace Tests
                 rowFactory, tokenizer, fileMetaDataMock.Object,
                 new FileReaderConfiguration());
             Assert.NotEmpty(await fileReader.GetDataRowsAsync().ToArrayAsync());
+        }
+
+        [Fact]
+        public async Task ShouldThrowOnCancellation()
+        {
+            fileMetaDataMock.Setup(n => n.FileName).Returns(fileName);
+            var fileReader = new FileReader(fileName,
+                rowFactory, tokenizer, fileMetaDataMock.Object,
+                new FileReaderConfiguration());
+            var ct = new CancellationToken(true);
+            await Assert.ThrowsAsync<OperationCanceledException>(async () => 
+            { 
+                await fileReader.GetDataRowsAsync(ct).ToArrayAsync(); 
+            });
         }
 
         [Fact]

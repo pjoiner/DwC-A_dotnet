@@ -7,7 +7,7 @@
     /// a consistent collection of FileReader objects without duplication
     /// for multiple interfaces.
     /// </summary>
-#if NETSTANDARD2_1
+#if !NETSTANDARD2_0
     public interface IFileReaderAggregate : IFileReader, IAsyncFileReader
 #else
     public interface IFileReaderAggregate : IFileReader
