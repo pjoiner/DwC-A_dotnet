@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using DwC_A.Exceptions;
+using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -26,6 +27,10 @@ namespace DwC_A.Meta
         private Archive DefaultMetaData(string path)
         {
             var fileNames = Directory.GetFiles(path);
+            if(fileNames.Length > 1)
+            {
+                throw new InvalidArchiveException(path);
+            }
             var coreFileName = Path.GetFileName(fileNames.Single());
             var archive = new Archive()
             {
