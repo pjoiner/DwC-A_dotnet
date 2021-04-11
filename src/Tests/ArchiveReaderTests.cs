@@ -1,4 +1,5 @@
 ﻿using DwC_A;
+using DwC_A.Exceptions;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -80,6 +81,12 @@ namespace Tests
                 Assert.Empty(whales.CoreFile.FileMetaData.Fields);
                 Assert.Equal(4, whales.CoreFile.DataRows.Count());
             }
+        }
+
+        [Fact]
+        public void ShouldThrowFileOrPathNotFound()
+        {
+            Assert.Throws<InvalidArchiveException>(() => new ArchiveReader("./resources"));
         }
     }
 }
