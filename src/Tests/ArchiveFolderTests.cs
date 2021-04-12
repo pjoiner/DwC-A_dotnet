@@ -39,5 +39,22 @@ namespace Tests
             archiveFolder.DeleteFolder();
             Assert.True(Directory.Exists(customConfig.OutputPath));
         }
+
+        [Fact]
+        public void ShouldAllowArchiveOverwrite()
+        {
+            var whales = "./resources/whales.zip";
+            var defaultConfig = new ArchiveFolderConfiguration()
+            {
+                OutputPath = "./whales",
+                ShouldCleanup = false,
+                Overwrite = true
+            };
+            var archiveFolder = new ArchiveFolder(whales, defaultConfig);
+            archiveFolder.Extract();
+            archiveFolder = new ArchiveFolder(whales, defaultConfig);
+            var action = Record.Exception(() => archiveFolder.Extract());
+            Assert.Null(action);
+        }
     }
 }
