@@ -20,11 +20,11 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build -c Release --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
       with:
         name: DwC-A_dotnet.nupkg
-        path: src/DwC-A_dotnet/bin/Release/DwC-A_dotnet.*.nupkg  
+        path: /home/runner/work/DwC-A_dotnet/DwC-A_dotnet/src/DwC-A_dotnet/bin/Release/DwC-A_dotnet.*.nupkg  
