@@ -27,4 +27,4 @@ jobs:
       uses: actions/upload-artifact@v2.2.2
       with:
         name: DwC-A_dotnet.nupkg
-        path: src/DWC-A/bin/Release/DwC-A_dotnet.*.nupkg  
+        path: src/DWC_A/bin/Release/DwC-A_dotnet.*.nupkg  
