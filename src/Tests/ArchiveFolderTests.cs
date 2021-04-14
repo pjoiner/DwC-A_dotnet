@@ -56,5 +56,21 @@ namespace Tests
             var action = Record.Exception(() => archiveFolder.Extract());
             Assert.Null(action);
         }
+
+        [Fact]
+        public void ShouldExtractRecursively()
+        {
+            var whales = @"./resources/whales.zip";
+            var config = new ArchiveFolderConfiguration()
+            {
+                OutputPath = "./whales",
+                Overwrite = true,
+                ShouldCleanup = false
+            };
+            var archiveFolder = new ArchiveFolder(whales, config);
+            var action = Record.Exception(() => archiveFolder.Extract());
+            Assert.Null(action);
+            Assert.True(File.Exists("./whales/extra/extra.txt"));
+        }
     }
 }

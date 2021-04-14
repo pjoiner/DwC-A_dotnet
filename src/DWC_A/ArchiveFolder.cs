@@ -34,11 +34,14 @@ namespace DwC_A
                 {
                     var outputFile = Path.Combine(folderPath, entry.FullName);
                     var outputPath = Path.GetDirectoryName(outputFile);
-                    if (!Directory.Exists(outputPath))
+                    if(!Directory.Exists(outputPath))
                     {
                         Directory.CreateDirectory(outputPath);
                     }
-                    entry.ExtractToFile(outputFile, config.Overwrite);
+                    if (!string.IsNullOrEmpty(entry.Name))
+                    {
+                        entry.ExtractToFile(outputFile, config.Overwrite);
+                    }
                 }
             }
             return folderPath;
