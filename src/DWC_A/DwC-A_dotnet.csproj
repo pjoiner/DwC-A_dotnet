@@ -12,11 +12,11 @@
     <Authors>Paul Joiner</Authors>
     <Company />
     <Copyright>Copyright © Paul Joiner 2021</Copyright>
-    <PackageLicenseUrl>https://github.com/pjoiner/DwC-A_dotnet/blob/master/LICENSE</PackageLicenseUrl>
+    <license>https://github.com/pjoiner/DwC-A_dotnet/blob/master/LICENSE</license>
     <RepositoryType>git</RepositoryType>
     <Description>A simple Darwin Core Archive Reader for dotnet</Description>
     <PackageTags>DwC-A darwin-core Biodiversity</PackageTags>
-    <Version>0.5.1</Version>
+    <Version>0.5.2</Version>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>full</DebugType>
@@ -25,8 +25,8 @@
   <PropertyGroup>
     <DocumentationFile>DwC-A_dotnet.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
-    <AssemblyVersion>0.5.1.0</AssemblyVersion>
-    <FileVersion>0.5.1.0</FileVersion>
+    <AssemblyVersion>0.5.2.0</AssemblyVersion>
+    <FileVersion>0.5.2.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
