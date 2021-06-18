@@ -39,5 +39,38 @@ namespace Tests
             archiveFolder.DeleteFolder();
             Assert.True(Directory.Exists(customConfig.OutputPath));
         }
+
+        [Fact]
+        public void ShouldAllowArchiveOverwrite()
+        {
+            var whales = "./resources/whales.zip";
+            var defaultConfig = new ArchiveFolderConfiguration()
+            {
+                OutputPath = "./whales",
+                ShouldCleanup = false,
+                Overwrite = true
+            };
+            var archiveFolder = new ArchiveFolder(whales, defaultConfig);
+            archiveFolder.Extract();
+            archiveFolder = new ArchiveFolder(whales, defaultConfig);
+            var action = Record.Exception(() => archiveFolder.Extract());
+            Assert.Null(action);
+        }
+
+        [Fact]
+        public void ShouldExtractRecursively()
+        {
+            var whales = @"./resources/whales.zip";
+            var config = new ArchiveFolderConfiguration()
+            {
+                OutputPath = "./whales",
+                Overwrite = true,
+                ShouldCleanup = false
+            };
+            var archiveFolder = new ArchiveFolder(whales, config);
+            var action = Record.Exception(() => archiveFolder.Extract());
+            Assert.Null(action);
+            Assert.True(File.Exists("./whales/extra/extra.txt"));
+        }
     }
 }

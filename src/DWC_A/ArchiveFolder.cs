@@ -9,6 +9,7 @@ namespace DwC_A
     {
         private readonly string fileName;
         private readonly string folderPath;
+        private readonly ArchiveFolderConfiguration config;
 
         public bool ShouldCleanup { get; private set; }
 
@@ -19,6 +20,7 @@ namespace DwC_A
         /// <param name="config"><see cref="ArchiveFolderConfiguration"/></param>
         public ArchiveFolder(string fileName, ArchiveFolderConfiguration config)
         {
+            this.config = config;
             this.fileName = fileName;
             ShouldCleanup = config.ShouldCleanup;
             this.folderPath = string.IsNullOrEmpty(config.OutputPath) ? GetTempPath() : config.OutputPath;
@@ -26,7 +28,22 @@ namespace DwC_A
 
         public string Extract()
         {
-            ZipFile.ExtractToDirectory(fileName, folderPath);
+            using(var zipArchive = ZipFile.OpenRead(fileName))
+            {
+                foreach(var entry in zipArchive.Entries)
+                {
+                    var outputFile = Path.Combine(folderPath, entry.FullName);
+                    var outputPath = Path.GetDirectoryName(outputFile);
+                    if(!Directory.Exists(outputPath))
+                    {
+                        Directory.CreateDirectory(outputPath);
+                    }
+                    if (!string.IsNullOrEmpty(entry.Name))
+                    {
+                        entry.ExtractToFile(outputFile, config.Overwrite);
+                    }
+                }
+            }
             return folderPath;
         }
 
