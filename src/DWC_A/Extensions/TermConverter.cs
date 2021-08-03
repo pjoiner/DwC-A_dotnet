@@ -15,7 +15,7 @@ namespace DwC_A.Extensions
         /// <exception cref="FormatException"/>
         /// <exception cref="TermNotFoundException"/>
         /// <exception cref="InvalidCastException"/>
-        public static T Convert<T>(this IRow row, string term) where T : IConvertible
+        public static T Convert<T>(this IRow row, string term)
         {
             return (T)System.Convert.ChangeType(row[term], typeof(T));
         }
@@ -30,7 +30,7 @@ namespace DwC_A.Extensions
         /// <exception cref="FormatException"/>
         /// <exception cref="ArgumentOutOfRangeException"/>
         /// <exception cref="InvalidCastException"/>
-        public static T Convert<T>(this IRow row, int index) where T : IConvertible
+        public static T Convert<T>(this IRow row, int index)
         {
             return (T)System.Convert.ChangeType(row[index], typeof(T));
         }
@@ -74,7 +74,7 @@ namespace DwC_A.Extensions
         /// <returns>A value of type T</returns>
         /// <exception cref="TermNotFoundException"/>
         /// <exception cref="ArgumentException" />
-        public static T? ConvertNullable<T>(this IRow row, string term) where T : struct, IConvertible
+        public static T? ConvertNullable<T>(this IRow row, string term) where T : struct
         {
             var result = new T?();
             var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(T));
@@ -94,7 +94,7 @@ namespace DwC_A.Extensions
         /// <returns>A value of type T</returns>
         /// <exception cref="ArgumentOutOfRangeException"/>
         /// <exception cref="ArgumentException" />
-        public static T? ConvertNullable<T>(this IRow row, int index) where T : struct, IConvertible
+        public static T? ConvertNullable<T>(this IRow row, int index) where T : struct
         {
             var result = new T?();
             var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(T));
@@ -113,10 +113,9 @@ namespace DwC_A.Extensions
         /// <param name="term">The name of the term to convert</param>
         /// <param name="value">Value to return</param>
         /// <returns>A ConvertResult object that is true on success.  On failure will return false an contain an error message</returns>
-        public static ConvertResult TryConvert<T>(this IRow row, string term, out T value) where T : IConvertible
+        public static ConvertResult TryConvert<T>(this IRow row, string term, out T value) 
         {
-            string data;
-            if (!row.TryGetField(term, out data))
+            if (!row.TryGetField(term, out string data))
             {
                 value = default;
                 return ConvertResult.Failed($"Term {term} not found");
@@ -139,7 +138,7 @@ namespace DwC_A.Extensions
         /// <param name="index">The index of the field to convert</param>
         /// <param name="value">Value to return</param>
         /// <returns>A ConvertResult object that is true on success.  On failure will return false an contain an error message</returns>
-        public static ConvertResult TryConvert<T>(this IRow row, int index, out T value) where T : IConvertible
+        public static ConvertResult TryConvert<T>(this IRow row, int index, out T value)
         {
             if(index < 0 || index >= row.FieldMetaData.Length)
             {
@@ -165,7 +164,7 @@ namespace DwC_A.Extensions
         /// <param name="term">The name of the term to convert</param>
         /// <param name="value">Value to return</param>
         /// <returns>A ConvertResult object that is true on success.  On failure will return false an contain an error message</returns>
-        public static ConvertResult TryConvertNullable<T>(this IRow row, string term, out T? value) where T : struct, IConvertible
+        public static ConvertResult TryConvertNullable<T>(this IRow row, string term, out T? value) where T : struct
         {
             value = default;
             if (!row.TryGetField(term, out string data))
@@ -192,7 +191,7 @@ namespace DwC_A.Extensions
         /// <param name="index">Index of the field to convert</param>
         /// <param name="value">Value to return</param>
         /// <returns>A ConvertResult object that is true on success.  On failure will return false an contain an error message</returns>
-        public static ConvertResult TryConvertNullable<T>(this IRow row, int index, out T? value) where T : struct, IConvertible
+        public static ConvertResult TryConvertNullable<T>(this IRow row, int index, out T? value) where T : struct
         {
             value = default;
             if(index < 0 || index >= row.FieldMetaData.Length)

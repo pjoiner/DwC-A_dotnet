@@ -26,7 +26,6 @@ namespace Tests
             Assert.Equal(73, row.Convert(Terms.acceptedNameUsageID, typeof(int)));
             Assert.Equal(73, row.Convert<int>(0));
             Assert.Equal(73, row.ConvertNullable<int>(Terms.acceptedNameUsageID));
-
         }
 
         [Fact]
@@ -72,7 +71,9 @@ namespace Tests
         public void TryConvertShouldReturnTrue()
         {
             var row = taxon.DataRows.FirstOrDefault();
-            Assert.True(row.TryConvert<int>(Terms.acceptedNameUsageID, out int acceptedNameUsageID));
+            var result = row.TryConvert<int>(Terms.acceptedNameUsageID, out int acceptedNameUsageID);
+            Assert.True(result);
+            Assert.Equal(ConvertResult.Success, result); 
             Assert.Equal(73, acceptedNameUsageID);
         }
 
@@ -149,6 +150,15 @@ namespace Tests
             var result = row.TryConvertNullable<int>(5, out int? scientificName);
             Assert.False(result);
             Assert.Matches("Field at index 5 with value .* could not be converted to type System.Int32", result.Message);
+        }
+
+        public record MyType(string Name, int Value);
+        [Fact]
+        public void ShouldFailOnNoConverter()
+        {
+            var row = taxon.DataRows.FirstOrDefault();
+            var actual = row.TryConvert<MyType>(Terms.acceptedNameUsage, out MyType value);
+            Assert.False(actual);
         }
     }
 }

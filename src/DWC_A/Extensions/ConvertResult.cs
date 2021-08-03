@@ -12,25 +12,22 @@
             Message = message;
         }
 
-        public static implicit operator bool(ConvertResult error)
-        {
-            return error.Value;
-        }
+        public static implicit operator bool(ConvertResult error) => error.Value;
 
-        public static ConvertResult Success
-        {
-            get
-            {
-                return SuccessResult;
-            }
-        }
+        public static ConvertResult Success => SuccessResult;
 
-        public static ConvertResult Failed(string message)
-        {
-            return new ConvertResult(false, message);
-        }
+        public static ConvertResult Failed(string message) => new ConvertResult(false, message);
 
-        private static ConvertResult SuccessResult = new ConvertResult(true);
+        public override bool Equals(object obj) => obj is ConvertResult result &&
+                   Value == result.Value;
+
+        public static bool operator ==(ConvertResult result1, ConvertResult result2) => result1.Equals(result2);
+
+        public static bool operator !=(ConvertResult result1, ConvertResult result2) => !result1.Equals(result2);
+
+        public override int GetHashCode() => Value.GetHashCode();
+
+        private static readonly ConvertResult SuccessResult = new ConvertResult(true);
     }
 
 }
