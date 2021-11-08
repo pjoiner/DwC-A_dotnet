@@ -28,6 +28,11 @@
         public override int GetHashCode() => Value.GetHashCode();
 
         private static readonly ConvertResult SuccessResult = new ConvertResult(true);
+
+        public override string ToString()
+        {
+            return $"{Value}: {Message}";
+        }
     }
 
 }
