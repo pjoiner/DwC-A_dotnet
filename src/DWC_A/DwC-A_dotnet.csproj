@@ -17,6 +17,7 @@
     <Description>A simple Darwin Core Archive Reader for dotnet</Description>
     <PackageTags>DwC-A darwin-core Biodiversity</PackageTags>
     <Version>0.6.0</Version>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>full</DebugType>
