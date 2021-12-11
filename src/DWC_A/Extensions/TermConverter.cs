@@ -12,12 +12,13 @@ namespace DwC_A.Extensions
         /// <param name="row">A row object</param>
         /// <param name="term">The name of the term to convert</param>
         /// <returns>Value of type T</returns>
-        /// <exception cref="FormatException"/>
+        /// <exception cref="ArgumentException"/>
         /// <exception cref="TermNotFoundException"/>
-        /// <exception cref="InvalidCastException"/>
+        /// <exception cref="NotSupportedException"/>
         public static T Convert<T>(this IRow row, string term)
         {
-            return (T)System.Convert.ChangeType(row[term], typeof(T));
+            var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(T));
+            return (T)converter.ConvertFrom(row[term]);
         }
 
         /// <summary>
@@ -27,12 +28,13 @@ namespace DwC_A.Extensions
         /// <param name="row">A row object</param>
         /// <param name="index">Index of field to convert</param>
         /// <returns>Value of type T</returns>
-        /// <exception cref="FormatException"/>
+        /// <exception cref="ArgumentException"/>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        /// <exception cref="InvalidCastException"/>
+        /// <exception cref="NotSupportedException"/>
         public static T Convert<T>(this IRow row, int index)
         {
-            return (T)System.Convert.ChangeType(row[index], typeof(T));
+            var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(T));
+            return (T)converter.ConvertFrom(row[index]);
         }
 
         /// <summary>
@@ -42,12 +44,13 @@ namespace DwC_A.Extensions
         /// <param name="term">The name of the term to convert</param>
         /// <param name="type">Type to convert to</param>
         /// <returns>An object of the type given in the type parameter</returns>
-        /// <exception cref="FormatException"/>
+        /// <exception cref="ArgumentException"/>
         /// <exception cref="TermNotFoundException"/>
-        /// <exception cref="InvalidCastException"/>
+        /// <exception cref="NotSupportedException"/>
         public static object Convert(this IRow row, string term, Type type)
         {
-            return System.Convert.ChangeType(row[term], type);
+            var converter = System.ComponentModel.TypeDescriptor.GetConverter(type);
+            return converter.ConvertFrom(row[term]);
         }
 
         /// <summary>
@@ -57,12 +60,13 @@ namespace DwC_A.Extensions
         /// <param name="index">Index of field to convert</param>
         /// <param name="type">Type to convert to</param>
         /// <returns>An object of the type given in the type parameter</returns>
-        /// <exception cref="FormatException"/>
+        /// <exception cref="ArgumentException"/>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        /// <exception cref="InvalidCastException"/>
+        /// <exception cref="NotSupportedException"/>
         public static object Convert(this IRow row, int index, Type type)
         {
-            return System.Convert.ChangeType(row[index], type);
+            var converter = System.ComponentModel.TypeDescriptor.GetConverter(type);
+            return converter.ConvertFrom(row[index]);
         }
 
         /// <summary>

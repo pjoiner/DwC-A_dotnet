@@ -19,7 +19,8 @@
         public static ConvertResult Failed(string message) => new ConvertResult(false, message);
 
         public override bool Equals(object obj) => obj is ConvertResult result &&
-                   Value == result.Value;
+                   Value == result.Value &&
+                   Message == result.Message;
 
         public static bool operator ==(ConvertResult result1, ConvertResult result2) => result1.Equals(result2);
 
