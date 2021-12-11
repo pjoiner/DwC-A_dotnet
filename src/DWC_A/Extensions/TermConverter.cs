@@ -17,7 +17,8 @@ namespace DwC_A.Extensions
         /// <exception cref="InvalidCastException"/>
         public static T Convert<T>(this IRow row, string term)
         {
-            return (T)System.Convert.ChangeType(row[term], typeof(T));
+            var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(T));
+            return (T)converter.ConvertFrom(row[term]);
         }
 
         /// <summary>
@@ -32,7 +33,8 @@ namespace DwC_A.Extensions
         /// <exception cref="InvalidCastException"/>
         public static T Convert<T>(this IRow row, int index)
         {
-            return (T)System.Convert.ChangeType(row[index], typeof(T));
+            var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(T));
+            return (T)converter.ConvertFrom(row[index]);
         }
 
         /// <summary>
@@ -47,7 +49,8 @@ namespace DwC_A.Extensions
         /// <exception cref="InvalidCastException"/>
         public static object Convert(this IRow row, string term, Type type)
         {
-            return System.Convert.ChangeType(row[term], type);
+            var converter = System.ComponentModel.TypeDescriptor.GetConverter(type);
+            return converter.ConvertFrom(row[term]);
         }
 
         /// <summary>
@@ -62,7 +65,8 @@ namespace DwC_A.Extensions
         /// <exception cref="InvalidCastException"/>
         public static object Convert(this IRow row, int index, Type type)
         {
-            return System.Convert.ChangeType(row[index], type);
+            var converter = System.ComponentModel.TypeDescriptor.GetConverter(type);
+            return converter.ConvertFrom(row[index]);
         }
 
         /// <summary>

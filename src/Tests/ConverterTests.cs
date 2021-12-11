@@ -5,6 +5,9 @@ using System.Linq;
 using Xunit;
 using System;
 using DwC_A.Exceptions;
+using Moq;
+using System.ComponentModel;
+using System.Globalization;
 
 namespace Tests
 {
@@ -12,10 +15,49 @@ namespace Tests
     {
         private readonly ArchiveReader archive = new ArchiveReader("./resources/dwca-vascan-v37.5");
         private readonly IFileReader taxon;
+        private readonly Mock<IRow> mockRow = new Mock<IRow>();
+
+        [TypeConverter(typeof(EventDateConverter))]
+        private class EventDate
+        {
+            public DateTime Begin { get; set; }
+            public DateTime End { get; set; }
+        }
+
+        internal class EventDateConverter : TypeConverter
+        {
+            public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+            {
+                return sourceType == typeof(string) ? true : base.CanConvertFrom(context, sourceType);
+            }
+
+            public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+            {
+                if (value is string valueStr)
+                {
+                    var dates = valueStr.Split('/'); 
+                    return new EventDate()
+                    {
+                        Begin = dates.Length > 0 ? DateTime.Parse(dates[0]) : DateTime.MinValue,
+                        End = dates.Length > 1 ? DateTime.Parse(dates[1]) : DateTime.MaxValue
+                    };
+                }
+                return base.ConvertFrom(context, culture, value);
+            }
+
+            public override bool IsValid(ITypeDescriptorContext context, object value)
+            {
+                return value is string;
+            }
+        }
 
         public ConverterTests()
         {
             taxon = archive.CoreFile;
+            var eventDate = "12-10-1990/12-17-1990";
+            mockRow.Setup(n => n[Terms.eventDate]).Returns(eventDate);
+            mockRow.Setup(n => n.TryGetField(Terms.eventDate, out eventDate)).Returns(true);
+            mockRow.Setup(n => n[0]).Returns(eventDate);
         }
 
         [Fact]
@@ -42,15 +84,15 @@ namespace Tests
         public void ShouldThrowOnConvert()
         {
             var row = taxon.DataRows.FirstOrDefault();
-            Assert.Throws<FormatException>(() => row.Convert<int>(Terms.scientificName));
+            Assert.Throws<ArgumentException>(() => row.Convert<int>(Terms.scientificName));
             Assert.Throws<TermNotFoundException>(() => row.Convert<string>(Terms.sex));
-            Assert.Throws<InvalidCastException>(() => row.Convert<int>(Terms.parentNameUsageID));
+            Assert.Throws<NotSupportedException>(() => row.Convert<int>(Terms.parentNameUsageID));
 
             Assert.Throws<ArgumentOutOfRangeException>(() => row.Convert<int>(999));
 
-            Assert.Throws<FormatException>(() => row.Convert(Terms.scientificName, typeof(int)));
+            Assert.Throws<ArgumentException>(() => row.Convert(Terms.scientificName, typeof(int)));
             Assert.Throws<TermNotFoundException>(() => row.Convert(Terms.sex, typeof(string)));
-            Assert.Throws<InvalidCastException>(() => row.Convert(Terms.parentNameUsageID, typeof(int)));
+            Assert.Throws<NotSupportedException>(() => row.Convert(Terms.parentNameUsageID, typeof(int)));
 
             Assert.Throws<ArgumentOutOfRangeException>(() => row.Convert(999, typeof(int)));
 
@@ -159,6 +201,47 @@ namespace Tests
             var row = taxon.DataRows.FirstOrDefault();
             var actual = row.TryConvert<MyType>(Terms.acceptedNameUsage, out MyType value);
             Assert.False(actual);
+        }
+
+        [Fact]
+        public void ShouldConvertEventDate()
+        {
+            var eventDate = mockRow.Object.Convert<EventDate>(Terms.eventDate);
+            DateTime expected = new DateTime(1990, 12, 10);
+            Assert.Equal(expected, eventDate.Begin);
+        }
+
+        [Fact]
+        public void ShouldConvertEventDateUsingIndex()
+        {
+            var eventDate = mockRow.Object.Convert<EventDate>(0);
+            DateTime expected = new DateTime(1990, 12, 10);
+            Assert.Equal(expected, eventDate.Begin);
+        }
+
+        [Fact]
+        public void ShouldReturnValueObjectOnConvertTermWithTypeOf()
+        {
+            var eventDate = mockRow.Object.Convert(Terms.eventDate, typeof(EventDate)) as EventDate;
+            DateTime expected = new DateTime(1990, 12, 10);
+            Assert.Equal(expected, eventDate.Begin);
+        }
+
+        [Fact]
+        public void ShouldReturnValueObjectOnConvertIndexWithTypeOf()
+        {
+            var eventDate = mockRow.Object.Convert(0, typeof(EventDate)) as EventDate;
+            DateTime expected = new DateTime(1990, 12, 10);
+            Assert.Equal(expected, eventDate.Begin);
+        }
+
+        [Fact]
+        public void ShouldConvertEventDateOnTry()
+        {
+            var result = mockRow.Object.TryConvert<EventDate>(Terms.eventDate, out EventDate eventDate);
+            Assert.True(result);
+            DateTime expected = new DateTime(1990, 12, 10);
+            Assert.Equal(expected, eventDate.Begin);
         }
     }
 }
