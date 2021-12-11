@@ -12,9 +12,9 @@ namespace DwC_A.Extensions
         /// <param name="row">A row object</param>
         /// <param name="term">The name of the term to convert</param>
         /// <returns>Value of type T</returns>
-        /// <exception cref="FormatException"/>
+        /// <exception cref="ArgumentException"/>
         /// <exception cref="TermNotFoundException"/>
-        /// <exception cref="InvalidCastException"/>
+        /// <exception cref="NotSupportedException"/>
         public static T Convert<T>(this IRow row, string term)
         {
             var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(T));
@@ -28,9 +28,9 @@ namespace DwC_A.Extensions
         /// <param name="row">A row object</param>
         /// <param name="index">Index of field to convert</param>
         /// <returns>Value of type T</returns>
-        /// <exception cref="FormatException"/>
+        /// <exception cref="ArgumentException"/>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        /// <exception cref="InvalidCastException"/>
+        /// <exception cref="NotSupportedException"/>
         public static T Convert<T>(this IRow row, int index)
         {
             var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(T));
@@ -44,9 +44,9 @@ namespace DwC_A.Extensions
         /// <param name="term">The name of the term to convert</param>
         /// <param name="type">Type to convert to</param>
         /// <returns>An object of the type given in the type parameter</returns>
-        /// <exception cref="FormatException"/>
+        /// <exception cref="ArgumentException"/>
         /// <exception cref="TermNotFoundException"/>
-        /// <exception cref="InvalidCastException"/>
+        /// <exception cref="NotSupportedException"/>
         public static object Convert(this IRow row, string term, Type type)
         {
             var converter = System.ComponentModel.TypeDescriptor.GetConverter(type);
@@ -60,9 +60,9 @@ namespace DwC_A.Extensions
         /// <param name="index">Index of field to convert</param>
         /// <param name="type">Type to convert to</param>
         /// <returns>An object of the type given in the type parameter</returns>
-        /// <exception cref="FormatException"/>
+        /// <exception cref="ArgumentException"/>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        /// <exception cref="InvalidCastException"/>
+        /// <exception cref="NotSupportedException"/>
         public static object Convert(this IRow row, int index, Type type)
         {
             var converter = System.ComponentModel.TypeDescriptor.GetConverter(type);
