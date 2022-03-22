@@ -47,5 +47,14 @@ namespace Tests
             var result2 = mockRow.Object.TryConvert<DateTime>(Terms.eventDate, out DateTime value2);
             Assert.Equal(result1, result2);
         }
+
+        [Fact]
+        public void ShouldDeconstructConvertResult()
+        {
+            var result = ConvertResult.Failed("Failed message");
+            var (success, message) = result;
+            Assert.False(success);
+            Assert.Equal("Failed message", message);
+        }
     }
 }
