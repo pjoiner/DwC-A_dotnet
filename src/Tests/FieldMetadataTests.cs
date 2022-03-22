@@ -22,8 +22,14 @@ namespace Tests
                 Index = 2,
                 IndexSpecified = true,
                 Term = Terms.acceptedNameUsageID
+            },
+            new FieldType()
+            {
+                IndexSpecified = false,
+                Term = Terms.accessRights,
+                Default = "Default Value"
             }
-        };
+    };
 
         IFieldMetaData fieldMetaData;
 
@@ -51,7 +57,7 @@ namespace Tests
                 IndexSpecified = true
             };
             fieldMetaData = new FieldMetaData( idField, fieldTypes);
-            Assert.Equal(3, fieldMetaData.Count());
+            Assert.Equal(4, fieldMetaData.Count());
         }
 
         [Fact]
@@ -64,7 +70,46 @@ namespace Tests
                 IndexSpecified = true
             };
             fieldMetaData = new FieldMetaData(idField, fieldTypes);
-            Assert.Equal(2, fieldMetaData.Count());
+            Assert.Equal(3, fieldMetaData.Count());
+        }
+
+        [Fact]
+        //issue#51
+        public void ShouldReturnDefaultField()
+        {
+            var idField = new IdFieldType()
+            {
+                Index = 0,
+                IndexSpecified = true
+            };
+            fieldMetaData = new FieldMetaData(idField, fieldTypes);
+            Assert.NotNull(fieldMetaData[Terms.accessRights]);
+        }
+
+        [Fact]
+        //issue#51
+        public void ShouldReturnListOfDefaultFields()
+        {
+            var idField = new IdFieldType()
+            {
+                Index = 0,
+                IndexSpecified = true
+            };
+            fieldMetaData = new FieldMetaData(idField, fieldTypes);
+            Assert.NotEmpty(fieldMetaData.Where(n => !n.IndexSpecified));
+        }
+
+        [Fact]
+        //issue#51
+        public void ShouldEnumerateAllFields()
+        {
+            var idField = new IdFieldType()
+            {
+                Index = 0,
+                IndexSpecified = true
+            };
+            fieldMetaData = new FieldMetaData(idField, fieldTypes);
+            Assert.Equal(4, fieldMetaData.Count());
         }
     }
 }

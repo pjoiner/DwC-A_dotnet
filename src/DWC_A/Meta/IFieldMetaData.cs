@@ -33,8 +33,16 @@ namespace DwC_A.Meta
         /// <returns>Returns false if not found</returns>
         bool TryGetFieldType(string term, out FieldType value);
         /// <summary>
-        /// Returns the number of indexed fields
+        /// Returns the number of fields (including defaults)
         /// </summary>
         int Length { get; }
+        /// <summary>
+        /// Returns the number of indexed fields
+        /// </summary>
+        int IndexedLength { get; }
+        /// <summary>
+        /// Returns a list of indexed fields in index order
+        /// </summary>
+        IEnumerable<FieldType> Indexed { get; }
     }
 }
