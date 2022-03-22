@@ -20,7 +20,7 @@ namespace DwC_A.Builders
         /// <param name="shouldCleanup">If set to true then the folder will be deleted after the archive is written.</param>
         public BuilderContext(string path = "", bool shouldCleanup = false)
         {
-            if (string.IsNullOrEmpty(path))
+            if (string.IsNullOrWhiteSpace(path))
             {
                 this.path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "dwca", Guid.NewGuid().ToString());
             }

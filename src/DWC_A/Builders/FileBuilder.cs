@@ -121,7 +121,7 @@ namespace DwC_A.Builders
         public string Build()
         {
             FullFileName = Path.Combine(GetPath(), fileMetaData.FileName);
-            if(!string.IsNullOrEmpty(existingFile))
+            if(!string.IsNullOrWhiteSpace(existingFile))
             {
                 File.Copy(existingFile, FullFileName);
                 return FullFileName;

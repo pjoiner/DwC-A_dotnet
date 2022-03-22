@@ -23,7 +23,7 @@ namespace DwC_A
             this.config = config;
             this.fileName = fileName;
             ShouldCleanup = config.ShouldCleanup;
-            this.folderPath = string.IsNullOrEmpty(config.OutputPath) ? GetTempPath() : config.OutputPath;
+            this.folderPath = string.IsNullOrWhiteSpace(config.OutputPath) ? GetTempPath() : config.OutputPath;
         }
 
         public string Extract()
@@ -38,7 +38,7 @@ namespace DwC_A
                     {
                         Directory.CreateDirectory(outputPath);
                     }
-                    if (!string.IsNullOrEmpty(entry.Name))
+                    if (!string.IsNullOrWhiteSpace(entry.Name))
                     {
                         entry.ExtractToFile(outputFile, config.Overwrite);
                     }
