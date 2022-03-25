@@ -37,14 +37,14 @@ namespace Tests
             get
             {
                 return FieldsMetaDataBuilder.Fields()
+                    .AddField(_ => _.Term(Terms.geodeticDatum).Default("WGS84"))
                     .AutomaticallyIndex()
                     .AddField(_ => _.Term(Terms.occurrenceID))
                     .AddField(_ => _.Term(Terms.basisOfRecord))
                     .AddField(_ => _.Term(Terms.scientificName))
                     .AddField(_ => _.Term(Terms.eventDate))
                     .AddField(_ => _.Term(Terms.decimalLatitude))
-                    .AddField(_ => _.Term(Terms.decimalLongitude))
-                    .AddField(_ => _.Term(Terms.geodeticDatum));
+                    .AddField(_ => _.Term(Terms.decimalLongitude));
             }
         }
 
