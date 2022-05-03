@@ -34,6 +34,12 @@
         {
             return $"{Value}: {Message}";
         }
+
+        public void Deconstruct(out bool value, out string message)
+        {
+            value = Value;
+            message = Message;
+        }
     }
 
 }
