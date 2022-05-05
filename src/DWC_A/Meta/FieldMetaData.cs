@@ -9,11 +9,13 @@ namespace DwC_A.Meta
         private const string idFieldName = "id";
         private readonly IDictionary<string, FieldType> fieldIndexDictionary;
         private readonly FieldType[] fieldTypes;
+        private readonly IEnumerable<FieldType> defaultFields;
 
         public FieldMetaData(IdFieldType idFieldType, ICollection<FieldType> fieldTypes)
         {
             if (idFieldType != null && idFieldType.IndexSpecified
-                && fieldTypes.All(n => n.Index != idFieldType.Index))
+                && fieldTypes.Where(n => n.IndexSpecified)
+                             .All(n => n.Index != idFieldType.Index))
             {
                 var allFields = fieldTypes
                     .Append(new FieldType
@@ -38,6 +40,7 @@ namespace DwC_A.Meta
                 this.fieldIndexDictionary = fieldTypes
                     .ToDictionary(k => k.Term);
             }
+            defaultFields = fieldTypes.Where(n => !n.IndexSpecified);
         }
 
         public int IndexOf(string term)
@@ -52,12 +55,12 @@ namespace DwC_A.Meta
 
         public IEnumerator<FieldType> GetEnumerator()
         {
-            return fieldTypes.ToList().GetEnumerator();
+            return fieldTypes.Union(defaultFields).ToList().GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return fieldTypes.GetEnumerator();
+            return fieldTypes.Union(defaultFields).GetEnumerator();
         }
 
         public FieldType this[int index]
@@ -87,6 +90,10 @@ namespace DwC_A.Meta
             return false;
         }
 
-        public int Length => fieldTypes.Length;
+        public int Length => fieldTypes.Union(defaultFields).Count();
+
+        public int IndexedLength => fieldTypes.Length;
+
+        public IEnumerable<FieldType> Indexed => fieldTypes;
     }
 }

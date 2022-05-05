@@ -73,7 +73,7 @@ namespace DwC_A
             if((fileAttributes & FileAttributes.Directory) == FileAttributes.Directory)
             {
                 //File is a directory.  Set the outputPath and continue
-                OutputPath = string.IsNullOrEmpty(archivePath) ?
+                OutputPath = string.IsNullOrWhiteSpace(archivePath) ?
                     throw new ArgumentNullException(nameof(archivePath)) : archivePath;
             }
             else

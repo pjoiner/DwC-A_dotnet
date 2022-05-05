@@ -82,7 +82,7 @@ namespace DwC_A.Extensions
         {
             var result = new T?();
             var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(T));
-            if (!string.IsNullOrEmpty(row[term]))
+            if (!string.IsNullOrWhiteSpace(row[term]))
             {
                 result = (T)converter.ConvertFrom(row[term]);
             }
@@ -102,7 +102,7 @@ namespace DwC_A.Extensions
         {
             var result = new T?();
             var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(T));
-            if (!string.IsNullOrEmpty(row[index]))
+            if (!string.IsNullOrWhiteSpace(row[index]))
             {
                 result = (T)converter.ConvertFrom(row[index]);
             }
@@ -175,7 +175,7 @@ namespace DwC_A.Extensions
             {
                 return ConvertResult.Failed($"Term {term} not found");
             }
-            if (!string.IsNullOrEmpty(data))
+            if (!string.IsNullOrWhiteSpace(data))
             {
                 var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(T));
                 if (!converter.IsValid(data))
@@ -203,7 +203,7 @@ namespace DwC_A.Extensions
                 return ConvertResult.Failed($"Index {index} out of range");
             }
             string data = row[index];
-            if (!string.IsNullOrEmpty(data))
+            if (!string.IsNullOrWhiteSpace(data))
             {
                 var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(T));
                 if (!converter.IsValid(data))

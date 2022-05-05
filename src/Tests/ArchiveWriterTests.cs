@@ -106,7 +106,6 @@ namespace Tests
                           .AddField(occurrence.EventDate.ToString("yyyy-MM-dd"))
                           .AddField(occurrence.DecimalLatitude)
                           .AddField(occurrence.DecimalLongitude)
-                          .AddField(occurrence.GeodeticDatum)
                           .Build();
             }
         }

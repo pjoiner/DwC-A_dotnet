@@ -7,6 +7,9 @@
     {
         private int? index;
         private string term;
+        private string defaultValue;
+        private string vocabulary;
+        private string delimiter;
 
         private FieldMetaDataBuilder(string term)
         {
@@ -46,6 +49,39 @@
         }
 
         /// <summary>
+        /// Sets the default value for the field
+        /// </summary>
+        /// <param name="defaultValue">A default value to be returned if no value is provided</param>
+        /// <returns>this</returns>
+        public FieldMetaDataBuilder Default(string defaultValue)
+        {
+            this.defaultValue = defaultValue;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the vocabulary for the field
+        /// </summary>
+        /// <param name="vocabulary">MUST be a Unified Resource Identifier (URI) for a vocabulary that the source values for this are based on.</param>
+        /// <returns>this</returns>
+        public FieldMetaDataBuilder Vocabulary(string vocabulary)
+        {
+            this.vocabulary = vocabulary;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the delimiter for the field if a list of values is stored in the field
+        /// </summary>
+        /// <param name="delimiter">Delimiter string</param>
+        /// <returns>this</returns>
+        public FieldMetaDataBuilder Delimiter(string delimiter)
+        {
+            this.delimiter = delimiter;
+            return this;
+        }
+
+        /// <summary>
         /// Builds field metadata
         /// </summary>
         /// <returns>Field metadata</returns>
@@ -55,7 +91,10 @@
             {
                 Index = index.GetValueOrDefault(),
                 IndexSpecified = index.HasValue,
-                Term = term
+                Term = term,
+                DelimitedBy = delimiter,
+                Default = defaultValue,
+                Vocabulary = vocabulary
             };
         }
     }

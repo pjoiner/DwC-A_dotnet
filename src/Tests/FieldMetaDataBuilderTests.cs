@@ -47,5 +47,28 @@ namespace Tests
             Assert.NotEmpty(fieldsMetaData);
         }
 
+        [Fact]
+        public void ShouldBuildNonIndexedFieldWithDefault()
+        {
+            var fieldMetaData = FieldMetaDataBuilder.Field()
+                .Term(Terms.geodeticDatum)
+                .Default("WGS84")
+                .Build();
+            Assert.Equal("WGS84", fieldMetaData.Default);
+        }
+
+        [Fact]
+        public void ShouldBuildFieldMetaDataArrayWithIndexAndDefault()
+        {
+            var fieldsMetaData = FieldsMetaDataBuilder.Fields()
+                    .AddField(_ => _.Term(Terms.geodeticDatum).Default("WGS84"))
+                    .AutomaticallyIndex()
+                    .AddField(_ => _.Term(Terms.identificationID))
+                    .AddField(_ => _.Term(Terms.scientificName))
+                    .Build();
+            Assert.Equal(3, fieldsMetaData.Length);
+            var fieldsMetaData1 = new FieldMetaData(null, fieldsMetaData);
+            Assert.Equal(3, fieldsMetaData1.Length);
+        }
     }
 }
