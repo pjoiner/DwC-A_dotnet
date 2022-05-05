@@ -68,7 +68,7 @@ namespace Tests
                     .Build();
             Assert.Equal(3, fieldsMetaData.Length);
             var fieldsMetaData1 = new FieldMetaData(null, fieldsMetaData);
-            Assert.Equal(2, fieldsMetaData1.Length);
+            Assert.Equal(3, fieldsMetaData1.Length);
         }
     }
 }
