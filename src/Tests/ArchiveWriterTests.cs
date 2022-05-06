@@ -3,6 +3,7 @@ using DwC_A.Builders;
 using DwC_A.Meta;
 using DwC_A.Terms;
 using DwC_A.Writers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -93,6 +94,81 @@ namespace Tests
 
             Assert.True(File.Exists(archiveName));
             context.Cleanup();
+        }
+
+        [Fact]
+        public async Task ShouldBuildCoreFile()
+        {
+            var context = BuilderContext.Default;
+
+            var occurrences = await fixture.GetOccurrencesAsync();
+            var occurrenceMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
+            var coreFileMetaDataBuilder = CoreFileMetaDataBuilder.File("occurrence.txt")
+                .IgnoreHeaderLines(1)
+                .Encoding(Encoding.UTF8)
+                .FieldsEnclosedBy("")
+                .Index(0)
+                .RowType(RowTypes.Occurrence)
+                .AddFields(occurrenceMetaDataBuilder);
+            var coreFileBuilder = FileBuilder.MetaData(coreFileMetaDataBuilder)
+                .Context(context)
+                .BuildRows(rowBuilder => BuildCoreRows(rowBuilder));
+            var fileName = coreFileBuilder.Build();
+
+            var expected = fixture.ExpectedCoreFileHeader;
+            Assert.Equal(expected, File.ReadAllLines(fileName)[0]);
+        }
+
+        [Fact]
+        public async Task ShouldBuildCoreFileWithCustomHeader()
+        {
+            var context = BuilderContext.Default;
+
+            var occurrences = await fixture.GetOccurrencesAsync();
+            var occurrenceMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
+            var coreFileMetaDataBuilder = CoreFileMetaDataBuilder.File("occurrence.txt")
+                .IgnoreHeaderLines(2)
+                .Encoding(Encoding.UTF8)
+                .FieldsEnclosedBy("")
+                .Index(0)
+                .RowType(RowTypes.Occurrence)
+                .AddFields(occurrenceMetaDataBuilder);
+            var coreFileBuilder = FileBuilder.MetaData(coreFileMetaDataBuilder)
+                .Context(context)
+                .AddCustomHeader(BuildCustomCoreFileHeader)
+                .BuildRows(rowBuilder => BuildCoreRows(rowBuilder));
+            var fileName = coreFileBuilder.Build();
+
+            var actual = File.ReadAllLines(fileName);
+            Assert.Equal("Custom core file", actual[0]);
+            Assert.Equal(fixture.ExpectedCoreFileHeader, actual[1]);
+        }
+
+        [Fact]
+        public async Task FileBuilderShouldThrowOnWrongNumberOfHeaderLines()
+        {
+            var context = BuilderContext.Default;
+
+            var occurrences = await fixture.GetOccurrencesAsync();
+            var occurrenceMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
+            var coreFileMetaDataBuilder = CoreFileMetaDataBuilder.File("occurrence.txt")
+                .IgnoreHeaderLines(1)
+                .Encoding(Encoding.UTF8)
+                .FieldsEnclosedBy("")
+                .Index(0)
+                .RowType(RowTypes.Occurrence)
+                .AddFields(occurrenceMetaDataBuilder);
+            var coreFileBuilder = FileBuilder.MetaData(coreFileMetaDataBuilder)
+                .Context(context)
+                .AddCustomHeader(BuildCustomCoreFileHeader)
+                .BuildRows(rowBuilder => BuildCoreRows(rowBuilder));
+            Assert.Throws<InvalidOperationException>(() => coreFileBuilder.Build());
+        }
+
+        private IEnumerable<string> BuildCustomCoreFileHeader()
+        {
+            yield return "Custom core file";
+            yield return fixture.ExpectedCoreFileHeader;
         }
 
         private IEnumerable<string> BuildCoreRows(RowBuilder rowBuilder)
