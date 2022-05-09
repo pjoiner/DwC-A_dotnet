@@ -65,11 +65,11 @@ namespace DwC_A.Builders
         /// <summary>
         /// Use this method to add a custom or multi-line header to a file
         /// </summary>
-        /// <param name="header">A lambda or delegate that returns a list of strings representing the rows in the header.  The number of strings returned must equal FileMetaData.HeaderRowCount.</param>
+        /// <param name="headerFunc">A lambda or delegate that returns a list of strings representing the rows in the header.  The number of strings returned must equal FileMetaData.HeaderRowCount.</param>
         /// <returns>Current FileBuilder</returns>
-        public FileBuilder AddCustomHeader(Func<IEnumerable<string>> header)
+        public FileBuilder AddCustomHeader(Func<IEnumerable<string>> headerFunc)
         {
-            this.headerFunc = header;
+            this.headerFunc = headerFunc;
             return this;
         }
 
@@ -78,7 +78,7 @@ namespace DwC_A.Builders
             var rowBuilder = new RowBuilder(fileMetaData);
             foreach (var field in fileMetaData.Fields)
             {
-                rowBuilder.AddField(Terms.Terms.ShortName(field.Term));
+                _ = rowBuilder.AddField(Terms.Terms.ShortName(field.Term));
             }
             yield return rowBuilder.Build();
         }
@@ -88,7 +88,7 @@ namespace DwC_A.Builders
             var headerRows = headerFunc();
             if (headerRows.Count() != fileMetaData.HeaderRowCount)
             {
-                throw new InvalidOperationException($"{fileMetaData.HeaderRowCount} header rows were expected but only {headerRows.Count()} were provided.  See AddCustomHeader to create multi-line headers.");
+                throw new InvalidOperationException($"Error writing file {fileMetaData.FileName}. {fileMetaData.HeaderRowCount} header rows were expected but {headerRows.Count()} were provided. See AddCustomHeader to create multi-line headers.");
             }
             foreach(var headerRow in headerRows)
             {
