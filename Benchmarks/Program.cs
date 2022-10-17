@@ -6,7 +6,7 @@ namespace Benchmarks
     {
         static void Main(string[] args)
         {
-            var summary = BenchmarkRunner.Run(typeof(Program).Assembly);
+            BenchmarkSwitcher.FromAssemblies(new[] { typeof(Program).Assembly }).Run(args);
         }
     }
 }
