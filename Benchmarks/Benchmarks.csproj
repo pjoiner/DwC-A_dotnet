@@ -1,17 +1,61 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net48;net5.0;net6.0</TargetFrameworks>
+    <Configurations>Debug;Release;LocalRelease</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net48|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net48|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='LocalRelease|net48|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;LOCALBUILD</DefineConstants>
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='LocalRelease|net5.0|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;LOCALBUILD</DefineConstants>
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='LocalRelease|net6.0|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;LOCALBUILD</DefineConstants>
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
-    <PackageReference Include="DwC-A_dotnet" Version="0.5.2" />
+    <PackageReference Condition="'$(LOCALBUILD)' == ''" Include="DwC-A_dotnet" Version="0.5.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="BenchmarkDotNet.Artifacts\results\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Condition="'$(LOCALBUILD)' != ''" Include="..\src\DWC_A\DwC-A_dotnet.csproj" />
   </ItemGroup>
 
 </Project>
