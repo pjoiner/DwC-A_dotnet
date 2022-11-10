@@ -2,47 +2,68 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net48;net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net48;net5.0;net6.0;net7.0</TargetFrameworks>
     <Configurations>Debug;Release;LocalRelease</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net48|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net48|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='LocalRelease|net48|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE;LOCALBUILD</DefineConstants>
     <Optimize>True</Optimize>
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='LocalRelease|net5.0|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE;LOCALBUILD</DefineConstants>
     <Optimize>True</Optimize>
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='LocalRelease|net6.0|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE;LOCALBUILD</DefineConstants>
     <Optimize>True</Optimize>
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'">
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0|AnyCPU'">
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='LocalRelease|net7.0|AnyCPU'">
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
