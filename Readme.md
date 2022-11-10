@@ -26,4 +26,4 @@ using (var archive = new ArchiveReader(fileName))
 }
 ```
 
-More information can be found in the [Documentation Wiki](https://github.com/pjoiner/DwC-A_dotnet/wiki/Documentation).
+More information can be found in the [Documentation Wiki](https://github.com/pjoiner/DwC-A_dotnet/wiki).
