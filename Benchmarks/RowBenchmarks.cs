@@ -1,6 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using DwC_A;
+using DwC_A.Config;
 using DwC_A.Factories;
 using DwC_A.Meta;
 using DwC_A.Terms;
@@ -14,14 +15,15 @@ namespace Benchmarks
     {
         private readonly string[] fields = { "id", "taxonID", "acceptedNameUsageID", "parentNameUsageID", "nameAccordingToID", "scientificName", "acceptedNameUsage", "parentNameUsage", "nameAccordingTo", "higherClassification", "class", "order", "family", "genus", "subgenus", "specificEpithet", "infraspecificEpithet", "taxonRank", "scientificNameAuthorship", "taxonomicStatus", "modified", "license", "bibliographicCitation", "references" };
         private IFileMetaData fileMetaData;
-        private IRowFactory rowFactory;
+        private IRowFactory lazyRowFactory;
+        private IRowFactory greedyRowFactory;
         private int[] sequence;
         private readonly Consumer consumer = new Consumer();
 
         [GlobalSetup]
         public void Setup()
         {
-            Random rand = new Random();
+            Random rand = new Random(0);
             sequence = Enumerable.Range(0, fields.Length-1)
                 .OrderBy(n => rand.Next())
                 .ToArray();
@@ -61,34 +63,68 @@ namespace Benchmarks
             var defaultFactory = new DefaultFactory();
             fileMetaData = defaultFactory.CreateCoreMetaData(coreFileType);
             
-            rowFactory = defaultFactory.CreateRowFactory();
+            lazyRowFactory = defaultFactory.CreateRowFactory();
+
+            var greedyFactory = new DefaultFactory(c =>
+            {
+                c.Add<RowFactoryConfiguration>(cfg => cfg.Strategy = RowStrategy.Greedy);
+            });
+            greedyRowFactory = greedyFactory.CreateRowFactory();
         }
 
         [Benchmark]
-        public void DefaultAscending()
+        public void LazyAscending()
         {
-            var row = rowFactory.CreateRow(fields, fileMetaData.Fields);
+            var row = lazyRowFactory.CreateRow(fields, fileMetaData.Fields);
             Ascending(row);
         }
 
         [Benchmark]
-        public void DefaultDescending()
+        public void LazyDescending()
         {
-            var row = rowFactory.CreateRow(fields, fileMetaData.Fields);
+            var row = lazyRowFactory.CreateRow(fields, fileMetaData.Fields);
             Descending(row);
         }
 
         [Benchmark]
-        public void DefaultRandomOrder()
+        public void LazyRandomOrder()
         {
-            var row = rowFactory.CreateRow(fields, fileMetaData.Fields);
+            var row = lazyRowFactory.CreateRow(fields, fileMetaData.Fields);
             RandomOrder(row);
         }
 
         [Benchmark]
-        public void DefaultSparse()
+        public void LazySparse()
         {
-            var row = rowFactory.CreateRow(fields, fileMetaData.Fields);
+            var row = lazyRowFactory.CreateRow(fields, fileMetaData.Fields);
+            Sparse(row);
+        }
+
+        [Benchmark]
+        public void GreedyAscending()
+        {
+            var row = greedyRowFactory.CreateRow(fields, fileMetaData.Fields);
+            Ascending(row);
+        }
+
+        [Benchmark]
+        public void GreedyDescending()
+        {
+            var row = greedyRowFactory.CreateRow(fields, fileMetaData.Fields);
+            Descending(row);
+        }
+
+        [Benchmark]
+        public void GreedyRandomOrder()
+        {
+            var row = greedyRowFactory.CreateRow(fields, fileMetaData.Fields);
+            RandomOrder(row);
+        }
+
+        [Benchmark]
+        public void GreedySparse()
+        {
+            var row = greedyRowFactory.CreateRow(fields, fileMetaData.Fields);
             Sparse(row);
         }
 

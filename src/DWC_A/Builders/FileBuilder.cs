@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace DwC_A.Builders
 {
@@ -12,12 +13,14 @@ namespace DwC_A.Builders
     {
         private readonly IFileMetaData fileMetaData;
         private Func<RowBuilder, IEnumerable<string>> row;
+        private Func<IEnumerable<string>> headerFunc;
         private BuilderContext context;
         private string existingFile;
 
         private FileBuilder(IFileMetaData fileMetaData)
         {
             this.fileMetaData = fileMetaData;
+            headerFunc = AddDefaultHeader;
         }
 
         /// <summary>
@@ -59,15 +62,38 @@ namespace DwC_A.Builders
             return new FileBuilder(new ExtensionFileMetaData(metaDataBuilder.Build()));
         }
 
-        private FileBuilder AddHeader(TextWriter writer)
+        /// <summary>
+        /// Use this method to add a custom or multi-line header to a file
+        /// </summary>
+        /// <param name="headerFunc">A lambda or delegate that returns a list of strings representing the rows in the header.  The number of strings returned must equal FileMetaData.HeaderRowCount.</param>
+        /// <returns>Current FileBuilder</returns>
+        public FileBuilder AddCustomHeader(Func<IEnumerable<string>> headerFunc)
+        {
+            this.headerFunc = headerFunc;
+            return this;
+        }
+
+        private IEnumerable<string> AddDefaultHeader()
         {
             var rowBuilder = new RowBuilder(fileMetaData);
             foreach (var field in fileMetaData.Fields)
             {
-                rowBuilder.AddField(Terms.Terms.ShortName(field.Term));
+                _ = rowBuilder.AddField(Terms.Terms.ShortName(field.Term));
             }
-            rowBuilder.Build();
-            return this;
+            yield return rowBuilder.Build();
+        }
+
+        private void AddHeader(TextWriter writer)
+        {
+            var headerRows = headerFunc();
+            if (headerRows.Count() != fileMetaData.HeaderRowCount)
+            {
+                throw new InvalidOperationException($"Error writing file {fileMetaData.FileName}. {fileMetaData.HeaderRowCount} header rows were expected but {headerRows.Count()} were provided. See AddCustomHeader to create multi-line headers.");
+            }
+            foreach(var headerRow in headerRows)
+            {
+                writer.WriteLine(headerRow);
+            }
         }
 
         private string GetPath()

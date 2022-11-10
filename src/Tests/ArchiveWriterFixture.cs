@@ -60,5 +60,7 @@ namespace Tests
                     .AddField(_ => _.Term("http://purl.org/dc/terms/identifier"));
             }
         }
+
+        public string ExpectedCoreFileHeader => "occurrenceID,basisOfRecord,scientificName,eventDate,decimalLatitude,decimalLongitude,geodeticDatum";
     }
 }
