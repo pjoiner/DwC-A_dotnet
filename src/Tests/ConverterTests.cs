@@ -1,13 +1,13 @@
 ﻿using DwC_A;
-using DwC_A.Terms;
-using DwC_A.Extensions;
-using System.Linq;
-using Xunit;
-using System;
 using DwC_A.Exceptions;
+using DwC_A.Extensions;
+using DwC_A.Terms;
 using Moq;
+using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
+using Xunit;
 
 namespace Tests
 {
@@ -35,7 +35,7 @@ namespace Tests
             {
                 if (value is string valueStr)
                 {
-                    var dates = valueStr.Split('/'); 
+                    var dates = valueStr.Split('/');
                     return new EventDate()
                     {
                         Begin = dates.Length > 0 ? DateTime.Parse(dates[0]) : DateTime.MinValue,
@@ -88,18 +88,18 @@ namespace Tests
             Assert.Throws<TermNotFoundException>(() => row.Convert<string>(Terms.sex));
             Assert.Throws<NotSupportedException>(() => row.Convert<int>(Terms.parentNameUsageID));
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => row.Convert<int>(999));
+            Assert.Throws<IndexOutOfRangeException>(() => row.Convert<int>(999));
 
             Assert.Throws<ArgumentException>(() => row.Convert(Terms.scientificName, typeof(int)));
             Assert.Throws<TermNotFoundException>(() => row.Convert(Terms.sex, typeof(string)));
             Assert.Throws<NotSupportedException>(() => row.Convert(Terms.parentNameUsageID, typeof(int)));
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => row.Convert(999, typeof(int)));
+            Assert.Throws<IndexOutOfRangeException>(() => row.Convert(999, typeof(int)));
 
             Assert.Throws<ArgumentException>(() => row.ConvertNullable<int>(Terms.scientificName));
             Assert.Throws<TermNotFoundException>(() => row.ConvertNullable<int>(Terms.sex));
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => row.ConvertNullable<int>(999));
+            Assert.Throws<IndexOutOfRangeException>(() => row.ConvertNullable<int>(999));
         }
 
         [Fact]
@@ -115,7 +115,7 @@ namespace Tests
             var row = taxon.DataRows.FirstOrDefault();
             var result = row.TryConvert<int>(Terms.acceptedNameUsageID, out int acceptedNameUsageID);
             Assert.True(result);
-            Assert.Equal(ConvertResult.Success, result); 
+            Assert.Equal(ConvertResult.Success, result);
             Assert.Equal(73, acceptedNameUsageID);
         }
 

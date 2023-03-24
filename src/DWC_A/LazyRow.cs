@@ -1,18 +1,22 @@
 ﻿using DwC_A.Exceptions;
 using DwC_A.Meta;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DwC_A
 {
     internal class LazyRow : IRow
     {
         private readonly IEnumerable<string> fields;
+        private readonly string[] cachedFields;
+        private int maxCachedIndex = -1;
+        private readonly IEnumerator<string> fieldEnumerator;
 
         public LazyRow(IEnumerable<string> fields, IFieldMetaData fieldMetaData)
         {
             this.fields = fields;
+            fieldEnumerator = fields.GetEnumerator();
             this.FieldMetaData = fieldMetaData;
+            cachedFields = new string[fieldMetaData.Length];
         }
 
         public IEnumerable<string> Fields
@@ -41,7 +45,11 @@ namespace DwC_A
         {
             get
             {
-                return fields.ElementAt(index);
+                while (index > maxCachedIndex && fieldEnumerator.MoveNext())
+                {
+                    cachedFields[++maxCachedIndex] = fieldEnumerator.Current;
+                }
+                return cachedFields[index];
             }
         }
 
