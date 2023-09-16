@@ -1,4 +1,6 @@
-﻿namespace DwC_A.Meta
+﻿using DwC_A.Meta;
+
+namespace DwC_A.Builders
 {
     /// <summary>
     /// Builds field metadata definitions

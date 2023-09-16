@@ -1,4 +1,5 @@
 ﻿using DwC_A;
+using DwC_A.Builders;
 using DwC_A.Exceptions;
 using DwC_A.Extensions;
 using DwC_A.Meta;
@@ -11,7 +12,7 @@ namespace Tests
 {
     public class GetListExtensionsTests
     {
-        Mock<IRow> mockRow = new Mock<IRow>();
+        private readonly Mock<IRow> mockRow = new();
 
         public GetListExtensionsTests() 
         {
