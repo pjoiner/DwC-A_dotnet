@@ -1,6 +1,7 @@
 ﻿using System.Text;
+using DwC_A.Meta;
 
-namespace DwC_A.Meta
+namespace DwC_A.Builders
 {
     public class ExtensionFileMetaDataBuilder
     {

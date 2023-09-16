@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DwC_A.Meta;
 
-namespace DwC_A.Meta
+namespace DwC_A.Builders
 {
     /// <summary>
     /// Creates a collection of field metadata
@@ -41,10 +42,10 @@ namespace DwC_A.Meta
         /// </summary>
         /// <param name="fieldMetaData">This method will create a FieldMetaDataBuilder and pass it to a lamba defined to fill in the field metadat</param>
         /// <returns>this</returns>
-        public FieldsMetaDataBuilder AddField( Func<FieldMetaDataBuilder, FieldMetaDataBuilder> fieldMetaData )
+        public FieldsMetaDataBuilder AddField(Func<FieldMetaDataBuilder, FieldMetaDataBuilder> fieldMetaData)
         {
             var fieldMetaDataBuilder = FieldMetaDataBuilder.Field();
-            if(automaticallyIndex)
+            if (automaticallyIndex)
             {
                 fieldMetaDataBuilder.Index(index++);
             }

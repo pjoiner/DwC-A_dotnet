@@ -1,8 +1,8 @@
-﻿using DwC_A.Builders;
+﻿using DwC_A.Meta;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace DwC_A.Meta
+namespace DwC_A.Builders
 {
     public class ArchiveMetaDataBuilder
     {
@@ -48,7 +48,7 @@ namespace DwC_A.Meta
         public string Serialize()
         {
             var path = GetPath();
-            var metaDataFileName = System.IO.Path.Combine(path, fileName);
+            var metaDataFileName = Path.Combine(path, fileName);
             var overrides = GetXmlAttributeOverrides();
             XmlSerializer serializer = new XmlSerializer(typeof(Archive), overrides);
             using (Stream stream = new FileStream(metaDataFileName, FileMode.Create))
@@ -60,7 +60,7 @@ namespace DwC_A.Meta
 
         private string GetPath()
         {
-            if(context == null)
+            if (context == null)
             {
                 return BuilderContext.Default.Path;
             }
@@ -80,14 +80,14 @@ namespace DwC_A.Meta
                 "dateFormat"
             };
             var overrides = new XmlAttributeOverrides();
-            foreach(var attributeName in attributeNames)
+            foreach (var attributeName in attributeNames)
             {
                 var attribute = new XmlAttributes()
                 {
                     XmlDefaultValue = null,
                     XmlAttribute = new XmlAttributeAttribute()
-                    { 
-                        AttributeName = attributeName                        
+                    {
+                        AttributeName = attributeName
                     }
                 };
                 var memberName = Capitalize(attributeName);

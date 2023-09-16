@@ -1,6 +1,7 @@
 ﻿using System.Text;
+using DwC_A.Meta;
 
-namespace DwC_A.Meta
+namespace DwC_A.Builders
 {
     public class CoreFileMetaDataBuilder
     {
@@ -83,7 +84,7 @@ namespace DwC_A.Meta
 
         public CoreFileMetaDataBuilder AddFields(FieldsMetaDataBuilder fields)
         {
-            foreach(var field in fields.Build()) 
+            foreach (var field in fields.Build())
             {
                 AddField(field);
             }
