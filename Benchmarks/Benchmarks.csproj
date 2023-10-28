@@ -67,7 +67,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.9" />
     <PackageReference Condition="'$(LOCALBUILD)' == ''" Include="DwC-A_dotnet" Version="0.5.2" />
   </ItemGroup>
 
