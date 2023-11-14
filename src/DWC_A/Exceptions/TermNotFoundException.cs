@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace DwC_A.Exceptions
 {
@@ -15,12 +14,8 @@ namespace DwC_A.Exceptions
         {
         }
 
-        public TermNotFoundException(string term, Exception innerException) : 
+        public TermNotFoundException(string term, Exception innerException) :
             base(BuildMessage(term), innerException)
-        {
-        }
-
-        protected TermNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }
