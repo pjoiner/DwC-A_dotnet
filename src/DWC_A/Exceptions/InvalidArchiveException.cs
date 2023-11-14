@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace DwC_A.Exceptions
 {
@@ -14,18 +13,13 @@ namespace DwC_A.Exceptions
         {
         }
 
-        public InvalidArchiveException(string path) : 
+        public InvalidArchiveException(string path) :
             base(BuildMessage(path))
         {
         }
 
-        public InvalidArchiveException(string path, Exception innerException) : 
+        public InvalidArchiveException(string path, Exception innerException) :
             base(BuildMessage(path), innerException)
-        {
-        }
-
-        protected InvalidArchiveException(SerializationInfo info, StreamingContext context) : 
-            base(info, context)
         {
         }
     }

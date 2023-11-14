@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net48;net5.0;net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net48;net6.0;net7.0;net8.0</TargetFrameworks>
     <Configurations>Debug;Release;LocalRelease</Configurations>
   </PropertyGroup>
 
@@ -67,7 +67,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.9" />
     <PackageReference Condition="'$(LOCALBUILD)' == ''" Include="DwC-A_dotnet" Version="0.5.2" />
   </ItemGroup>
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace DwC_A.Exceptions
 {
@@ -14,18 +13,13 @@ namespace DwC_A.Exceptions
         {
         }
 
-        public FileReaderNotFoundException(string fileName) : 
+        public FileReaderNotFoundException(string fileName) :
             base(BuildMessage(fileName))
         {
         }
 
-        public FileReaderNotFoundException(string fileName, Exception innerException) : 
+        public FileReaderNotFoundException(string fileName, Exception innerException) :
             base(BuildMessage(fileName), innerException)
-        {
-        }
-
-        protected FileReaderNotFoundException(SerializationInfo info, StreamingContext context) : 
-            base(info, context)
         {
         }
     }
