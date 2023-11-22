@@ -15,7 +15,7 @@ namespace DwC_A
             using (var reader = new System.IO.StreamReader(stream, fileMetaData.Encoding))
             {
                 string line;
-                while ((line = await reader.ReadRowAsync(fileMetaData)) != null)
+                while ((line = await reader.ReadRowAsync(fileMetaData).ConfigureAwait(false)) != null)
                 {
                     ct.ThrowIfCancellationRequested();
                     yield return rowFactory.CreateRow(tokenizer.Split(line), fileMetaData.Fields);

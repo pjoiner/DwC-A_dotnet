@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace DwC_A
 {
@@ -13,7 +14,7 @@ namespace DwC_A
             using (var stream = new FileStream(FileName,
                 FileMode.Open, FileAccess.Read, FileShare.Read, config.BufferSize, true))
             {
-                await foreach (var row in streamReader.ReadRowsAsync(stream, ct))
+                await foreach (var row in streamReader.ReadRowsAsync(stream, ct).ConfigureAwait(false))
                 {
                     yield return row;
                 }
@@ -23,7 +24,7 @@ namespace DwC_A
         public async IAsyncEnumerable<IRow> GetHeaderRowsAsync([EnumeratorCancellation] CancellationToken ct = default)
         {
             int count = 0;
-            await foreach (var row in GetRowsAsync(ct))
+            await foreach (var row in GetRowsAsync(ct).ConfigureAwait(false))
             {
                 if (count < FileMetaData.HeaderRowCount)
                 {
@@ -40,7 +41,7 @@ namespace DwC_A
         public async IAsyncEnumerable<IRow> GetDataRowsAsync([EnumeratorCancellation] CancellationToken ct = default)
         {
             int count = 0;
-            await foreach (var row in GetRowsAsync(ct))
+            await foreach (var row in GetRowsAsync(ct).ConfigureAwait(false))
             {
                 if (count >= FileMetaData.HeaderRowCount)
                 {

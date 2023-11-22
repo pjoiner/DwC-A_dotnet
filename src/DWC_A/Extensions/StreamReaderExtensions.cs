@@ -30,9 +30,9 @@ namespace DwC_A.Extensions
             char terminatorStart = fileMetaData.LinesTerminatedBy.FirstOrDefault();
             bool inQuotes = false;
             char[] c = new char[1];
-            while(reader.Peek() != -1)
+            while (reader.Peek() != -1)
             {
-                reader.Read(c,0,1);
+                reader.Read(c, 0, 1);
                 if (!inQuotes && c[0] == terminatorStart)
                 {
                     for (int i = 1; i < fileMetaData.LineTerminatorLength; i++)
@@ -61,7 +61,7 @@ namespace DwC_A.Extensions
             char Quotes = fileMetaData.FieldsEnclosedBy.FirstOrDefault();
             if (Quotes == '\0')
             {
-                line.Append(await reader.ReadLineAsync());
+                line.Append(await reader.ReadLineAsync().ConfigureAwait(false));
                 return line.Flush();
             }
             char terminatorStart = fileMetaData.LinesTerminatedBy.FirstOrDefault();
@@ -69,12 +69,12 @@ namespace DwC_A.Extensions
             char[] c = new char[1];
             while (reader.Peek() != -1)
             {
-                await reader.ReadAsync(c, 0, 1);
+                await reader.ReadAsync(c, 0, 1).ConfigureAwait(false);
                 if (!inQuotes && c[0] == terminatorStart)
                 {
                     for (int i = 1; i < fileMetaData.LineTerminatorLength; i++)
                     {
-                        await reader.ReadAsync(c, 0, 1);
+                        await reader.ReadAsync(c, 0, 1).ConfigureAwait(false);
                     }
                     return line.Flush();
                 }
