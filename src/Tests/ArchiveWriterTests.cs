@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
 
 namespace Tests
 {
@@ -58,7 +57,7 @@ namespace Tests
         [Fact]
         public async Task ShouldBuildArchive()
         {
-            var context = BuilderContext.Default;
+            var context = new BuilderContext(Guid.NewGuid().ToString(), true);
 
             var occurrences = await fixture.GetOccurrencesAsync();
             var occurrenceMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
@@ -98,7 +97,7 @@ namespace Tests
         [Fact]
         public async Task ShouldBuildCoreFile()
         {
-            var context = BuilderContext.Default;
+            var context = new BuilderContext(Guid.NewGuid().ToString(), true);
 
             var occurrences = await fixture.GetOccurrencesAsync();
             var occurrenceMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
@@ -121,7 +120,7 @@ namespace Tests
         [Fact]
         public async Task ShouldBuildCoreFileWithCustomHeader()
         {
-            var context = BuilderContext.Default;
+            var context = new BuilderContext(Guid.NewGuid().ToString(), true);
 
             var occurrences = await fixture.GetOccurrencesAsync();
             var occurrenceMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
@@ -146,7 +145,7 @@ namespace Tests
         [Fact]
         public async Task FileBuilderShouldThrowOnWrongNumberOfHeaderLines()
         {
-            var context = BuilderContext.Default;
+            var context = new BuilderContext(Guid.NewGuid().ToString(), true);
 
             var occurrences = await fixture.GetOccurrencesAsync();
             var occurrenceMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
