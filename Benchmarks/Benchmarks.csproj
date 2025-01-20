@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net48;net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net48;net7.0;net8.0;net9.0</TargetFrameworks>
     <Configurations>Debug;Release;LocalRelease</Configurations>
   </PropertyGroup>
 
@@ -12,12 +12,10 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net48|AnyCPU'">
-    <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
     <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='LocalRelease|net48|AnyCPU'">
-    <DefineConstants>$(DefineConstants)TRACE;LOCALBUILD</DefineConstants>
     <Optimize>True</Optimize>
     <NoWarn>1701;1702;NETSDK1138</NoWarn>
   </PropertyGroup>
@@ -64,10 +62,28 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='LocalRelease|net7.0|AnyCPU'">
     <NoWarn>1701;1702;NETSDK1138</NoWarn>
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='LocalRelease|net8.0|AnyCPU'">
+    <NoWarn>1701;1702;NETSDK1138</NoWarn>
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='LocalRelease|net9.0|AnyCPU'">
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.9" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
     <PackageReference Condition="'$(LOCALBUILD)' == ''" Include="DwC-A_dotnet" Version="0.5.2" />
   </ItemGroup>
 
