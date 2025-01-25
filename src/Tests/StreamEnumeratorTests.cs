@@ -18,8 +18,8 @@ namespace Tests
         private readonly IRowFactory rowFactory;
         private readonly ITokenizer tokenizer;
 
-        Mock<IFileMetaData> fileMetaDataMock = new Mock<IFileMetaData>();
-        Mock<IFileAttributes> fileAttributesMock = new Mock<IFileAttributes>();
+        readonly Mock<IFileMetaData> fileMetaDataMock = new();
+        readonly Mock<IFileAttributes> fileAttributesMock = new();
 
         public StreamEnumeratorTests()
         {
@@ -38,36 +38,28 @@ namespace Tests
             tokenizer = new Tokenizer(fileMetaDataMock.Object);
         }
 
-        ICollection<FieldType> fieldTypes = new FieldType[]
-        {
-
-
-        };
-
         [Fact]
         public void ShouldEnumerateFile()
         {
-            using (Stream stream = new FileStream(fileName, FileMode.Open))
-            {
-                var streamEnumerator = new DwC_A.StreamReader(
-                    rowFactory,
-                    tokenizer,
-                    fileMetaDataMock.Object);
-                Assert.NotEmpty(streamEnumerator.ReadRows(stream).ToArray());
-            }
+            using Stream stream = new FileStream(fileName, FileMode.Open);
+            var streamEnumerator = new DwC_A.StreamReader(
+                rowFactory,
+                tokenizer,
+                fileMetaDataMock.Object);
+            Assert.NotEmpty(streamEnumerator.ReadRows(stream).ToArray());
         }
 
         [Fact]
         public async Task ShouldEnumerateFileAsync()
         {
-            using (Stream stream = new FileStream(fileName, FileMode.Open))
-            {
-                var streamEnumerator = new DwC_A.StreamReader(
-                    rowFactory,
-                    tokenizer,
-                    fileMetaDataMock.Object);
-                Assert.NotEmpty(await streamEnumerator.ReadRowsAsync(stream).ToArrayAsync());
-            }
+            using Stream stream = new FileStream(fileName, FileMode.Open);
+            var streamEnumerator = new DwC_A.StreamReader(
+                rowFactory,
+                tokenizer,
+                fileMetaDataMock.Object);
+            Assert.NotEmpty(await streamEnumerator
+                .ReadRowsAsync(stream, TestContext.Current.CancellationToken)
+                .ToArrayAsync(TestContext.Current.CancellationToken));
         }
 
     }

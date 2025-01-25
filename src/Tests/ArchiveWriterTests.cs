@@ -12,14 +12,9 @@ using System.Threading.Tasks;
 namespace Tests
 {
     [Collection("ArchiveWriterCollection")]
-    public class ArchiveWriterTests
+    public class ArchiveWriterTests(ArchiveWriterFixture fixture)
     {
-        private readonly ArchiveWriterFixture fixture;
-
-        public ArchiveWriterTests(ArchiveWriterFixture fixture)
-        {
-            this.fixture = fixture;
-        }
+        private readonly ArchiveWriterFixture fixture = fixture;
 
         [Fact]
         public void ShouldBuildArchiveFromExistingFile()
@@ -45,13 +40,11 @@ namespace Tests
 
             Assert.True(File.Exists("whales.zip"));
 
-            using(var archive = new ArchiveReader("whales.zip"))
-            {
-                var whales = archive.CoreFile
-                    .DataRows
-                    .Select(n => n[Terms.vernacularName]);
-                Assert.Equal(new[] { "sperm whale", "cachalot", "gray whale" }, whales);
-            }
+            using var archive = new ArchiveReader("whales.zip");
+            var whales = archive.CoreFile
+                .DataRows
+                .Select(n => n[Terms.vernacularName]);
+            Assert.Equal(["sperm whale", "cachalot", "gray whale"], whales);
         }
 
         [Fact]
