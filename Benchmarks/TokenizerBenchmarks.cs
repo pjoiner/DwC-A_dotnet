@@ -10,7 +10,9 @@ namespace Benchmarks
     public class TokenizerBenchmarks
     {
         private readonly string line = "id	taxonID	acceptedNameUsageID	parentNameUsageID	nameAccordingToID	scientificName	acceptedNameUsage	parentNameUsage	nameAccordingTo	higherClassification	class	order	family	genus	subgenus	specificEpithet	infraspecificEpithet	taxonRank	scientificNameAuthorship	taxonomicStatus	modified	license	bibliographicCitation	references";
+#pragma warning disable CA1859 // We are measuring performance here
         private readonly IAbstractFactory abstractFactory = new DefaultFactory();
+#pragma warning restore CA1859 // We are measuring performance here
         private ITokenizer tokenizer;
         private readonly Consumer consumer = new Consumer();
 
