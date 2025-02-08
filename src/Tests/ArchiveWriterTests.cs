@@ -8,19 +8,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
 
 namespace Tests
 {
     [Collection("ArchiveWriterCollection")]
-    public class ArchiveWriterTests
+    public class ArchiveWriterTests(ArchiveWriterFixture fixture)
     {
-        private readonly ArchiveWriterFixture fixture;
-
-        public ArchiveWriterTests(ArchiveWriterFixture fixture)
-        {
-            this.fixture = fixture;
-        }
+        private readonly ArchiveWriterFixture fixture = fixture;
 
         [Fact]
         public void ShouldBuildArchiveFromExistingFile()
@@ -46,19 +40,17 @@ namespace Tests
 
             Assert.True(File.Exists("whales.zip"));
 
-            using(var archive = new ArchiveReader("whales.zip"))
-            {
-                var whales = archive.CoreFile
-                    .DataRows
-                    .Select(n => n[Terms.vernacularName]);
-                Assert.Equal(new[] { "sperm whale", "cachalot", "gray whale" }, whales);
-            }
+            using var archive = new ArchiveReader("whales.zip");
+            var whales = archive.CoreFile
+                .DataRows
+                .Select(n => n[Terms.vernacularName]);
+            Assert.Equal(["sperm whale", "cachalot", "gray whale"], whales);
         }
 
         [Fact]
         public async Task ShouldBuildArchive()
         {
-            var context = BuilderContext.Default;
+            var context = new BuilderContext(Guid.NewGuid().ToString(), true);
 
             var occurrences = await fixture.GetOccurrencesAsync();
             var occurrenceMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
@@ -98,7 +90,7 @@ namespace Tests
         [Fact]
         public async Task ShouldBuildCoreFile()
         {
-            var context = BuilderContext.Default;
+            var context = new BuilderContext(Guid.NewGuid().ToString(), true);
 
             var occurrences = await fixture.GetOccurrencesAsync();
             var occurrenceMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
@@ -121,7 +113,7 @@ namespace Tests
         [Fact]
         public async Task ShouldBuildCoreFileWithCustomHeader()
         {
-            var context = BuilderContext.Default;
+            var context = new BuilderContext(Guid.NewGuid().ToString(), true);
 
             var occurrences = await fixture.GetOccurrencesAsync();
             var occurrenceMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;
@@ -146,7 +138,7 @@ namespace Tests
         [Fact]
         public async Task FileBuilderShouldThrowOnWrongNumberOfHeaderLines()
         {
-            var context = BuilderContext.Default;
+            var context = new BuilderContext(Guid.NewGuid().ToString(), true);
 
             var occurrences = await fixture.GetOccurrencesAsync();
             var occurrenceMetaDataBuilder = fixture.OccurrenceFieldsMetaDataBuilder;

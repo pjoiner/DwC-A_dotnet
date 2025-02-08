@@ -16,10 +16,9 @@ namespace Tests
     public class FileReaderTests
     {
         private const string fileName = "./resources/dwca-vascan-v37.5/taxon.txt";
-        private const string resourceRelationShipFileName = "./resources/dwca-vascan-v37.5/resourcerelationship.txt";
         private readonly IRowFactory rowFactory;
         private readonly ITokenizer tokenizer;
-        private readonly Mock<IFileMetaData> fileMetaDataMock = new Mock<IFileMetaData>();
+        private readonly Mock<IFileMetaData> fileMetaDataMock = new();
 
         public FileReaderTests()
         {
@@ -51,7 +50,9 @@ namespace Tests
             var fileReader = new FileReader(fileName,
                 rowFactory, tokenizer, fileMetaDataMock.Object,
                 new FileReaderConfiguration());
-            Assert.NotEmpty(await fileReader.GetDataRowsAsync().ToArrayAsync());
+            Assert.NotEmpty(await fileReader
+                .GetDataRowsAsync(TestContext.Current.CancellationToken)
+                .ToArrayAsync(TestContext.Current.CancellationToken));
         }
 
         [Fact]
@@ -71,7 +72,9 @@ namespace Tests
             var fileReader = new FileReader(fileName,
                 rowFactory, tokenizer, fileMetaDataMock.Object,
                 new FileReaderConfiguration());
-            Assert.Single(await fileReader.GetHeaderRowsAsync().ToArrayAsync());
+            Assert.Single(await fileReader
+                .GetHeaderRowsAsync(TestContext.Current.CancellationToken)
+                .ToArrayAsync(TestContext.Current.CancellationToken));
         }
 
         [Fact]
@@ -91,7 +94,9 @@ namespace Tests
             var fileReader = new FileReader(fileName,
                 rowFactory, tokenizer, fileMetaDataMock.Object,
                 new FileReaderConfiguration());
-            Assert.NotEmpty(await fileReader.GetDataRowsAsync().ToArrayAsync());
+            Assert.NotEmpty(await fileReader
+                .GetDataRowsAsync(TestContext.Current.CancellationToken)
+                .ToArrayAsync(TestContext.Current.CancellationToken));
         }
 
         [Fact]
@@ -104,7 +109,9 @@ namespace Tests
             var ct = new CancellationToken(true);
             await Assert.ThrowsAsync<OperationCanceledException>(async () => 
             { 
-                await fileReader.GetDataRowsAsync(ct).ToArrayAsync(); 
+                await fileReader
+                .GetDataRowsAsync(ct)
+                .ToArrayAsync(TestContext.Current.CancellationToken); 
             });
         }
 
@@ -126,8 +133,12 @@ namespace Tests
             var fileReader = new FileReader(fileName,
                 rowFactory, tokenizer, fileMetaDataMock.Object,
                 new FileReaderConfiguration());
-            Assert.NotEmpty(await fileReader.GetDataRowsAsync().ToArrayAsync());
-            Assert.NotEmpty(await fileReader.GetHeaderRowsAsync().ToArrayAsync());
+            Assert.NotEmpty(await fileReader
+                .GetDataRowsAsync(TestContext.Current.CancellationToken)
+                .ToArrayAsync(TestContext.Current.CancellationToken));
+            Assert.NotEmpty(await fileReader
+                .GetHeaderRowsAsync(TestContext.Current.CancellationToken)
+                .ToArrayAsync(TestContext.Current.CancellationToken));
         }
     }
 }

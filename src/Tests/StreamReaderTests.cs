@@ -3,6 +3,7 @@ using DwC_A.Meta;
 using Moq;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Tests
@@ -36,7 +37,7 @@ namespace Tests
         }
 
         [Fact]
-        public async void ShouldReadStreamWithQuotesAsync()
+        public async Task ShouldReadStreamWithQuotesAsync()
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(data)))
             {

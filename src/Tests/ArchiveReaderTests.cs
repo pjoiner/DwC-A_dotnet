@@ -16,46 +16,42 @@ namespace Tests
         [Fact]
         public void ShouldOpenCoreFile()
         {
-            using (var archive = new ArchiveReader(archiveFileName))
+            using var archive = new ArchiveReader(archiveFileName);
+            foreach (var row in archive.CoreFile.Rows)
             {
-                foreach(var row in archive.CoreFile.Rows)
-                {
-                    Assert.NotNull(row[0]);
-                    Assert.NotNull(row["id"]);
-                }
+                Assert.NotNull(row[0]);
+                Assert.NotNull(row["id"]);
             }
         }
 
         [Fact]
         public async Task ShouldOpenCoreFileAsync()
         {
-            using(var archive = new ArchiveReader(archiveFileName))
+            using var archive = new ArchiveReader(archiveFileName);
+            await foreach (var row in archive
+                .GetAsyncCoreFile()
+                .GetDataRowsAsync(TestContext.Current.CancellationToken))
             {
-                await foreach(var row in archive.GetAsyncCoreFile().GetDataRowsAsync())
-                {
-                    Assert.NotNull(row[0]);
-                }
+                Assert.NotNull(row[0]);
             }
         }
 
         [Fact]
         public void ShouldReturnDescriptionExtensionFile()
         {
-            using (var archive = new ArchiveReader(archiveFileName))
-            {
-                var descriptionFile = archive.Extensions.GetFileReaderByFileName("description.txt");
-                Assert.NotEmpty(descriptionFile.Rows);
-            }
+            using var archive = new ArchiveReader(archiveFileName);
+            var descriptionFile = archive.Extensions.GetFileReaderByFileName("description.txt");
+            Assert.NotEmpty(descriptionFile.Rows);
         }
 
         [Fact]
         public async Task ShouldReturnDescriptionExtensionFileAsync()
         {
-            using (var archive = new ArchiveReader(archiveFileName))
-            {
-                var descriptionFile = archive.Extensions.GetAsyncFileReaderByFileName("description.txt");
-                Assert.NotEmpty(await descriptionFile.GetDataRowsAsync().ToArrayAsync());
-            }
+            using var archive = new ArchiveReader(archiveFileName);
+            var descriptionFile = archive.Extensions.GetAsyncFileReaderByFileName("description.txt");
+            Assert.NotEmpty(await descriptionFile
+                .GetDataRowsAsync(TestContext.Current.CancellationToken)
+                .ToArrayAsync(TestContext.Current.CancellationToken));
         }
 
         [Fact]
@@ -75,12 +71,10 @@ namespace Tests
         [Fact]
         public void ShouldOpenWhalesArchive()
         {
-            using (var whales = new ArchiveReader(whalesArchiveFileName))
-            {
-                Assert.NotEmpty(whales.CoreFile.Rows);
-                Assert.Empty(whales.CoreFile.FileMetaData.Fields);
-                Assert.Equal(4, whales.CoreFile.DataRows.Count());
-            }
+            using var whales = new ArchiveReader(whalesArchiveFileName);
+            Assert.NotEmpty(whales.CoreFile.Rows);
+            Assert.Empty(whales.CoreFile.FileMetaData.Fields);
+            Assert.Equal(4, whales.CoreFile.DataRows.Count());
         }
 
         [Fact]

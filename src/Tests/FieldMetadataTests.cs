@@ -9,8 +9,8 @@ namespace Tests
 {
     public class FieldMetadataTests
     {
-        readonly ICollection<FieldType> fieldTypes = new List<FieldType>()
-        {
+        readonly ICollection<FieldType> fieldTypes =
+        [
             new FieldType()
             {
                 Index = 1,
@@ -29,9 +29,9 @@ namespace Tests
                 Term = Terms.accessRights,
                 Default = "Default Value"
             }
-    };
+        ];
 
-        IFieldMetaData fieldMetaData;
+        FieldMetaData fieldMetaData;
 
         [Fact]
         public void ShouldReturnNegativeOneOnNotFound()
@@ -57,7 +57,7 @@ namespace Tests
                 IndexSpecified = true
             };
             fieldMetaData = new FieldMetaData( idField, fieldTypes);
-            Assert.Equal(4, fieldMetaData.Count());
+            Assert.Equal(4, fieldMetaData.Length);
         }
 
         [Fact]
@@ -70,7 +70,7 @@ namespace Tests
                 IndexSpecified = true
             };
             fieldMetaData = new FieldMetaData(idField, fieldTypes);
-            Assert.Equal(3, fieldMetaData.Count());
+            Assert.Equal(3, fieldMetaData.Length);
         }
 
         [Fact]
@@ -96,7 +96,7 @@ namespace Tests
                 IndexSpecified = true
             };
             fieldMetaData = new FieldMetaData(idField, fieldTypes);
-            Assert.NotEmpty(fieldMetaData.Where(n => !n.IndexSpecified));
+            Assert.Contains(Terms.accessRights, fieldMetaData.SingleOrDefault(n => !n.IndexSpecified).Term);
         }
 
         [Fact]
@@ -109,7 +109,7 @@ namespace Tests
                 IndexSpecified = true
             };
             fieldMetaData = new FieldMetaData(idField, fieldTypes);
-            Assert.Equal(4, fieldMetaData.Count());
+            Assert.Equal(4, fieldMetaData.Length);
         }
     }
 }
