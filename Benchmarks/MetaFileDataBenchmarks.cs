@@ -2,13 +2,16 @@
 using DwC_A.Factories;
 using DwC_A.Meta;
 using DwC_A.Terms;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Benchmarks
 {
     [Config(typeof(Config))]
     public class MetaFileDataBenchmarks
     {
+#pragma warning disable CA1859 // We are measuring performance here
         private IAbstractFactory defaultFactory;
+#pragma warning restore CA1859 // We are measuring performance here
         private CoreFileType coreFileType;
         private FieldType[] metaData;
 
@@ -64,7 +67,7 @@ namespace Benchmarks
             Ascending(fileMetaData.Fields);
         }
 
-        private void Descending(IFieldMetaData fieldsMetaData)
+        private static void Descending(IFieldMetaData fieldsMetaData)
         {
             var references = fieldsMetaData[Terms.references];
             var bibliographicCitation = fieldsMetaData[Terms.bibliographicCitation];
@@ -91,7 +94,7 @@ namespace Benchmarks
             var license = fieldsMetaData[Terms.license];
         }
 
-        private void Ascending(IFieldMetaData fieldsMetaData)
+        private static void Ascending(IFieldMetaData fieldsMetaData)
         {
             var license = fieldsMetaData[Terms.license];
             var modified = fieldsMetaData[Terms.modified];
